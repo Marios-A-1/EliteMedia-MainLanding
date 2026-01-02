@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 
 import Header from "@/components/ui/header";
+import Plasma from "@/components/ui/Plasma";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -51,11 +52,23 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${nacelle.variable} bg-gray-950 font-inter text-base text-gray-200 antialiased`}
+        className={`${inter.variable} ${nacelle.variable} bg-transparent font-inter text-base text-white antialiased`}
       >
-        <div className="flex min-h-screen flex-col overflow-hidden supports-[overflow:clip]:overflow-clip">
-          <Header />
-          {children}
+        <div className="relative min-h-screen overflow-hidden">
+          <div className="pointer-events-none absolute inset-0">
+            <Plasma
+              color="#ffc219"
+              speed={0.3}
+              direction="forward"
+              scale={0.2}
+              opacity={0.2}
+              mouseInteractive
+            />
+          </div>
+          <div className="relative z-10 flex min-h-screen flex-col overflow-hidden supports-[overflow:clip]:overflow-clip">
+            <Header />
+            {children}
+          </div>
         </div>
       </body>
     </html>

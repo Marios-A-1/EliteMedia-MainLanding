@@ -12,6 +12,10 @@
     @apply px-3 py-[7px];
 }
 
+.glass-btn {
+    @apply relative inline-flex items-center justify-center rounded-full border border-white/40 bg-white/5 px-4 py-2 text-sm font-medium text-white/80 transition hover:border-white/60 hover:bg-white/10 backdrop-blur-2xl;
+}
+
 /* Forms */
 input[type='search']::-webkit-search-decoration,
 input[type='search']::-webkit-search-cancel-button,
@@ -26,19 +30,19 @@ input[type='search']::-webkit-search-results-decoration {
 .form-select,
 .form-checkbox,
 .form-radio {
-    @apply border border-gray-700 bg-gray-900/50 focus:border-gray-600 focus:ring-0 focus:ring-offset-0;
+    @apply border border-[#a77c2f] bg-[#1a1205]/50 focus:border-[#d4af37] focus:ring-0 focus:ring-offset-0;
 }
 
 .form-input,
 .form-textarea,
 .form-multiselect,
 .form-select {
-    @apply rounded-lg px-4 py-2.5 text-sm text-gray-200;
+    @apply rounded-lg px-4 py-2.5 text-sm text-[#f5e7c6];
 }
 
 .form-input,
 .form-textarea {
-    @apply placeholder-gray-600;
+    @apply placeholder-[#d4af37];
 }
 
 .form-select {

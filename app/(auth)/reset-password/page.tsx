@@ -20,7 +20,7 @@ export default function ResetPassword() {
           <form className="mx-auto max-w-[400px]">
             <div>
               <label
-                className="mb-1 block text-sm font-medium text-indigo-200/65"
+                className="mb-1 block text-sm font-medium text-white"
                 htmlFor="email"
               >
                 Email
