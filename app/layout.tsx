@@ -55,8 +55,8 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${nacelle.variable} bg-transparent font-inter text-base text-white antialiased`}
       >
-        <div className="relative min-h-screen overflow-hidden">
-          <div className="pointer-events-none absolute inset-0">
+        <div className="relative min-h-screen overflow-hidden bg-black">
+          <div className="pointer-events-none absolute inset-0  sm:block hidden">
             <Plasma
               color="#ffcf4d"
               speed={0.3}
