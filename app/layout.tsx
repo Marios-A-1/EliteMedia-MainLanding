@@ -6,6 +6,7 @@ import localFont from "next/font/local";
 import Header from "@/components/ui/header";
 import Plasma from "@/components/ui/Plasma";
 
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -57,15 +58,15 @@ export default function RootLayout({
         <div className="relative min-h-screen overflow-hidden">
           <div className="pointer-events-none absolute inset-0">
             <Plasma
-              color="#ffc219"
+              color="#ffcf4d"
               speed={0.3}
               direction="forward"
               scale={0.2}
-              opacity={0.2}
+              opacity={0.1}
               mouseInteractive
             />
           </div>
-          <div className="relative z-10 flex min-h-screen flex-col overflow-hidden supports-[overflow:clip]:overflow-clip">
+          <div className="relative z-10 flex min-h-screen flex-col overflow-hidden pt-14 supports-[overflow:clip]:overflow-clip">
             <Header />
             {children}
           </div>

@@ -1,23 +1,156 @@
 "use client";
 
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import Logo from "./logo";
 
+const NAV_LINKS = [
+  {
+    id: "services",
+    label:
+      "\u03A4\u03B9 \u03B1\u03BD\u03B1\u03BB\u03B1\u03BC\u03B2\u03AC\u03BD\u03BF\u03C5\u03BC\u03B5",
+  },
+  {
+    id: "how-it-works",
+    label: "\u03A0\u03CE\u03C2 \u03B4\u03BF\u03C5\u03BB\u03B5\u03CD\u03B5\u03B9",
+  },
+  {
+    id: "results",
+    label: "\u0391\u03C0\u03BF\u03C4\u03B5\u03BB\u03AD\u03C3\u03BC\u03B1\u03C4\u03B1",
+  },
+];
+
+const SCROLL_OFFSET = 80;
+const SCROLL_DURATION = 600;
+
+const easeInOutCubic = (t: number) =>
+  t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
 export default function Header() {
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const animationRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const sections = NAV_LINKS.map((link) =>
+      document.getElementById(link.id)
+    ).filter((section): section is HTMLElement => Boolean(section));
+
+    if (!sections.length) return;
+
+    const updateActive = () => {
+      const marker = SCROLL_OFFSET + 12;
+      const active = sections.find((section) => {
+        const rect = section.getBoundingClientRect();
+        return rect.top <= marker && rect.bottom >= marker;
+      });
+      setActiveSection(active?.id ?? null);
+    };
+
+    let ticking = false;
+    const handleScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        updateActive();
+        ticking = false;
+      });
+    };
+
+    updateActive();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
+
+  useEffect(
+    () => () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    },
+    []
+  );
+
+  const handleAnchorClick = (
+    event: MouseEvent<HTMLAnchorElement>,
+    id: string
+  ) => {
+    event.preventDefault();
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    const targetTop =
+      target.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
+
+    if (window.history?.pushState) {
+      window.history.pushState(null, "", `#${id}`);
+    }
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      window.scrollTo({ top: targetTop });
+      return;
+    }
+
+    if (animationRef.current) {
+      cancelAnimationFrame(animationRef.current);
+    }
+
+    const startY = window.scrollY;
+    const delta = targetTop - startY;
+    let startTime: number | null = null;
+
+    const step = (timestamp: number) => {
+      if (startTime === null) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / SCROLL_DURATION, 1);
+      const eased = easeInOutCubic(progress);
+      window.scrollTo(0, startY + delta * eased);
+      if (elapsed < SCROLL_DURATION) {
+        animationRef.current = requestAnimationFrame(step);
+      }
+    };
+
+    animationRef.current = requestAnimationFrame(step);
+  };
+
   return (
-    <header className="z-30 mt-2 w-full md:mt-5">
+    <header className="fixed inset-x-0 top-2 z-50 w-full">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="relative flex h-14 items-center justify-between gap-3 rounded-2xl bg-white/10 px-3 backdrop-blur-3xl border border-white/10 shadow-[0_20px_45px_rgba(3,0,10,0.35)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-transparent before:[background:linear-gradient(120deg,rgba(255,255,255,0.08),rgba(255,255,255,0))_border-box] before:[mask-composite:exclude_!important] )] after:absolute after:inset-0 after:-z-10 ">
-          {/* Site branding */}
+        <div className="relative flex h-14 items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/10 px-4 backdrop-blur-3xl shadow-[0_10px_24px_rgba(3,0,10,0.22)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-transparent before:[background:linear-gradient(120deg,rgba(255,255,255,0.14),rgba(255,255,255,0))_border-box] before:[mask-composite:exclude_!important] before:[mask:linear-gradient(white_0_0)_padding-box,_linear-gradient(white_0_0)]">
           <div className="flex flex-1 items-center">
             <Logo />
           </div>
 
-          <div className="flex flex-1 items-center justify-end">
+          <nav
+            className="hidden flex-1 items-center justify-center gap-10 text-sm md:flex lg:gap-12"
+            aria-label="Primary"
+          >
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.id}
+                href={`#${link.id}`}
+                onClick={(event) => handleAnchorClick(event, link.id)}
+                className={`relative px-10 py-2 whitespace-nowrap text-white/70 transition hover:text-white after:pointer-events-none after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-full after:origin-left after:rounded-full after:bg-white/70 after:shadow-[0_0_12px_rgba(255,255,255,0.25)] after:transition after:transform ${
+                  activeSection === link.id
+                    ? "text-white after:scale-x-100 after:opacity-100"
+                    : "after:scale-x-100 items-center after:opacity-0 hover:after:opacity-60"
+                }`}
+                aria-current={activeSection === link.id ? "true" : undefined}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex flex-1 items-center justify-end ml-20 -mr-2">
             <a
               href="mailto:hello@elitemedia.com"
-              className="btn-sm bg-linear-to-t from-indigo-600 to-indigo-500 bg-[length:100%_100%] bg-[bottom] py-[5px] text-white shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.16)] transition hover:bg-[length:100%_150%]"
+              className="btn px-4 py-2 rounded-[1rem] group w-full animate-[gradient-pause_10s_linear_infinite] bg-[linear-gradient(to_right,var(--color-gold-500),var(--color-indigo-500),var(--color-indigo-200),var(--color-indigo-500),var(--color-gold-500))] bg-[length:200%_auto] text-grey shadow-[0_10px_25px_rgba(0,0,0,0.35)] hover:brightness-105 sm:w-auto"
             >
-              Get in touch
+              Επικοινωνήστε μαζί μας
             </a>
           </div>
         </div>
