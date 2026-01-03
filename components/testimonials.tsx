@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, type TouchEvent } from "react";
+import LazyVimeo from "@/components/lazy-vimeo";
 
 type Testimonial = {
   id: number;
@@ -136,14 +137,10 @@ export default function TestimonialsCarousel() {
                     }}
                   >
                     <div className="relative overflow-hidden rounded-[28px] border border-border/70 bg-black/75 shadow-2xl shadow-primary/30">
-                      <iframe
-                        src={`https://player.vimeo.com/video/${testimonial.vimeo}`}
-                        className="aspect-[9/16] w-[200px] md:w-[320px] pointer-events-none sm:pointer-events-auto"
+                      <LazyVimeo
+                        videoId={testimonial.vimeo}
                         title={`Testimonial video ${testimonial.id}`}
-                        frameBorder={0}
-                        allow="autoplay; fullscreen; picture-in-picture"
-                        allowFullScreen
-                        loading="lazy"
+                        className="aspect-[9/16] w-[200px] md:w-[320px] pointer-events-none sm:pointer-events-auto"
                       />
                     </div>
                   </div>

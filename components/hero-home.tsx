@@ -1,3 +1,5 @@
+import LazyVimeo from "@/components/lazy-vimeo";
+
 export default function HeroHome() {
   return (
     <section>
@@ -30,14 +32,11 @@ export default function HeroHome() {
             data-aos="fade-up"
             data-aos-delay={400}
           >
-            <iframe
-              src="https://player.vimeo.com/video/1128212394?autoplay=0&title=0&byline=0&portrait=0"
+            <LazyVimeo
+              videoId="1128212394"
               title="Main landing page video"
-              className="h-full w-full border-0"
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen
-              loading="lazy"
-              width={800}
+              params="autoplay=0&title=0&byline=0&portrait=0"
+              className="h-full w-full"
             />
           </div>
          <div
