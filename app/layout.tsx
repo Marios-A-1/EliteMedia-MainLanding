@@ -61,9 +61,9 @@ export default function RootLayout({
               color="#ffcf4d"
               speed={0.3}
               direction="forward"
-              scale={0.2}
+              scale={1}
               opacity={0.1}
-              mouseInteractive
+              mouseInteractive={false}
             />
           </div>
           <div className="relative z-10 flex min-h-screen flex-col overflow-hidden pt-14 supports-[overflow:clip]:overflow-clip">

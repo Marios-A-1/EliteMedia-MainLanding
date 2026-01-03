@@ -36,6 +36,7 @@ export default function HeroHome() {
               className="h-full w-full border-0"
               allow="autoplay; fullscreen; picture-in-picture"
               allowFullScreen
+              loading="lazy"
               width={800}
             />
           </div>

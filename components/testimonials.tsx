@@ -138,11 +138,12 @@ export default function TestimonialsCarousel() {
                     <div className="relative overflow-hidden rounded-[28px] border border-border/70 bg-black/75 shadow-2xl shadow-primary/30">
                       <iframe
                         src={`https://player.vimeo.com/video/${testimonial.vimeo}`}
-                        className="aspect-[9/16] w-[200px] md:w-[320px]"
+                        className="aspect-[9/16] w-[200px] md:w-[320px] pointer-events-none sm:pointer-events-auto"
                         title={`Testimonial video ${testimonial.id}`}
                         frameBorder={0}
                         allow="autoplay; fullscreen; picture-in-picture"
                         allowFullScreen
+                        loading="lazy"
                       />
                     </div>
                   </div>
