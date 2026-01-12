@@ -7,6 +7,7 @@ import PageIllustration from "@/components/page-illustration";
 import Hero from "@/components/hero-home";
 import Workflows from "@/components/workflows";
 import Features from "@/components/features";
+import HowWeDoIt from "@/components/HowWeDoIt";
 import Testimonials from "@/components/testimonials";
 import Cta from "@/components/cta";
 import ChromaGrid from "@/components/chroma-grid";
@@ -74,8 +75,9 @@ export default function Home() {
     <>
       <PageIllustration />
       <Hero />
-      <Workflows />
       <Features />
+      <HowWeDoIt />
+      <Workflows />
       <Testimonials />
       {/* <ChromaGrid items={partners} className="my-6 flex-1 md:my-10" /> */}
       <Cta />

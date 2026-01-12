@@ -20,7 +20,7 @@ export default function ResetPassword() {
           <form className="mx-auto max-w-[400px]">
             <div>
               <label
-                className="mb-1 block text-sm font-medium text-white"
+                className="mb-1 block text-sm font-medium text-[#2b2216]"
                 htmlFor="email"
               >
                 Email
@@ -33,7 +33,7 @@ export default function ResetPassword() {
               />
             </div>
             <div className="mt-6">
-              <button className="btn w-full bg-linear-to-t from-indigo-600 to-indigo-500 bg-[length:100%_100%] bg-[bottom] text-white shadow-[inset_0px_1px_0px_0px_--theme(--color-white/.16)] hover:bg-[length:100%_150%]">
+              <button className="btn w-full bg-linear-to-t from-indigo-600 to-indigo-500 bg-[length:100%_100%] bg-[bottom] text-[#2b2216] shadow-[inset_0px_1px_0px_0px_--theme(--color-white/.35)] hover:bg-[length:100%_150%]">
                 Reset Password
               </button>
             </div>

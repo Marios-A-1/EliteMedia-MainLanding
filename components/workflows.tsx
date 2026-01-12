@@ -17,36 +17,25 @@ export default function Workflows() {
                 Services
               </span>
             </div>
-            <h2 className="animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,var(--color-gray-200),var(--color-indigo-200),var(--color-gray-50),var(--color-indigo-300),var(--color-gray-200))] bg-[length:200%_auto] bg-clip-text pb-4 font-nacelle text-2xl font-semibold text-transparent md:text-4xl">
+            <h2 className="section-heading pb-4">
               Οι Υπηρεσίες μας
             </h2>
-            <p className="text-base text-white md:text-lg">
+            <p className="text-base text-[#5b4a2a] md:text-lg">
               Simple and elegant interface to start collaborating
             </p>
           </div>
           {/* Spotlight items */}
-          
-          <div className="relative -mt-[18px] flex h-[300px] items-center justify-center lg:hidden">
-            <Carousel
-              baseWidth={300}
-              autoplay={true}
-              autoplayDelay={5000}
-              pauseOnHover={true}
-              loop={true}
-              round={false}
-            />
-          </div>
 
-          <Spotlight className="group mx-auto flex max-w-full snap-x snap-mandatory items-start gap-4 overflow-x-auto pb-2 md:grid md:max-w-sm md:snap-none md:overflow-visible md:pb-0 md:gap-6 lg:max-w-none lg:grid-cols-3 sm:block hidden ">
+          <Spotlight className="group mx-auto flex flex-col max-w-full items-start gap-4 overflow-visible pb-2 px-8 sm:px-6 md:grid md:max-w-sm md:pb-0 md:gap-6 lg:max-w-none lg:grid-cols-3">
             {/* Card 1 */}
             <a
-              className="group/card relative h-full w-[260px] shrink-0 snap-start overflow-hidden rounded-2xl bg-[#1a1205]/90 p-px before:pointer-events-none before:absolute before:-left-40 before:-top-40 before:z-10 before:h-80 before:w-80 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:rounded-full before:bg-indigo-500/80 before:opacity-0 before:blur-3xl before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:-left-48 after:-top-48 after:z-30 after:h-64 after:w-64 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:rounded-full after:bg-indigo-500 after:opacity-0 after:blur-3xl after:transition-opacity after:duration-500 hover:after:opacity-20 group-hover:before:opacity-100 md:w-auto md:shrink"
+              className="group/card relative h-full w-full shrink-0 overflow-hidden rounded-2xl bg-[#fff6e3]/90 p-px before:pointer-events-none before:absolute before:-left-40 before:-top-40 before:z-10 before:h-80 before:w-80 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:rounded-full before:bg-indigo-500/50 before:opacity-0 before:blur-3xl before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:-left-48 after:-top-48 after:z-30 after:h-64 after:w-64 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:rounded-full after:bg-indigo-500/70 after:opacity-0 after:blur-3xl after:transition-opacity after:duration-500 hover:after:opacity-20 group-hover:before:opacity-100 md:w-auto md:shrink"
               href="#0"
             >
-              <div className="relative z-20 h-full overflow-hidden rounded-[inherit] bg-[#0f0902] after:absolute after:inset-0 after:bg-linear-to-br after:from-[#1a1205]/55 after:via-transparent/20 after:to-[#1a1205]/55">
+              <div className="relative z-20 h-full overflow-hidden rounded-[inherit] bg-[#fffdf6] after:absolute after:inset-0 after:bg-linear-to-br after:from-[#f4c74e]/20 after:via-transparent/40 after:to-[#f4c74e]/15">
                 {/* Arrow */}
                 <div
-                  className="absolute right-6 top-6 flex h-8 w-8 items-center justify-center rounded-full border border-[#a77c2f]/50 bg-[#1a1205]/65 text-[#f5e7c8] opacity-0 transition-opacity group-hover/card:opacity-100"
+                  className="absolute right-6 top-6 flex h-8 w-8 items-center justify-center rounded-full border border-[#f1d79e]/70 bg-white/80 text-[#5b4a2a] opacity-0 transition-opacity group-hover/card:opacity-100"
                   aria-hidden="true"
                 >
                   <svg
@@ -63,6 +52,7 @@ export default function Workflows() {
                 </div>
                 {/* Image */}
                 <Image
+                style={{padding:66}}
                   className="inline-flex"
                   src={WorflowImg01}
                   width={350}
@@ -72,28 +62,40 @@ export default function Workflows() {
                 {/* Content */}
                 <div className="p-4 md:p-6">
                   <div className="mb-3">
-                    <span className="btn-sm relative rounded-full bg-[#1a1205]/40 px-2.5 py-0.5 text-xs font-normal before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-transparent before:[background:linear-gradient(to_bottom,--theme(--color-gold-700/.15),--theme(--color-gold-700/.5))_border-box] before:[mask-composite:exclude_!important] before:[mask:linear-gradient(white_0_0)_padding-box,_linear-gradient(white_0_0)] hover:bg-[#1a1205]/60">
-                      <span className="bg-linear-to-r from-indigo-500 to-indigo-200 bg-clip-text text-transparent">
-                        Built-in Tools
+                    <span className="
+                      inline-flex items-center
+                      rounded-full
+                      bg-[var(--color-gold-200)]
+                      px-3 py-0.5
+                      text-xs font-medium
+                      tracking-wide
+                      text-[var(--color-gold-accent)]
+                    "><span className="text-[#5b4a2a]">
+                        Essential — 500€
                       </span>
                     </span>
                   </div>
-                  <p className="text-sm text-white md:text-base">
-                    Streamline the product development flow with a content
-                    platform that's aligned across specs and insights.
+                  <p className="text-sm text-[#5b4a2a] md:text-base">
+                    • 10 απλά, καθαρά videos για social media
+                    <br />
+                    • Ιδανικό για σταθερή και επαγγελματική online παρουσία
+                    <br />
+                    • Βασικό editing & σωστό formatting
+                    <br />
+                    • Περιεχόμενο έτοιμο για άμεσο ανέβασμα
                   </p>
                 </div>
               </div>
             </a>
             {/* Card 2 */}
             <a
-              className="group/card relative h-full w-[260px] shrink-0 snap-start overflow-hidden rounded-2xl bg-[#1a1205]/90 p-px before:pointer-events-none before:absolute before:-left-40 before:-top-40 before:z-10 before:h-80 before:w-80 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:rounded-full before:bg-indigo-500/80 before:opacity-0 before:blur-3xl before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:-left-48 after:-top-48 after:z-30 after:h-64 after:w-64 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:rounded-full after:bg-indigo-500 after:opacity-0 after:blur-3xl after:transition-opacity after:duration-500 hover:after:opacity-20 group-hover:before:opacity-100 md:w-auto md:shrink"
+              className="group/card relative h-full w-full shrink-0 overflow-hidden rounded-2xl bg-[#fff6e3]/90 p-px before:pointer-events-none before:absolute before:-left-40 before:-top-40 before:z-10 before:h-80 before:w-80 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:rounded-full before:bg-indigo-500/50 before:opacity-0 before:blur-3xl before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:-left-48 after:-top-48 after:z-30 after:h-64 after:w-64 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:rounded-full after:bg-indigo-500/70 after:opacity-0 after:blur-3xl after:transition-opacity after:duration-500 hover:after:opacity-20 group-hover:before:opacity-100 md:w-auto md:shrink"
               href="#0"
             >
-              <div className="relative z-20 h-full overflow-hidden rounded-[inherit] bg-[#0f0902] after:absolute after:inset-0 after:bg-linear-to-br after:from-[#1a1205]/55 after:via-transparent/20 after:to-[#1a1205]/55">
+              <div className="relative z-20 h-full overflow-hidden rounded-[inherit] bg-[#fffdf6] after:absolute after:inset-0 after:bg-linear-to-br after:from-[#f4c74e]/20 after:via-transparent/40 after:to-[#f4c74e]/15">
                 {/* Arrow */}
                 <div
-                  className="absolute right-6 top-6 flex h-8 w-8 items-center justify-center rounded-full border border-[#a77c2f]/50 bg-[#1a1205]/65 text-[#f5e7c8] opacity-0 transition-opacity group-hover/card:opacity-100"
+                  className="absolute right-6 top-6 flex h-8 w-8 items-center justify-center rounded-full border border-[#f1d79e]/70 bg-white/80 text-[#5b4a2a] opacity-0 transition-opacity group-hover/card:opacity-100"
                   aria-hidden="true"
                 >
                   <svg
@@ -110,6 +112,7 @@ export default function Workflows() {
                 </div>
                 {/* Image */}
                 <Image
+                style={{padding:66}}
                   className="inline-flex"
                   src={WorflowImg02}
                   width={350}
@@ -119,28 +122,40 @@ export default function Workflows() {
                 {/* Content */}
                 <div className="p-4 md:p-6">
                   <div className="mb-3">
-                      <span className="btn-sm relative rounded-full bg-[#1a1205]/40 px-2.5 py-0.5 text-xs font-normal before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-transparent before:[background:linear-gradient(to_bottom,--theme(--color-gold-700/.15),--theme(--color-gold-700/.5))_border-box] before:[mask-composite:exclude_!important] before:[mask:linear-gradient(white_0_0)_padding-box,_linear-gradient(white_0_0)] hover:bg-[#1a1205]/60">
-                      <span className="bg-linear-to-r from-indigo-500 to-indigo-200 bg-clip-text text-transparent">
-                        Scale Instantly
+                      <span className="
+                      inline-flex items-center
+                      rounded-full
+                      bg-[var(--color-gold-200)]
+                      px-3 py-0.5
+                      text-xs font-medium
+                      tracking-wide
+                      text-[var(--color-gold-accent)]
+                    "><span className="text-[#5b4a2a]">
+                        Silver — 1.000€
                       </span>
                     </span>
                   </div>
-                  <p className="text-sm text-white md:text-base">
-                    Streamline the product development flow with a content
-                    platform that's aligned across specs and insights.
+                  <p className="text-sm text-[#5b4a2a] md:text-base">
+                    • 8 videos υψηλής ποιότητας (premium)
+                    <br />
+                    • Σενάρια βασισμένα σε hooks & ψυχολογία κοινού
+                    <br />
+                    • Προχωρημένο editing & captions
+                    <br />
+                    • Βελτιστοποιημένο για retention & engagement
                   </p>
                 </div>
               </div>
             </a>
             {/* Card 3 */}
             <a
-              className="group/card relative h-full w-[260px] shrink-0 snap-start overflow-hidden rounded-2xl bg-[#1a1205]/90 p-px before:pointer-events-none before:absolute before:-left-40 before:-top-40 before:z-10 before:h-80 before:w-80 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:rounded-full before:bg-indigo-500/80 before:opacity-0 before:blur-3xl before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:-left-48 after:-top-48 after:z-30 after:h-64 after:w-64 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:rounded-full after:bg-indigo-500 after:opacity-0 after:blur-3xl after:transition-opacity after:duration-500 hover:after:opacity-20 group-hover:before:opacity-100 md:w-auto md:shrink"
+              className="group/card relative h-full w-full shrink-0 overflow-hidden rounded-2xl bg-[#fff6e3]/90 p-px before:pointer-events-none before:absolute before:-left-40 before:-top-40 before:z-10 before:h-80 before:w-80 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:rounded-full before:bg-indigo-500/50 before:opacity-0 before:blur-3xl before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:-left-48 after:-top-48 after:z-30 after:h-64 after:w-64 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:rounded-full after:bg-indigo-500/70 after:opacity-0 after:blur-3xl after:transition-opacity after:duration-500 hover:after:opacity-20 group-hover:before:opacity-100 md:w-auto md:shrink"
               href="#0"
             >
-              <div className="relative z-20 h-full overflow-hidden rounded-[inherit] bg-[#0f0902] after:absolute after:inset-0 after:bg-linear-to-br after:from-[#1a1205]/55 after:via-transparent/20 after:to-[#1a1205]/55">
+              <div className="relative z-20 h-full overflow-hidden rounded-[inherit] bg-[#fffdf6] after:absolute after:inset-0 after:bg-linear-to-br after:from-[#f4c74e]/20 after:via-transparent/40 after:to-[#f4c74e]/15">
                 {/* Arrow */}
                 <div
-                  className="absolute right-6 top-6 flex h-8 w-8 items-center justify-center rounded-full border border-[#a77c2f]/50 bg-[#1a1205]/65 text-[#f5e7c8] opacity-0 transition-opacity group-hover/card:opacity-100"
+                  className="absolute right-6 top-6 flex h-8 w-8 items-center justify-center rounded-full border border-[#f1d79e]/70 bg-white/80 text-[#5b4a2a] opacity-0 transition-opacity group-hover/card:opacity-100"
                   aria-hidden="true"
                 >
                   <svg
@@ -157,6 +172,7 @@ export default function Workflows() {
                 </div>
                 {/* Image */}
                 <Image
+                style={{padding:66}}
                   className="inline-flex"
                   src={WorflowImg03}
                   width={350}
@@ -166,15 +182,27 @@ export default function Workflows() {
                 {/* Content */}
                 <div className="p-4 md:p-6">
                   <div className="mb-3">
-                      <span className="btn-sm relative rounded-full bg-[#1a1205]/40 px-2.5 py-0.5 text-xs font-normal before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-transparent before:[background:linear-gradient(to_bottom,--theme(--color-gold-700/.15),--theme(--color-gold-700/.5))_border-box] before:[mask-composite:exclude_!important] before:[mask:linear-gradient(white_0_0)_padding-box,_linear-gradient(white_0_0)] hover:bg-[#1a1205]/60">
-                      <span className="bg-linear-to-r from-indigo-500 to-indigo-200 bg-clip-text text-transparent">
-                        Tailored Flows
+                      <span className="
+                      inline-flex items-center
+                      rounded-full
+                      bg-[var(--color-gold-200)]
+                      px-3 py-0.5
+                      text-xs font-medium
+                      tracking-wide
+                      text-[var(--color-gold-accent)]
+                    "><span className="text-[#5b4a2a]">
+                        Golden Signature — Custom
                       </span>
                     </span>
                   </div>
-                  <p className="text-sm text-white md:text-base">
-                    Streamline the product development flow with a content
-                    platform that's aligned across specs and insights.
+                  <p className="text-sm text-[#5b4a2a] md:text-base">
+                    • 12+ premium videos κάθε μήνα
+                    <br />
+                    • Στρατηγική περιεχομένου & positioning του brand
+                    <br />
+                    • Υποστήριξη paid ads (Meta, TikTok κ.ά.)
+                    <br />
+                    • Revisions, fine-tuning & συνεχής βελτιστοποίηση
                   </p>
                 </div>
               </div>

@@ -119,7 +119,7 @@ export default function Header() {
   return (
     <header className="fixed inset-x-0 top-2 z-50 w-full">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="relative flex h-14 items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/10 px-4 backdrop-blur-3xl shadow-[0_10px_24px_rgba(3,0,10,0.22)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-transparent before:[background:linear-gradient(120deg,rgba(255,255,255,0.14),rgba(255,255,255,0))_border-box] before:[mask-composite:exclude_!important] before:[mask:linear-gradient(white_0_0)_padding-box,_linear-gradient(white_0_0)]">
+        <div className="relative flex h-14 items-center justify-between gap-4 rounded-2xl border border-[#f1d79e]/70 bg-white/80 px-4 backdrop-blur-3xl shadow-[0_10px_24px_rgba(145,105,20,0.18)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-transparent before:[background:linear-gradient(120deg,rgba(244,199,78,0.35),rgba(255,255,255,0))_border-box] before:[mask-composite:exclude_!important] before:[mask:linear-gradient(white_0_0)_padding-box,_linear-gradient(white_0_0)]">
           <div className="flex flex-1 items-center">
             <Logo />
           </div>
@@ -133,9 +133,9 @@ export default function Header() {
                 key={link.id}
                 href={`#${link.id}`}
                 onClick={(event) => handleAnchorClick(event, link.id)}
-                className={`relative px-10 py-2 whitespace-nowrap text-white/70 transition hover:text-white after:pointer-events-none after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-full after:origin-left after:rounded-full after:bg-white/70 after:shadow-[0_0_12px_rgba(255,255,255,0.25)] after:transition after:transform ${
+                className={`relative px-10 py-2 whitespace-nowrap text-[#5b4a2a] transition hover:text-[#2b2216] after:pointer-events-none after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-full after:origin-left after:rounded-full after:bg-[#f4c74e]/70 after:shadow-[0_0_12px_rgba(244,199,78,0.35)] after:transition after:transform ${
                   activeSection === link.id
-                    ? "text-white after:scale-x-100 after:opacity-100"
+                    ? "text-[#2b2216] after:scale-x-100 after:opacity-100"
                     : "after:scale-x-100 items-center after:opacity-0 hover:after:opacity-60"
                 }`}
                 aria-current={activeSection === link.id ? "true" : undefined}
@@ -148,7 +148,7 @@ export default function Header() {
           <div className="flex flex-1 items-center justify-end ml-20 -mr-2">
             <a
               href="mailto:hello@elitemedia.com"
-              className="btn px-4 py-2 rounded-[1rem] group w-full animate-[gradient-pause_10s_linear_infinite] bg-[linear-gradient(to_right,var(--color-gold-500),var(--color-indigo-500),var(--color-indigo-200),var(--color-indigo-500),var(--color-gold-500))] bg-[length:200%_auto] text-grey shadow-[0_10px_25px_rgba(0,0,0,0.35)] hover:brightness-105 sm:w-auto"
+              className="btn px-4 py-2 rounded-[1rem] group w-full animate-[gradient-pause_7s_linear_infinite] bg-[linear-gradient(to_right,var(--color-gold-500),var(--color-indigo-500),var(--color-indigo-200),var(--color-indigo-500),var(--color-gold-500))] bg-[length:200%_auto] text-[#2b2216] shadow-[0_10px_25px_rgba(145,105,20,0.25)] hover:brightness-105 sm:w-auto"
             >
               Επικοινωνήστε μαζί μας
             </a>

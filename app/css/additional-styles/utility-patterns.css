@@ -4,6 +4,43 @@
     @apply inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium transition-all;
 }
 
+.section-heading {
+    @apply font-nacelle text-2xl font-semibold text-[#2b2216] md:text-4xl;
+}
+
+.how-we-do-it .ant-timeline {
+    margin: 0;
+}
+
+.how-we-do-it .ant-timeline-item {
+    padding-bottom: 24px;
+}
+
+.how-we-do-it .ant-timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+.how-we-do-it .ant-timeline-item-tail {
+    border-inline-start-color: var(--color-gold-200);
+    border-inline-start-width: 1px;
+    inset-block-start: 23px !important;
+    height: calc(100% - 36px) !important;
+}
+
+.how-we-do-it .ant-timeline-item-head {
+    background-color: transparent !important;
+    border: 0;
+}
+
+.how-we-do-it .ant-timeline-item-head-custom {
+    background-color: transparent !important;
+    border: 0;
+}
+
+.how-we-do-it .ant-timeline-item-content {
+    margin-inline-start: 24px;
+}
+
 .btn {
     @apply px-4 py-[11px];
 }
@@ -13,7 +50,7 @@
 }
 
 .glass-btn {
-    @apply relative inline-flex items-center justify-center rounded-full border border-white/40 bg-white/5 px-4 py-2 text-sm font-medium text-white/80 transition hover:border-white/60 hover:bg-white/10 backdrop-blur-2xl;
+    @apply relative inline-flex items-center justify-center rounded-full border border-[#f1d79e] bg-white/70 px-4 py-2 text-sm font-medium text-[#4b3a1a] transition hover:border-[#f4c74e] hover:bg-white/90 backdrop-blur-2xl;
 }
 
 /* Forms */
@@ -30,19 +67,19 @@ input[type='search']::-webkit-search-results-decoration {
 .form-select,
 .form-checkbox,
 .form-radio {
-    @apply border border-[#a77c2f] bg-[#1a1205]/50 focus:border-[#d4af37] focus:ring-0 focus:ring-offset-0;
+    @apply border border-[#e3c67c] bg-[#fff6e3] focus:border-[#f4c74e] focus:ring-0 focus:ring-offset-0;
 }
 
 .form-input,
 .form-textarea,
 .form-multiselect,
 .form-select {
-    @apply rounded-lg px-4 py-2.5 text-sm text-[#f5e7c6];
+    @apply rounded-lg px-4 py-2.5 text-sm text-[#3b2a14];
 }
 
 .form-input,
 .form-textarea {
-    @apply placeholder-[#d4af37];
+    @apply placeholder-[#c7962a];
 }
 
 .form-select {

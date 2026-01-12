@@ -9,14 +9,14 @@ export default function HeroHome() {
           {/* Section header */}
           <div className="pb-8 text-center md:pb-20">
             <h1
-              className="animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,var(--color-gray-200),var(--color-indigo-200),var(--color-gray-50),var(--color-indigo-300),var(--color-gray-200))] bg-[length:200%_auto] bg-clip-text pb-4 font-nacelle text-3xl font-semibold leading-tight text-transparent md:pb-5 md:text-5xl md:leading-normal"
+              className="section-heading pb-4 font-nacelle text-3xl font-semibold leading-tight md:pb-5 md:text-5xl md:leading-normal"
               data-aos="fade-up"
             >
               Marketing που πάει το Brand σου στο επόμενο επίπεδο 
             </h1>
             <div className="mx-auto max-w-3xl">
               <p
-                className="mb-6 text-base text-white sm:text-lg md:mb-8 md:text-xl"
+                className="mb-6 text-base text-[#5b4a2a] sm:text-lg md:mb-8 md:text-xl"
                 data-aos="fade-up"
                 data-aos-delay={200}
               >
@@ -26,9 +26,8 @@ export default function HeroHome() {
              
             </div>
           </div>
-
           <div
-            className="aspect-video w-full overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/30 -mt-3 mb-8 md:mt-[-50px] md:mb-[50px]"
+            className="aspect-video w-full overflow-hidden rounded-3xl shadow-2xl ring-1 ring-[#f1d79e]/60 -mt-3 mb-8 md:mt-[-50px] md:mb-[50px]"
             data-aos="fade-up"
             data-aos-delay={400}
           >
@@ -39,23 +38,18 @@ export default function HeroHome() {
               className="h-full w-full"
             />
           </div>
-         <div
-                className="mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md mt-15"
-                data-aos="fade-up"
-                data-aos-delay={300}
-              >
-                <a
-                  className="btn group w-full bg-linear-to-t from-indigo-700 to-indigo-400 bg-[length:100%_100%] bg-[bottom] text-white shadow-[inset_0px_1px_0px_0px_--theme(--color-white/.16)] hover:bg-[length:100%_150%]"
-                  href="#0"
-                >
-                  <span className="relative inline-flex items-center justify-center">
-                    Start Building
-                    <span className="ml-1 tracking-normal text-white/50 transition-transform group-hover:translate-x-0.5">
-                      -&gt;
-                    </span>
-                  </span>
-                </a>
-              </div>
+          <div
+            className="mt-8 flex w-full justify-center"
+            data-aos="fade-up"
+            data-aos-delay={300}
+          >
+            <a
+              href="mailto:hello@elitemedia.com"
+              className="btn px-5 py-3 text-sm rounded-[1rem] group w-full animate-[gradient-pause_7s_linear_infinite] bg-[linear-gradient(to_right,var(--color-gold-500),var(--color-indigo-500),var(--color-indigo-200),var(--color-indigo-500),var(--color-gold-500))] bg-[length:200%_auto] text-[#2b2216] shadow-[0_10px_25px_rgba(145,105,20,0.25)] hover:brightness-105 sm:w-auto md:px-10 md:py-4 md:text-lg"
+            >
+              Επικοινωνήστε μαζί μας
+            </a>
+          </div>
         </div>
         
       </div>

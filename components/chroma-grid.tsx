@@ -50,7 +50,7 @@ export const ChromaGrid: React.FC<ChromaGridProps> = ({
       subtitle: 'Full Stack Developer',
       handle: '@alexrivera',
       borderColor: '#4F46E5',
-      gradient: 'linear-gradient(145deg, #4F46E5, #000)',
+      gradient: 'linear-gradient(145deg, #4F46E5, #fff)',
       url: 'https://github.com/'
     },
     {
@@ -59,7 +59,7 @@ export const ChromaGrid: React.FC<ChromaGridProps> = ({
       subtitle: 'DevOps Engineer',
       handle: '@jordanchen',
       borderColor: '#10B981',
-      gradient: 'linear-gradient(210deg, #10B981, #000)',
+      gradient: 'linear-gradient(210deg, #10B981, #fff)',
       url: 'https://linkedin.com/in/'
     },
     {
@@ -68,7 +68,7 @@ export const ChromaGrid: React.FC<ChromaGridProps> = ({
       subtitle: 'UI/UX Designer',
       handle: '@morganblake',
       borderColor: '#F59E0B',
-      gradient: 'linear-gradient(165deg, #F59E0B, #000)',
+      gradient: 'linear-gradient(165deg, #F59E0B, #fff)',
       url: 'https://dribbble.com/'
     },
     {
@@ -77,7 +77,7 @@ export const ChromaGrid: React.FC<ChromaGridProps> = ({
       subtitle: 'Data Scientist',
       handle: '@caseypark',
       borderColor: '#EF4444',
-      gradient: 'linear-gradient(195deg, #EF4444, #000)',
+      gradient: 'linear-gradient(195deg, #EF4444, #fff)',
       url: 'https://kaggle.com/'
     },
     {
@@ -86,7 +86,7 @@ export const ChromaGrid: React.FC<ChromaGridProps> = ({
       subtitle: 'Mobile Developer',
       handle: '@thesamkim',
       borderColor: '#8B5CF6',
-      gradient: 'linear-gradient(225deg, #8B5CF6, #000)',
+      gradient: 'linear-gradient(225deg, #8B5CF6, #fff)',
       url: 'https://github.com/'
     },
     {
@@ -95,7 +95,7 @@ export const ChromaGrid: React.FC<ChromaGridProps> = ({
       subtitle: 'Cloud Architect',
       handle: '@tylerrod',
       borderColor: '#06B6D4',
-      gradient: 'linear-gradient(135deg, #06B6D4, #000)',
+      gradient: 'linear-gradient(135deg, #06B6D4, #fff)',
       url: 'https://aws.amazon.com/'
     }
   ];
@@ -163,10 +163,10 @@ export const ChromaGrid: React.FC<ChromaGridProps> = ({
                 Tailored Workflows
               </span>
             </div>
-            <h2 className="animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,var(--color-gray-200),var(--color-indigo-200),var(--color-gray-50),var(--color-indigo-300),var(--color-gray-200))] bg-[length:200%_auto] bg-clip-text pb-4 font-nacelle text-2xl font-semibold text-transparent md:text-4xl">
+            <h2 className="section-heading pb-4">
               Οι Συνεργάτες μας
             </h2>
-            <p className="text-base text-white md:text-lg">
+            <p className="text-base text-[#5b4a2a] md:text-lg">
               μπλα μπλα μπλα μπλα μπλα μπλα μπλα μπλα μπλα μπλα μπλα μπλα μπλα μπλα
             </p>
           </div>
