@@ -33,23 +33,7 @@ export default function Workflows() {
               href="#0"
             >
               <div className="relative z-20 h-full overflow-hidden rounded-[inherit] bg-[#fff] after:absolute after:inset-0 after:bg-linear-to-br after:from-[#f4c74e]/20 after:via-transparent/40 after:to-[#f4c74e]/15">
-                {/* Arrow */}
-                <div
-                  className="absolute right-6 top-6 flex h-8 w-8 items-center justify-center rounded-full border border-[#f1d79e]/70 bg-white/80 text-[#5b4a2a] opacity-0 transition-opacity group-hover/card:opacity-100"
-                  aria-hidden="true"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={9}
-                    height={8}
-                    fill="none"
-                  >
-                    <path
-                      fill="#F4F4F5"
-                      d="m4.92 8-.787-.763 2.733-2.68H0V3.443h6.866L4.133.767 4.92 0 9 4 4.92 8Z"
-                    />
-                  </svg>
-                </div>
+                
                 {/* Image */}
                 <Image
                 style={{padding:66}}
@@ -89,27 +73,11 @@ export default function Workflows() {
             </a>
             {/* Card 2 */}
             <a
-              className="group/card relative h-full w-full shrink-0 overflow-hidden rounded-2xl bg-[#b1a99c] p-px before:pointer-events-none before:absolute before:-left-40 before:-top-40 before:z-10 before:h-80 before:w-80 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:rounded-full before:bg-indigo-500/50 before:opacity-0 before:blur-3xl before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:-left-48 after:-top-48 after:z-30 after:h-64 after:w-64 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:rounded-full after:bg-indigo-500/70 after:opacity-0 after:blur-3xl after:transition-opacity after:duration-500 hover:after:opacity-20 group-hover:before:opacity-100 md:w-auto md:shrink"
+              className="group/card relative h-full w-full shrink-0 overflow-hidden rounded-2xl bg-[#9f9f9f] p-px before:pointer-events-none before:absolute before:-left-40 before:-top-40 before:z-10 before:h-80 before:w-80 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:rounded-full before:bg-indigo-500/50 before:opacity-0 before:blur-3xl before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:-left-48 after:-top-48 after:z-30 after:h-64 after:w-64 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:rounded-full after:bg-indigo-500/70 after:opacity-0 after:blur-3xl after:transition-opacity after:duration-500 hover:after:opacity-20 group-hover:before:opacity-100 md:w-auto md:shrink"
               href="#0"
             >
-              <div className="relative z-20 h-full overflow-hidden rounded-[inherit] bg-[#eae8e8] after:absolute after:inset-0 after:bg-linear-to-br after:from-[#f4c74e]/20 after:via-transparent/40 after:to-[#f4c74e]/15">
-                {/* Arrow */}
-                <div
-                  className="absolute right-6 top-6 flex h-8 w-8 items-center justify-center rounded-full border border-[#f1d79e]/70 bg-white/80 text-[#5b4a2a] opacity-0 transition-opacity group-hover/card:opacity-100"
-                  aria-hidden="true"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={9}
-                    height={8}
-                    fill="none"
-                  >
-                    <path
-                      fill="#F4F4F5"
-                      d="m4.92 8-.787-.763 2.733-2.68H0V3.443h6.866L4.133.767 4.92 0 9 4 4.92 8Z"
-                    />
-                  </svg>
-                </div>
+              <div className="relative z-20 h-full overflow-hidden rounded-[inherit] bg-[#eae8e8] after:absolute after:inset-0 after:bg-linear-to-br">
+                
                 {/* Image */}
                 <Image
                 style={{padding:66}}
@@ -135,7 +103,7 @@ export default function Workflows() {
                       </span>
                     </span>
                   </div>
-                  <p className="text-sm text-[#5b4a2a] md:text-base">
+                  <p className="text-sm text-[#474747] md:text-base">
                     • 8 videos υψηλής ποιότητας (premium)
                     <br />
                     • Σενάρια βασισμένα σε hooks & ψυχολογία κοινού
@@ -153,23 +121,7 @@ export default function Workflows() {
               href="#0"
             >
               <div className="relative z-20 h-full overflow-hidden rounded-[inherit] bg-[#ffe7bc] after:absolute after:inset-0 after:bg-linear-to-br after:from-[#f4c74e]/20 after:via-transparent/40 after:to-[#f4c74e]/15">
-                {/* Arrow */}
-                <div
-                  className="absolute right-6 top-6 flex h-8 w-8 items-center justify-center rounded-full border border-[#f1d79e]/70 bg-white/80 text-[#5b4a2a] opacity-0 transition-opacity group-hover/card:opacity-100"
-                  aria-hidden="true"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={9}
-                    height={8}
-                    fill="none"
-                  >
-                    <path
-                      fill="#F4F4F5"
-                      d="m4.92 8-.787-.763 2.733-2.68H0V3.443h6.866L4.133.767 4.92 0 9 4 4.92 8Z"
-                    />
-                  </svg>
-                </div>
+              
                 {/* Image */}
                 <Image
                 style={{padding:66}}
