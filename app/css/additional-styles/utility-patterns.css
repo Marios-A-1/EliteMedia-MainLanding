@@ -20,9 +20,8 @@
     padding-bottom: 0;
 }
 
-.how-we-do-it .ant-timeline-item-tail {
-    border-inline-start-color: var(--color-gold-200);
-    border-inline-start-width: 1px;
+.how-we-do-it .ant-timeline .ant-timeline-item-tail {
+    border-inline-start: 2px solid #f4c84e88 !important;
     inset-block-start: 23px !important;
     height: calc(100% - 36px) !important;
 }

@@ -59,10 +59,10 @@ export default function HowWeDoIt() {
             className="how-we-do-it-timeline w-full max-w-[760px] sm:w-auto"
             items={STEPS.map((step) => ({
               key: step.number,
-              color: "var(--color-gold-200)",
+              color: "var(--color-gold-500)",
               dot: (
                 <div
-                  className="flex h-9 w-9 items-center justify-center rounded-[6px] border border-[color:var(--color-gold-ui-300)/60] bg-transparent text-sm font-medium text-[var(--color-gold-accent)]"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[color:var(--color-gold-500)] bg-transparent text-sm font-medium text-[var(--color-gold-accent)]"
                   style={{
                     "--color-gold-ui-300": "var(--color-gold-200)",
                     "--color-gold-accent": "var(--color-gold-700)",
