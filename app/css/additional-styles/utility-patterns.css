@@ -93,3 +93,12 @@ input[type='search']::-webkit-search-results-decoration {
 .form-checkbox {
     @apply rounded-xs;
 }
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}

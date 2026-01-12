@@ -3,15 +3,14 @@
 import React, { useRef, useState, useEffect } from "react";
 import useMousePosition from "@/utils/useMousePosition";
 
-type SpotlightProps = {
+type SpotlightProps = React.HTMLAttributes<HTMLDivElement> & {
   children: React.ReactNode;
-  className?: string;
 };
 
-export default function Spotlight({
-  children,
-  className = "",
-}: SpotlightProps) {
+const Spotlight = React.forwardRef<HTMLDivElement, SpotlightProps>(function Spotlight(
+  { children, className = "", ...rest }: SpotlightProps,
+  ref,
+) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mousePosition = useMousePosition();
   const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
@@ -19,12 +18,14 @@ export default function Spotlight({
   const [boxes, setBoxes] = useState<Array<HTMLElement>>([]);
 
   useEffect(() => {
-    containerRef.current &&
-      setBoxes(
-        Array.from(containerRef.current.children).map(
-          (el) => el as HTMLElement,
-        ),
-      );
+    if (!containerRef.current) return;
+    const spotlightItems = Array.from(
+      containerRef.current.querySelectorAll("[data-spotlight-item]"),
+    ) as HTMLElement[];
+    const fallbackItems = Array.from(containerRef.current.children).map(
+      (el) => el as HTMLElement,
+    );
+    setBoxes(spotlightItems.length ? spotlightItems : fallbackItems);
   }, []);
 
   useEffect(() => {
@@ -69,9 +70,22 @@ export default function Spotlight({
     }
   };
 
+  const setRefs = (node: HTMLDivElement | null) => {
+    containerRef.current = node;
+    if (typeof ref === "function") {
+      ref(node);
+      return;
+    }
+    if (ref) {
+      (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+    }
+  };
+
   return (
-    <div className={className} ref={containerRef}>
+    <div className={className} ref={setRefs} {...rest}>
       {children}
     </div>
   );
-}
+});
+
+export default Spotlight;
