@@ -32,7 +32,7 @@ export default function Workflows() {
               className="group/card relative h-full w-full shrink-0 overflow-hidden rounded-2xl bg-[#464646] p-px before:pointer-events-none before:absolute before:-left-40 before:-top-40 before:z-10 before:h-80 before:w-80 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:rounded-full before:bg-indigo-500/50 before:opacity-0 before:blur-3xl before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:-left-48 after:-top-48 after:z-30 after:h-64 after:w-64 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:rounded-full after:bg-indigo-500/70 after:opacity-0 after:blur-3xl after:transition-opacity after:duration-500 hover:after:opacity-20 group-hover:before:opacity-100 md:w-auto md:shrink"
               href="#0"
             >
-              <div className="relative z-20 h-full overflow-hidden rounded-[inherit] bg-[#fff] after:absolute after:inset-0 after:bg-linear-to-br after:from-[#f4c74e]/20 after:via-transparent/40 after:to-[#f4c74e]/15">
+              <div className="relative z-20 h-full overflow-hidden rounded-[inherit] bg-[#fff] after:absolute after:inset-0 after:bg-linear-to-br">
                 
                 {/* Image */}
                 <Image
@@ -49,12 +49,12 @@ export default function Workflows() {
                     <span className="
                       inline-flex items-center
                       rounded-full
-                      bg-[var(--color-gold-200)]
+                      bg-[#eae7df]
                       px-3 py-0.5
                       text-xs font-medium
                       tracking-wide
                       text-[var(--color-gold-accent)]
-                    "><span className="text-[#5b4a2a]">
+                    "><span className="text-[#090909]">
                         Essential — 500€
                       </span>
                     </span>
