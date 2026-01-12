@@ -48,8 +48,8 @@ export default function Features() {
             />
           </div> */}
           {/* Items */}
-          <div className="mx-auto grid max-w-4xl grid-cols-2 items-center justify-items-center gap-6 sm:gap-8 md:gap-x-14 md:gap-y-16 lg:grid-cols-2">
-            <article className="flex max-w-xs flex-col items-center text-center">
+          <div className="mx-auto grid max-w-4xl grid-cols-1 items-center justify-items-center gap-6 sm:gap-8 md:gap-x-0 md:gap-y-18 lg:grid-cols-2 sm:grid-cols-2">
+            <article className="flex max-w-xs flex-col items-center bg-amber-100/70 border-2 border-[#d4af37] rounded-3xl px-6 py-6 text-center">
               <svg
                 className="mb-3 fill-indigo-500"
                 xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +69,7 @@ export default function Features() {
                 Δημιουργούμε content που τραβάει προσοχή, χτίζει αξιοπιστία και επικοινωνεί ξεκάθαρα την αξία σου. Όχι απλά likes.
               </p>
             </article>
-            <article className="flex max-w-xs flex-col items-center text-center">
+            <article className="flex max-w-xs flex-col items-center bg-amber-100/70 border-2 border-[#d4af37] rounded-3xl px-4 py-4 text-center">
               <UsergroupAddOutlined style={{color: "#d4af37", fontSize: "24px", padding: "10px"}} />
               <h3 className="mb-1 font-nacelle text-sm font-semibold text-[#2b2216] md:text-[1rem]">
                 Κοινότητα που Εμπιστεύεται
@@ -78,7 +78,7 @@ export default function Features() {
                 Χτίζουμε ενεργό κοινό γύρω από το brand σου, ώστε οι άνθρωποι να μην σε παρακολουθούν απλώς, αλλά να σε εμπιστεύονται.
               </p>
             </article>
-            <article className="flex max-w-xs flex-col items-center text-center">
+            <article className="flex max-w-xs flex-col items-center bg-amber-100/70 border-2 border-[#d4af37] rounded-3xl px-4 py-4 text-center">
               <BulbOutlined style={{color: "#d4af37", fontSize: "24px", padding: "10px"}} />
               <h3 className="mb-1 font-nacelle text-sm font-semibold text-[#2b2216] md:text-[1rem]">
                 Ψυχολογία & Σύνδεση
@@ -87,7 +87,7 @@ export default function Features() {
                 Χρησιμοποιούμε ψυχολογία, storytelling και positioning για να συνδεθείς ουσιαστικά με το κοινό σου και να ξεχωρίσεις από τον ανταγωνισμό.
               </p>
             </article>
-            <article className="flex max-w-xs flex-col items-center text-center">
+            <article className="flex max-w-xs flex-col items-center bg-amber-100/70 border-2 border-[#d4af37] rounded-3xl px-4 py-4 text-center">
               <SettingOutlined style={{color: "#d4af37", fontSize: "24px", padding: "10px"}} />
               <h3 className="mb-1 font-nacelle text-sm font-semibold text-[#2b2216] md:text-[1rem]">
                 Συστήματα που Πουλάνε
