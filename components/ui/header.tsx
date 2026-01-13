@@ -5,17 +5,16 @@ import Logo from "./logo";
 
 const NAV_LINKS = [
   {
-    id: "services",
-    label:
-      "\u03A4\u03B9 \u03B1\u03BD\u03B1\u03BB\u03B1\u03BC\u03B2\u03AC\u03BD\u03BF\u03C5\u03BC\u03B5",
+    id: "how-it-works",
+    label: "Τι Αναλαμβάνουμε",
   },
   {
-    id: "how-it-works",
-    label: "\u03A0\u03CE\u03C2 \u03B4\u03BF\u03C5\u03BB\u03B5\u03CD\u03B5\u03B9",
+    id: "how-we-do-it",
+    label: "Πώς δουλεύει",
   },
   {
     id: "results",
-    label: "\u0391\u03C0\u03BF\u03C4\u03B5\u03BB\u03AD\u03C3\u03BC\u03B1\u03C4\u03B1",
+    label: "Αποτελέσματα",
   },
 ];
 
@@ -158,3 +157,4 @@ export default function Header() {
     </header>
   );
 }
+

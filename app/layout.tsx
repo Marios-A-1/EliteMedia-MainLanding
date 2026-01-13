@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 
 import Header from "@/components/ui/header";
-import Plasma from "@/components/ui/Plasma";
+import LightPillar from "@/components/ui/LightPillar";
 
 
 const inter = Inter({
@@ -57,14 +57,19 @@ export default function RootLayout({
       >
         <div className="relative min-h-screen overflow-hidden bg-[#fffdf7]">
           <div className="pointer-events-none absolute inset-0  sm:block hidden">
-            <Plasma
-              color="#f7c949"
-              speed={0.3}
-              direction="forward"
-              scale={1}
-              opacity={0.12}
-              mouseInteractive={false}
-            />
+              <LightPillar
+                topColor="White"
+                bottomColor="white"
+                intensity={1.0}
+                rotationSpeed={0.3}
+                glowAmount={0.005}
+                pillarWidth={3.0}
+                pillarHeight={0.4}
+                noiseIntensity={0.5}
+                pillarRotation={0}
+                interactive={false}
+                mixBlendMode="normal"
+              />
           </div>
           <div className="relative z-10 flex min-h-screen flex-col overflow-hidden pt-14 supports-[overflow:clip]:overflow-clip">
             <Header />

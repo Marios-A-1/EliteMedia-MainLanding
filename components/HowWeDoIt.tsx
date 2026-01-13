@@ -47,6 +47,11 @@ export default function HowWeDoIt() {
     <section id="how-we-do-it" className="how-we-do-it py-14 md:py-24">
       <div className="mx-auto w-full max-w-[1100px] px-4 sm:px-6">
         <div className="mx-auto max-w-2xl pb-8 text-center md:pb-12">
+          <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-indigo-400/50 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-indigo-400/50">
+            <span className="inline-flex bg-linear-to-r from-indigo-600 to-indigo-300 bg-clip-text text-transparent">
+              Advanced Controls
+            </span>
+          </div>
           <h2 className="section-heading pb-3 text-neutral-900">
             Πώς το κάνουμε πράξη
           </h2>
@@ -66,7 +71,7 @@ export default function HowWeDoIt() {
                   style={{
                     "--color-gold-ui-300": "var(--color-gold-200)",
                     "--color-gold-accent": "var(--color-gold-700)",
-                    backgroundColor: "transparent",
+                    backgroundColor: "var(--color-gold-200)",
                   } as CSSProperties}
                 >
                   {step.number}

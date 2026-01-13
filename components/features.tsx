@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { AntDesignOutlined, BulbOutlined, SettingOutlined } from '@ant-design/icons';
-import BlurredShape from "@/public/images/blurred-shape.svg";
 import { UsergroupAddOutlined } from "@ant-design/icons";
 
 export default function Features() {
@@ -11,25 +10,14 @@ export default function Features() {
         aria-hidden="true"
       >
       </div>
-      <div
-        className="pointer-events-none absolute bottom-0 left-1/2 -z-10 -mb-80 -translate-x-[120%] opacity-50"
-        aria-hidden="true"
-      >
-        <Image
-          className="max-w-none"
-          src={BlurredShape}
-          width={760}
-          height={668}
-          alt="Blurred shape"
-        />
-      </div>
+
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="border-t py-10 [border-image:linear-gradient(to_right,transparent,--theme(--color-slate-400/.25),transparent)1] md:py-20">
           {/* Section header */}
           <div className="mx-auto max-w-3xl pb-3 text-center md:pb-12">
-            <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-indigo-200/50 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-indigo-200/50">
-              <span className="inline-flex bg-linear-to-r from-indigo-500 to-indigo-200 bg-clip-text text-transparent">
-                Advanced Controls
+            <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-indigo-400/50 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-indigo-400/50">
+              <span className="inline-flex bg-linear-to-r from-indigo-600 to-indigo-300 bg-clip-text text-transparent">
+                Τι Αναλαμβάνουμε 
               </span>
             </div>
             <h2 className="section-heading pb-4">
@@ -49,7 +37,7 @@ export default function Features() {
           </div> */}
           {/* Items */}
           <div className="mx-auto grid max-w-4xl grid-cols-1 items-center justify-items-center gap-6 sm:gap-8 md:gap-x-0 md:gap-y-18 lg:grid-cols-2 sm:grid-cols-2">
-            <article className="flex max-w-xs flex-col items-center bg-amber-100/70 border-2 border-[#d4af37] rounded-3xl px-6 py-6 text-center">
+            <article className="flex max-w-sm flex-col items-center bg-amber-100/70 border-2 border-[#d4af37] rounded-3xl px-6 py-6 text-center">
               <svg
                 className="mb-3 fill-indigo-500"
                 xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +57,7 @@ export default function Features() {
                 Δημιουργούμε content που τραβάει προσοχή, χτίζει αξιοπιστία και επικοινωνεί ξεκάθαρα την αξία σου. Όχι απλά likes.
               </p>
             </article>
-            <article className="flex max-w-xs flex-col items-center bg-amber-100/70 border-2 border-[#d4af37] rounded-3xl px-4 py-4 text-center">
+            <article className="flex max-w-sm flex-col items-center bg-amber-100/70 border-2 border-[#d4af37] rounded-3xl px-4 py-4 text-center">
               <UsergroupAddOutlined style={{color: "#d4af37", fontSize: "24px", padding: "10px"}} />
               <h3 className="mb-1 font-nacelle text-sm font-semibold text-[#2b2216] md:text-[1rem]">
                 Κοινότητα που Εμπιστεύεται
@@ -78,16 +66,16 @@ export default function Features() {
                 Χτίζουμε ενεργό κοινό γύρω από το brand σου, ώστε οι άνθρωποι να μην σε παρακολουθούν απλώς, αλλά να σε εμπιστεύονται.
               </p>
             </article>
-            <article className="flex max-w-xs flex-col items-center bg-amber-100/70 border-2 border-[#d4af37] rounded-3xl px-4 py-4 text-center">
+            <article className="flex max-w-sm flex-col items-center bg-amber-100/70 border-2 border-[#d4af37] rounded-3xl px-4 py-4 text-center">
               <BulbOutlined style={{color: "#d4af37", fontSize: "24px", padding: "10px"}} />
               <h3 className="mb-1 font-nacelle text-sm font-semibold text-[#2b2216] md:text-[1rem]">
                 Ψυχολογία & Σύνδεση
               </h3>
               <p className="text-sm text-[#5b4a2a] md:text-base">
-                Χρησιμοποιούμε ψυχολογία, storytelling και positioning για να συνδεθείς ουσιαστικά με το κοινό σου και να ξεχωρίσεις από τον ανταγωνισμό.
+                Χρησιμοποιούμε ψυχολογία, storytelling και positioning για να συνδεθείς με το κοινό σου και να ξεχωρίσεις από τον ανταγωνισμό.
               </p>
             </article>
-            <article className="flex max-w-xs flex-col items-center bg-amber-100/70 border-2 border-[#d4af37] rounded-3xl px-4 py-4 text-center">
+            <article className="flex max-w-sm flex-col items-center bg-amber-100/70 border-2 border-[#d4af37] rounded-3xl px-4 py-4 text-center">
               <SettingOutlined style={{color: "#d4af37", fontSize: "24px", padding: "10px"}} />
               <h3 className="mb-1 font-nacelle text-sm font-semibold text-[#2b2216] md:text-[1rem]">
                 Συστήματα που Πουλάνε
