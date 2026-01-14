@@ -15,15 +15,15 @@ const LEVEL_UP_WINS = [
 
 export default function OldNew() {
   return (
-    <>
-     <div className="mx-auto max-w-2xl pb-8 text-center mt-10 md:pb-12">
+    <div className='px-2'>
+     <div className="mx-auto max-w-2xl px-6 pb-8 text-center mt-10 md:pb-12">
           <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-indigo-400/50 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-indigo-400/50">
             <span className="inline-flex bg-linear-to-r from-indigo-600 to-indigo-300 bg-clip-text text-transparent">
-              Μόνος σου  VS  Με την Elite Media
+              Οι Διαφορές
             </span>
           </div>    
             <h3 className="section-heading pb-4">
-              Οι Διαφορές στο Πριν και το Μετά
+              Μόνος σου  VS  Με  Elite Media
             </h3>
             <p className="text-base text-neutral-700 md:text-lg">
             Πώς αλλάζει η επιχείρησή σου όταν έχεις ένα σύστημα που δουλεύει για σένα, αντί να παλεύεις μόνος σου.
@@ -94,7 +94,7 @@ export default function OldNew() {
           {/* Centered label */}
           <div className="absolute inset-0 flex items-center justify-center">
             <span className="rounded-xl bg-gold-200/80 px-4 py-1 text-xl font-black text-foreground">
-              Με την Elite Media
+              Με Elite Media
             </span>
           </div>
         </div>
@@ -116,6 +116,6 @@ export default function OldNew() {
       </div>
 
     </div>
-  </>
+  </div>
   )
 }

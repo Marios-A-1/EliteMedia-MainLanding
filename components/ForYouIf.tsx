@@ -1,6 +1,6 @@
 export default function ForYouIf() {
   return (
- <div className="mx-auto max-w-2xl pb-8 text-center mt-10 md:pb-12">
+ <div className="mx-auto max-w-2xl px-2 pb-8 text-center mt-10 md:pb-12">
           <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-indigo-400/50 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-indigo-400/50">
             <span className="inline-flex bg-linear-to-r from-indigo-600 to-indigo-300 bg-clip-text text-transparent">
               Για ποίον είναι

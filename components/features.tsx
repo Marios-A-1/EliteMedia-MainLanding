@@ -4,7 +4,7 @@ import { UsergroupAddOutlined } from "@ant-design/icons";
 
 export default function Features() {
   return (
-    <section id="how-it-works" className="relative ">
+    <section id="how-it-works" className="relative px-4">
       <div
         className="pointer-events-none absolute left-1/2 top-0 -z-10 -mt-20 -translate-x-1/2"
         aria-hidden="true"
