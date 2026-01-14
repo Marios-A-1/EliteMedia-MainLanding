@@ -22,7 +22,7 @@ export default function OldNew() {
               Οι Διαφορές
             </span>
           </div>    
-            <h3 className="section-heading pb-4">
+            <h3 className="section-heading pb-4 -px-2">
               Μόνος σου  VS  Με  Elite Media
             </h3>
             <p className="text-base text-neutral-700 md:text-lg">
