@@ -38,6 +38,7 @@ export default function OldNew() {
         {/* IMAGE */}
         <div className="relative h-[160px] w-full overflow-hidden rounded-2xl bg-muted">
           <img
+          loading='lazy'
             style={{
               filter: "brightness(0.8)",
             }}
@@ -80,6 +81,7 @@ export default function OldNew() {
         {/* IMAGE */}
         <div className="relative h-[160px] w-full overflow-hidden rounded-2xl bg-muted">
           <img
+          loading='lazy'
             style={{
               objectFit: 'cover',
               filter: "brightness(0.8)",

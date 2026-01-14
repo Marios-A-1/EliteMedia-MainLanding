@@ -56,7 +56,7 @@ export default function LazyVimeo({
   }, [rootMargin, shouldLoad]);
 
   const iframeSrc = buildVimeoSrc(videoId, params);
-  const posterSrc = thumbnailUrl ?? `https://vumbnail.com/${videoId}.jpg`;
+  const posterSrc = thumbnailUrl ?? "/images/hero-image-01.jpg";
   const posterAlt = thumbnailAlt ?? title;
 
   return (

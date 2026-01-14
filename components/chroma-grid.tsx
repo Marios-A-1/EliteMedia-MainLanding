@@ -45,7 +45,7 @@ export const ChromaGrid: React.FC<ChromaGridProps> = ({
 
   const demo: ChromaItem[] = [
     {
-      image: 'https://i.pravatar.cc/300?img=8',
+      image: '/images/hero-image-01.jpg',
       title: 'Alex Rivera',
       subtitle: 'Full Stack Developer',
       handle: '@alexrivera',
@@ -54,7 +54,7 @@ export const ChromaGrid: React.FC<ChromaGridProps> = ({
       url: 'https://github.com/'
     },
     {
-      image: 'https://i.pravatar.cc/300?img=11',
+      image: '/images/elite-media-logo-02.webp',
       title: 'Jordan Chen',
       subtitle: 'DevOps Engineer',
       handle: '@jordanchen',
@@ -63,7 +63,7 @@ export const ChromaGrid: React.FC<ChromaGridProps> = ({
       url: 'https://linkedin.com/in/'
     },
     {
-      image: 'https://i.pravatar.cc/300?img=3',
+      image: '/images/logo.webp',
       title: 'Morgan Blake',
       subtitle: 'UI/UX Designer',
       handle: '@morganblake',
@@ -72,7 +72,7 @@ export const ChromaGrid: React.FC<ChromaGridProps> = ({
       url: 'https://dribbble.com/'
     },
     {
-      image: 'https://i.pravatar.cc/300?img=16',
+      image: '/images/oldEliteMedia.webp',
       title: 'Casey Park',
       subtitle: 'Data Scientist',
       handle: '@caseypark',
@@ -81,7 +81,7 @@ export const ChromaGrid: React.FC<ChromaGridProps> = ({
       url: 'https://kaggle.com/'
     },
     {
-      image: 'https://i.pravatar.cc/300?img=25',
+      image: '/images/NewGirls.webp',
       title: 'Sam Kim',
       subtitle: 'Mobile Developer',
       handle: '@thesamkim',
@@ -90,7 +90,7 @@ export const ChromaGrid: React.FC<ChromaGridProps> = ({
       url: 'https://github.com/'
     },
     {
-      image: 'https://i.pravatar.cc/300?img=60',
+      image: '/images/features.png',
       title: 'Tyler Rodriguez',
       subtitle: 'Cloud Architect',
       handle: '@tylerrod',
