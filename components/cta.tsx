@@ -18,14 +18,14 @@ export default function Cta() {
               Χτίσε το content που ταιριάζει στο brand σου
             </h2>
             <div className="mx-auto max-w-xs sm:flex sm:max-w-none sm:justify-center">
-              <div
+          <div
             className="mt-8 flex w-full justify-center"
             data-aos="fade-up"
             data-aos-delay={300}
           >
             <a
               href="mailto:hello@elitemedia.com"
-              className="btn px-5 py-3 text-sm rounded-[1rem] group w-full animate-[gradient-pause_7s_linear_infinite] bg-[linear-gradient(to_right,var(--color-gold-500),var(--color-indigo-500),var(--color-indigo-200),var(--color-indigo-500),var(--color-gold-500))] bg-[length:200%_auto] text-[#2b2216] shadow-[0_10px_25px_rgba(145,105,20,0.25)] hover:brightness-105 sm:w-auto md:px-10 md:py-4 md:text-lg"
+              className="btn btn-shine px-5 py-3 text-sm rounded-[1rem] group w-full bg-[linear-gradient(to_right,var(--color-gold-500),var(--color-indigo-200),var(--color-indigo-500))] bg-[length:200%_auto] text-[#2b2216] hover:brightness-105 sm:w-auto md:px-10 md:py-4 md:text-lg"
             >
               Επικοινωνήστε μαζί μας
             </a>

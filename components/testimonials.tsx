@@ -102,6 +102,10 @@ export default function TestimonialsCarousel() {
             <h2 className="section-heading pb-4">
               Πραγματικές Ιστορίες Επιτυχίας
             </h2>
+            <p className="text-base text-neutral-700 md:text-lg">
+              Απο συνεργασίες που έχουν μεταμορφώσει επιχειρήσεις και έχουν οδηγήσει σε
+              μετρήσιμα αποτελέσματα.
+            </p>
           </div>
           <div
             className="relative mx-auto mt-6 md:mt-12 flex w-full max-w-225 items-center justify-center px-2 touch-pan-y"

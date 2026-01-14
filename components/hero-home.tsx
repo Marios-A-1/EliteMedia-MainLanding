@@ -27,7 +27,7 @@ export default function HeroHome() {
             </div>
           </div>
           <div
-            className="aspect-video w-full overflow-hidden rounded-3xl shadow-2xl ring-1 ring-[#f1d79e]/60 -mt-3 mb-8 md:mt-[-50px] md:mb-[50px]"
+            className="mx-auto aspect-video w-full max-w-full overflow-hidden rounded-3xl shadow-2xl ring-1 ring-[#f1d79e]/60 -mt-3 mb-8 md:mt-[-50px] md:mb-[50px] md:max-w-3xl"
             data-aos="fade-up"
             data-aos-delay={400}
           >
@@ -45,7 +45,7 @@ export default function HeroHome() {
           >
             <a
               href="mailto:hello@elitemedia.com"
-              className="btn px-5 py-3 text-sm rounded-[1rem] group w-full animate-[gradient-pause_7s_linear_infinite] bg-[linear-gradient(to_right,var(--color-gold-500),var(--color-indigo-500),var(--color-indigo-200),var(--color-indigo-500),var(--color-gold-500))] bg-[length:200%_auto] text-[#2b2216] shadow-[0_10px_25px_rgba(145,105,20,0.25)] hover:brightness-105 sm:w-auto md:px-10 md:py-4 md:text-lg"
+              className="btn btn-shine px-5 py-3 text-sm rounded-[1rem] group w-full bg-[linear-gradient(to_right,var(--color-gold-500),var(--color-indigo-200),var(--color-indigo-500))] bg-[length:200%_auto] text-[#2b2216] hover:brightness-105 sm:w-auto md:px-10 md:py-4 md:text-lg"
             >
               Επικοινωνήστε μαζί μας
             </a>
