@@ -99,10 +99,10 @@ export default function TestimonialsCarousel() {
               Testimonials
             </span>
           </div>
-            <h2 className="section-heading pb-4">
+            <h2 className="section-heading pb-3">
               Πραγματικές Ιστορίες Επιτυχίας
             </h2>
-            <p className="text-base text-neutral-700 md:text-lg">
+            <p className="text-base pb-4 text-neutral-700 md:text-lg">
               Απο συνεργασίες που έχουν μεταμορφώσει επιχειρήσεις και έχουν οδηγήσει σε
               μετρήσιμα αποτελέσματα.
             </p>

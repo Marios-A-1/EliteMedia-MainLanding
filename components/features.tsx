@@ -20,9 +20,9 @@ export default function Features() {
                 Τι Αναλαμβάνουμε 
               </span>
             </div>
-            <h2 className="section-heading pb-4">
+            <h2 className="section-heading pb-3">
               Στρατηγική στα social media</h2>
-            <p className="text-base text-[#5b4a2a] md:text-lg">
+            <p className="text-base text-[#5b4a2a] mb-4 md:text-lg">
               Δεν ανεβάζουμε απλά posts. Χτίζουμε brand, κοινό και συστήματα που μετατρέπουν το attention σε πωλήσεις.
             </p>
           </div>

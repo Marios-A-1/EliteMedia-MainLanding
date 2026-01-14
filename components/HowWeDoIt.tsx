@@ -55,7 +55,7 @@ export default function HowWeDoIt() {
           <h2 className="section-heading pb-3 text-neutral-900">
             Πώς το κάνουμε πράξη
           </h2>
-          <p className="text-base text-neutral-700 md:text-lg">
+          <p className="text-base pb-4 text-neutral-700 md:text-lg">
             Από τη στρατηγική μέχρι το τελικό upload — με ξεκάθαρο σύστημα.
           </p>
         </div>
