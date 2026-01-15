@@ -47,7 +47,7 @@ export default function HeroHome() {
               href="mailto:hello@elitemedia.com"
               className="btn btn-shine px-5 py-3 text-sm rounded-[1rem] group w-full bg-[linear-gradient(to_right,var(--color-gold-500),var(--color-indigo-200),var(--color-indigo-500))] bg-[length:200%_auto] text-[#2b2216] hover:brightness-105 sm:w-auto md:px-10 md:py-4 md:text-lg"
             >
-              Επικοινωνήστε μαζί μας
+              Κλείσε Δωρεάν Συμβουλευτική
             </a>
           </div>
         </div>

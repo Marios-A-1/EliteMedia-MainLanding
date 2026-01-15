@@ -13,6 +13,7 @@ import ChromaGrid from "@/components/chroma-grid";
 import Carousel from "@/components/carousel";
 import OldNew from "@/components/OldNew";
 import ForYouIf from "@/components/ForYouIf";
+import ForbesQuote from "@/components/ForbesQuote";
 
 
 export default function Home() {
@@ -22,6 +23,7 @@ export default function Home() {
       <Hero />
       <ForYouIf />
       <Features />
+      <ForbesQuote />
       <HowWeDoIt />
       {/* <Workflows /> */}
       <OldNew />
