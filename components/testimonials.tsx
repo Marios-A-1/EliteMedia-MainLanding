@@ -119,7 +119,7 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
               <ChevronLeft />
             </button>
 
-            <div className="lg:mt-5 mt-45 relative h-80 w-full max-w-75 md:h-155 md:max-w-160">
+            <div className="lg:mt-5 mt-45 relative h-80 w-full max-w-75 md:h-155 md:max-w-160 -mb-20">
               {testimonials.map((testimonial, index) => {
                 const offset = calculateOffset(index, focus, total);
                 const hidden = Math.abs(offset) > 1;
@@ -129,11 +129,11 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
                 return (
                   <div
                     key={testimonial.id}
-                    className={`absolute  flex -translate-x-1/2 items-center justify-center transition-all duration-500 ease-out lg:left-15/20
+                    className={`absolute  flex -translate-x-1/2 items-center justify-center transition-all duration-500 ease-out 
                       ${
                         testimonial.type === "google"
-                          ? "top-0  left-100/100"
-                          : "-translate-y-1/2 top-9/10 lg:top-10/10 left-83/100"
+                          ? "top-0  left-100/100 lg:left-83/100"
+                          : "-translate-y-1/2 top-4/10 lg:top-10/10 mt-10 left-83/100 lg:left-15/20 "
                       }
                     `}style={{
                       transform: `translate(-50%, -50%) translateX(${clampedOffset * 90}%) scale(${
@@ -145,7 +145,7 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
                       pointerEvents: isActive ? "auto" : "none",
                     }}
                   >
-                    <div className="relative overflow-hidden rounded-[28px] border border-border/70 bg-white/90 shadow-2xl shadow-primary/30">
+                    <div className="relative overflow-hidden rounded-[28px] border border-gold-500 bg-white/90 shadow-2xl shadow-primary/30">
                       {testimonial.type === "video" ? (
                         <LazyVimeo
                           videoId={testimonial.vimeo}
