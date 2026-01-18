@@ -8,6 +8,7 @@ type HeroContent = {
   videoId?: string;
   videoTitle?: string;
   videoParams?: string;
+  ctaDescription?: string;
   ctaLabel?: ReactNode;
   ctaHref?: string;
 };
@@ -56,10 +57,10 @@ export default function HeroHome({ content }: HeroHomeProps) {
             />
           </div>
               <p
-                className=" -mt-8 mb-6 text-center text-base text-[#5b4a2a] sm:text-md md:mb-8 md:text-md"
+                className=" -mt-4 mb-6 text-center text-xs text-[#5b4a2a]"
                 data-aos="fade-up"
                 data-aos-delay={200}>
-                Δες το βίντεο & πάρε την στρατηγική + συμβουλευτική από expert ΔΩΡΕΑΝ
+                {content?.ctaDescription}
               </p>
           <div
             className="mt-8 flex w-full justify-center"

@@ -6,6 +6,7 @@ type LazyVimeoProps = {
   videoId: string;
   title: string;
   className?: string;
+  iframeClassName?: string;
   params?: string;
   thumbnailAlt?: string;
   thumbnailUrl?: string;
@@ -24,6 +25,7 @@ export default function LazyVimeo({
   videoId,
   title,
   className,
+  iframeClassName,
   params,
   thumbnailAlt,
   thumbnailUrl,
@@ -65,7 +67,7 @@ export default function LazyVimeo({
         <iframe
           src={iframeSrc}
           title={title}
-          className="h-full w-full border-0"
+          className={`h-full w-full border-0 ${iframeClassName ?? ""}`}
           allow={allow}
           allowFullScreen
           loading="lazy"

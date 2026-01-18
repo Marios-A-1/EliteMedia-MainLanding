@@ -151,6 +151,7 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
                           videoId={testimonial.vimeo}
                           title={`Testimonial video ${testimonial.id}`}
                           className="aspect-[9/16] w-[200px] md:w-[320px]"
+                          iframeClassName="pointer-events-none md:pointer-events-auto"
                         />
                       ) : (
                         <GoogleReviewCard review={testimonial} />

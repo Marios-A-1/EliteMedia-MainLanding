@@ -21,6 +21,7 @@ const HeroContent = {
   title: <>Elite Signature Strategy </>,
   description: <>Η στρατηγική που αυξάνει τον τζίρο ελληνικών επιχειρήσεων μέσω των social media.</>,
   videoId: "1128212394",
+  ctaDescription: "Δες το βίντεο & πάρε την στρατηγική + συμβουλευτική από expert ΔΩΡΕΑΝ",
   ctaLabel: 'Κλείσε Δωρεάν Συμβουλευτική'
 }
 
