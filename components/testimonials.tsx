@@ -55,6 +55,11 @@ const TESTIMONIALS: Testimonial[] = [
 
 export default function TestimonialsCarousel({ content }: TestimonialsProps) {
   const [focus, setFocus] = useState(0);
+  const [playRequests, setPlayRequests] = useState<Record<number, boolean>>({});
+  const [playStates, setPlayStates] = useState<Record<number, boolean>>({});
+  const [videoCommands, setVideoCommands] = useState<
+    Record<number, { command: "play" | "pause"; token: number }>
+  >({});
   const testimonials = content?.items ?? TESTIMONIALS;
   const total = testimonials.length;
 
@@ -81,6 +86,19 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
 
     deltaX > 0 ? prev() : next();
     touchStartX.current = null;
+  };
+
+  const handleVideoActivate = (id: number) => {
+    setPlayRequests((current) => (current[id] ? current : { ...current, [id]: true }));
+
+    setPlayStates((current) => {
+      const nextIsPlaying = !current[id];
+      setVideoCommands((prev) => {
+        const nextToken = (prev[id]?.token ?? 0) + 1;
+        return { ...prev, [id]: { command: nextIsPlaying ? "play" : "pause", token: nextToken } };
+      });
+      return { ...current, [id]: nextIsPlaying };
+    });
   };
 
   return (
@@ -125,6 +143,8 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
                 const hidden = Math.abs(offset) > 1;
                 const clampedOffset = Math.max(Math.min(offset, 1), -1);
                 const isActive = offset === 0;
+                const playRequested = testimonial.type === "video" && Boolean(playRequests[testimonial.id]);
+                const videoCommand = testimonial.type === "video" ? videoCommands[testimonial.id] : undefined;
 
                 return (
                   <div
@@ -135,7 +155,8 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
                           ? "top-0  left-100/100 lg:left-83/100"
                           : "-translate-y-1/2 top-4/10 lg:top-10/10 mt-10 lg:-mt-20 left-83/100 lg:left-15/20 "
                       }
-                    `}style={{
+                    `}
+                    style={{
                       transform: `translate(-50%, -50%) translateX(${clampedOffset * 90}%) scale(${
                         isActive ? 1 : 0.85
                       })`,
@@ -144,6 +165,11 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
                       zIndex: isActive ? 3 : 1,
                       pointerEvents: isActive ? "auto" : "none",
                     }}
+                    onClick={
+                      testimonial.type === "video"
+                        ? () => handleVideoActivate(testimonial.id)
+                        : undefined
+                    }
                   >
                     <div className="relative overflow-hidden rounded-[28px] border border-gold-500 bg-white/90 shadow-2xl shadow-primary/30">
                       {testimonial.type === "video" ? (
@@ -152,6 +178,10 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
                           title={`Testimonial video ${testimonial.id}`}
                           className="aspect-[9/16] w-[200px] md:w-[320px]"
                           iframeClassName="pointer-events-none md:pointer-events-auto"
+                          forceLoad={playRequested}
+                          playOnLoad={playRequested}
+                          command={videoCommand?.command}
+                          commandToken={videoCommand?.token}
                         />
                       ) : (
                         <GoogleReviewCard review={testimonial} />
