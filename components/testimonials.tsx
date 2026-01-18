@@ -112,7 +112,7 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
             <button
              onClick={prev}
              className={`absolute -left-10 hidden h-10 w-10 items-center justify-center rounded-full border-3 bg-gold-200/50 border-indigo-300 text-indigo-300 transition hover:border-indigo-300/60 hover:text-indigo-400 hover:bg-gold-200 sm:flex
-               ${testimonials[focus]?.type === "google" ? "top-3/8 -translate-y-1/2" : "top-9/10 lg:top-5/10 -translate-y-1/2"}
+               ${testimonials[focus]?.type === "google" ? "top-6" : "top-9/10 lg:top-5/10 -translate-y-1/2"}
              `}
              aria-label="Previous testimonial"
             >
@@ -129,8 +129,12 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
                 return (
                   <div
                     key={testimonial.id}
-                    className={`absolute left-83/100 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center transition-all duration-500 ease-out lg:left-15/20
-                      ${testimonial.type === "google" ? "top-0 translate-y-0" : "top-9/10 lg:top-10/10"}
+                    className={`absolute  flex -translate-x-1/2 items-center justify-center transition-all duration-500 ease-out lg:left-15/20
+                      ${
+                        testimonial.type === "google"
+                          ? "top-0  left-100/100"
+                          : "-translate-y-1/2 top-9/10 lg:top-10/10 left-83/100"
+                      }
                     `}style={{
                       transform: `translate(-50%, -50%) translateX(${clampedOffset * 90}%) scale(${
                         isActive ? 1 : 0.85
@@ -160,7 +164,7 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
             <button
               onClick={next}
               className={`absolute -right-10 hidden h-10 w-10 items-center justify-center rounded-full border-3 bg-gold-200/50 border-indigo-300 text-indigo-300 transition hover:border-indigo-300/60 hover:text-indigo-400 hover:bg-gold-200 sm:flex
-                ${testimonials[focus]?.type === "google" ? "top-3/8 -translate-y-1/2" : "top-9/10 lg:top-5/10 -translate-y-1/2"}
+                ${testimonials[focus]?.type === "google" ? "top-6" : "top-9/10 lg:top-5/10 -translate-y-1/2"}
               `}
               aria-label="Next testimonial"
             >
