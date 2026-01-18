@@ -7,22 +7,30 @@ const STEPS = [
   {
     number: "01",
     title: "Attention (Κάνουμε το σωστό κοινό να σταματήσει)",
-    description:
-      "Παίρνουμε την προσοχή τους με reels/posts που χτυπάνε κατευθείαν στο “πόνο” και στο αποτέλεσμα. Δεν κυνηγάμε views. Κυνηγάμε τους σωστούς ανθρώπους.",
+    description: [
+      "Παίρνουμε την προσοχή τους με reels/posts που χτυπάνε κατευθείαν στο “πόνο” και στο αποτέλεσμα.",
+      "Δεν κυνηγάμε views. Κυνηγάμε τους σωστούς ανθρώπους.",
+    ],
   },
   {
     number: "02",
     title: "Trust (Ρίχνουμε άμυνες & κλειδώνουμε εμπιστοσύνη)”",
-    description:
-      "Τους κάνουμε να νιώσουν: “οκ, αυτοί ξέρουν”. Με proof, behind the scenes και περιεχόμενο που εκπαιδεύει χωρίς να κουράζει. Δεν πείθουμε με λόγια. Πείθουμε με σήματα αξιοπιστίας.",
+    description: [
+      "Τους κάνουμε να νιώσουν “οκ, αυτοί ξέρουν” Με proof, behind the scenes και περιεχόμενο που εκπαιδεύει χωρίς να κουράζει.",
+      "Δεν πείθουμε με λόγια. Πείθουμε με σήματα αξιοπιστίας.",
+    ],
   },
   {
     number: "03",
     title: "Convert (Μετατρέπουμε το hype σε έσοδα, έξυπνα)",
-    description:
-      "Μόνο όταν είναι έτοιμοι, τους οδηγούμε στην διαδικασία πωλήσεις και τους κλείνουμε πελάτες έμμεσα και στρατηγικά, όχι πιεστικά. Όλη η κίνηση καταγράφεται, βελτιώνεται και γίνεται μηχανή που ανεβαίνει κάθε μήνα.",
+    description: [
+      "Μόνο όταν είναι έτοιμοι, τους οδηγούμε στην διαδικασία πωλήσεις",
+      "Kλείνουμε πελάτες έμμεσα και στρατηγικά, όχι πιεστικά.",
+      "Όλη η κίνηση καταγράφεται, βελτιώνεται και γίνεται μηχανή που ανεβαίνει κάθε μήνα.",
+    ],
   },
 ];
+
 
 type HowItWorksStep = {
   number: string;
@@ -58,7 +66,7 @@ export default function HowItWorks({ content }: HowItWorksProps) {
             {content?.description}
           </p>
         </div>
-        <div className="flex justify-center px-10 ">
+        <div className="flex justify-center px-10 lg:px-60">
           <Timeline
             className="how-we-do-it-timeline w-full max-w-[760px] sm:w-auto"
             items={(content?.steps ?? STEPS).map((step) => ({
@@ -78,12 +86,19 @@ export default function HowItWorks({ content }: HowItWorksProps) {
               ),
               children: (
                 <div className="pb-1 pl-2">
-                  <h3 className="text-base font-semibold text-neutral-900 md:text-lg">
+                  <h3 className="text-base font-bold text-neutral-900 md:text-lg">
                     {step.title}
                   </h3>
-                  <p className="mt-2 text-sm text-neutral-700 md:text-base">
-                    {step.description}
-                  </p>
+                   {Array.isArray(step.description) && (
+                    <ul className="mt-2 space-y-1.5 text-sm font-500 text-neutral-700 md:text-base">
+                      {step.description.map((item, i) => (
+                        <li key={i} className="flex gap-2">
+                          <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--color-gold-500)] flex-shrink-0" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               ),
             }))}

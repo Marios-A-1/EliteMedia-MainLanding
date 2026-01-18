@@ -28,14 +28,14 @@ const HeroContent = {
 const HowWeDoItContent ={
   eyebrow: <>Done-For-You</>,
   heading:<>Elite Signature Strategy</>,
-  description:<>10 bullets που το “πιάνεις” σε 10’’</>
+  description:<>10 steps που το “πιάνεις” σε 10’’</>
 
 
 }
 const HowItWorksContent ={
   eyebrow: <>How it works</>,
   heading:<>Πώς δουλεύει το Elite Signature Strategy</>,
-  description:<>Δεν “ανεβάζουμε απλά content”. Χτίζουμε ένα σύστημα που παίρνει το βλέμμα, το κάνει εμπιστοσύνη και το μετατρέπει σε πελάτες — με τρόπο κομψό, μετρήσιμο και repeatable.</>
+  description:<>Δεν ανεβάζουμε απλά content. Χτίζουμε ένα σύστημα που παίρνει το βλέμμα, το κάνει εμπιστοσύνη και το μετατρέπει σε πελάτες — με τρόπο κομψό, μετρήσιμο και repeatable.</>
 
 
 }
@@ -84,7 +84,7 @@ const TestimonialsContent = {
 };
 const GoogleTestimonialsContent = {
   eyebrow: <>Reviews</>,
-  heading: <>Google Reviews</>,
+  heading: <section id="reviews">Google Reviews</section>,
   description: <>Απο συνεργασίες που έχουν μεταμορφώσει επιχειρήσεις και έχουν οδηγήσει σε μετρήσιμα αποτελέσματα.</>,
   items: [
   {

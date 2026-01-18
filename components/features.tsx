@@ -50,7 +50,7 @@ export default function Features() {
                   d="m16.295 5.393 7.528 2.034-4.436 16.412L5.87 20.185l.522-1.93 11.585 3.132 3.392-12.55-5.597-1.514.522-1.93Z"
                 />
               </svg>
-              <h3 className="mb-1 font-nacelle text-sm font-semibold text-[#2b2216] md:text-[1rem]">
+              <h3 className="mb-1   text-sm font-semibold text-[#2b2216] md:text-[1rem]">
                 Περιεχόμενο με Σκοπό
               </h3>
               <p className="text-sm text-[#5b4a2a] md:text-base">
@@ -59,7 +59,7 @@ export default function Features() {
             </article>
             <article className="flex max-w-sm flex-col items-center bg-amber-100/70 border-2 border-[#d4af37] rounded-3xl px-4 py-4 text-center">
               <UsergroupAddOutlined style={{color: "#d4af37", fontSize: "24px", padding: "10px"}} />
-              <h3 className="mb-1 font-nacelle text-sm font-semibold text-[#2b2216] md:text-[1rem]">
+              <h3 className="mb-1   text-sm font-semibold text-[#2b2216] md:text-[1rem]">
                 Κοινότητα που Εμπιστεύεται
               </h3>
               <p className="text-sm text-[#5b4a2a] md:text-base">
@@ -68,7 +68,7 @@ export default function Features() {
             </article>
             <article className="flex max-w-sm flex-col items-center bg-amber-100/70 border-2 border-[#d4af37] rounded-3xl px-4 py-4 text-center">
               <BulbOutlined style={{color: "#d4af37", fontSize: "24px", padding: "10px"}} />
-              <h3 className="mb-1 font-nacelle text-sm font-semibold text-[#2b2216] md:text-[1rem]">
+              <h3 className="mb-1   text-sm font-semibold text-[#2b2216] md:text-[1rem]">
                 Ψυχολογία & Σύνδεση
               </h3>
               <p className="text-sm text-[#5b4a2a] md:text-base">
@@ -77,7 +77,7 @@ export default function Features() {
             </article>
             <article className="flex max-w-sm flex-col items-center bg-amber-100/70 border-2 border-[#d4af37] rounded-3xl px-4 py-4 text-center">
               <SettingOutlined style={{color: "#d4af37", fontSize: "24px", padding: "10px"}} />
-              <h3 className="mb-1 font-nacelle text-sm font-semibold text-[#2b2216] md:text-[1rem]">
+              <h3 className="mb-1   text-sm font-semibold text-[#2b2216] md:text-[1rem]">
                 Συστήματα που Πουλάνε
               </h3>
               <p className="text-sm text-[#5b4a2a] md:text-base">

@@ -13,7 +13,7 @@
 
 @theme {
   --font-inter: var(--font-inter), sans-serif;
-  --font-nacelle: var(--font-nacelle), sans-serif;
+  -- : var(-- ), sans-serif;
 
   --color-indigo-50: #fff8e6;
   --color-indigo-100: #fcefc0;
@@ -261,7 +261,7 @@
 }
 
 .section-heading {
-    font-family: var(--font-nacelle), sans-serif;
+    font-family: var(-- ), sans-serif;
     font-size: 1.5rem;
     font-weight: 600;
     color: #2b2216;

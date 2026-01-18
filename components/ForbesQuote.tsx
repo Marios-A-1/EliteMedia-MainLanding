@@ -22,7 +22,7 @@ export default function ForbesQuote({ content }: ForbesQuoteProps) {
         rel="noopener noreferrer"
         className="group block rounded-2xl py-8  px-10 border border-gold-500/40 bg-gradient-to-br from-gold-500/30 via-gold-200/70 to-gold-500/50 p-6 transition hover:shadow-lg"
       >
-        <blockquote className="text-lg font-serif font-medium text-neutral-800 leading-relaxed">
+        <blockquote className="text-md font-serif font-medium text-neutral-800 leading-relaxed">
           {content?.quote ?? <>“EliteMedia: Το ελληνικό agency που καταλαβαίνει καλύτερα τον Έλληνα απ’ όσο καταλαβαίνει ο ίδιος τον εαυτό του”</>}
         </blockquote>
         

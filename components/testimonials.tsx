@@ -162,7 +162,7 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
             <button
              onClick={prev}
              className={`absolute left-20 z-10 hidden h-10 w-10 items-center justify-center rounded-full border-3 bg-gold-200/50 border-indigo-300 text-indigo-300 transition hover:border-indigo-300/60 hover:text-indigo-400 hover:bg-gold-200 sm:flex
-               ${testimonials[focus]?.type === "google" ? "top-6" : "top-9/10 lg:top-5/10 -translate-y-1/2"}
+               ${testimonials[focus]?.type === "google" ? "top-6" : "top-9/10 lg:top-3/10 -translate-y-1/2"}
              `}
              aria-label="Previous testimonial"
             >
@@ -187,7 +187,7 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
                       ${
                         testimonial.type === "google"
                           ? "top-3  left-100/100 lg:left-83/100"
-                          : "-translate-y-1/2 top-4/10 lg:top-10/10 mt-10 lg:-mt-20 left-83/100 lg:left-15/20 "
+                          : "-translate-y-1/2 top-4/10 lg:top-8/10 mt-10 lg:-mt-20 left-83/100 lg:left-15/20 "
                       }
                     `}
                     style={{
@@ -205,21 +205,36 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
                         : undefined
                     }
                   >
-                    <div className="relative overflow-hidden rounded-[28px] border border-gold-500 bg-white/90 shadow-2xl shadow-primary/30">
-                      {testimonial.type === "video" ? (
-                        <LazyVimeo
-                          videoId={testimonial.vimeo}
-                          title={`Testimonial video ${testimonial.id}`}
-                          className="aspect-[9/16] w-[200px] md:w-[320px]"
-                          iframeClassName="pointer-events-none md:pointer-events-auto"
-                          forceLoad={playRequested}
-                          playOnLoad={playRequested}
-                          command={videoCommand?.command}
-                          commandToken={videoCommand?.token}
-                        />
-                      ) : (
-                        <GoogleReviewCard review={testimonial} />
-                      )}
+                    <div className="relative">
+                      <div className="relative overflow-hidden rounded-[28px] border border-gold-500 bg-white/90 shadow-2xl shadow-primary/30">
+                        {testimonial.type === "video" ? (
+                          <LazyVimeo
+                            videoId={testimonial.vimeo}
+                            title={`Testimonial video ${testimonial.id}`}
+                            className="aspect-[9/16] w-[200px] md:w-[320px]"
+                            iframeClassName="pointer-events-none md:pointer-events-auto"
+                            forceLoad={playRequested}
+                            playOnLoad={playRequested}
+                            command={videoCommand?.command}
+                            commandToken={videoCommand?.token}
+                          />
+                        ) : (
+                          <GoogleReviewCard review={testimonial} />
+                        )}
+                      </div>
+                      {isActive ? (
+                        <div className="absolute left-1/2 top-full mt-4 -translate-x-1/2 text-xs font-semibold uppercase tracking-wide text-neutral-500">
+                          {(() => {
+                            const typeItems = testimonials.filter(
+                              (item) => item.type === testimonial.type
+                            );
+                            const typeIndex =
+                              typeItems.findIndex((item) => item.id === testimonial.id) + 1;
+                            const typeTotal = typeItems.length;
+                            return `${typeIndex}/${typeTotal}`;
+                          })()}
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 );
@@ -229,22 +244,12 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
             <button
               onClick={next}
               className={`absolute right-20 z-10 hidden h-10 w-10 items-center justify-center rounded-full border-3 bg-gold-200/50 border-indigo-300 text-indigo-300 transition hover:border-indigo-300/60 hover:text-indigo-400 hover:bg-gold-200 sm:flex
-                ${testimonials[focus]?.type === "google" ? "top-6" : "top-9/10 lg:top-5/10 -translate-y-1/2"}
+                ${testimonials[focus]?.type === "google" ? "top-6" : "top-9/10 lg:top-3/10 -translate-y-1/2"}
               `}
               aria-label="Next testimonial"
             >
               <ChevronRight />
             </button>
-          </div>
-          <div className="mt-6 text-xs font-semibold uppercase tracking-wide text-neutral-500">
-            {(() => {
-              const active = testimonials[focus];
-              if (!active) return null;
-              const typeItems = testimonials.filter((item) => item.type === active.type);
-              const typeIndex = typeItems.findIndex((item) => item.id === active.id) + 1;
-              const typeTotal = typeItems.length;
-              return `${typeIndex}/${typeTotal}`;
-            })()}
           </div>
         </div>
       </div>

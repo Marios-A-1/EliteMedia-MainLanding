@@ -5,16 +5,16 @@ import Logo from "./logo";
 
 const NAV_LINKS = [
   {
-    id: "how-it-works",
-    label: "Τι Αναλαμβάνουμε",
-  },
-  {
     id: "how-we-do-it",
     label: "Πώς δουλεύει",
   },
   {
     id: "results",
     label: "Αποτελέσματα",
+  },
+  {
+    id: "reviews",
+    label: "Reviews",
   },
 ];
 

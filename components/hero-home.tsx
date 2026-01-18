@@ -27,7 +27,7 @@ export default function HeroHome({ content }: HeroHomeProps) {
           {/* Section header */}
           <div className="pb-8 text-center md:pb-20">
             <h1
-              className="section-heading pb-4 font-nacelle text-3xl font-semibold leading-tight md:pb-5 md:text-5xl md:leading-normal"
+              className="section-heading pb-4   text-3xl font-semibold leading-tight md:pb-5 md:text-5xl md:leading-normal"
               data-aos="fade-up"
             >
               {content?.title}
