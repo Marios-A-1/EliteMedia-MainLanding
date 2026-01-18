@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type TouchEvent, type ReactNode } from "react";
+import { useEffect, useRef, useState, type TouchEvent, type ReactNode } from "react";
 import LazyVimeo from "@/components/lazy-vimeo";
 
 /* =======================
@@ -62,9 +62,32 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
   >({});
   const testimonials = content?.items ?? TESTIMONIALS;
   const total = testimonials.length;
+  const prevFocusRef = useRef(focus);
 
-  const prev = () => setFocus((current) => (current - 1 + total) % total);
-  const next = () => setFocus((current) => (current + 1) % total);
+  const requestPause = (id: number) => {
+    setPlayStates((current) => {
+      if (!current[id]) return current;
+      setVideoCommands((prev) => {
+        const nextToken = (prev[id]?.token ?? 0) + 1;
+        return { ...prev, [id]: { command: "pause", token: nextToken } };
+      });
+      return { ...current, [id]: false };
+    });
+  };
+
+  const prev = () =>
+    setFocus((current) => {
+      const currentItem = testimonials[current];
+      if (currentItem?.type === "video") requestPause(currentItem.id);
+      return (current - 1 + total) % total;
+    });
+
+  const next = () =>
+    setFocus((current) => {
+      const currentItem = testimonials[current];
+      if (currentItem?.type === "video") requestPause(currentItem.id);
+      return (current + 1) % total;
+    });
 
   const touchStartX = useRef<number | null>(null);
 
@@ -101,6 +124,16 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
     });
   };
 
+  useEffect(() => {
+    const previousFocus = prevFocusRef.current;
+    if (previousFocus === focus) return;
+    const previousItem = testimonials[previousFocus];
+    if (previousItem?.type === "video") {
+      requestPause(previousItem.id);
+    }
+    prevFocusRef.current = focus;
+  }, [focus, testimonials]);
+
   return (
     <section
       id="results"
@@ -129,7 +162,7 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
           >
             <button
              onClick={prev}
-             className={`absolute -left-10 hidden h-10 w-10 items-center justify-center rounded-full border-3 bg-gold-200/50 border-indigo-300 text-indigo-300 transition hover:border-indigo-300/60 hover:text-indigo-400 hover:bg-gold-200 sm:flex
+             className={`absolute left-20 z-10 hidden h-10 w-10 items-center justify-center rounded-full border-3 bg-gold-200/50 border-indigo-300 text-indigo-300 transition hover:border-indigo-300/60 hover:text-indigo-400 hover:bg-gold-200 sm:flex
                ${testimonials[focus]?.type === "google" ? "top-6" : "top-9/10 lg:top-5/10 -translate-y-1/2"}
              `}
              aria-label="Previous testimonial"
@@ -143,6 +176,8 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
                 const hidden = Math.abs(offset) > 1;
                 const clampedOffset = Math.max(Math.min(offset, 1), -1);
                 const isActive = offset === 0;
+                const isGoogle = testimonial.type === "google";
+                const inactiveOpacity = isGoogle ? 0 : 0.0;
                 const playRequested = testimonial.type === "video" && Boolean(playRequests[testimonial.id]);
                 const videoCommand = testimonial.type === "video" ? videoCommands[testimonial.id] : undefined;
 
@@ -152,7 +187,7 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
                     className={`absolute  flex -translate-x-1/2 items-center justify-center transition-all duration-500 ease-out 
                       ${
                         testimonial.type === "google"
-                          ? "top-0  left-100/100 lg:left-83/100"
+                          ? "top-3  left-100/100 lg:left-83/100"
                           : "-translate-y-1/2 top-4/10 lg:top-10/10 mt-10 lg:-mt-20 left-83/100 lg:left-15/20 "
                       }
                     `}
@@ -160,7 +195,7 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
                       transform: `translate(-50%, -50%) translateX(${clampedOffset * 90}%) scale(${
                         isActive ? 1 : 0.85
                       })`,
-                      opacity: hidden ? 0 : isActive ? 1 : 0.4,
+                      opacity: hidden ? 0 : isActive ? 1 : inactiveOpacity,
                       filter: isActive ? "none" : "blur(1px)",
                       zIndex: isActive ? 3 : 1,
                       pointerEvents: isActive ? "auto" : "none",
@@ -194,7 +229,7 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
 
             <button
               onClick={next}
-              className={`absolute -right-10 hidden h-10 w-10 items-center justify-center rounded-full border-3 bg-gold-200/50 border-indigo-300 text-indigo-300 transition hover:border-indigo-300/60 hover:text-indigo-400 hover:bg-gold-200 sm:flex
+              className={`absolute right-20 z-10 hidden h-10 w-10 items-center justify-center rounded-full border-3 bg-gold-200/50 border-indigo-300 text-indigo-300 transition hover:border-indigo-300/60 hover:text-indigo-400 hover:bg-gold-200 sm:flex
                 ${testimonials[focus]?.type === "google" ? "top-6" : "top-9/10 lg:top-5/10 -translate-y-1/2"}
               `}
               aria-label="Next testimonial"
