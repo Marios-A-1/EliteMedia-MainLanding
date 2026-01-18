@@ -51,6 +51,8 @@ export default function LazyVimeo({
   allow = DEFAULT_ALLOW,
 }: LazyVimeoProps) {
   const [shouldLoad, setShouldLoad] = useState(false);
+  const [isIframeReady, setIsIframeReady] = useState(false);
+  const pendingCommandRef = useRef<"play" | "pause" | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
@@ -82,14 +84,26 @@ export default function LazyVimeo({
     return () => observer.disconnect();
   }, [rootMargin, shouldLoad]);
 
+  const postCommand = (nextCommand: "play" | "pause") => {
+    const targetWindow = iframeRef.current?.contentWindow;
+    if (!targetWindow) return false;
+    targetWindow.postMessage({ method: nextCommand }, "*");
+    return true;
+  };
+
   useEffect(() => {
     if (!shouldLoad || !command) return;
-    const targetWindow = iframeRef.current?.contentWindow;
-    if (!targetWindow) return;
-    targetWindow.postMessage({ method: command }, "*");
-  }, [command, commandToken, shouldLoad]);
+    if (!isIframeReady) {
+      pendingCommandRef.current = command;
+      return;
+    }
+    postCommand(command);
+  }, [command, commandToken, isIframeReady, shouldLoad]);
 
-  const resolvedParams = playOnLoad ? mergeVimeoParams(params, { autoplay: "1" }) : params;
+  const shouldAutoplay = playOnLoad && !isIframeReady;
+  const resolvedParams = shouldAutoplay
+    ? mergeVimeoParams(params, { autoplay: "1", muted: "1", playsinline: "1" })
+    : params;
   const iframeSrc = buildVimeoSrc(videoId, resolvedParams);
   const posterSrc = thumbnailUrl ?? "/images/hero-image-01.jpg";
   const posterAlt = thumbnailAlt ?? title;
@@ -106,6 +120,14 @@ export default function LazyVimeo({
           allowFullScreen
           loading="lazy"
           frameBorder={0}
+          onLoad={() => {
+            setIsIframeReady(true);
+            const pending = pendingCommandRef.current;
+            if (pending) {
+              postCommand(pending);
+              pendingCommandRef.current = null;
+            }
+          }}
         />
       ) : (
         <button

@@ -66,12 +66,11 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
 
   const requestPause = (id: number) => {
     setPlayStates((current) => {
-      if (!current[id]) return current;
       setVideoCommands((prev) => {
         const nextToken = (prev[id]?.token ?? 0) + 1;
         return { ...prev, [id]: { command: "pause", token: nextToken } };
       });
-      return { ...current, [id]: false };
+      return current[id] ? { ...current, [id]: false } : current;
     });
   };
 
