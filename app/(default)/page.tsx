@@ -153,8 +153,8 @@ export default function Home() {
     <>
       <PageIllustration />
       <Hero content={HeroContent}/>
-      <HowItWorks content={HowItWorksContent  }/>
       <ForbesQuote />
+      <HowItWorks content={HowItWorksContent  }/>
       <HowWeDoIt content={HowWeDoItContent  }/>
       <Testimonials content={TestimonialsContent}/>
       <Testimonials content={GoogleTestimonialsContent}/>
