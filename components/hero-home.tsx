@@ -57,7 +57,7 @@ export default function HeroHome({ content }: HeroHomeProps) {
             />
           </div>
               <p
-                className=" -mt-4 mb-6 text-center text-xs text-[#5b4a2a]"
+                className="-mt-4 mb-3 hidden text-center text-xs text-[#5b4a2a] md:mt-6 md:block"
                 data-aos="fade-up"
                 data-aos-delay={200}>
                 {content?.ctaDescription}
@@ -75,6 +75,12 @@ export default function HeroHome({ content }: HeroHomeProps) {
             </a>
           </div>
         </div>
+              <p
+                className="-mt-4 mb-3 text-center text-xs text-[#5b4a2a] md:mt-6 lg:hidden"
+                data-aos="fade-up"
+                data-aos-delay={200}>
+                {content?.ctaDescription}
+              </p>
         
       </div>
     </section>

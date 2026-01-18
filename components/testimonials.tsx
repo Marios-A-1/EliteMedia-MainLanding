@@ -133,7 +133,7 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
                       ${
                         testimonial.type === "google"
                           ? "top-0  left-100/100 lg:left-83/100"
-                          : "-translate-y-1/2 top-4/10 lg:top-10/10 mt-10 left-83/100 lg:left-15/20 "
+                          : "-translate-y-1/2 top-4/10 lg:top-10/10 mt-10 lg:-mt-20 left-83/100 lg:left-15/20 "
                       }
                     `}style={{
                       transform: `translate(-50%, -50%) translateX(${clampedOffset * 90}%) scale(${
