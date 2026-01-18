@@ -237,6 +237,16 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
               <ChevronRight />
             </button>
           </div>
+          <div className="mt-6 text-xs font-semibold uppercase tracking-wide text-neutral-500">
+            {(() => {
+              const active = testimonials[focus];
+              if (!active) return null;
+              const typeItems = testimonials.filter((item) => item.type === active.type);
+              const typeIndex = typeItems.findIndex((item) => item.id === active.id) + 1;
+              const typeTotal = typeItems.length;
+              return `${typeIndex}/${typeTotal}`;
+            })()}
+          </div>
         </div>
       </div>
     </section>

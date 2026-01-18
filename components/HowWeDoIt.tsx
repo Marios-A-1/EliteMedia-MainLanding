@@ -7,64 +7,108 @@ const STEPS = [
   {
     number: "01",
     title: "Αναλαμβάνουμε όλο το σύστημα από το μηδέν",
-    description:
-      "στρατηγική, περιεχόμενο, funnels, tracking. Εσύ απλά εγκρίνεις.",
+    description: [
+      "στρατηγική",
+      "περιεχόμενο",
+      "funnels",
+      "tracking",
+      "Εσύ απλά εγκρίνεις.",
+    ],
   },
   {
     number: "02",
     title: "Βγάζουμε ξεκάθαρο “ποιον πουλάμε & γιατί αγοράζει”",
-    description:
-      "ιδανικός πελάτης, pains, objections, triggers → για να μιλάμε σωστά και να μην πετάμε content στον αέρα.",
+    description: [
+      "ιδανικός πελάτης",
+      "pains",
+      "objections",
+      "triggers → για να μιλάμε σωστά και να μην πετάμε content στον αέρα.",
+    ],
   },
   {
     number: "03",
     title: "Στήνουμε το brand σου να “γράφει” άμεσα",
-    description:
-      "positioning, μήνυμα, γωνίες επικοινωνίας και διαφορά από τον ανταγωνισμό.",
+    description: [
+      "positioning",
+      "μήνυμα",
+      "γωνίες επικοινωνίας",
+      "διαφορά από τον ανταγωνισμό.",
+    ],
   },
   {
     number: "04",
     title: "Φτιάχνουμε business/marketing plan ανά μήνα & τρίμηνο",
-    description:
-      "Στόχοι (ραντεβού/πωλήσεις), offers, events, πλάνο δράσης και τι μετράμε.",
+    description: [
+      "Στόχοι (ραντεβού/πωλήσεις)",
+      "offers",
+      "events",
+      "πλάνο δράσης",
+      "τι μετράμε.",
+    ],
   },
   {
     number: "05",
     title: "Χτίζουμε τη διαδρομή Viewer → Lead → Πελάτης",
-    description:
-      "ξεκάθαρο funnel (DM / form / call / checkout) ώστε κάθε reel να οδηγεί κάπου.",
+    description: [
+      "ξεκάθαρο funnel (DM / form / call / checkout)",
+      "ώστε κάθε reel να οδηγεί κάπου.",
+    ],
   },
   {
     number: "06",
     title: "Βάζουμε AI αυτοματισμούς που κλείνουν χρόνο & δεν χάνουν leads",
-    description:
-      "comment keywords, auto-DM, qualifying flows, follow-ups.",
+    description: [
+      "comment keywords",
+      "auto-DM",
+      "qualifying flows",
+      "follow-ups.",
+    ],
   },
   {
     number: "07",
     title: "Παράγουμε το content γρήγορα & σωστά",
-    description:
-      "hooks, σενάρια, reels, posts, stories + long form όπου χρειάζεται για authority.",
+    description: [
+      "hooks",
+      "σενάρια",
+      "reels",
+      "posts",
+      "stories",
+      "long form όπου χρειάζεται για authority.",
+    ],
   },
   {
     number: "08",
     title: "Αναλαμβάνουμε γύρισμα + editing + “signature style”",
-    description:
-      "επαγγελματική εικόνα, αναγνωρίσιμο look και consistency που χτίζει εμπιστοσύνη..",
+    description: [
+      "επαγγελματική εικόνα",
+      "αναγνωρίσιμο look",
+      "consistency που χτίζει εμπιστοσύνη..",
+    ],
   },
   {
     number: "09",
     title: "Ανεβάζουμε εμείς παντού, στις σωστές ώρες",
-    description:
-      "scheduling, captions, CTAs, hashtags και ροή προς το funnel (όχι random posting).",
+    description: [
+      "scheduling",
+      "captions",
+      "CTAs",
+      "hashtags",
+      "ροή προς το funnel (όχι random posting).",
+    ],
   },
   {
     number: "10",
     title: "Μετράμε, κάνουμε report και βελτιώνουμε κάθε μήναs",
-    description:
-      "τι έφερε views, τι έφερε DMs, τι έφερε ραντεβού/πωλήσεις → κόβουμε τα άχρηστα, διπλασιάζουμε τα winners (και όπου χρειάζεται, ενισχύουμε με ads/events).",
+    description: [
+      "τι έφερε views",
+      "τι έφερε DMs",
+      "τι έφερε ραντεβού/πωλήσεις",
+      "κόβουμε τα άχρηστα",
+      "διπλασιάζουμε τα winners (και όπου χρειάζεται, ενισχύουμε με ads/events).",
+    ],
   },
 ];
+
 
 type HowWeDoItStep = {
   number: string;
@@ -123,9 +167,16 @@ export default function HowWeDoIt({ content }: HowWeDoItProps) {
                   <h3 className="text-base font-semibold text-neutral-900 md:text-lg">
                     {step.title}
                   </h3>
-                  <p className="mt-2 text-sm text-neutral-700 md:text-base">
-                    {step.description}
-                  </p>
+                  {Array.isArray(step.description) && (
+                    <ul className="mt-2 space-y-1.5 text-sm text-neutral-700 md:text-base">
+                      {step.description.map((item, i) => (
+                        <li key={i} className="flex gap-2">
+                          <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--color-gold-500)] flex-shrink-0" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               ),
             }))}
