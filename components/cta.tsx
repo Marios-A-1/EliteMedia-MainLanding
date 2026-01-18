@@ -1,6 +1,19 @@
 import Image from "next/image";
+import type { ReactNode } from "react";
 
-export default function Cta() {
+type CtaContent = {
+  heading?: ReactNode;
+  cta?: {
+    label?: ReactNode;
+    href?: string;
+  };
+};
+
+type CtaProps = {
+  content?: CtaContent;
+};
+
+export default function Cta({ content }: CtaProps) {
   return (
     <section className="relative overflow-hidden">
       <div
@@ -15,7 +28,7 @@ export default function Cta() {
               className="section-heading pb-6 md:pb-8"
               data-aos="fade-up"
             >
-              Χτίσε το content που ταιριάζει στο brand σου
+              {content?.heading ?? <>Χτίσε το content που ταιριάζει στο brand σου</>}
             </h2>
             <div className="mx-auto max-w-xs sm:flex sm:max-w-none sm:justify-center">
           <div
@@ -24,10 +37,10 @@ export default function Cta() {
             data-aos-delay={300}
           >
             <a
-              href="mailto:hello@elitemedia.com"
+              href={content?.cta?.href ?? "mailto:hello@elitemedia.com"}
               className="btn btn-shine px-5 py-3 text-sm rounded-[1rem] group w-full bg-[linear-gradient(to_right,var(--color-gold-500),var(--color-indigo-200),var(--color-indigo-500))] bg-[length:200%_auto] text-[#2b2216] hover:brightness-105 sm:w-auto md:px-10 md:py-4 md:text-lg"
             >
-              Κλείσε Δωρεάν Συμβουλευτική
+              {content?.cta?.label ?? <>Κλείσε Δωρεάν Συμβουλευτική</>}
             </a>
           </div>
             </div>

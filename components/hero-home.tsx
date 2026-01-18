@@ -1,6 +1,23 @@
 import LazyVimeo from "@/components/lazy-vimeo";
+import { title } from "process";
+import type { ReactNode } from "react";
 
-export default function HeroHome() {
+type HeroContent = {
+  title?: ReactNode;
+  description?: ReactNode;
+  videoId?: string;
+  videoTitle?: string;
+  videoParams?: string;
+  ctaLabel?: ReactNode;
+  ctaHref?: string;
+};
+
+type HeroHomeProps = {
+  content?: HeroContent;
+};
+
+
+export default function HeroHome({ content }: HeroHomeProps) {
   return (
     <section className="relative px-4">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 mt-10">
@@ -12,15 +29,15 @@ export default function HeroHome() {
               className="section-heading pb-4 font-nacelle text-3xl font-semibold leading-tight md:pb-5 md:text-5xl md:leading-normal"
               data-aos="fade-up"
             >
-              Marketing που πάει το Brand σου στο επόμενο επίπεδο 
+              {content?.title}
             </h1>
             <div className="mx-auto max-w-3xl">
               <p
-                className="mb-6 text-base text-[#5b4a2a] sm:text-lg md:mb-8 md:text-xl"
+                className="mb-6 lg:px-20 text-base text-[#5b4a2a] sm:text-lg md:mb-8 md:text-xl"
                 data-aos="fade-up"
                 data-aos-delay={200}
               >
-                Συστήματα υψηλής απόδοσης σχεδιασμένα για αύξηση εσόδων, όχι απλά views.
+                {content?.description }
               </p>
 
              
@@ -32,22 +49,28 @@ export default function HeroHome() {
             data-aos-delay={400}
           >
             <LazyVimeo
-              videoId="1128212394"
-              title="Main landing page video"
-              params="autoplay=0&title=0&byline=0&portrait=0"
+              videoId={content?.videoId ?? "1128212394"}
+              title={content?.videoTitle ?? "Main landing page video"}
+              params={content?.videoParams ?? "autoplay=0&title=0&byline=0&portrait=0"}
               className="h-full w-full"
             />
           </div>
+              <p
+                className=" -mt-8 mb-6 text-center text-base text-[#5b4a2a] sm:text-md md:mb-8 md:text-md"
+                data-aos="fade-up"
+                data-aos-delay={200}>
+                Δες το βίντεο & πάρε την στρατηγική + συμβουλευτική από expert ΔΩΡΕΑΝ
+              </p>
           <div
             className="mt-8 flex w-full justify-center"
             data-aos="fade-up"
             data-aos-delay={300}
           >
             <a
-              href="mailto:hello@elitemedia.com"
+              href={content?.ctaHref ?? "mailto:hello@elitemedia.com"}
               className="btn btn-shine px-5 py-3 text-sm rounded-[1rem] group w-full bg-[linear-gradient(to_right,var(--color-gold-500),var(--color-indigo-200),var(--color-indigo-500))] bg-[length:200%_auto] text-[#2b2216] hover:brightness-105 sm:w-auto md:px-10 md:py-4 md:text-lg"
             >
-              Κλείσε Δωρεάν Συμβουλευτική
+              {content?.ctaLabel}
             </a>
           </div>
         </div>

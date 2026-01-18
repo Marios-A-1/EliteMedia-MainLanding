@@ -1,68 +1,109 @@
 "use client";
 
 import { Timeline } from "antd";
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 const STEPS = [
   {
     number: "01",
-    title: "Business Plan & Στρατηγική",
+    title: "Αναλαμβάνουμε όλο το σύστημα από το μηδέν",
     description:
-      "Ορίζουμε στόχους, κοινό και positioning ώστε κάθε ενέργεια να υπηρετεί ξεκάθαρα το business αποτέλεσμα.",
+      "στρατηγική, περιεχόμενο, funnels, tracking. Εσύ απλά εγκρίνεις.",
   },
   {
     number: "02",
-    title: "Σενάρια & Μηνύματα",
+    title: "Βγάζουμε ξεκάθαρο “ποιον πουλάμε & γιατί αγοράζει”",
     description:
-      "Γράφουμε σενάρια βασισμένα σε ψυχολογία, hooks και storytelling — όχι τυχαίο περιεχόμενο.",
+      "ιδανικός πελάτης, pains, objections, triggers → για να μιλάμε σωστά και να μην πετάμε content στον αέρα.",
   },
   {
     number: "03",
-    title: "Βιντεοληψία",
+    title: "Στήνουμε το brand σου να “γράφει” άμεσα",
     description:
-      "Καθοδηγούμε ή αναλαμβάνουμε τη λήψη ώστε το υλικό να είναι έτοιμο για απόδοση, όχι απλώς “ωραίο”.",
+      "positioning, μήνυμα, γωνίες επικοινωνίας και διαφορά από τον ανταγωνισμό.",
   },
   {
     number: "04",
-    title: "Μοντάζ",
+    title: "Φτιάχνουμε business/marketing plan ανά μήνα & τρίμηνο",
     description:
-      "Ρυθμός, cuts, captions και δομή σχεδιασμένα για retention και conversion.",
+      "Στόχοι (ραντεβού/πωλήσεις), offers, events, πλάνο δράσης και τι μετράμε.",
   },
   {
     number: "05",
-    title: "Revisions & Fine-Tuning",
+    title: "Χτίζουμε τη διαδρομή Viewer → Lead → Πελάτης",
     description:
-      "Βελτιστοποιούμε λεπτομέρειες, μήνυμα και pacing μέχρι να είναι έτοιμο για κοινό και αλγόριθμο.",
+      "ξεκάθαρο funnel (DM / form / call / checkout) ώστε κάθε reel να οδηγεί κάπου.",
   },
   {
     number: "06",
-    title: "Ανέβασμα & Διανομή",
+    title: "Βάζουμε AI αυτοματισμούς που κλείνουν χρόνο & δεν χάνουν leads",
     description:
-      "Ανεβαίνει τη σωστή στιγμή, στη σωστή πλατφόρμα, με το σωστό context.",
+      "comment keywords, auto-DM, qualifying flows, follow-ups.",
+  },
+  {
+    number: "07",
+    title: "Παράγουμε το content γρήγορα & σωστά",
+    description:
+      "hooks, σενάρια, reels, posts, stories + long form όπου χρειάζεται για authority.",
+  },
+  {
+    number: "08",
+    title: "Αναλαμβάνουμε γύρισμα + editing + “signature style”",
+    description:
+      "επαγγελματική εικόνα, αναγνωρίσιμο look και consistency που χτίζει εμπιστοσύνη..",
+  },
+  {
+    number: "09",
+    title: "Ανεβάζουμε εμείς παντού, στις σωστές ώρες",
+    description:
+      "scheduling, captions, CTAs, hashtags και ροή προς το funnel (όχι random posting).",
+  },
+  {
+    number: "10",
+    title: "Μετράμε, κάνουμε report και βελτιώνουμε κάθε μήναs",
+    description:
+      "τι έφερε views, τι έφερε DMs, τι έφερε ραντεβού/πωλήσεις → κόβουμε τα άχρηστα, διπλασιάζουμε τα winners (και όπου χρειάζεται, ενισχύουμε με ads/events).",
   },
 ];
 
-export default function HowWeDoIt() {
+type HowWeDoItStep = {
+  number: string;
+  title: ReactNode;
+  description: ReactNode;
+};
+
+type HowWeDoItContent = {
+  eyebrow?: ReactNode;
+  heading?: ReactNode;
+  description?: ReactNode;
+  steps?: HowWeDoItStep[];
+};
+
+type HowWeDoItProps = {
+  content?: HowWeDoItContent;
+};
+
+export default function HowWeDoIt({ content }: HowWeDoItProps) {
   return (
     <section id="how-we-do-it" className="how-we-do-it py-14 md:py-24">
       <div className="mx-auto w-full max-w-[1100px] px-4 sm:px-6">
         <div className="mx-auto max-w-2xl pb-8 text-center md:pb-12">
           <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-indigo-400/50 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-indigo-400/50">
             <span className="inline-flex bg-linear-to-r from-indigo-600 to-indigo-300 bg-clip-text text-transparent">
-              Advanced Controls
+              {content?.eyebrow}
             </span>
           </div>
           <h2 className="section-heading pb-3 text-neutral-900">
-            Πώς το κάνουμε πράξη
+            {content?.heading }
           </h2>
           <p className="text-base pb-4 text-neutral-700 md:text-lg">
-            Από τη στρατηγική μέχρι το τελικό upload — με ξεκάθαρο σύστημα.
+            {content?.description}
           </p>
         </div>
         <div className="flex justify-center px-10 ">
           <Timeline
             className="how-we-do-it-timeline w-full max-w-[760px] sm:w-auto"
-            items={STEPS.map((step) => ({
+            items={(content?.steps ?? STEPS).map((step) => ({
               key: step.number,
               color: "var(--color-gold-500)",
               dot: (
