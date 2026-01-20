@@ -128,12 +128,7 @@ export default function HowWeDoIt({ content }: HowWeDoItProps) {
               color: "var(--color-gold-500)",
               dot: (
                 <div
-                  className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[color:var(--color-gold-500)] bg-transparent text-sm font-medium text-[var(--color-gold-accent)]"
-                  style={{
-                    "--color-gold-ui-300": "var(--color-gold-200)",
-                    "--color-gold-accent": "var(--color-gold-700)",
-                    backgroundColor: "var(--color-gold-200)",
-                  } as CSSProperties}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-gold-500  bg-amber-200/30 text-sm font-medium text-(--color-gold-accent)"
                 >
                   {step.number}
                 </div>
