@@ -27,7 +27,7 @@ export default function EventsPage() {
       <Hero content={eventsHero}/>
       {/* <OldNew /> */}
       {/* <Features /> */}
-      <ForYouIf />
+      {/* <ForYouIf /> */}
       <Testimonials />
       <ForbesQuote />
       <HowWeDoIt />
