@@ -15,12 +15,12 @@ type ForbesQuoteProps = {
 
 export default function ForbesQuote({ content }: ForbesQuoteProps) {
   return (
-    <section className="mx-auto mt-14 max-w-3xl max-h-300 px-6">
+    <section className="mx-auto mt-4 max-w-3xl max-h-300 px-4">
       <a
         href={content?.href ?? "https://www.forbesgreece.gr/story/3934912/elitemedia-to-elliniko-agency-pou-katalabainei-kalutera-ton-ellina-ap-oso-katalabainei-o-idios-ton-eauto-tou"}
         target="_blank"
         rel="noopener noreferrer"
-        className="group block rounded-2xl py-8  px-10 border border-gold-500/40 bg-gradient-to-br from-gold-500/30 via-gold-200/70 to-gold-500/50 p-6 transition hover:shadow-lg"
+        className="group block rounded-2xl py-6  px-4 -pr-6 border border-amber-300/60 bg-gradient-to-br from-gold-500/30 via-gold-200/70 to-gold-500/50 p-6 transition hover:shadow-lg"
       >
         <blockquote className="text-md font-serif font-medium text-neutral-800 leading-relaxed">
           {content?.quote ?? <>“EliteMedia: Το ελληνικό agency που καταλαβαίνει καλύτερα τον Έλληνα απ’ όσο καταλαβαίνει ο ίδιος τον εαυτό του”</>}

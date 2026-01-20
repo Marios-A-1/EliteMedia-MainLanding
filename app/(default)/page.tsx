@@ -12,26 +12,38 @@ import Cta from "@/components/cta";
 import ChromaGrid from "@/components/chroma-grid";
 import Carousel from "@/components/carousel";
 import OldNew from "@/components/OldNew";
-import ForYouIf from "@/components/ForYouIf";
+import ForYouIf, { type ForYouIfContent } from "@/components/ForYouIf";
 import ForbesQuote from "@/components/ForbesQuote";
 import { Description } from "@headlessui/react";
 import HowItWorks from "@/components/HowItWorks";
+import ValueBreakdown from "@/components/ValueBreakdown";
 
 const HeroContent = {
-  title: <>Elite Signature Strategy </>,
+  title:  <>
+  {/* <span className="
+    bg-gradient-to-br
+    from-amber-200
+    via-amber-400
+    via-amber-500
+    to-amber-700
+    bg-clip-text text-transparent
+    drop-shadow-[0_2px_10px_rgba(245,158,11,0.35)]
+  "> */}
+    Elite Signature
+    {/* </span> */}
+    <> Strategy </></>,
   description: <>Η στρατηγική που αυξάνει τον τζίρο ελληνικών επιχειρήσεων μέσω των social media.</>,
   videoId: "1128212394",
-  ctaDescription: "Δες το βίντεο & πάρε την στρατηγική + συμβουλευτική από expert ΔΩΡΕΑΝ",
-  ctaLabel: 'Κλείσε Δωρεάν Συμβουλευτική'
+  ctaDescription: "",
+  ctaLabel: 'Κλείσε Συμβουλευτική'
 }
 
-const HowWeDoItContent ={
-  eyebrow: <>Done-For-You</>,
-  heading:<>Elite Signature Strategy</>,
-  description:<>10 steps που το “πιάνεις” σε 10’’</>
+const HowWeDoItContent = {
+  eyebrow: <>Έρευνα</>,
+  heading: <>Τα 7 πιο κοινά προβλήματα</>,
+  description: <>που αντιμετωπίζουν επιχειρηματίες πριν συνεργαστούνε με ένα social media marketing agency στην Ελλάδα το 2026</>,
+};
 
-
-}
 const HowItWorksContent ={
   eyebrow: <>How it works</>,
   heading:<>Πώς δουλεύει το Elite Signature Strategy</>,
@@ -39,6 +51,39 @@ const HowItWorksContent ={
 
 
 }
+
+const ForYouIFContent: ForYouIfContent = {
+  eyebrow: <>Για ποίον είναι ?</>,
+  heading: <>Αυτό είναι για εσένα αν</>,
+  items: [
+    {
+      badge:  <>✓</>,
+      text: (
+        <>Θέλεις σοβαρά αποτελέσματα στα social και όχι απλά “ωραία posts”.</>
+      ),
+    },
+    {
+      badge: <>✓</>,
+      text: <>Έχεις δοκιμάσει agencies ή freelancers και δεν είδες ποτέ στρατηγική.</>,
+    },
+    {
+      badge: <>✓</>,
+      text: <>Θέλεις να ξέρεις γιατί δουλεύει κάτι — όχι απλά να σου λένε «εμπιστέψου μας»</>,
+    },
+    {
+      badge: <>✓</>,
+      text: <>Σε ενδιαφέρει να χτίσεις brand που πουλάει, όχι απλά να μαζεύεις like</>,
+    },
+    {
+      badge: <>✓</>,
+      text: <>Θέλεις να δουλεύεις με ανθρώπους που παίζουν στο ίδιο level με εσένα.</>,
+    },
+    {
+      badge: <>✓</>,
+      text: <>Σκοπεύεις να επενδύσεις σοβαρά στην παρουσία σου — όχι να “δοκιμάσεις να δεις”.</>,
+    },
+  ],
+};
 
 const TestimonialsContent = {
   eyebrow: <>Testimonials</>,
@@ -145,6 +190,29 @@ const GoogleTestimonialsContent = {
   },
 ]
 };
+const VALUE_BREAKDOWN_CONTENT = {
+  items: [
+    {
+      label: 'Συνολική Αξία',
+      amount: '997€',
+      description: 'Συνολική αξία όλων όσων λαμβάνεις',
+      strike: true,
+    },
+    {
+      label: 'Κανονική Τιμή',
+      amount: '497€',
+      description: 'Με το πακέτο',
+      strike: true,
+    },
+    {
+      label: 'Προσφορά Σήμερα',
+      amount: '1 €',
+      description: 'Για τις επόμενες 48 ώρες',
+      highlight: true,
+    },
+  ],
+};
+
 
 
 
@@ -154,13 +222,14 @@ export default function Home() {
       <PageIllustration />
       <Hero content={HeroContent}/>
       <ForbesQuote />
-      <HowItWorks content={HowItWorksContent  }/>
+      <ForYouIf content={ForYouIFContent} /> 
+      {/* <HowItWorks content={HowItWorksContent  }/> */}
       <HowWeDoIt content={HowWeDoItContent  }/>
+      <Workflows />
+      <ValueBreakdown content={VALUE_BREAKDOWN_CONTENT} />
       <Testimonials content={TestimonialsContent}/>
       <Testimonials content={GoogleTestimonialsContent}/>
-      {/* <ForYouIf /> */}
       {/* <Features /> */}
-      {/* <Workflows /> */}
       {/* <OldNew /> */}
       {/* <ChromaGrid items={partners} className="my-6 flex-1 md:my-10" /> */}
       <Cta />

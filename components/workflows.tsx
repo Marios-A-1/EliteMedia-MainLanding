@@ -6,6 +6,43 @@ import WorflowImg01 from "@/public/images/logo.webp";
 import WorflowImg02 from "@/public/images/logo.webp";
 import WorflowImg03 from "@/public/images/logo.webp";
 import Spotlight from "@/components/spotlight";
+import { CheckCheckIcon, CircleCheckIcon } from "lucide-react";
+import ValueBreakdown from "./ValueBreakdown";
+
+const ELITE_SIGNATURE_BENEFITS = [
+  {
+    text: "Τα αρχεία ανάλυσης όλων των επιτυχημένων λογαριασμών της στρατηγικής ",
+    price: "9€",
+  },
+  {
+    text: "Δωρεάν οδηγός για το πώς να επιλέξεις σωστά ένα social media agency στην Ελλάδα",
+    price: "9€",
+  },
+  {
+    text: "Λίστα με τα καλύτερα agencies στην Ελλάδα που έχουμε εκπαιδεύσει",
+    price: "9€",
+  },
+  {
+    text: "Ολοκληρωμένος οδηγός social media marketing (1 ώρα) για να το κάνεις μόνος σου",
+    price: "9€",
+  },
+  {
+    text: "Πρόσβαση στο Elite Signature Strategy",
+    price: "297€",
+  },
+  {
+    text: "2 συμβουλευτικές κλήσεις με ειδικό της ομάδας για εφαρμογή της στρατηγικής",
+    price: "397€",
+  },
+  {
+    text: "24/7 πρόσβαση σε ειδικό της ομάδας για οποιαδήποτε απορία",
+    price: "99€",
+  },
+  {
+    text: "Πρόταση συνεργασίας από την EliteMedia αν πληροίς τα κριτήρια",
+    price: "49€",
+  },
+];
 
 export default function Workflows() {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -59,137 +96,48 @@ export default function Workflows() {
     <section id="services" className="scroll-mt-20 mt-10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="pb-8 md:pb-20">
-          {/* Section header */}
-          <div className="mx-auto max-w-3xl pb-8 text-center md:pb-20">
-          <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-indigo-400/50 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-indigo-400/50">
+          <div className="justify-self-center pb-4">
+          <div className="inline-flex items-center   gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-indigo-400/50 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-indigo-400/50">
             <span className="inline-flex bg-linear-to-r from-indigo-600 to-indigo-300 bg-clip-text text-transparent">
-              Offers
+              Offer
             </span>
           </div>
-            <h2 className="section-heading pb-4">
-              Οι προσφορές μας
-            </h2>
-            {/* <p className="text-base text-[#5b4a2a] md:text-lg">
-              Simple and elegant interface to start collaborating
-            </p> */}
           </div>
-          {/* Spotlight items */}
+          {/* Section header */}
+          <div className="mx-auto w-full rounded-xl py-12 px-3 lg:px-8
+bg-gradient-to-br
+from-amber-100/40
+via-amber-300/30
+via-amber-500/35
+to-amber-800/45
+shadow-[0_35px_90px_rgba(180,120,20,0.35)]
 
+
+
+ ">
+          <div className="grid gap-10 px-6 lg:grid-cols-[1fr_1.6fr] lg:items-start ">
+          <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+          <div className="mx-auto max-w-3xl pb-8 md:pb-20 lg:mx-0">
+            <h2 className="section-heading pb-4">
+              H προσφορά μας
+            </h2>
+
+          </div>
           <Spotlight
             ref={containerRef}
-            className="hide-scrollbar group mx-auto flex max-w-full snap-x snap-mandatory items-stretch gap-0 overflow-x-auto pb-4 scroll-smooth md:grid md:max-w-sm md:overflow-visible md:snap-none md:pb-0 md:gap-6 lg:max-w-none lg:grid-cols-3"
+            className="hide-scrollbar group mx-auto flex max-w-full snap-x snap-mandatory items-stretch gap-0 overflow-x-auto pb-4 scroll-smooth md:grid md:max-w-sm md:overflow-visible md:snap-none md:pb-0 md:gap-6 lg:mx-0 lg:max-w-none lg:grid-cols-1 lg:px-0 lg:py-0"
           >
-            {/* Card 1 */}
-            <div className="flex w-full shrink-0 snap-center justify-center md:contents">
-              <a
-                data-spotlight-item
-                ref={(el) => {
-                  itemRefs.current[0] = el;
-                }}
-                className="group/card relative h-full w-[85%] shrink-0 overflow-hidden rounded-2xl bg-[#464646] p-px before:pointer-events-none before:absolute before:-left-40 before:-top-40 before:z-10 before:h-80 before:w-80 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:rounded-full before:bg-indigo-500/50 before:opacity-0 before:blur-3xl before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:-left-48 after:-top-48 after:z-30 after:h-64 after:w-64 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:rounded-full after:bg-indigo-500/70 after:opacity-0 after:blur-3xl after:transition-opacity after:duration-500 hover:after:opacity-20 group-hover:before:opacity-100 sm:w-[70%] md:w-auto md:shrink"
-                href="#0"
-              >
-              <div className="relative z-20 h-full overflow-hidden rounded-[inherit] bg-[#fff] after:absolute after:inset-0 after:bg-linear-to-br">
-                
-                {/* Image */}
-                <Image
-                style={{padding:66}}
-                  className="inline-flex"
-                  src={WorflowImg01}
-                  width={350}
-                  height={288}
-                  alt="Workflow 01"
-                />
-                {/* Content */}
-                <div className="p-4 md:p-6">
-                  <div className="mb-3">
-                    <span className="
-                      inline-flex items-center
-                      rounded-full
-                      bg-[#eae7df]
-                      px-3 py-0.5
-                      text-xs font-medium
-                      tracking-wide
-                      text-[var(--color-gold-accent)]
-                    "><span className="text-[#090909]">
-                        Essential — 500€
-                      </span>
-                    </span>
-                  </div>
-                  <p className="text-sm text-[#5b4a2a] md:text-base">
-                    • 10 απλά, καθαρά videos για social media
-                    <br />
-                    • Ιδανικό για σταθερή και επαγγελματική online παρουσία
-                    <br />
-                    • Βασικό editing & formatting
-                    <br />
-                    • Περιεχόμενο έτοιμο για άμεσο ανέβασμα
-                  </p>
-                </div>
-              </div>
-              </a>
-            </div>
-            {/* Card 2 */}
-            <div className="flex w-full shrink-0 snap-center justify-center md:contents">
-              <a
-                data-spotlight-item
-                ref={(el) => {
-                  itemRefs.current[1] = el;
-                }}
-                className="group/card relative h-full w-[85%] shrink-0 overflow-hidden rounded-2xl bg-[#9f9f9f] p-px before:pointer-events-none before:absolute before:-left-40 before:-top-40 before:z-10 before:h-80 before:w-80 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:rounded-full before:bg-indigo-500/50 before:opacity-0 before:blur-3xl before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:-left-48 after:-top-48 after:z-30 after:h-64 after:w-64 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:rounded-full after:bg-indigo-500/70 after:opacity-0 after:blur-3xl after:transition-opacity after:duration-500 hover:after:opacity-20 group-hover:before:opacity-100 sm:w-[70%] md:w-auto md:shrink"
-                href="#0"
-              >
-              <div className="relative z-20 h-full overflow-hidden rounded-[inherit] bg-[#eae8e8] after:absolute after:inset-0 after:bg-linear-to-br">
-                
-                {/* Image */}
-                <Image
-                style={{padding:66}}
-                  className="inline-flex"
-                  src={WorflowImg02}
-                  width={350}
-                  height={288}
-                  alt="Workflow 02"
-                />
-                {/* Content */}
-                <div className="p-4 md:p-6">
-                  <div className="mb-3">
-                      <span className="
-                      inline-flex items-center
-                      rounded-full
-                      bg-[#d1d1d1]
-                      px-3 py-0.5
-                      text-xs font-medium
-                      tracking-wide
-                      text-[var(--color-gold-accent)]
-                    "><span className="text-[#474747]">
-                        Silver — 1.000€
-                      </span>
-                    </span>
-                  </div>
-                  <p className="text-sm text-[#474747] md:text-base">
-                    • 8 videos υψηλής ποιότητας (premium)
-                    <br />
-                    • Σενάρια βασισμένα σε hooks & ψυχολογία κοινού
-                    <br />
-                    • Προχωρημένο editing & captions
-                    <br />
-                    • Βελτιστοποιημένο για retention & engagement
-                  </p>
-                </div>
-              </div>
-              </a>
-            </div>
             {/* Card 3 */}
-            <div className="flex w-full shrink-0 snap-center justify-center md:contents">
+            <div className="flex w-full shrink-0 snap-center justify-center align-middle md:contents">
               <a
                 data-spotlight-item
                 ref={(el) => {
                   itemRefs.current[2] = el;
                 }}
-                className="group/card relative h-full w-[85%] shrink-0 overflow-hidden rounded-2xl bg-[#ffb93f] p-px before:pointer-events-none before:absolute before:-left-40 before:-top-40 before:z-10 before:h-80 before:w-80 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:rounded-full before:bg-indigo-500/50 before:opacity-0 before:blur-3xl before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:-left-48 after:-top-48 after:z-30 after:h-64 after:w-64 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:rounded-full after:bg-indigo-500/70 after:opacity-0 after:blur-3xl after:transition-opacity after:duration-500 hover:after:opacity-20 group-hover:before:opacity-100 sm:w-[70%] md:w-auto md:shrink"
+                className="group/card relative h-full w-[85%] shrink-0 overflow-hidden rounded-2xl bg-[#ffb93f]v p-px before:pointer-events-none before:absolute before:-left-40 before:-top-40 before:z-10 before:h-80 before:w-80 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:rounded-full before:bg-indigo-500/50 before:opacity-0 before:blur-3xl before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:-left-48 after:-top-48 after:z-30 after:h-64 after:w-64 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:rounded-full after:bg-indigo-500/70 after:opacity-0 after:blur-3xl after:transition-opacity after:duration-500 hover:after:opacity-20 group-hover:before:opacity-100 sm:w-[70%] md:w-auto md:shrink lg:w-full"
                 href="#0"
               >
-              <div className="relative z-20 h-full overflow-hidden rounded-[inherit] bg-[#ffe7bc] after:absolute after:inset-0 after:bg-linear-to-br after:from-[#f4c74e]/20 after:via-transparent/40 after:to-[#f4c74e]/15">
+              <div className="relative z-20 h-full overflow-hidden rounded-[inherit] bg-[#ffe7bc]_after:absolute_after:inset-0_after:bg-linear-to-br_after:from-[#f4c74e]/20_after:via-transparent/40_after:to-[#f4c74e]/15">
               
                 {/* Image */}
                 <Image
@@ -202,7 +150,7 @@ export default function Workflows() {
                 />
                 {/* Content */}
                 <div className="p-4 md:p-6">
-                  <div className="mb-3">
+                  {/* <div className="mb-3">
                       <span className="
                       inline-flex items-center
                       rounded-full
@@ -210,45 +158,65 @@ export default function Workflows() {
                       px-3 py-0.5
                       text-xs font-medium
                       tracking-wide
-                      text-[var(--color-gold-accent)]
+                      text-(--color-gold-accent)
                     "><span className="text-[#5b4a2a]">
-                        Golden Signature — Custom
+                        Elite Signature 
                       </span>
                     </span>
-                  </div>
-                  <p className="text-sm text-[#5b4a2a] md:text-base">
-                    • 12+ premium videos κάθε μήνα
-                    <br />
-                    • Στρατηγική περιεχομένου & positioning του brand
-                    <br />
-                    • Υποστήριξη paid ads (Meta, TikTok κ.ά.)
-                    <br />
-                    • Revisions, fine-tuning & συνεχής βελτιστοποίηση
-                  </p>
+                  </div> */}
                 </div>
               </div>
               </a>
+              
             </div>
           </Spotlight>
-          <div className="mt-4 flex items-center justify-center gap-2 md:hidden">
-            {[0, 1, 2].map((index) => (
-              <button
-                key={index}
-                type="button"
-                aria-label={`Go to plan ${index + 1}`}
-                className={`h-2.5 w-2.5 rounded-full transition ${
-                  activeIndex === index ? "bg-[#f4c74e]" : "bg-[#d6c6a1]/60"
-                }`}
-                onClick={() => {
-                  itemRefs.current[index]?.scrollIntoView({
-                    behavior: "smooth",
-                    inline: "center",
-                    block: "nearest",
-                  });
-                }}
-              />
-            ))}
           </div>
+
+          {/* LIST */}
+                
+                
+                <ul className="space-y-3 text-sm text-[#5b4a2a] md:text-base">
+                <p className="text-base text-center text-[#5b4a2a] md:text-lg">
+                  Τι παίρνεις
+                </p>
+                  {ELITE_SIGNATURE_BENEFITS.map((item, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      {/* Bullet */}
+                      <div 
+                      className="relative w-full rounded-xl border-2 border-amber-400 bg-[#ffffffb0] px-5 py-4 text-left min-h-[90%] "
+                      >
+                      <CircleCheckIcon className="absolute top-[40%] left-3 h-5 w-5 shrink-0 rounded-full text-[#f2b100] lg:left-3 lg:top-[35%]" />
+                  
+                      {/* Text */}
+                      <span className="block w-full pr-15 pl-5  text-left leading-relaxed lg:px-4 lg:pr-18 lg:pl-8">
+                        {item.text}
+                      </span>
+                  
+                      {/* Price tag */}
+                      <span
+                        className="
+                        shrink-0
+                        absolute
+                        top-[40%]
+                        right-3
+                        rounded-full
+                        bg-[#ffd079]
+                        px-2.5
+                        py-0.5
+                        text-xs
+                        font-medium
+                        text-[#5b4a2a]
+                        whitespace-nowrap
+                        "
+                        >
+                        αξία {item.price}
+                      </span>
+                  </div>
+                    </li>
+                  ))}
+                </ul>
+            </div>       
+         </div>
         </div>
       </div>
     </section>

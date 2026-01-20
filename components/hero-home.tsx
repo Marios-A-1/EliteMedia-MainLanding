@@ -21,7 +21,7 @@ type HeroHomeProps = {
 export default function HeroHome({ content }: HeroHomeProps) {
   return (
     <section className="relative px-4">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 mt-10">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 -mt-10">
         {/* Hero content */}
         <div className="py-10 md:py-20">
           {/* Section header */}
