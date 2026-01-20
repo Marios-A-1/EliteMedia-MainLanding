@@ -226,7 +226,7 @@ export default function Home() {
       {/* <HowItWorks content={HowItWorksContent  }/> */}
       <HowWeDoIt content={HowWeDoItContent  }/>
       <Workflows />
-      <ValueBreakdown content={VALUE_BREAKDOWN_CONTENT} />
+      {/* <ValueBreakdown content={VALUE_BREAKDOWN_CONTENT} /> */}
       <Testimonials content={TestimonialsContent}/>
       <Testimonials content={GoogleTestimonialsContent}/>
       {/* <Features /> */}
