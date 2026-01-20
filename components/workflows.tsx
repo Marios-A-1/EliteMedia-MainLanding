@@ -104,21 +104,19 @@ export default function Workflows() {
           </div>
           </div>
           {/* Section header */}
-          <div className="mx-auto w-full rounded-xl py-12 px-3 lg:px-8
+          <div 
+            className="
+mx-auto w-full rounded-xl py-12 px-3 lg:px-8
 bg-gradient-to-br
-from-amber-100/40
-via-amber-300/30
-via-amber-500/35
-to-amber-800/45
-shadow-[0_35px_90px_rgba(180,120,20,0.35)]
-
-
-
- ">
+from-amber-300/20
+via-amber-400/10
+to-amber-500/25
+shadow-[0_0_40px_rgba(245,158,11,0.12)]
+  ">
           <div className="grid gap-10 px-6 lg:grid-cols-[1fr_1.6fr] lg:items-start ">
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
           <div className="mx-auto max-w-3xl pb-8 md:pb-20 lg:mx-0">
-            <h2 className="section-heading pb-4">
+            <h2 className="section-heading pb-4 ">
               H προσφορά μας
             </h2>
 
@@ -176,7 +174,13 @@ shadow-[0_35px_90px_rgba(180,120,20,0.35)]
                 
                 
                 <ul className="space-y-3 text-sm text-[#5b4a2a] md:text-base">
-                <p className="text-base text-center text-[#5b4a2a] md:text-lg">
+                <p className="text-lg text-center  md:text-lg         bg-gradient-to-br
+        from-amber-200
+        via-amber-400
+        via-amber-500
+        to-amber-700
+        bg-clip-text text-transparent
+        drop-shadow-[0_2px_10px_rgba(245,158,11,0.35)]">
                   Τι παίρνεις
                 </p>
                   {ELITE_SIGNATURE_BENEFITS.map((item, index) => (
@@ -207,6 +211,7 @@ shadow-[0_35px_90px_rgba(180,120,20,0.35)]
                         font-medium
                         text-[#5b4a2a]
                         whitespace-nowrap
+                        
                         "
                         >
                         αξία {item.price}
