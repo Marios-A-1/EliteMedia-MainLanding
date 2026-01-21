@@ -96,7 +96,7 @@ export default function Workflows() {
     <section id="services" className="scroll-mt-20 mt-10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="pb-8 md:pb-20">
-          <div className="justify-self-center pb-4">
+          <div className="justify-self-center md:justify-self-center  sm:justify-self-center  pb-4">
           <div className="inline-flex items-center   gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-indigo-400/50 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-indigo-400/50">
             <span className="inline-flex bg-linear-to-r from-indigo-600 to-indigo-300 bg-clip-text text-transparent">
               Offer
@@ -106,13 +106,13 @@ export default function Workflows() {
           {/* Section header */}
           <div 
             className="
-mx-auto w-full rounded-xl py-12 px-3 lg:px-8
-bg-gradient-to-br
-from-amber-300/20
-via-amber-400/10
-to-amber-500/25
-shadow-[0_0_40px_rgba(245,158,11,0.12)]
-  ">
+              mx-auto w-full rounded-xl py-12 px-3 lg:px-8
+              bg-gradient-to-br
+              from-amber-300/20
+              via-amber-400/10
+              to-amber-500/25
+              shadow-[0_0_40px_rgba(245,158,11,0.12)]
+              ">
           <div className="grid gap-10 px-6 lg:grid-cols-[1fr_1.6fr] lg:items-start ">
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
           <div className="mx-auto max-w-3xl pb-8 md:pb-20 lg:mx-0">
