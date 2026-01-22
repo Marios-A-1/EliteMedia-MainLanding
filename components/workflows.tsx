@@ -132,8 +132,8 @@ export default function Workflows() {
                 ref={(el) => {
                   itemRefs.current[2] = el;
                 }}
-                className="group/card relative h-full w-[85%] shrink-0 overflow-hidden rounded-2xl bg-[#ffb93f]v p-px before:pointer-events-none before:absolute before:-left-40 before:-top-40 before:z-10 before:h-80 before:w-80 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:rounded-full before:bg-indigo-500/50 before:opacity-0 before:blur-3xl before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:-left-48 after:-top-48 after:z-30 after:h-64 after:w-64 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:rounded-full after:bg-indigo-500/70 after:opacity-0 after:blur-3xl after:transition-opacity after:duration-500 hover:after:opacity-20 group-hover:before:opacity-100 sm:w-[70%] md:w-auto md:shrink lg:w-full"
-                href="#0"
+                className="group/card relative h-full w-[85%] shrink-0 overflow-hidden rounded-2xl bg-[#ffb93f]v p-px before:pointer-events-none before:absolute before:-left-40 before:-top-40 before:z-10 before:h-80 before:w-80 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:rounded-full before:bg-indigo-500/50 before:opacity-0 before:blur-3xl before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:-left-48 after:-top-48 after:z-30 after:h-64 after:w-64 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:rounded-full after:bg-indigo-500/70 after:opacity-0 after:blur-3xl after:transition-opacity after:duration-500 sm:w-[70%] md:w-auto md:shrink lg:w-full"
+                // href="#0"
               >
               <div className="relative z-20 h-full overflow-hidden rounded-[inherit] bg-[#ffe7bc]_after:absolute_after:inset-0_after:bg-linear-to-br_after:from-[#f4c74e]/20_after:via-transparent/40_after:to-[#f4c74e]/15">
               

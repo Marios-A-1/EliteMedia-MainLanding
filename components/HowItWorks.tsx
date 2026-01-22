@@ -3,62 +3,90 @@
 import { Timeline } from "antd";
 import type { CSSProperties, ReactNode } from "react";
 
+
+
 const STEPS = [
   {
     number: "01",
-    title: "Attention (Κάνουμε το σωστό κοινό να σταματήσει)",
+    title: "«Μου μιλάνε για προβολές, αλλά εγώ θέλω πελάτες»",
     description: [
-      "Παίρνουμε την προσοχή τους με reels/posts που χτυπάνε κατευθείαν στο “πόνο” και στο αποτέλεσμα.",
-      "Δεν κυνηγάμε views. Κυνηγάμε τους σωστούς ανθρώπους.",
+      "σου μιλάνε για views & reach. Εσύ χρειάζεσαι τζίρο",
     ],
   },
   {
     number: "02",
-    title: "Trust (Ρίχνουμε άμυνες & κλειδώνουμε εμπιστοσύνη)”",
+    title: "«Δεν θέλω να γίνω κλόουν σαν τους ανταγωνιστές μου»",
     description: [
-      "Τους κάνουμε να νιώσουν “οκ, αυτοί ξέρουν” Με proof, behind the scenes και περιεχόμενο που εκπαιδεύει χωρίς να κουράζει.",
-      "Δεν πείθουμε με λόγια. Πείθουμε με σήματα αξιοπιστίας.",
+      "φοβάσαι ότι το περιεχόμενο θα σε γελοιοποιήσει & νιώθεις ότι κανείς δεν σε ακούει",
     ],
   },
   {
     number: "03",
-    title: "Convert (Μετατρέπουμε το hype σε έσοδα, έξυπνα)",
+    title: "«Ντρέπομαι να βγω στην κάμερα»",
     description: [
-      "Μόνο όταν είναι έτοιμοι, τους οδηγούμε στην διαδικασία πωλήσεις",
-      "Kλείνουμε πελάτες έμμεσα και στρατηγικά, όχι πιεστικά.",
-      "Όλη η κίνηση καταγράφεται, βελτιώνεται και γίνεται μηχανή που ανεβαίνει κάθε μήνα.",
+      "Aνασφάλεια μπροστά στον φακό. Tο πρόβλημα ξεκινά όταν το agency δεν σε κάνει να νιώθεις άνετα",
     ],
   },
+  {
+    number: "04",
+    title: "«Μου ζητάνε συνέχεια πράγματα, δεν έχω χρόνο»",
+    description: [
+      "χάνεις χρόνο αντί να κερδίζεις, ενω με σύστημα θα αρκούσαν 10’ την ημέρα",
+    ],
+  },
+  {
+    number: "05",
+    title: "«Δεν υπάρχει πλάνο, απλά ανεβάζουμε βίντεο»",
+    description: [
+      "δεν βλέπεις πώς σε βοηθάει επιχειρηματικά γιατι αυτό που χρειάζεσαι είναι σύστημα, όχι posts",
+   
+    ],
+  },
+  // {
+  //   number: "06",
+  //   title: "«Δεν ξέρω τίποτα και φοβάμαι ότι θα με κοροϊδέψουν»",
+  //   description: [
+  //     "δεν καταλαβαίνεις τι σημαίνουν τα νούμερα & χωρίς διαφάνεια δεν υπάρχει εμπιστοσύνη",
+  //   ],
+  // },
+  // {
+  //   number: "07",
+  //   title: "«Το agency δεν καταλαβαίνει τον κλάδο μου»",
+  //   description: [
+  //     "κανείς δεν ξέρει τη δουλειά σου όπως εσύ & για αυτο δυσκολεύεσαι να τους εμπιστευτείς",
+
+  //   ],
+  // },
 ];
 
 
-type HowItWorksStep = {
+type HowWeDoItStep = {
   number: string;
   title: ReactNode;
   description: ReactNode;
 };
 
-type HowItWorksContent = {
+type HowWeDoItContent = {
   eyebrow?: ReactNode;
   heading?: ReactNode;
   description?: ReactNode;
-  steps?: HowItWorksStep[];
+  steps?: HowWeDoItStep[];
 };
 
-type HowItWorksProps = {
-  content?: HowItWorksContent;
+type HowWeDoItProps = {
+  content?: HowWeDoItContent;
 };
 
-export default function HowItWorks({ content }: HowItWorksProps) {
+export default function HowWeDoIt({ content }: HowWeDoItProps) {
   return (
-    <section id="how-we-do-it" className="how-we-do-it py-14 md:py-24">
-      <div className="mx-auto w-full max-w-[1100px] px-4 sm:px-6">
+    <section id="how-it-works" className="how-it-works py-14 md:py-24">
+      <div className="mx-auto w-full max-w-[1100px] -px-1 sm:px-8 lg:pr-5">
         <div className="mx-auto max-w-2xl pb-8 text-center md:pb-12">
-          <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-indigo-400/50 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-indigo-400/50">
+          {/* <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-amber-400/50 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-amber-400/50">
             <span className="inline-flex bg-linear-to-r from-indigo-600 to-indigo-300 bg-clip-text text-transparent">
               {content?.eyebrow}
             </span>
-          </div>
+          </div> */}
           <h2 className="section-heading pb-3 text-neutral-900">
             {content?.heading }
           </h2>
@@ -66,34 +94,29 @@ export default function HowItWorks({ content }: HowItWorksProps) {
             {content?.description}
           </p>
         </div>
-        <div className="flex justify-center px-10 lg:px-60">
+        <div className="flex justify-center px-10 ">
           <Timeline
-            className="how-we-do-it-timeline w-full max-w-[760px] sm:w-auto"
+            className="how-it-works-timeline w-full max-w-[760px] sm:w-auto"
             items={(content?.steps ?? STEPS).map((step) => ({
               key: step.number,
-              color: "var(--color-gold-500)",
+              color: "#fff",
               dot: (
                 <div
-                  className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[color:var(--color-gold-500)] bg-transparent text-sm font-medium text-[var(--color-gold-accent)]"
-                  style={{
-                    "--color-gold-ui-300": "var(--color-gold-200)",
-                    "--color-gold-accent": "var(--color-gold-700)",
-                    backgroundColor: "var(--color-gold-200)",
-                  } as CSSProperties}
+                  className="flex h-9 w-9 mt-4 items-center justify-center rounded-full border-2 border-[#e34e4e] bg-[#c869695e]  text-sm font-medium text-neutral-700"
                 >
                   {step.number}
                 </div>
               ),
               children: (
                 <div className="pb-1 pl-2">
-                  <h3 className="text-base font-bold text-neutral-900 md:text-lg">
+                  <h3 className="text-lg font-semibold text-neutral-900 md:text-lg">
                     {step.title}
                   </h3>
-                   {Array.isArray(step.description) && (
-                    <ul className="mt-2 space-y-1.5 text-sm font-500 text-neutral-700 md:text-base">
+                  {Array.isArray(step.description) && (
+                    <ul className="mt-3 space-y-1.5 text-sm text-neutral-700 md:text-base">
                       {step.description.map((item, i) => (
-                        <li key={i} className="flex gap-2">
-                          <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--color-gold-500)] flex-shrink-0" />
+                        <li key={i} className="flex gap-2 ">
+                          {/* <span className="mt-2 h-1.5 w-1.5 rounded-full bg-amber-900 flex-shrink-0" /> */}
                           <span>{item}</span>
                         </li>
                       ))}

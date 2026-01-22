@@ -25,11 +25,11 @@
   --color-indigo-700: #8d6b1f;
   --color-indigo-800: #5e4714;
   --color-indigo-900: #3e2f0b;
-  --color-gold-900: #1a1205;
-  --color-gold-800: transparent;
-  --color-gold-700: #a77c2f;
-  --color-gold-500: #d4af37;
-  --color-gold-200: #f1e2b4;
+  --color-gold-900:  #FF6F00;
+  --color-gold-800: #FF8F00;
+  --color-gold-700: #FFA000;
+  --color-gold-500: #FFC107;
+  --color-gold-200: #FFE082;
 
   --text-xs: 0.8125rem;
   --text-xs--line-height: 1.5384;
@@ -279,6 +279,7 @@
 
 .how-we-do-it .ant-timeline-item {
     padding-bottom: 24px;
+    
 }
 
 .how-we-do-it .ant-timeline-item:last-child {
@@ -286,23 +287,56 @@
 }
 
 .how-we-do-it .ant-timeline .ant-timeline-item-tail {
-    border-inline-start: 2px solid #f4c84e88 !important;
+    border-inline-start: 2px solid #ffbc2b !important;
     inset-block-start: 23px !important;
     height: calc(100% - 36px) !important;
+    margin-top: 8px;
 }
 
 .how-we-do-it .ant-timeline-item-head {
-    background-color: transparent !important;
-    border: 0;
+  background-color: transparent !important;
+  border: 0;
 }
 
 .how-we-do-it .ant-timeline-item-head-custom {
-    background-color: transparent !important;
-    border: 0;
+  background-color: transparent !important;
+  border: 0;
 }
 
 .how-we-do-it .ant-timeline-item-content {
-    margin-inline-start: 24px;
+  margin-inline-start: 24px;
+}
+.how-it-works .ant-timeline {
+    margin: 0;
+}
+
+.how-it-works .ant-timeline-item {
+    padding-bottom: 24px;
+}
+
+.how-it-works .ant-timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+.how-it-works .ant-timeline .ant-timeline-item-tail {
+    border-inline-start: 2px solid #ec0b0b88 !important;
+    inset-block-start: 23px !important;
+    height: calc(100% - 36px) !important;
+       margin-top: 8px;
+}
+
+.how-it-works .ant-timeline-item-head {
+  background-color: transparent !important;
+  border: 0;
+}
+
+.how-it-works .ant-timeline-item-head-custom {
+  background-color: transparent !important;
+  border: 0;
+}
+
+.how-it-works .ant-timeline-item-content {
+  margin-inline-start: 24px;
 }
 
 .btn {

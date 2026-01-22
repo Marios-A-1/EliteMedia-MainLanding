@@ -142,7 +142,7 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
         <div className="mx-auto flex max-w-6xl flex-col items-center space-y-8">
           {/* Heading */}
           <div className="mx-auto max-w-3xl pb-6 text-center md:pb-20">
-            <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-indigo-400/50 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-indigo-400/50">
+            <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-amber-400/50 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-amber-400/50">
               <span className="inline-flex bg-linear-to-r from-indigo-600 to-indigo-300 bg-clip-text text-transparent">
                 {content?.eyebrow}
               </span>

@@ -39,18 +39,19 @@ const HeroContent = {
 }
 
 const HowWeDoItContent = {
-  eyebrow: <>Έρευνα</>,
-  heading: <>Τα 7 πιο κοινά προβλήματα</>,
-  description: <>που αντιμετωπίζουν επιχειρηματίες πριν συνεργαστούνε με ένα social media marketing agency στην Ελλάδα το 2026</>,
+  heading: <>Πώς Λειτουργούμε εμείς</>,
+  // description: <>Δεν είμαστε άλλο ένα marketing agency. Είμαστε σύστημα απόδοσης. Κάθε πρόβλημα που μόλις διάβασες, το έχουμε ήδη λύσει.</>,
 };
 
 const HowItWorksContent ={
-  eyebrow: <>How it works</>,
-  heading:<>Πώς δουλεύει το Elite Signature Strategy</>,
-  description:<>Δεν ανεβάζουμε απλά content. Χτίζουμε ένα σύστημα που παίρνει το βλέμμα, το κάνει εμπιστοσύνη και το μετατρέπει σε πελάτες — με τρόπο κομψό, μετρήσιμο και repeatable.</>
-
-
-}
+  heading: <>Τα 5 κοινά προβλήματα</>,
+  // description: <>που αντιμετωπίζουν επιχειρηματίες πριν συνεργαστούνε με ένα social media marketing agency στην Ελλάδα το 2026</>,
+};
+const HowColumnsSharedContent = {
+  eyebrow: <>Γιατί εμάς</>,
+  heading: <>Γιατί Elite Media?</>,
+  subheading: <>Κάναμε έρευνα και βρήκαμε ποια είναι τα 5 πιο κοινά προβλήματα που αντιμετωπίζουν οι επιχειρηματίες πριν συνεργαστούν με ένα Social Media Marketing Agency στην Ελλάδα — και χτίσαμε το σύστημά μας πάνω σε αυτά.</>,
+};
 
 const ForYouIFContent: ForYouIfContent = {
   eyebrow: <>Για ποίον είναι ?</>,
@@ -64,14 +65,6 @@ const ForYouIFContent: ForYouIfContent = {
     },
     {
       badge: <>✓</>,
-      text: <>Έχεις δοκιμάσει agencies ή freelancers και δεν είδες ποτέ στρατηγική.</>,
-    },
-    {
-      badge: <>✓</>,
-      text: <>Θέλεις να ξέρεις γιατί δουλεύει κάτι — όχι απλά να σου λένε «εμπιστέψου μας»</>,
-    },
-    {
-      badge: <>✓</>,
       text: <>Σε ενδιαφέρει να χτίσεις brand που πουλάει, όχι απλά να μαζεύεις like</>,
     },
     {
@@ -80,7 +73,7 @@ const ForYouIFContent: ForYouIfContent = {
     },
     {
       badge: <>✓</>,
-      text: <>Σκοπεύεις να επενδύσεις σοβαρά στην παρουσία σου — όχι να “δοκιμάσεις να δεις”.</>,
+      text: <>Θέλεις να ξέρεις γιατί δουλεύει κάτι — όχι απλά να σου λένε «εμπιστέψου μας»</>,
     },
   ],
 };
@@ -221,10 +214,31 @@ export default function Home() {
     <>
       <PageIllustration />
       <Hero content={HeroContent}/>
-      <ForbesQuote />
       <ForYouIf content={ForYouIFContent} /> 
-      {/* <HowItWorks content={HowItWorksContent  }/> */}
-      <HowWeDoIt content={HowWeDoItContent  }/>
+      <div className="mt-24">
+        <div className="mx-auto max-w-2xl text-center ">
+           <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-amber-400/50 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-amber-400/50">
+            <span className="inline-flex bg-linear-to-r from-indigo-600 to-indigo-300 bg-clip-text text-transparent">
+              {HowColumnsSharedContent.eyebrow}
+            </span>
+          </div>
+          </div>
+        <div className="mx-auto w-full max-w-[1100px] px-8 sm:px-6">
+          <div className=" pb-8 text-center">
+            <h2 className="section-heading text-neutral-900">
+              {HowColumnsSharedContent.heading}
+            </h2>
+            <p className="pt-3 text-base text-neutral-700 md:text-lg">
+              {HowColumnsSharedContent.subheading}
+            </p>
+          </div>
+          <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
+            <HowItWorks content={HowItWorksContent} />
+            <HowWeDoIt content={HowWeDoItContent} />
+          </div>
+        </div>
+      </div>
+      <ForbesQuote />
       <Workflows />
       {/* <ValueBreakdown content={VALUE_BREAKDOWN_CONTENT} /> */}
       <Testimonials content={TestimonialsContent}/>

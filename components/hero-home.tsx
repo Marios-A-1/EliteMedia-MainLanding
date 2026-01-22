@@ -20,7 +20,7 @@ type HeroHomeProps = {
 
 export default function HeroHome({ content }: HeroHomeProps) {
   return (
-    <section className="relative px-4">
+    <section className="relative px-4 mt-10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 -mt-10">
         {/* Hero content */}
         <div className="py-10 md:py-20">
@@ -34,7 +34,7 @@ export default function HeroHome({ content }: HeroHomeProps) {
             </h1>
             <div className="mx-auto max-w-3xl">
               <p
-                className="mb-6 lg:px-20 text-base text-[#5b4a2a] sm:text-lg md:mb-8 md:text-xl"
+                className="mb-6 lg:px-24 text-lg text-[#5b4a2a] sm:text-lg md:mb-8 md:text-2xl"
                 data-aos="fade-up"
                 data-aos-delay={200}
               >

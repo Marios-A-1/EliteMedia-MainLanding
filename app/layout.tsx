@@ -75,7 +75,7 @@ export default function RootLayout({
               /> */}
           </div>
           <div className="relative z-10 flex min-h-screen flex-col overflow-hidden pt-14 supports-[overflow:clip]:overflow-clip">
-            {/* <Header /> */}
+            <Header />
             {children}
           </div>
         </div>
