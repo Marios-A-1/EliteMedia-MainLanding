@@ -93,7 +93,7 @@ export default function ModalVideo({
                 </linearGradient>
               </defs>
             </svg>
-            <span className="text-sm font-medium leading-tight text-[#3b2a14]">
+            <span className="text-sm font-bold leading-tight text-[#3b2a14]">
               Watch Demo
               <span className="text-[#b8871c]"> - </span>
               3:47

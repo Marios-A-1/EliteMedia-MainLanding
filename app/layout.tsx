@@ -55,7 +55,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${nacelle.variable} bg-transparent font-inter text-base text-[#2b2216] antialiased`}
+        className={`${inter.variable} ${nacelle.variable} bg-transparent font-inter font-bold text-base text-[#2b2216] antialiased`}
       >
         <div className="relative min-h-screen overflow-hidden bg-[#fffdf7]">
           <div className="pointer-events-none absolute inset-0  sm:block hidden">

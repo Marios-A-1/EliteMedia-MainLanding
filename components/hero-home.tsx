@@ -27,21 +27,21 @@ export default function HeroHome({ content }: HeroHomeProps) {
           {/* Section header */}
           <div className="pb-8 text-center md:pb-20">
             <h1
-              className="section-heading pb-4   text-3xl font-semibold leading-tight md:pb-5 md:text-5xl md:leading-normal"
+              className="section-heading pb-4   text-3xl font-bold leading-tight md:pb-5 md:text-5xl md:leading-normal"
               data-aos="fade-up"
             >
               {content?.title}
             </h1>
             <div className="mx-auto max-w-3xl">
+
               <p
-                className="mb-6 lg:px-24 text-lg text-[#5b4a2a] sm:text-lg md:mb-8 md:text-2xl"
+                className="section-description mb-6 lg:px-24 md:mb-8"
                 data-aos="fade-up"
                 data-aos-delay={200}
               >
                 {content?.description }
               </p>
 
-             
             </div>
           </div>
           <div

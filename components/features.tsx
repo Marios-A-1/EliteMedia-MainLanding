@@ -15,14 +15,14 @@ export default function Features() {
         <div className="border-t py-10 [border-image:linear-gradient(to_right,transparent,--theme(--color-slate-400/.25),transparent)1] md:py-20">
           {/* Section header */}
           <div className="mx-auto max-w-3xl pb-3 text-center md:pb-12">
-            <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-amber-400/50 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-amber-400/50">
-              <span className="inline-flex bg-linear-to-r from-indigo-600 to-indigo-300 bg-clip-text text-transparent">
+            <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-amber-400 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-amber-400">
+              <span className="inline-flex bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent">
                 Τι Αναλαμβάνουμε 
               </span>
             </div>
             <h2 className="section-heading pb-3">
               Στρατηγική στα social media</h2>
-            <p className="text-base text-[#5b4a2a] mb-4 md:text-lg">
+            <p className="section-description mb-4">
               Δεν ανεβάζουμε απλά posts. Χτίζουμε brand, κοινό και συστήματα που μετατρέπουν το attention σε πωλήσεις.
             </p>
           </div>
@@ -50,7 +50,7 @@ export default function Features() {
                   d="m16.295 5.393 7.528 2.034-4.436 16.412L5.87 20.185l.522-1.93 11.585 3.132 3.392-12.55-5.597-1.514.522-1.93Z"
                 />
               </svg>
-              <h3 className="mb-1   text-sm font-semibold text-[#2b2216] md:text-[1rem]">
+              <h3 className="mb-1   text-sm font-bold text-[#2b2216] md:text-[1rem]">
                 Περιεχόμενο με Σκοπό
               </h3>
               <p className="text-sm text-[#5b4a2a] md:text-base">
@@ -59,7 +59,7 @@ export default function Features() {
             </article>
             <article className="flex max-w-sm flex-col items-center bg-amber-100/70 border-2 border-[#d4af37] rounded-3xl px-4 py-4 text-center">
               <UsergroupAddOutlined style={{color: "#d4af37", fontSize: "24px", padding: "10px"}} />
-              <h3 className="mb-1   text-sm font-semibold text-[#2b2216] md:text-[1rem]">
+              <h3 className="mb-1   text-sm font-bold text-[#2b2216] md:text-[1rem]">
                 Κοινότητα που Εμπιστεύεται
               </h3>
               <p className="text-sm text-[#5b4a2a] md:text-base">
@@ -68,7 +68,7 @@ export default function Features() {
             </article>
             <article className="flex max-w-sm flex-col items-center bg-amber-100/70 border-2 border-[#d4af37] rounded-3xl px-4 py-4 text-center">
               <BulbOutlined style={{color: "#d4af37", fontSize: "24px", padding: "10px"}} />
-              <h3 className="mb-1   text-sm font-semibold text-[#2b2216] md:text-[1rem]">
+              <h3 className="mb-1   text-sm font-bold text-[#2b2216] md:text-[1rem]">
                 Ψυχολογία & Σύνδεση
               </h3>
               <p className="text-sm text-[#5b4a2a] md:text-base">
@@ -77,7 +77,7 @@ export default function Features() {
             </article>
             <article className="flex max-w-sm flex-col items-center bg-amber-100/70 border-2 border-[#d4af37] rounded-3xl px-4 py-4 text-center">
               <SettingOutlined style={{color: "#d4af37", fontSize: "24px", padding: "10px"}} />
-              <h3 className="mb-1   text-sm font-semibold text-[#2b2216] md:text-[1rem]">
+              <h3 className="mb-1   text-sm font-bold text-[#2b2216] md:text-[1rem]">
                 Συστήματα που Πουλάνε
               </h3>
               <p className="text-sm text-[#5b4a2a] md:text-base">

@@ -38,6 +38,7 @@
   --text-base: 0.9375rem;
   --text-base--line-height: 1.5333;
   --text-base--letter-spacing: -0.0125em;
+  --text-base--letter-spacing: -0.0125em;
   --text-lg: 1.125rem;
   --text-lg--line-height: 1.5;
   --text-lg--letter-spacing: -0.0125em;
@@ -263,18 +264,35 @@
 .section-heading {
     font-family: var(-- ), sans-serif;
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 800;
     color: #2b2216;
+}
+
+.section-description {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.6;
+    color: #5b4a2a;
 }
 
 @media (min-width: 768px) {
     .section-heading {
         font-size: 2.25rem;
     }
+
+    .section-description {
+        font-size: 1.125rem;
+    }
 }
 
-.how-we-do-it .ant-timeline {
+.how-we-do-it .ant-timeline,
+.how-we-do-it-timeline {
     margin: 0;
+    /* border:2px solid var(--color-amber-500) ; */
+    background-color: #e7d6874c;
+    border-radius: var(--radius-xl);
+    padding: 48px 30px !important;
+    box-sizing: border-box;
 }
 
 .how-we-do-it .ant-timeline-item {
@@ -287,7 +305,8 @@
 }
 
 .how-we-do-it .ant-timeline .ant-timeline-item-tail {
-    border-inline-start: 2px solid #ffbc2b !important;
+    border-inline-start: 2px solid white !important;
+    /* border-inline-start: 2px solid var(--color-amber-400)!important; */
     inset-block-start: 23px !important;
     height: calc(100% - 36px) !important;
     margin-top: 8px;
@@ -306,8 +325,14 @@
 .how-we-do-it .ant-timeline-item-content {
   margin-inline-start: 24px;
 }
-.how-it-works .ant-timeline {
+.how-it-works .ant-timeline,
+.how-it-works-timeline {
     margin: 0;
+    /* border: 3px solid var(--color-red-700); */
+    background-color: #da80804c;
+    border-radius: var(--radius-xl);
+    padding: 48px 30px !important;
+    box-sizing: border-box;
 }
 
 .how-it-works .ant-timeline-item {
@@ -319,7 +344,8 @@
 }
 
 .how-it-works .ant-timeline .ant-timeline-item-tail {
-    border-inline-start: 2px solid #ec0b0b88 !important;
+    /* border-inline-start: 2px solid var(--color-red-700) !important; */
+    border-inline-start: 2px solid white !important;
     inset-block-start: 23px !important;
     height: calc(100% - 36px) !important;
        margin-top: 8px;

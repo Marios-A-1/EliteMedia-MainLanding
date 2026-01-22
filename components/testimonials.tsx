@@ -142,13 +142,13 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
         <div className="mx-auto flex max-w-6xl flex-col items-center space-y-8">
           {/* Heading */}
           <div className="mx-auto max-w-3xl pb-6 text-center md:pb-20">
-            <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-amber-400/50 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-amber-400/50">
-              <span className="inline-flex bg-linear-to-r from-indigo-600 to-indigo-300 bg-clip-text text-transparent">
+            <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-amber-400 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-amber-400">
+              <span className="inline-flex bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent">
                 {content?.eyebrow}
               </span>
             </div>
             <h2 className="section-heading pb-3">{content?.heading}</h2>
-            <p className="text-base pb-4 text-neutral-700 md:text-lg">
+            <p className="section-description pb-4">
               {content?.description}
             </p>
           </div>
@@ -223,7 +223,7 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
                         )}
                       </div>
                       {isActive ? (
-                        <div className="absolute left-1/2 top-full mt-4 -translate-x-1/2 text-xs font-semibold uppercase tracking-wide text-neutral-500">
+                        <div className="absolute left-1/2 top-full mt-4 -translate-x-1/2 text-xs font-bold uppercase tracking-wide text-neutral-500">
                           {(() => {
                             const typeItems = testimonials.filter(
                               (item) => item.type === testimonial.type
@@ -288,7 +288,7 @@ function GoogleReviewCard({ review }: { review: GoogleTestimonial }) {
           “{review.text}”
         </p>
       </div>
-      <div className="pt-4 text-sm font-medium text-neutral-900">
+      <div className="pt-4 text-sm font-bold text-neutral-900">
         {review.author}
       </div>
     </div>

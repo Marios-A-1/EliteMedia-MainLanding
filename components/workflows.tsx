@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import WorflowImg01 from "@/public/images/logo.webp";
 import WorflowImg02 from "@/public/images/logo.webp";
-import WorflowImg03 from "@/public/images/logo.webp";
+import WorflowImg03 from "@/public/images/elitescriptbuilder.webp";
 import Spotlight from "@/components/spotlight";
 import { CheckCheckIcon, CircleCheckIcon } from "lucide-react";
 import ValueBreakdown from "./ValueBreakdown";
@@ -98,7 +98,7 @@ export default function Workflows() {
         <div className="pb-8 md:pb-20">
           <div className="justify-self-center md:justify-self-center  sm:justify-self-center  pb-4">
           <div className="inline-flex items-center   gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-indigo-400/50 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-indigo-400/50">
-            <span className="inline-flex bg-linear-to-r from-indigo-600 to-indigo-300 bg-clip-text text-transparent">
+            <span className="inline-flex bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent">
               Offer
             </span>
           </div>
@@ -132,29 +132,29 @@ export default function Workflows() {
                 ref={(el) => {
                   itemRefs.current[2] = el;
                 }}
-                className="group/card relative h-full w-[85%] shrink-0 overflow-hidden rounded-2xl bg-[#ffb93f]v p-px before:pointer-events-none before:absolute before:-left-40 before:-top-40 before:z-10 before:h-80 before:w-80 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:rounded-full before:bg-indigo-500/50 before:opacity-0 before:blur-3xl before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:-left-48 after:-top-48 after:z-30 after:h-64 after:w-64 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:rounded-full after:bg-indigo-500/70 after:opacity-0 after:blur-3xl after:transition-opacity after:duration-500 sm:w-[70%] md:w-auto md:shrink lg:w-full"
+                className="group/card relative h-full w-full shrink-0 overflow-hidden rounded-2xl bg-[#ffb93f]v p-px before:pointer-events-none before:absolute before:-left-40 before:-top-40 before:z-10 before:h-80 before:w-80 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:rounded-full before:bg-indigo-500/50 before:opacity-0 before:blur-3xl before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:-left-48 after:-top-48 after:z-30 after:h-64 after:w-64 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:rounded-full after:bg-indigo-500/70 after:opacity-0 after:blur-3xl after:transition-opacity after:duration-500 md:w-auto md:shrink lg:w-full"
                 // href="#0"
               >
               <div className="relative z-20 h-full overflow-hidden rounded-[inherit] bg-[#ffe7bc]_after:absolute_after:inset-0_after:bg-linear-to-br_after:from-[#f4c74e]/20_after:via-transparent/40_after:to-[#f4c74e]/15">
               
                 {/* Image */}
                 <Image
-                style={{padding:66}}
-                  className="inline-flex"
+                  style={{ padding: 0 }}
+                  className="mx-auto h-auto w-full"
                   src={WorflowImg03}
-                  width={350}
-                  height={288}
+                  width={1200}
+                  height={1500}
                   alt="Workflow 03"
                 />
                 {/* Content */}
-                <div className="p-4 md:p-6">
+                <div className="p-0 md:p-0">
                   {/* <div className="mb-3">
                       <span className="
                       inline-flex items-center
                       rounded-full
                       bg-[#ffd079]
                       px-3 py-0.5
-                      text-xs font-medium
+                      text-xs font-bold
                       tracking-wide
                       text-(--color-gold-accent)
                     "><span className="text-[#5b4a2a]">
@@ -208,7 +208,7 @@ export default function Workflows() {
                         px-2.5
                         py-0.5
                         text-xs
-                        font-medium
+                        font-bold
                         text-[#5b4a2a]
                         whitespace-nowrap
                         

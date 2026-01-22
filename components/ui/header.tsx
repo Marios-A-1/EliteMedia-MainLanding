@@ -147,7 +147,7 @@ export default function Header() {
           <div className="flex flex-1 items-center justify-end ml-20 -mr-2">
             <a
               href="mailto:hello@elitemedia.com"
-              className="btn px-4 py-2 rounded-[1rem] group w-full animate-[gradient-pause_7s_linear_infinite] bg-[linear-gradient(to_right,var(--color-gold-500),var(--color-indigo-200),var(--color-gold-500))] bg-[length:200%_auto] text-[#2b2216] shadow-[0_10px_25px_rgba(145,105,20,0.25)] hover:brightness-105 sm:w-auto"
+              className="btn px-4 py-2 font-bold rounded-[1rem] group w-full animate-[gradient-pause_7s_linear_infinite] bg-[linear-gradient(to_right,var(--color-gold-500),var(--color-indigo-200),var(--color-gold-500))] bg-[length:200%_auto] text-[#2b2216] shadow-[0_10px_25px_rgba(145,105,20,0.25)] hover:brightness-105 sm:w-auto"
             >
               Κλείσε Συμβουλευτική
             </a>

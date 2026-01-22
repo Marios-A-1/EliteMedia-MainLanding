@@ -217,22 +217,24 @@ export default function Home() {
       <ForYouIf content={ForYouIFContent} /> 
       <div className="mt-24">
         <div className="mx-auto max-w-2xl text-center ">
-           <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-amber-400/50 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-amber-400/50">
-            <span className="inline-flex bg-linear-to-r from-indigo-600 to-indigo-300 bg-clip-text text-transparent">
+           <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-amber-400 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-amber-400">
+            <span className="inline-flex bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent">
               {HowColumnsSharedContent.eyebrow}
             </span>
           </div>
           </div>
-        <div className="mx-auto w-full max-w-[1100px] px-8 sm:px-6">
+        <div className="mx-auto w-full max-w-[1100px]  px-4 sm:px-6">
           <div className=" pb-8 text-center">
-            <h2 className="section-heading text-neutral-900">
+            <h2 className="section-heading text-neutral-900 pb-4">
               {HowColumnsSharedContent.heading}
             </h2>
-            <p className="pt-3 text-base text-neutral-700 md:text-lg">
+            {/* <div className="rounded-2xl border-2 border-amber-400 bg-amber-500/20 px-4 py-6"> */}
+            <p className="section-description ">
               {HowColumnsSharedContent.subheading}
             </p>
+          {/* </div> */}
           </div>
-          <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
+          <div className="lg:grid lg:grid-cols-2 lg:gap-0 lg:items-start">
             <HowItWorks content={HowItWorksContent} />
             <HowWeDoIt content={HowWeDoItContent} />
           </div>

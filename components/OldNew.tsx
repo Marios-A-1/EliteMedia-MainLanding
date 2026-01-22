@@ -17,15 +17,15 @@ export default function OldNew() {
   return (
     <div className='px-2'>
      <div className="mx-auto max-w-2xl px-6 pb-8 text-center mt-10 md:pb-12">
-          <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-amber-400/50 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-amber-400/50">
-            <span className="inline-flex bg-linear-to-r from-indigo-600 to-indigo-300 bg-clip-text text-transparent">
+          <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-amber-400 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-amber-400">
+            <span className="inline-flex bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent">
               Οι Διαφορές
             </span>
           </div>    
             <h3 className="section-heading pb-4 -px-2">
               Μόνος σου  VS  Με  Elite Media
             </h3>
-            <p className="text-base text-neutral-700 md:text-lg">
+            <p className="section-description">
             Πώς αλλάζει η επιχείρησή σου όταν έχεις ένα σύστημα που δουλεύει για σένα, αντί να παλεύεις μόνος σου.
           </p>
   </div>
@@ -64,7 +64,7 @@ export default function OldNew() {
               className="flex items-center gap-5 rounded-2xl border border-gold-700  px-6 py-3 shadow-[0_12px_30px_rgba(247,97,161,0.05)]"
             >
               <div className="h-5 w-5" aria-hidden="true"><XCircle className="h-6 w-6 text-gold-700" /></div>
-              <p className="text-sm p-2 font-semibold text-black md:text-base">
+              <p className="text-sm p-2 font-bold text-black md:text-base">
                 {item}
               </p>
             </div>
@@ -109,7 +109,7 @@ export default function OldNew() {
               
             >
               <div className="h-5 w-5" aria-hidden="true"><CheckCircle2 className="h-6 w-6 text-gold-500" /></div>
-              <p className="text-sm p-2 font-semibold text-black md:text-base">
+              <p className="text-sm p-2 font-bold text-black md:text-base">
                 {item}
               </p>
             </div>
