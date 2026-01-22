@@ -109,7 +109,7 @@ export default function HowWeDoIt({ content }: HowWeDoItProps) {
               ),
               children: (
                 <div className="pb-1 pl-2">
-                  <h3 className="text-lg font-bold text-red-800 md:text-lg">
+                  <h3 className="text-lg font-bold text-red-800v bg-linear-to-r from-red-700 to-red-500 bg-clip-text text-transparent md:text-lg">
                     {step.title}
                   </h3>
                   {Array.isArray(step.description) && (

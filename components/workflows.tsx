@@ -113,7 +113,7 @@ export default function Workflows() {
               to-amber-500/25
               shadow-[0_0_40px_rgba(245,158,11,0.12)]
               ">
-          <div className="grid gap-10 px-6 lg:grid-cols-[1fr_1.6fr] lg:items-start ">
+          <div className="grid gap-10 px-6 lg:grid-cols-[1.2fr_1.4fr] lg:items-start ">
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
           <div className="mx-auto max-w-3xl pb-8 md:pb-20 lg:mx-0">
             <h2 className="section-heading pb-4 ">
@@ -123,7 +123,7 @@ export default function Workflows() {
           </div>
           <Spotlight
             ref={containerRef}
-            className="hide-scrollbar group mx-auto flex max-w-full snap-x snap-mandatory items-stretch gap-0 overflow-x-auto pb-4 scroll-smooth md:grid md:max-w-sm md:overflow-visible md:snap-none md:pb-0 md:gap-6 lg:mx-0 lg:max-w-none lg:grid-cols-1 lg:px-0 lg:py-0"
+            className="hide-scrollbar group mx-auto flex max-w-full snap-x snap-mandatory items-stretch gap-0 overflow-x-auto pb-4 scroll-smooth md:grid md:max-w-none md:overflow-visible md:snap-none md:pb-0 md:gap-6 lg:mx-0 lg:max-w-none lg:grid-cols-1 lg:px-0 lg:py-0"
           >
             {/* Card 3 */}
             <div className="flex w-full shrink-0 snap-center justify-center align-middle md:contents">
