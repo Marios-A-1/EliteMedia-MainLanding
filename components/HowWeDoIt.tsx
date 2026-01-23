@@ -110,7 +110,7 @@ export default function HowWeDoIt({ content }: HowWeDoItProps) {
               ),
               children: (
                 <div className="pb-1 pl-2">
-                  <h3 className="text-lg  font-bold text-amber-500v bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent md:text-lg">
+                  <h3 className="text-lg  font-bold text-amber-500v bg-linear-to-r from-amber-500 to-amber-400 bg-clip-text text-transparent md:text-lg">
 
                     {step.title}
                   </h3>
