@@ -108,7 +108,7 @@ export default function OldNew() {
               className="flex items-center gap-5 rounded-2xl border border-gold-200 bg-gold-200/70 px-6 py-3 shadow-[0_12px_30px_rgba(247,97,161,0.05)]"
               
             >
-              <div className="h-5 w-5" aria-hidden="true"><CheckCircle2 className="h-6 w-6 text-gold-500" /></div>
+              <div className="h-5 w-5" aria-hidden="true"><CheckCircle2 className="h-6 w-6 text-amber-400" /></div>
               <p className="text-sm p-2 font-bold text-black md:text-base">
                 {item}
               </p>

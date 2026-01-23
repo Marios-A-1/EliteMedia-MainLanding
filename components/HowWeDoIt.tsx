@@ -100,7 +100,7 @@ export default function HowWeDoIt({ content }: HowWeDoItProps) {
             className="how-we-do-it-timeline w-full max-w-[760px] sm:w-auto"
             items={(content?.steps ?? STEPS).map((step) => ({
               key: step.number,
-              color: "var(--color-gold-500)",
+              color: "var(--color-amber-400)",
               dot: (
                 <div
                   className="flex h-9 w-9 mt-4 items-center font-black justify-center rounded-full border-2 border-white  bg-white text-sm  text-neutral-600v text-amber-500 tttttext-black"
@@ -118,7 +118,7 @@ export default function HowWeDoIt({ content }: HowWeDoItProps) {
                     <ul className="mt-2 space-y-1.5 text-sm font-semibold text-neutral-700 md:text-base">
                       {step.description.map((item, i) => (
                         <li key={i} className="flex gap-2">
-                          {/* <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--color-gold-500)] flex-shrink-0" /> */}
+                          {/* <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--color-amber-400)] flex-shrink-0" /> */}
                           <span>{item}</span>
                         </li>
                       ))}

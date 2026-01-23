@@ -207,8 +207,8 @@ const TestimonialsContent = {
 ]
 };
 const GoogleTestimonialsContent = {
-  eyebrow: <>Reviews</>,
-  heading: <section id="reviews">Google Reviews</section>,
+  eyebrow: <section id="reviews">Reviews</section>,
+  heading: < >Google Reviews</>,
   description: <>Απο συνεργασίες που έχουν μεταμορφώσει επιχειρήσεις και έχουν οδηγήσει σε μετρήσιμα αποτελέσματα.</>,
   items: [
   {

@@ -5,8 +5,8 @@ import Logo from "./logo";
 
 const NAV_LINKS = [
   {
-    id: "how-we-do-it",
-    label: "Πώς δουλεύει",
+    id: "giati-elite-media",
+    label: "Γιατί Elite Media?",
   },
   {
     id: "results",
@@ -116,9 +116,11 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed inset-x-0 top-2 z-50 w-full">
+    <header
+      className="fixed inset-x-0 top-2 z-50 w-full"
+    >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="relative flex h-14 items-center justify-between gap-4 rounded-2xl border border-[#f1d79e]/70 bg-white/80 px-4 backdrop-blur-3xl shadow-[0_10px_24px_rgba(145,105,20,0.18)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-transparent before:[background:linear-gradient(120deg,rgba(244,199,78,0.35),rgba(255,255,255,0))_border-box] before:[mask-composite:exclude_!important] before:[mask:linear-gradient(white_0_0)_padding-box,_linear-gradient(white_0_0)]">
+        <div className="relative flex h-14 items-center justify-between gap-4 rounded-2xl border-1 border-amber-300/40 bg-amber-100/50 px-4 backdrop-blur-3xl shadow-[0_10px_24px_rgba(145,105,20,0.18)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-transparent before:[background:linear-gradient(120deg,rgba(244,199,78,0.35),rgba(255,255,255,0))_border-box] before:[mask-composite:exclude_!important] before:[mask:linear-gradient(white_0_0)_padding-box,_linear-gradient(white_0_0)]">
           <div className="flex flex-1 items-center">
             <Logo />
           </div>
@@ -147,7 +149,7 @@ export default function Header() {
           <div className="flex flex-1 items-center justify-end ml-20 -mr-2">
             <a
               href="mailto:hello@elitemedia.com"
-              className="btn px-4 py-2 font-bold rounded-[1rem] group w-full animate-[gradient-pause_7s_linear_infinite] bg-[linear-gradient(to_right,var(--color-gold-500),var(--color-indigo-200),var(--color-gold-500))] bg-[length:200%_auto] text-[#2b2216] shadow-[0_10px_25px_rgba(145,105,20,0.25)] hover:brightness-105 sm:w-auto"
+              className="btn px-4 py-2 font-bold rounded-[0.6rem] group w-full bg-linear-to-r from-amber-500/70 to-amber-300/70  bg-[length:100%_auto] hover:brightness-105 sm:w-auto"
             >
               Κλείσε Συμβουλευτική
             </a>
@@ -157,4 +159,3 @@ export default function Header() {
     </header>
   );
 }
-

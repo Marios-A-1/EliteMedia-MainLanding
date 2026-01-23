@@ -17,6 +17,7 @@ import ForbesQuote from "@/components/ForbesQuote";
 import { Description } from "@headlessui/react";
 import HowItWorks from "@/components/HowItWorks";
 import ValueBreakdown from "@/components/ValueBreakdown";
+import OfferCountdown from "@/components/CountDown";
 
 const HeroContent = {
   title:  <>
@@ -79,6 +80,7 @@ const ForYouIFContent: ForYouIfContent = {
 };
 
 const TestimonialsContent = {
+  sectionId: "results",
   eyebrow: <>Testimonials</>,
   heading: <>Πραγματικές Ιστορίες Επιτυχίας</>,
   description: <>Απο συνεργασίες που έχουν μεταμορφώσει επιχειρήσεις και έχουν οδηγήσει σε μετρήσιμα αποτελέσματα.</>,
@@ -121,8 +123,9 @@ const TestimonialsContent = {
 ]
 };
 const GoogleTestimonialsContent = {
+  sectionId: "reviews",
   eyebrow: <>Reviews</>,
-  heading: <section id="reviews">Google Reviews</section>,
+  heading: <>Google Reviews</>,
   description: <>Απο συνεργασίες που έχουν μεταμορφώσει επιχειρήσεις και έχουν οδηγήσει σε μετρήσιμα αποτελέσματα.</>,
   items: [
   {
@@ -215,7 +218,8 @@ export default function Home() {
       <PageIllustration />
       <Hero content={HeroContent}/>
       <ForYouIf content={ForYouIFContent} /> 
-      <div className="mt-24">
+      <ForbesQuote />
+      <div id="giati-elite-media" className="mt-24">
         <div className="mx-auto max-w-2xl text-center ">
            <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-amber-400 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-amber-400">
             <span className="inline-flex bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent">
@@ -240,7 +244,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <ForbesQuote />
       <Workflows />
       {/* <ValueBreakdown content={VALUE_BREAKDOWN_CONTENT} /> */}
       <Testimonials content={TestimonialsContent}/>

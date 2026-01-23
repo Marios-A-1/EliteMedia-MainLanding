@@ -28,7 +28,8 @@
   --color-gold-900:  #FF6F00;
   --color-gold-800: #FF8F00;
   --color-gold-700: #FFA000;
-  --color-gold-500: #FFC107;
+  --color-amber-400: #FFC107;
+  --color-amber-500: #ffb507;
   --color-gold-200: #FFE082;
 
   --text-xs: 0.8125rem;
@@ -247,6 +248,24 @@
 
 @layer components {
 /* Buttons */
+/* gradient border without inner element */
+.gradient-border {
+  --gb-radius: 1.5rem;
+  --gb-border: 6px;
+  position: relative;
+  padding: var(--gb-border);
+  border-radius: calc(var(--gb-radius) + var(--gb-border));
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+.gradient-border__inner {
+  height: 100%;
+  width: 100%;
+  border-radius: var(--gb-radius);
+  overflow: hidden;
+  background: #fff;
+}
+
 .btn,
 .btn-sm {
     display: inline-flex;
@@ -508,3 +527,4 @@ input[type='search']::-webkit-search-results-decoration {
     display: none;
 }
 }
+

@@ -24,6 +24,7 @@ type GoogleTestimonial = {
 type Testimonial = VideoTestimonial | GoogleTestimonial;
 
 type TestimonialsContent = {
+  sectionId?: string;
   eyebrow?: ReactNode;
   heading?: ReactNode;
   description?: ReactNode;
@@ -135,7 +136,7 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
 
   return (
     <section
-      id="results"
+      id={content?.sectionId ?? "results"}
       className="flex w-full scroll-mt-[80px] flex-col items-center justify-center space-y-6 py-12 md:py-24"
     >
       <div className="w-full px-4 sm:px-6">
@@ -161,7 +162,7 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
           >
             <button
              onClick={prev}
-             className={`absolute left-20 z-10 hidden h-10 w-10 items-center justify-center rounded-full border-3 bg-gold-200/50 border-indigo-300 text-indigo-300 transition hover:border-indigo-300/60 hover:text-indigo-400 hover:bg-gold-200 sm:flex
+             className={`absolute left-20 z-10 hidden h-10 w-10 items-center justify-center rounded-full border-0 bg-gold-200/50 border-indigo-300 text-indigo-300 transition hover:border-indigo-300/60 hover:text-indigo-400 hover:bg-gold-200 sm:flex
                ${testimonials[focus]?.type === "google" ? "top-6" : "top-9/10 lg:top-3/10 -translate-y-1/2"}
              `}
              aria-label="Previous testimonial"
@@ -206,7 +207,7 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
                     }
                   >
                     <div className="relative">
-                      <div className="relative overflow-hidden rounded-[28px] border border-gold-500 bg-white/90 shadow-2xl shadow-primary/30">
+                      <div className="relative overflow-hidden rounded-[28px] border border-amber-400 bg-white/90 shadow-2xl shadow-primary/30">
                         {testimonial.type === "video" ? (
                           <LazyVimeo
                             videoId={testimonial.vimeo}
@@ -243,7 +244,7 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
 
             <button
               onClick={next}
-              className={`absolute right-20 z-10 hidden h-10 w-10 items-center justify-center rounded-full border-3 bg-gold-200/50 border-indigo-300 text-indigo-300 transition hover:border-indigo-300/60 hover:text-indigo-400 hover:bg-gold-200 sm:flex
+              className={`absolute right-20 z-10 hidden h-10 w-10 items-center justify-center rounded-full border0 bg-gold-200/50 border-indigo-300 text-indigo-300 transition hover:border-indigo-300/60 hover:text-indigo-400 hover:bg-gold-200 sm:flex
                 ${testimonials[focus]?.type === "google" ? "top-6" : "top-9/10 lg:top-3/10 -translate-y-1/2"}
               `}
               aria-label="Next testimonial"
