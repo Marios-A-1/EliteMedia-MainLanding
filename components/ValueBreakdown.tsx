@@ -35,7 +35,7 @@ export default function ValueBreakdown({ content }: ValueBreakdownProps) {
         ({ label, amount, description, strike, highlight }, index) => (
           <div
             key={`${label}-${index}`}
-            className={`group relative flex h-full flex-col items-center gap-3 overflow-hidden rounded-[1rem] border-3 bg-white p-8 text-center shadow md:shadow ${
+            className={`group relative flex h-46 flex-col items-center gap-3 overflow-hidden rounded-[1rem] border-3 bg-white p-8 text-center shadow md:shadow ${
               index === 2
                 ? 'bg-[#f2b6111b] border-2 border-amber-400 '
                 :  index === 1
@@ -81,7 +81,7 @@ export default function ValueBreakdown({ content }: ValueBreakdownProps) {
                   : 'text-grey'
               } ${
                 highlight
-                  ? 'text-amber-400/90 drop-shadow-[0_0_12px_rgba(240,90,208,0.45)]'
+                  ? 'text-amber-400/90 drop-shadow-[0_0_12px_rgba(251,191,36,0.45)]'
                   : ''
               }`}
             >
