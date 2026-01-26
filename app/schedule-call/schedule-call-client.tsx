@@ -8,8 +8,7 @@ import AnimatedContent from "@/components/AnimatedContent";
 const STORAGE_KEY = "offerStartTimestamp";
 const OFFER_DURATION_MS = 48 * 60 * 60 * 1000;
 const STRIPE_20_EURO_LINK ="https://buy.stripe.com/4gMcN5eyg7T067mfRuffy02"
-  process.env.NEXT_PUBLIC_STRIPE_20_EURO_LINK ??
-  "https://buy.stripe.com/REPLACE_ME";
+  process.env.NEXT_PUBLIC_STRIPE_20_EURO_LINK 
 
 export default function ScheduleCallClient() {
   const searchParams = useSearchParams();

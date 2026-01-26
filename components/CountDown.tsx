@@ -8,8 +8,7 @@ import AnimatedContent from "@/components/AnimatedContent";
 const STORAGE_KEY = "offerStartTimestamp";
 const OFFER_DURATION_MS = 48 * 60 * 60 * 1000;
 export const STRIPE_20_EURO_LINK =
-  process.env.NEXT_PUBLIC_STRIPE_20_EURO_LINK ??
-  "https://buy.stripe.com/REPLACE_ME";
+  process.env.NEXT_PUBLIC_STRIPE_20_EURO_LINK
 
 type OfferCountdownState = {
   targetDate: number | null;
@@ -83,7 +82,7 @@ export function OfferCtaButton({
 }: OfferCtaButtonProps) {
   const { isExpired } = useOfferCountdownState();
 
-  const ctaHref = isExpired ? STRIPE_20_EURO_LINK : "/schedule-call";
+  const ctaHref = isExpired ? STRIPE_20_EURO_LINK : "https://calendly.com/emilios-siar/elitemedia";
   const ctaLabel = isExpired
     ? expiredLabel ?? <>Κλείσε Συμβουλευτική</>
     : freeLabel ?? <>Κλείσε Συμβουλευτική</>;
