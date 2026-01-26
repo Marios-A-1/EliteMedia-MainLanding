@@ -70,12 +70,14 @@ type OfferCtaButtonProps = {
   freeLabel?: ReactNode;
   expiredLabel?: ReactNode;
   className?: string;
+  buttonClassName?: string;
 };
 
 export function OfferCtaButton({
   freeLabel,
   expiredLabel,
   className,
+  buttonClassName,
 }: OfferCtaButtonProps) {
   const { isExpired } = useOfferCountdownState();
 
@@ -83,6 +85,18 @@ export function OfferCtaButton({
   const ctaLabel = isExpired
     ? expiredLabel ?? <>Κλείσε Συμβουλευτική</>
     : freeLabel ?? <>Κλείσε Συμβουλευτική</>;
+
+  const baseButtonClassName =
+    "btn cursor-pointer font-bold px-5 py-3 text-lg rounded-[1rem] group w-auto hover:brightness-105 sm:w-auto md:px-10 md:py-4 md:text-lg";
+  const defaultColorClassName =
+    "bg-linear-to-r from-amber-500 to-amber-300 bg-[length:100%_auto] text-[#2b2216]";
+  const resolvedButtonClassName = [
+    baseButtonClassName,
+    buttonClassName ? "" : defaultColorClassName,
+    buttonClassName ?? "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <AnimatedContent
@@ -93,7 +107,7 @@ export function OfferCtaButton({
     >
       <a
         href={ctaHref}
-        className="btn font-bold px-5 py-3 text-lg rounded-[1rem] group w-auto bg-linear-to-r from-amber-500 to-amber-300 bg-[length:100%_auto] text-[#2b2216] hover:brightness-105 sm:w-auto md:px-10 md:py-4 md:text-lg"
+        className={resolvedButtonClassName}
       >
         {ctaLabel}
       </a>

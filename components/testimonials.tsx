@@ -139,7 +139,7 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
   return (
     <section
       id={content?.sectionId ?? "results"}
-      className="flex w-full scroll-mt-[80px] flex-col items-center justify-center space-y-6 py-12 md:py-24 lg:-mb-30"
+      className="flex w-full scroll-mt-[80px] flex-col items-center justify-center space-y-6 py-12 md:py-24 lg:mb-10"
     >
       <div className="w-full px-4 sm:px-6">
         <div className="mx-auto flex max-w-6xl flex-col items-center space-y-8">

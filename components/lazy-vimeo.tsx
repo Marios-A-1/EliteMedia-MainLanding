@@ -114,7 +114,8 @@ export default function LazyVimeo({
   const postMessage = (payload: Record<string, unknown>) => {
     const targetWindow = iframeRef.current?.contentWindow;
     if (!targetWindow) return false;
-    targetWindow.postMessage(payload, "*");
+    const message = { ...payload, player_id: playerId };
+    targetWindow.postMessage(message, "*");
     return true;
   };
 
@@ -136,7 +137,12 @@ export default function LazyVimeo({
     const handleMessage = (event: MessageEvent) => {
       if (event.source !== iframeRef.current?.contentWindow) return;
       const message = parseVimeoMessage(event.data);
-      if (!message || message.event !== "timeupdate") return;
+      if (!message) return;
+      if (message.event === "ready") {
+        postMessage({ method: "addEventListener", value: "timeupdate" });
+        return;
+      }
+      if (message.event !== "timeupdate") return;
       if (message.player_id && message.player_id !== playerId) return;
       const seconds = message.data?.seconds;
       if (typeof seconds === "number") {
@@ -145,6 +151,7 @@ export default function LazyVimeo({
     };
 
     window.addEventListener("message", handleMessage);
+    postMessage({ method: "addEventListener", value: "ready" });
     postMessage({ method: "addEventListener", value: "timeupdate" });
 
     return () => window.removeEventListener("message", handleMessage);

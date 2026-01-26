@@ -26,7 +26,7 @@ const HeroContent = {
   videoId: "1128212394",
   ctaDescription: "",
   ctaLabel: 'Κλείσε Συμβουλευτική',
-  offerPopupTriggerSeconds: 120,
+  offerPopupTriggerSeconds: 20,
 }
 
 const HowWeDoItContent = {
@@ -73,7 +73,7 @@ const TestimonialsContent = {
   sectionId: "results",
   eyebrow: <>Testimonials</>,
   heading: <>Πραγματικές Ιστορίες Επιτυχίας</>,
-  description: <>Απο συνεργασίες που έχουν μεταμορφώσει επιχειρήσεις και έχουν οδηγήσει σε μετρήσιμα αποτελέσματα.</>,
+  // description: <>Απο συνεργασίες που έχουν μεταμορφώσει επιχειρήσεις και έχουν οδηγήσει σε μετρήσιμα αποτελέσματα.</>,
   items: [
   {
     id: 1,
@@ -116,7 +116,7 @@ const GoogleTestimonialsContent = {
   sectionId: "reviews",
   eyebrow: <>Reviews</>,
   heading: <>Google Reviews</>,
-  description: <>Απο συνεργασίες που έχουν μεταμορφώσει επιχειρήσεις και έχουν οδηγήσει σε μετρήσιμα αποτελέσματα.</>,
+  // description: <>Απο συνεργασίες που έχουν μεταμορφώσει επιχειρήσεις και έχουν οδηγήσει σε μετρήσιμα αποτελέσματα.</>,
   items: [
   {
     id: 1,
