@@ -8,6 +8,7 @@ import WorflowImg03 from "@/public/images/elitescriptbuilder.webp";
 import Spotlight from "@/components/spotlight";
 import { CheckCheckIcon, CircleCheckIcon } from "lucide-react";
 import ValueBreakdown from "./ValueBreakdown";
+import ElectricBorder from "./ElectricBorder";
 
 const ELITE_SIGNATURE_BENEFITS = [
   {
@@ -104,6 +105,12 @@ export default function Workflows() {
           </div>
           </div>
           {/* Section header */}
+          <ElectricBorder
+            color="#ffd080"
+            speed={0.6}
+            chaos={0.12}
+            style={{ borderRadius: 8}}
+          >
           <div 
             className="
               mx-auto w-full rounded-xl py-12 px-3 lg:px-8
@@ -165,7 +172,6 @@ export default function Workflows() {
                 </div>
               </div>
               </a>
-              
             </div>
           </Spotlight>
           </div>
@@ -175,12 +181,12 @@ export default function Workflows() {
                 
                 <ul className="space-y-3 text-sm text-[#5b4a2a] md:text-base">
                 <p className="text-lg text-center  md:text-lg         bg-gradient-to-br
-        from-amber-200
-        via-amber-400
-        via-amber-500
-        to-amber-700
-        bg-clip-text text-transparent
-        drop-shadow-[0_2px_10px_rgba(245,158,11,0.35)]">
+                from-amber-200
+                via-amber-400
+                via-amber-500
+                to-amber-700
+                bg-clip-text text-transparent
+                drop-shadow-[0_2px_10px_rgba(245,158,11,0.35)]">
                   Τι παίρνεις
                 </p>
                   {ELITE_SIGNATURE_BENEFITS.map((item, index) => (
@@ -222,6 +228,7 @@ export default function Workflows() {
                 </ul>
             </div>       
          </div>
+        </ElectricBorder>
         </div>
       </div>
     </section>
