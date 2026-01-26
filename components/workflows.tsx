@@ -8,6 +8,7 @@ import WorflowImg03 from "@/public/images/elitescriptbuilder.webp";
 import Spotlight from "@/components/spotlight";
 import { CheckCheckIcon, CircleCheckIcon } from "lucide-react";
 import ValueBreakdown from "./ValueBreakdown";
+import BlurText from "@/components/BlurText";
 import ElectricBorder from "./ElectricBorder";
 
 const ELITE_SIGNATURE_BENEFITS = [
@@ -99,16 +100,20 @@ export default function Workflows() {
         <div className="pb-8 md:pb-20">
           <div className="justify-self-center pb-4">
           <div className="inline-flex items-center   gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-indigo-400/50 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-indigo-400/50">
-            <span className="inline-flex bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent">
+            <BlurText
+            as="span"
+            delay={50}
+            spanClassName="bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent"
+          >
               Offer
-            </span>
+            </BlurText>
           </div>
           </div>
           {/* Section header */}
           <ElectricBorder
-            color="#ffd080"
-            speed={0.6}
-            chaos={0.12}
+            color="#fcc76d"
+            speed={0.5}
+            chaos={0.09}
             style={{ borderRadius: 8}}
           >
           <div 
@@ -123,9 +128,16 @@ export default function Workflows() {
           <div className="grid gap-10 px-6 lg:grid-cols-[1fr_1.6fr] lg:items-start ">
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
           <div className="mx-auto max-w-3xl pb-8 md:pb-20 lg:mx-0">
-            <h2 className="section-heading bg-linear-to-r from-amber-500 to-amber-400 bg-clip-text text-transparent pb-4 ">
+            <BlurText
+              as="h2"
+              className="section-heading pb-4"
+              spanClassName="bg-linear-to-r from-amber-500 to-amber-400 bg-clip-text text-transparent"
+              delay={250}
+              animateBy="words"
+              direction="top"
+            >
               H προσφορά μας
-            </h2>
+            </BlurText>
 
           </div>
           <Spotlight

@@ -2,6 +2,8 @@
 
 import { Timeline } from "antd";
 import type { CSSProperties, ReactNode } from "react";
+import BlurText from "@/components/BlurText";
+import AnimatedContent from "@/components/AnimatedContent";
 
 
 
@@ -87,46 +89,56 @@ export default function HowWeDoIt({ content }: HowWeDoItProps) {
               {content?.eyebrow}
             </span>
           </div> */}
-          <h2 className="section-heading pb-0 text-red-700">
-            {content?.heading }
-          </h2>
-          <p className="section-description -mb-4">
-            {content?.description}
-          </p>
+          <BlurText
+            as="h2"
+            className="section-heading pb-0 text-red-700"
+            delay={250}
+            animateBy="words"
+            direction="top"
+          >
+            {content?.heading}
+          </BlurText>
+          <AnimatedContent ease="power3.out" duration={1.5} delay={0.3} distance={100}>
+            <p className="section-description -mb-4">
+              {content?.description}
+            </p>
+          </AnimatedContent>
         </div>
         <div className="font-boldflex justify-center px-0 ">
-          <Timeline
-            className="how-it-works-timeline w-full max-w-[760px] sm:w-auto"
-            items={(content?.steps ?? STEPS).map((step) => ({
-              key: step.number,
-              color: "#fff",
-              dot: (
-                <div
-                  className="flex h-9 w-9 mt-4 items-center font-black justify-center rounded-full border-2   border-white  bg-white   border-red-700bg-[#c869692a]  text-sm  text-red-700"
-                >
-                  {step.number}
-                </div>
-              ),
-              children: (
-                <div className="pb-1 pl-2">
-                  <h3 className="text-lg font-bold text-red-800v bg-linear-to-r from-red-700 to-red-500 bg-clip-text text-transparent md:text-lg">
-                    {step.title}
-                  </h3>
-                  {Array.isArray(step.description) && (
-                    <ul className="mt-2 space-y-1.5 text-sm font-semibold text-neutral-900 md:text-base">
-                    
-                    {step.description.map((item, i) => (
-                        <li key={i} className="flex gap-2 ">
-                          {/* <span className="mt-2 h-1.5 w-1.5 rounded-full bg-amber-900 flex-shrink-0" /> */}
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              ),
-            }))}
-          />
+          <AnimatedContent ease="power3.out" duration={1.5} delay={0.3} distance={100}>
+            <Timeline
+              className="how-it-works-timeline w-full max-w-[760px] sm:w-auto"
+              items={(content?.steps ?? STEPS).map((step) => ({
+                key: step.number,
+                color: "#fff",
+                dot: (
+                  <div
+                    className="flex h-9 w-9 mt-4 items-center font-black justify-center rounded-full border-2   border-white  bg-white   border-red-700bg-[#c869692a]  text-sm  text-red-700"
+                  >
+                    {step.number}
+                  </div>
+                ),
+                children: (
+                  <div className="pb-1 pl-2">
+                    <h3 className="text-lg font-bold text-red-800v bg-linear-to-r from-red-700 to-red-500 bg-clip-text text-transparent md:text-lg">
+                      {step.title}
+                    </h3>
+                    {Array.isArray(step.description) && (
+                      <ul className="mt-2 space-y-1.5 text-sm font-semibold text-neutral-900 md:text-base">
+                      
+                      {step.description.map((item, i) => (
+                          <li key={i} className="flex gap-2 ">
+                            {/* <span className="mt-2 h-1.5 w-1.5 rounded-full bg-amber-900 flex-shrink-0" /> */}
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                ),
+              }))}
+            />
+          </AnimatedContent>
         </div>
       </div>
     </section>

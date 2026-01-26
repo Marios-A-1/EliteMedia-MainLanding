@@ -2,6 +2,8 @@
 
 import { Timeline } from "antd";
 import type { CSSProperties, ReactNode } from "react";
+import BlurText from "@/components/BlurText";
+import AnimatedContent from "@/components/AnimatedContent";
 
 
 
@@ -88,46 +90,57 @@ export default function HowWeDoIt({ content }: HowWeDoItProps) {
               {content?.eyebrow}
             </span>
           </div> */}
-          <h2 className="section-heading  pb-0 text-amber-500v bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent">
-            {content?.heading }
-          </h2>
-          <p className="section-description -mb-4">
-            {content?.description}
-          </p>
+          <BlurText
+            as="h2"
+            className="section-heading pb-0 text-amber-500v"
+            spanClassName="bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent"
+            delay={250}
+            animateBy="words"
+            direction="top"
+          >
+            {content?.heading}
+          </BlurText>
+          <AnimatedContent ease="power3.out" duration={1.5} delay={0.3} distance={100}>
+            <p className="section-description -mb-4">
+              {content?.description}
+            </p>
+          </AnimatedContent>
         </div>
         <div className="font-boldflex justify-center -px-4 ">
-          <Timeline
-            className="how-we-do-it-timeline w-full max-w-[760px] sm:w-auto"
-            items={(content?.steps ?? STEPS).map((step) => ({
-              key: step.number,
-              color: "var(--color-amber-400)",
-              dot: (
-                <div
-                  className="flex h-9 w-9 mt-4 items-center font-black justify-center rounded-full border-2 border-white  bg-white text-sm  text-neutral-600v text-amber-500 tttttext-black"
-                >
-                  {step.number}
-                </div>
-              ),
-              children: (
-                <div className="pb-1 pl-2">
-                  <h3 className="text-lg  font-bold text-amber-500v bg-linear-to-r from-amber-500 to-amber-400 bg-clip-text text-transparent md:text-lg">
+          <AnimatedContent ease="power3.out" duration={1.5} delay={0.3} distance={100}>
+            <Timeline
+              className="how-we-do-it-timeline w-full max-w-[760px] sm:w-auto"
+              items={(content?.steps ?? STEPS).map((step) => ({
+                key: step.number,
+                color: "var(--color-amber-400)",
+                dot: (
+                  <div
+                    className="flex h-9 w-9 mt-4 items-center font-black justify-center rounded-full border-2 border-white  bg-white text-sm  text-neutral-600v text-amber-500 tttttext-black"
+                  >
+                    {step.number}
+                  </div>
+                ),
+                children: (
+                  <div className="pb-1 pl-2">
+                    <h3 className="text-lg  font-bold text-amber-500v bg-linear-to-r from-amber-500 to-amber-400 bg-clip-text text-transparent md:text-lg">
 
-                    {step.title}
-                  </h3>
-                  {Array.isArray(step.description) && (
-                    <ul className="mt-2 space-y-1.5 text-sm font-semibold text-neutral-700 md:text-base">
-                      {step.description.map((item, i) => (
-                        <li key={i} className="flex gap-2">
-                          {/* <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--color-amber-400)] flex-shrink-0" /> */}
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              ),
-            }))}
-          />
+                      {step.title}
+                    </h3>
+                    {Array.isArray(step.description) && (
+                      <ul className="mt-2 space-y-1.5 text-sm font-semibold text-neutral-700 md:text-base">
+                        {step.description.map((item, i) => (
+                          <li key={i} className="flex gap-2">
+                            {/* <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--color-amber-400)] flex-shrink-0" /> */}
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                ),
+              }))}
+            />
+          </AnimatedContent>
         </div>
       </div>
     </section>

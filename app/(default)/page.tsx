@@ -17,14 +17,16 @@ import ForbesQuote from "@/components/ForbesQuote";
 import { Description } from "@headlessui/react";
 import HowItWorks from "@/components/HowItWorks";
 import ValueBreakdown from "@/components/ValueBreakdown";
-import OfferCountdown from "@/components/CountDown";
+import BlurText from "@/components/BlurText";
+import AnimatedContent from "@/components/AnimatedContent";
 
 const HeroContent = {
   titleText: "Elite Signature Strategy",
   description: <>Η στρατηγική που αυξάνει τον τζίρο ελληνικών επιχειρήσεων μέσω των social media.</>,
   videoId: "1128212394",
   ctaDescription: "",
-  ctaLabel: 'Κλείσε Συμβουλευτική'
+  ctaLabel: 'Κλείσε Συμβουλευτική',
+  offerPopupTriggerSeconds: 120,
 }
 
 const HowWeDoItContent = {
@@ -210,20 +212,32 @@ export default function Home() {
       <div id="giati-elite-media" className="mt-24">
         <div className="mx-auto max-w-2xl text-center ">
            <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-amber-400 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-amber-400">
-            <span className="inline-flex bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent">
+            <BlurText
+              as="span"
+              delay={50}
+              spanClassName="bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent"
+            >
               {HowColumnsSharedContent.eyebrow}
-            </span>
+            </BlurText>
           </div>
           </div>
         <div className="mx-auto w-full max-w-[1100px]  px-4 sm:px-6">
           <div className=" pb-8 text-center">
-            <h2 className="section-heading text-neutral-900 pb-4">
+            <BlurText
+              as="h2"
+              className="section-heading text-neutral-900 pb-4"
+              delay={50}
+              animateBy="words"
+              direction="top"
+            >
               {HowColumnsSharedContent.heading}
-            </h2>
+            </BlurText>
             {/* <div className="rounded-2xl border-2 border-amber-400 bg-amber-500/20 px-4 py-6"> */}
-            <p className="section-description ">
-              {HowColumnsSharedContent.subheading}
-            </p>
+            <AnimatedContent ease="power3.out" duration={1.1} delay={0.3} distance={100}>
+              <p className="section-description ">
+                {HowColumnsSharedContent.subheading}
+              </p>
+            </AnimatedContent>
           {/* </div> */}
           </div>
           <div className="lg:grid lg:grid-cols-2 lg:gap-0 lg:items-start">

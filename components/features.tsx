@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { AntDesignOutlined, BulbOutlined, SettingOutlined } from '@ant-design/icons';
 import { UsergroupAddOutlined } from "@ant-design/icons";
+import BlurText from "@/components/BlurText";
+import AnimatedContent from "@/components/AnimatedContent";
 
 export default function Features() {
   return (
@@ -16,15 +18,29 @@ export default function Features() {
           {/* Section header */}
           <div className="mx-auto max-w-3xl pb-3 text-center md:pb-12">
             <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-amber-400 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-amber-400">
-              <span className="inline-flex bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent">
+              <BlurText
+              as="span"
+              delay={50}
+              spanClassName="bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent"
+            >
                 Τι Αναλαμβάνουμε 
-              </span>
+              </BlurText>
             </div>
-            <h2 className="section-heading pb-3">
-              Στρατηγική στα social media</h2>
+            <BlurText
+              as="h2"
+              className="section-heading pb-3"
+              delay={250}
+              animateBy="words"
+              direction="top"
+            >
+              Στρατηγική στα social media</BlurText>
+            <AnimatedContent ease="power3.out" duration={1.5} delay={0.3} distance={100}>
+
             <p className="section-description mb-4">
               Δεν ανεβάζουμε απλά posts. Χτίζουμε brand, κοινό και συστήματα που μετατρέπουν το attention σε πωλήσεις.
             </p>
+
+            </AnimatedContent>
           </div>
           {/* <div className="flex justify-center pb-4 md:pb-12" data-aos="fade-up">
             <Image

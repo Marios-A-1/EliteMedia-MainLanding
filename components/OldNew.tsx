@@ -1,5 +1,7 @@
 import { CheckCircle2, XCircle } from 'lucide-react'
 import { Card } from 'antd'
+import BlurText from "@/components/BlurText";
+import AnimatedContent from "@/components/AnimatedContent";
 
 const OLD_HABITS = [
 'Ξεκινάς «content από Δευτέρα» κάθε λίγο. Ανεβάζεις 3–4 reels, μετά χάνεσαι, δεν υπάρχει πλάνο… και γυρνάς πάλι από την αρχή.',
@@ -18,16 +20,30 @@ export default function OldNew() {
     <div className='px-2'>
      <div className="mx-auto max-w-2xl px-6 pb-8 text-center mt-10 md:pb-12">
           <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-amber-400 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-amber-400">
-            <span className="inline-flex bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent">
+            <BlurText
+              as="span"
+              delay={50}
+              spanClassName="bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent"
+            >
               Οι Διαφορές
-            </span>
+            </BlurText>
           </div>    
-            <h3 className="section-heading pb-4 -px-2">
+            <BlurText
+              as="h3"
+              className="section-heading pb-4 -px-2"
+              delay={250}
+              animateBy="words"
+              direction="top"
+            >
               Μόνος σου  VS  Με  Elite Media
-            </h3>
+            </BlurText>
+            <AnimatedContent ease="power3.out" duration={1.5} delay={0.3} distance={100}>
+
             <p className="section-description">
             Πώς αλλάζει η επιχείρησή σου όταν έχεις ένα σύστημα που δουλεύει για σένα, αντί να παλεύεις μόνος σου.
           </p>
+
+            </AnimatedContent>
   </div>
     <div className="grid gap-6 items-center mt-10 justify-self-center place-self-center max-w-300 md:gap-8 lg:grid-cols-2">
         

@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import BlurText from "@/components/BlurText";
+import AnimatedContent from "@/components/AnimatedContent";
 
 const STORAGE_KEY = "offerStartTimestamp";
 const OFFER_DURATION_MS = 48 * 60 * 60 * 1000;
@@ -37,12 +39,22 @@ export default function ScheduleCallClient() {
   return (
     <section className="relative overflow-hidden">
       <div className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6">
-        <h1 className="section-heading pb-4">Schedule your call</h1>
-        <p className="section-description">
-          {canBook
-            ? "You are cleared to book your strategy call."
-            : "Free calls are no longer available. Complete payment to proceed."}
-        </p>
+        <BlurText
+          as="h1"
+          className="section-heading pb-4"
+          delay={250}
+          animateBy="words"
+          direction="top"
+        >
+          Schedule your call
+        </BlurText>
+        <AnimatedContent ease="power3.out" duration={1.5} delay={0.3} distance={100}>
+          <p className="section-description">
+            {canBook
+              ? "You are cleared to book your strategy call."
+              : "Free calls are no longer available. Complete payment to proceed."}
+          </p>
+        </AnimatedContent>
         <div className="mt-8 flex justify-center">
           <a
             href={canBook ? "mailto:hello@elitemedia.com" : STRIPE_20_EURO_LINK}

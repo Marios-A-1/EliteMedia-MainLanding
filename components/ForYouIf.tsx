@@ -1,5 +1,6 @@
 ﻿import { CheckCircle2 } from "lucide-react";
 import type { ReactNode } from "react";
+import BlurText from "@/components/BlurText";
 
 export type ForYouIfItem = {
   badge?: ReactNode;
@@ -20,15 +21,25 @@ export default function ForYouIf({ content }: ForYouIfProps) {
   return (
  <div className="mx-auto max-w-2xl px-2 pb-8 text-center mt-10 md:pb-12">
           <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-amber-400 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-amber-400">
-            <span className="inline-flex bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent">
+            <BlurText
+              as="span"
+              delay={50}
+              spanClassName="bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent"
+            >
               {content.eyebrow}
-            </span>
+            </BlurText>
           </div>    
   <section className="px-6 flex flex-col gap-5  mb-20 lg:flex-cols-2 lg:gap-8 max-w-4xl mx-auto">
 
-  <h3 className="section-heading pb-4">
+  <BlurText
+    as="h3"
+    className="section-heading pb-4"
+    delay={250}
+    animateBy="words"
+    direction="top"
+  >
     {content.heading}
-  </h3>
+  </BlurText>
 
   {content.items?.map((item, index) => (
     <div

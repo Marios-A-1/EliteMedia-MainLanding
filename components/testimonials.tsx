@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState, type TouchEvent, type ReactNode } from "react";
 import LazyVimeo from "@/components/lazy-vimeo";
+import BlurText from "@/components/BlurText";
+import AnimatedContent from "@/components/AnimatedContent";
 
 /* =======================
    Types
@@ -144,14 +146,28 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
           {/* Heading */}
           <div className="mx-auto max-w-3xl pb-6 text-center md:pb-20">
             <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-amber-400 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-amber-400">
-              <span className="inline-flex bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent">
+              <BlurText
+                as="span"
+                delay={50}
+                spanClassName="bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent"
+              >
                 {content?.eyebrow}
-              </span>
+              </BlurText>
             </div>
-            <h2 className="section-heading pb-3">{content?.heading}</h2>
-            <p className="section-description pb-4">
-              {content?.description}
-            </p>
+            <BlurText
+              as="h2"
+              className="section-heading pb-3"
+              delay={50}
+              animateBy="words"
+              direction="top"
+            >
+              {content?.heading}
+            </BlurText>
+            <AnimatedContent ease="power3.out" duration={1.5} delay={0.3} distance={100}>
+              <p className="section-description pb-4">
+                {content?.description}
+              </p>
+            </AnimatedContent>
           </div>
 
           {/* Carousel */}

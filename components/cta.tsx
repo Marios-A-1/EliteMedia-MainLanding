@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import CountDown from "@/components/CountDown";
+import { OfferCtaButton } from "@/components/CountDown";
+import BlurText from "@/components/BlurText";
 
 type CtaContent = {
   heading?: ReactNode;
@@ -14,6 +15,10 @@ type CtaProps = {
 };
 
 export default function Cta({ content }: CtaProps) {
+  const headingText =
+    content?.heading ??
+    "Χτίσε το content που ταιριάζει στο brand σου";
+
   return (
     <section className="relative overflow-hidden">
       <div
@@ -24,19 +29,18 @@ export default function Cta({ content }: CtaProps) {
       <div className="max-w6xl mx-auto px-4 sm:px-6">
         <div className="py-10 md:py-20">
           <div className="mx-auto max-w-3xl text-center">
-            <h2
+            <BlurText
+              as="h2"
               className="section-heading pb-6 md:pb-8"
-              data-aos="fade-up"
+              delay={50}
+              animateBy="words"
+              direction="top"
             >
-              {content?.heading ?? <>Χτίσε το content που ταιριάζει στο brand σου</>}
-            </h2>
+              {headingText}
+            </BlurText>
             <div className="mx-auto max-w-xs sm:flex sm:max-w-none sm:justify-center">
-              <div
-                className="mt-8 flex w-full justify-center"
-                data-aos="fade-up"
-                data-aos-delay={300}
-              >
-                <CountDown freeLabel={content?.cta?.label} />
+              <div className="mt-8 flex w-full justify-center">
+                <OfferCtaButton freeLabel={content?.cta?.label} />
               </div>
             </div>
           </div>

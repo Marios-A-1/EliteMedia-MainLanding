@@ -2,6 +2,8 @@
 import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import './ui/chroma-grid.css';
+import BlurText from "@/components/BlurText";
+import AnimatedContent from "@/components/AnimatedContent";
 
 export interface ChromaItem {
   image: string;
@@ -159,16 +161,28 @@ export const ChromaGrid: React.FC<ChromaGridProps> = ({
     <>
     <div className="mx-auto max-w-3xl pb-8 text-center md:pb-20">
             <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-indigo-200/50 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-indigo-200/50">
-              <span className="inline-flex bg-linear-to-r from-indigo-500 to-indigo-200 bg-clip-text text-transparent">
+              <BlurText
+              as="span"
+              delay={50}
+              spanClassName="bg-linear-to-r from-indigo-500 to-indigo-200 bg-clip-text text-transparent"
+            >
                 Tailored Workflows
-              </span>
+              </BlurText>
             </div>
-            <h2 className="section-heading pb-4">
+            <BlurText
+              as="h2"
+              className="section-heading pb-4"
+              delay={250}
+              animateBy="words"
+              direction="top"
+            >
               Οι Συνεργάτες μας
-            </h2>
-            <p className="text-base text-[#5b4a2a] md:text-lg">
+            </BlurText>
+            <AnimatedContent ease="power3.out" duration={1.5} delay={0.3} distance={100}>
+              <p className="text-base text-[#5b4a2a] md:text-lg">
               μπλα μπλα μπλα μπλα μπλα μπλα μπλα μπλα μπλα μπλα μπλα μπλα μπλα μπλα
-            </p>
+              </p>
+            </AnimatedContent>
           </div>
     <div
       ref={rootRef}

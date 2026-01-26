@@ -2,11 +2,13 @@
 
 import { motion, Transition, Easing } from 'motion/react';
 import { useEffect, useRef, useState, useMemo } from 'react';
-import type { ElementType, HTMLAttributes, CSSProperties } from 'react';
+import type { ElementType, HTMLAttributes, CSSProperties, ReactNode } from 'react';
+import { isValidElement } from 'react';
 
 type BlurTextProps = {
   as?: ElementType;
   text?: string;
+  children?: ReactNode;
   delay?: number;
   className?: string;
   spanClassName?: string;
@@ -20,7 +22,7 @@ type BlurTextProps = {
   easing?: Easing | Easing[];
   onAnimationComplete?: () => void;
   stepDuration?: number;
-} & Omit<HTMLAttributes<HTMLElement>, 'className' | 'children'>;
+} & Omit<HTMLAttributes<HTMLElement>, 'className'>;
 
 const buildKeyframes = (
   from: Record<string, string | number>,
@@ -35,9 +37,20 @@ const buildKeyframes = (
   return keyframes;
 };
 
+const extractText = (node: ReactNode): string => {
+  if (node === null || node === undefined || typeof node === 'boolean') return '';
+  if (typeof node === 'string' || typeof node === 'number') return String(node);
+  if (Array.isArray(node)) return node.map(extractText).join('');
+  if (isValidElement<{ children?: ReactNode }>(node)) {
+    return extractText(node.props.children);
+  }
+  return '';
+};
+
 const BlurText: React.FC<BlurTextProps> = ({
   as: Component = 'p',
   text = '',
+  children,
   delay = 200,
   className = '',
   spanClassName = '',
@@ -53,7 +66,8 @@ const BlurText: React.FC<BlurTextProps> = ({
   stepDuration = 0.35,
   ...rest
 }) => {
-  const elements = animateBy === 'words' ? text.split(' ') : text.split('');
+  const resolvedText = text || extractText(children);
+  const elements = animateBy === 'words' ? resolvedText.split(' ') : resolvedText.split('');
   const [inView, setInView] = useState(false);
   const ref = useRef<HTMLElement | null>(null);
 
@@ -98,8 +112,20 @@ const BlurText: React.FC<BlurTextProps> = ({
   const totalDuration = stepDuration * (stepCount - 1);
   const times = Array.from({ length: stepCount }, (_, i) => (stepCount === 1 ? 0 : i / (stepCount - 1)));
 
+  if (!resolvedText.trim()) {
+    return (
+      <Component ref={ref} className={`blur-text ${className} text-center`} {...rest}>
+        {children}
+      </Component>
+    );
+  }
+
   return (
-    <Component ref={ref} className={`blur-text ${className} flex flex-wrap`} {...rest}>
+    <Component
+      ref={ref}
+      className={`blur-text ${className} flex flex-wrap justify-center text-center`}
+      {...rest}
+    >
       {elements.map((segment, index) => {
         const animateKeyframes = buildKeyframes(fromSnapshot, toSnapshots);
 
