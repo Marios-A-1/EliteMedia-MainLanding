@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { useEffect, useMemo, useState } from "react";
 import Countdown, { type CountdownRenderProps } from "react-countdown";
+import AnimatedContent from "@/components/AnimatedContent";
 
 const STORAGE_KEY = "offerStartTimestamp";
 const OFFER_DURATION_MS = 48 * 60 * 60 * 1000;
@@ -96,12 +97,14 @@ export default function OfferCountdown({
           
         </p>
       )}
-      <a
-        href={ctaHref}
-        className="btn btn-shine font-bold px-5 py-3 text-sm rounded-[1rem] group w-full bg-linear-to-r from-amber-500 to-amber-300  bg-[length:100%_auto] text-[#2b2216] hover:brightness-105 sm:w-auto md:px-10 md:py-4 md:text-lg"
+      <AnimatedContent className="w-full sm:w-auto" threshold={-100} delay={0.9} duration={2.0}>
+        <a
+          href={ctaHref}
+          className="btn font-bold px-5 py-3 text-lg rounded-[1rem] group w-auto bg-linear-to-r from-amber-500 to-amber-300  bg-[length:100%_auto] text-[#2b2216] hover:brightness-105 sm:w-auto md:px-10 md:py-4 md:text-lg "
         >
-        {ctaLabel}
-      </a>
+          {ctaLabel}
+        </a>
+      </AnimatedContent>
     </div>
   );
 }

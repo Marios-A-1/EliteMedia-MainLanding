@@ -137,7 +137,7 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
   return (
     <section
       id={content?.sectionId ?? "results"}
-      className="flex w-full scroll-mt-[80px] flex-col items-center justify-center space-y-6 py-12 md:py-24"
+      className="flex w-full scroll-mt-[80px] flex-col items-center justify-center space-y-6 py-12 md:py-24 lg:-mb-30"
     >
       <div className="w-full px-4 sm:px-6">
         <div className="mx-auto flex max-w-6xl flex-col items-center space-y-8">
@@ -170,7 +170,7 @@ export default function TestimonialsCarousel({ content }: TestimonialsProps) {
               <ChevronLeft />
             </button>
 
-            <div className="lg:mt-5 mt-45 relative h-80 w-full max-w-75 md:h-155 md:max-w-160 -mb-20">
+            <div className="lg:mt-5 mt-45 relative h-80 w-full max-w-75 md:h-155 md:max-w-160 lg:-mb-60 -mb-20">
               {testimonials.map((testimonial, index) => {
                 const offset = calculateOffset(index, focus, total);
                 const hidden = Math.abs(offset) > 1;

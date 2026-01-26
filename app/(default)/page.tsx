@@ -20,19 +20,7 @@ import ValueBreakdown from "@/components/ValueBreakdown";
 import OfferCountdown from "@/components/CountDown";
 
 const HeroContent = {
-  title:  <>
-  {/* <span className="
-    bg-gradient-to-br
-    from-amber-200
-    via-amber-400
-    via-amber-500
-    to-amber-700
-    bg-clip-text text-transparent
-    drop-shadow-[0_2px_10px_rgba(245,158,11,0.35)]
-  "> */}
-    Elite Signature
-    {/* </span> */}
-    <> Strategy </></>,
+  titleText: "Elite Signature Strategy",
   description: <>Η στρατηγική που αυξάνει τον τζίρο ελληνικών επιχειρήσεων μέσω των social media.</>,
   videoId: "1128212394",
   ctaDescription: "",
@@ -196,13 +184,13 @@ const VALUE_BREAKDOWN_CONTENT = {
     },
     {
       label: 'Κανονική Τιμή',
-      amount: '497€',
+      amount: '20€',
       description: 'Με το πακέτο',
       strike: true,
     },
     {
       label: 'Προσφορά Σήμερα',
-      amount: '1 €',
+      amount: 'ΔΩΡΕΑΝ',
       description: 'Για τις επόμενες 48 ώρες',
       highlight: true,
     },
@@ -217,7 +205,7 @@ export default function Home() {
     <>
       <PageIllustration />
       <Hero content={HeroContent}/>
-      <ForYouIf content={ForYouIFContent} /> 
+      {/* <ForYouIf content={ForYouIFContent} />  */}
       <ForbesQuote />
       <div id="giati-elite-media" className="mt-24">
         <div className="mx-auto max-w-2xl text-center ">
@@ -244,10 +232,10 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Workflows />
-      {/* <ValueBreakdown content={VALUE_BREAKDOWN_CONTENT} /> */}
       <Testimonials content={TestimonialsContent}/>
       <Testimonials content={GoogleTestimonialsContent}/>
+      <Workflows />
+      <ValueBreakdown content={VALUE_BREAKDOWN_CONTENT} />
       {/* <Features /> */}
       {/* <OldNew /> */}
       {/* <ChromaGrid items={partners} className="my-6 flex-1 md:my-10" /> */}
