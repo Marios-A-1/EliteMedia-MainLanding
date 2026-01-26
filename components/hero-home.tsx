@@ -4,7 +4,7 @@ import LazyVimeo from "@/components/lazy-vimeo";
 import { useCallback, useRef, useState, type ReactNode } from "react";
 import BlurText from "@/components/BlurText";
 import AnimatedContent from "@/components/AnimatedContent";
-import { OfferCtaButton } from "@/components/CountDown";
+import { OfferCountdownTimer, OfferCtaButton } from "@/components/CountDown";
 import OfferCountdownPopup from "@/components/OfferCountdownPopup";
 
 type HeroContent = {
@@ -30,6 +30,7 @@ export default function HeroHome({ content }: HeroHomeProps) {
   const popupTriggerSeconds = content?.offerPopupTriggerSeconds ?? 0;
   const popupTriggeredRef = useRef(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isBadgeVisible, setIsBadgeVisible] = useState(false);
 
   const handleTimeUpdate = useCallback(
     (seconds: number) => {
@@ -99,8 +100,18 @@ export default function HeroHome({ content }: HeroHomeProps) {
           </div>
           <OfferCountdownPopup
             open={isPopupOpen}
-            onClose={() => setIsPopupOpen(false)}
+            onClose={() => {
+              setIsPopupOpen(false);
+              setIsBadgeVisible(true);
+            }}
           />
+          {isBadgeVisible ? (
+            <div className="fixed right-4 top-4 z-50">
+              <div className="flex items-center gap-2 rounded-full border-2 border-amber-300/60 bg-white/80 px-3 py-2 text-2xl font-semibold text-neutral-900 shadow-lg">
+                <OfferCountdownTimer className="text-sm text-neutral-900" />
+              </div>
+            </div>
+          ) : null}
         </div>
               <p
                 className="-mt-4 mb-3 text-center text-xs text-[#5b4a2a] md:mt-6 lg:hidden"
