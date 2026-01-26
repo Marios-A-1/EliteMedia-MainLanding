@@ -193,7 +193,7 @@ const VALUE_BREAKDOWN_CONTENT = {
     {
       label: 'Προσφορά Σήμερα',
       amount: 'ΔΩΡΕΑΝ',
-      description: 'Για τις επόμενες 48 ώρες',
+      description: 'Για τις πρώτες 48 ώρες',
       highlight: true,
     },
   ],

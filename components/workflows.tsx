@@ -97,8 +97,8 @@ export default function Workflows() {
   return (
     <section id="services" className="scroll-mt-20 mt-10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="pb-8 md:pb-20">
-          <div className="justify-self-center pb-4">
+          <div className="pb-8 md:pb-20">
+            <div className="flex justify-center pb-4">
           <div className="inline-flex items-center   gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-indigo-400/50 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-indigo-400/50">
             <BlurText
             as="span"
