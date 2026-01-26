@@ -106,9 +106,9 @@ export default function HeroHome({ content }: HeroHomeProps) {
             }}
           />
           {isBadgeVisible ? (
-            <div className="fixed right-4 top-4 z-50">
-              <div className="flex items-center gap-2 rounded-full border-2 border-amber-300/60 bg-white/80 px-3 py-2 text-2xl font-semibold text-neutral-900 shadow-lg">
-                <OfferCountdownTimer className="text-sm text-neutral-900" />
+            <div className="fixed right-4 top-4 z-50 md:right-6 md:top-6 lg:right-8 lg:top-8">
+              <div className="flex items-center gap-2 rounded-full border-2 border-amber-300/60 bg-white/80 px-3 py-2 text-2xl font-semibold text-neutral-900 shadow-lg md:gap-3 md:px-5 md:py-3 md:text-3xl lg:px-6 lg:py-3">
+                <OfferCountdownTimer className="text-sm text-neutral-900 md:text-base lg:text-lg" />
               </div>
             </div>
           ) : null}
