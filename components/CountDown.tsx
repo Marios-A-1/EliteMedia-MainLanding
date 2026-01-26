@@ -71,6 +71,7 @@ type OfferCtaButtonProps = {
   expiredLabel?: ReactNode;
   className?: string;
   buttonClassName?: string;
+  disableAnimation?: boolean;
 };
 
 export function OfferCtaButton({
@@ -78,6 +79,7 @@ export function OfferCtaButton({
   expiredLabel,
   className,
   buttonClassName,
+  disableAnimation = false,
 }: OfferCtaButtonProps) {
   const { isExpired } = useOfferCountdownState();
 
@@ -98,6 +100,14 @@ export function OfferCtaButton({
     .filter(Boolean)
     .join(" ");
 
+  if (disableAnimation) {
+    return (
+      <a href={ctaHref} className={resolvedButtonClassName}>
+        {ctaLabel}
+      </a>
+    );
+  }
+
   return (
     <AnimatedContent
       className={className ?? "w-full sm:w-auto flex justify-center"}
@@ -105,10 +115,7 @@ export function OfferCtaButton({
       delay={0.9}
       duration={2.0}
     >
-      <a
-        href={ctaHref}
-        className={resolvedButtonClassName}
-      >
+      <a href={ctaHref} className={resolvedButtonClassName}>
         {ctaLabel}
       </a>
     </AnimatedContent>

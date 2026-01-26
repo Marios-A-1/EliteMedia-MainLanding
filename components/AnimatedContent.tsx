@@ -24,6 +24,7 @@ interface AnimatedContentProps extends React.HTMLAttributes<HTMLDivElement> {
   disappearEase?: string;
   onComplete?: () => void;
   onDisappearanceComplete?: () => void;
+  playOnMount?: boolean;
 }
 
 const AnimatedContent: React.FC<AnimatedContentProps> = ({
@@ -44,6 +45,7 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
   disappearEase = 'power3.in',
   onComplete,
   onDisappearanceComplete,
+  playOnMount = false,
   className = '',
   ...props
 }) => {
@@ -97,6 +99,13 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
       ease
     });
 
+    if (playOnMount) {
+      tl.play();
+      return () => {
+        tl.kill();
+      };
+    }
+
     const st = ScrollTrigger.create({
       trigger: el,
       scroller: scrollerTarget || window,
@@ -125,7 +134,8 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
     disappearDuration,
     disappearEase,
     onComplete,
-    onDisappearanceComplete
+    onDisappearanceComplete,
+    playOnMount
   ]);
 
   return (

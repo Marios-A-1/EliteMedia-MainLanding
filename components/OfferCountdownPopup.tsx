@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import ElectricBorder from "@/components/ElectricBorder";
+import AnimatedContent from "@/components/AnimatedContent";
 import { OfferCountdownTimer, OfferCtaButton } from "@/components/CountDown";
 
 type OfferCountdownPopupProps = {
@@ -28,6 +29,16 @@ export default function OfferCountdownPopup({
         onClick={onClose}
         aria-hidden="true"
       />
+      <AnimatedContent
+        className="relative w-full max-w-md"
+        distance={380}
+        reverse
+        duration={1.4}
+        ease="power3.out"
+        delay={0}
+        threshold={1}
+        playOnMount
+      >
       <div role="dialog" aria-modal="true" className="relative w-full max-w-md">
         <ElectricBorder
           color="#fcc76d"
@@ -60,11 +71,12 @@ export default function OfferCountdownPopup({
             </h3> */}
             {message ? <p className="mt-3 text-xs text-neutral-600">{message}</p> : null}
             <div className="mt-5 flex flex-col items-center gap-3">
-              <OfferCtaButton freeLabel={<>Πάρε την Προσφορά</>} className="opacity-5" buttonClassName="bg-amber-400/30 text-white hover:brightness-110"/>
+              <OfferCtaButton freeLabel={<>Πάρε την Προσφορά</>} className="opacity-5" buttonClassName="bg-amber-400/30 text-white hover:brightness-110" disableAnimation />
             </div>
           </div>
         </ElectricBorder>
       </div>
+      </AnimatedContent>
     </div>
   );
 }
