@@ -6,10 +6,12 @@ import BlurText from "@/components/BlurText";
 import AnimatedContent from "@/components/AnimatedContent";
 import { OfferCountdownTimer, OfferCtaButton } from "@/components/CountDown";
 import OfferCountdownPopup from "@/components/OfferCountdownPopup";
+import RotatingText from "./RotatingText";
 
 type HeroContent = {
   title?: ReactNode;
   titleText?: string;
+  highlightWords?: string[];
   description?: ReactNode;
   videoId?: string;
   videoTitle?: string;
@@ -18,6 +20,7 @@ type HeroContent = {
   ctaLabel?: ReactNode;
   ctaHref?: string;
   offerPopupTriggerSeconds?: number;
+  ctaNode?: ReactNode;
 };
 
 type HeroHomeProps = {
@@ -27,10 +30,12 @@ type HeroHomeProps = {
 
 export default function HeroHome({ content }: HeroHomeProps) {
   const titleText = content?.titleText;
+  const highlightWords = content?.highlightWords;
   const popupTriggerSeconds = content?.offerPopupTriggerSeconds ?? 0;
   const popupTriggeredRef = useRef(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isBadgeVisible, setIsBadgeVisible] = useState(false);
+  const highlightWordSet = highlightWords ? new Set(highlightWords) : null;
 
   const handleTimeUpdate = useCallback(
     (seconds: number) => {
@@ -48,7 +53,7 @@ export default function HeroHome({ content }: HeroHomeProps) {
 
   return (
     <section className="relative px-4 mt-10">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 -mt-20 lg:-mt-20">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 -mt-20 lg:-mt-30">
         {/* Hero content */}
         <div className="py-10 md:py-20">
           {/* Section header */}
@@ -59,11 +64,19 @@ export default function HeroHome({ content }: HeroHomeProps) {
             <BlurText
               as="h1"
               text={titleText}
-              delay={250}
+              delay={50}
               animateBy="words"
               direction="top"
               className="section-heading justify-center pb-4 text-3xl font-bold leading-tight md:pb-5 md:text-5xl md:leading-normal"
               spanClassName="bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent"
+              getSpanClassName={
+                highlightWordSet
+                  ? (segment) =>
+                      highlightWordSet.has(segment)
+                        ? "bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent"
+                        : "text-black"
+                  : undefined
+              }
             >
               {content?.title ?? titleText}
             </BlurText>
@@ -72,6 +85,18 @@ export default function HeroHome({ content }: HeroHomeProps) {
                 <p className="section-description mb-6 lg:px-24 md:mb-8">
                   {content?.description}
                 </p>
+                {/* <RotatingText
+                  texts={['Ως Αρχάριος', 'Στην Ελλάδα.', 'Το 2026']}
+                  mainClassName="px-2 sm:px-2 md:px-3 bg-amber-400 justify-self-center text-white text-2xl w-50 overflow-hidden py-1 sm:py-1 md:py-2 justify-center rounded-lg"
+                  staggerFrom={"last"}
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  exit={{ y: "-120%" }}
+                  staggerDuration={0.025}
+                  splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+                  transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                  rotationInterval={4000}
+                /> */}
               </AnimatedContent>
             </div>
           </div>
@@ -96,7 +121,7 @@ export default function HeroHome({ content }: HeroHomeProps) {
                 {content?.ctaDescription}
               </p>
           <div className="mt-8 flex w-full justify-center mb-25 lg:mb-12">
-            <OfferCtaButton />
+            {content?.ctaNode ?? <OfferCtaButton />}
           </div>
           <OfferCountdownPopup
             open={isPopupOpen}

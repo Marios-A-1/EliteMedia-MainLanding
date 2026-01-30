@@ -4,9 +4,8 @@
 };
 import PageIllustration from "@/components/page-illustration";
 import Hero from "@/components/hero-home";
-import Workflows from "@/components/workflows";
+import Workflows, { type WorkflowsContent } from "@/components/workflows";
 import Features from "@/components/features";
-import HowWeDoIt from "@/components/HowWeDoIt";
 import Testimonials from "@/components/testimonials";
 import Cta from "@/components/cta";
 import ChromaGrid from "@/components/chroma-grid";
@@ -15,10 +14,8 @@ import OldNew from "@/components/OldNew";
 import ForYouIf, { type ForYouIfContent } from "@/components/ForYouIf";
 import ForbesQuote from "@/components/ForbesQuote";
 import { Description } from "@headlessui/react";
-import HowItWorks from "@/components/HowItWorks";
 import ValueBreakdown from "@/components/ValueBreakdown";
-import BlurText from "@/components/BlurText";
-import AnimatedContent from "@/components/AnimatedContent";
+import HowColumnsSection from "@/components/HowColumnsSection";
 
 const HeroContent = {
   titleText: "Elite Signature Strategy",
@@ -199,6 +196,46 @@ const VALUE_BREAKDOWN_CONTENT = {
   ],
 };
 
+const WORKFLOWS_CONTENT: WorkflowsContent = {
+  eyebrow: "Offer",
+  heading: "Η προσφορά μας",
+  listHeading: "Τι παίρνεις",
+  benefits: [
+    {
+      text: "Τα αρχεία ανάλυσης όλων των επιτυχημένων λογαριασμών της στρατηγικής ",
+      price: "9€",
+    },
+    {
+      text: "Δωρεάν οδηγός για το πώς να επιλέξεις σωστά ένα social media agency στην Ελλάδα",
+      price: "9€",
+    },
+    {
+      text: "Λίστα με τα καλύτερα agencies στην Ελλάδα που έχουμε εκπαιδεύσει",
+      price: "9€",
+    },
+    {
+      text: "Ολοκληρωμένος οδηγός social media marketing (1 ώρα) για να το κάνεις μόνος σου",
+      price: "9€",
+    },
+    {
+      text: "Πρόσβαση στο Elite Signature Strategy",
+      price: "297€",
+    },
+    {
+      text: "2 συμβουλευτικές κλήσεις με ειδικό της ομάδας για εφαρμογή της στρατηγικής",
+      price: "397€",
+    },
+    {
+      text: "24/7 πρόσβαση σε ειδικό της ομάδας για οποιαδήποτε απορία",
+      price: "99€",
+    },
+    {
+      text: "Πρόταση συνεργασίας από την EliteMedia αν πληροίς τα κριτήρια",
+      price: "49€",
+    },
+  ],
+};
+
 
 
 
@@ -208,47 +245,18 @@ export default function Home() {
       <PageIllustration />
       <Hero content={HeroContent}/>
       {/* <ForYouIf content={ForYouIFContent} />  */}
+      <HowColumnsSection
+        id="giati-elite-media"
+        eyebrow={HowColumnsSharedContent.eyebrow}
+        heading={HowColumnsSharedContent.heading}
+        subheading={HowColumnsSharedContent.subheading}
+        howItWorksContent={HowItWorksContent}
+        howWeDoItContent={HowWeDoItContent}
+      />
       <ForbesQuote />
-      <div id="giati-elite-media" className="mt-24">
-        <div className="mx-auto max-w-2xl text-center ">
-           <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-amber-400 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-amber-400">
-            <BlurText
-              as="span"
-              delay={50}
-              spanClassName="bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent"
-            >
-              {HowColumnsSharedContent.eyebrow}
-            </BlurText>
-          </div>
-          </div>
-        <div className="mx-auto w-full max-w-[1100px]  px-4 sm:px-6">
-          <div className=" pb-8 text-center">
-            <BlurText
-              as="h2"
-              className="section-heading text-neutral-900 pb-4"
-              delay={50}
-              animateBy="words"
-              direction="top"
-            >
-              {HowColumnsSharedContent.heading}
-            </BlurText>
-            {/* <div className="rounded-2xl border-2 border-amber-400 bg-amber-500/20 px-4 py-6"> */}
-            <AnimatedContent ease="power3.out" duration={1.1} delay={0.3} distance={100}>
-              <p className="section-description ">
-                {HowColumnsSharedContent.subheading}
-              </p>
-            </AnimatedContent>
-          {/* </div> */}
-          </div>
-          <div className="lg:grid lg:grid-cols-2 lg:gap-0 lg:items-start">
-            <HowItWorks content={HowItWorksContent} />
-            <HowWeDoIt content={HowWeDoItContent} />
-          </div>
-        </div>
-      </div>
       <Testimonials content={TestimonialsContent}/>
       <Testimonials content={GoogleTestimonialsContent}/>
-      <Workflows />
+      <Workflows content={WORKFLOWS_CONTENT} />
       <ValueBreakdown content={VALUE_BREAKDOWN_CONTENT} />
       {/* <Features /> */}
       {/* <OldNew /> */}

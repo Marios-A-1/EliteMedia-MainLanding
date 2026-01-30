@@ -1,6 +1,7 @@
 ﻿import { CheckCircle2 } from "lucide-react";
 import type { ReactNode } from "react";
 import BlurText from "@/components/BlurText";
+import AnimatedContent from "@/components/AnimatedContent";
 
 export type ForYouIfItem = {
   badge?: ReactNode;
@@ -42,17 +43,23 @@ export default function ForYouIf({ content }: ForYouIfProps) {
   </BlurText>
 
   {content.items?.map((item, index) => (
-    <div
+    <AnimatedContent
       key={`for-you-if-${index}`}
-      className="relative  flex items-center justify-center rounded-2xl  bg-amber-200/30 border-0 border-amber-400  px-5 py-4 shadow-[0_10px_30px_rgba(247,97,161,0.08)]"
+      ease="power3.out"
+      threshold={-0.2}
+      duration={0.9}
+      delay={0.1 + index * 0.08}
+      distance={40}
     >
-      <div className="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full text-amber-400 bg-white text-sm font-bold shadow-lg">
-        <CheckCircle2></CheckCircle2>
+      <div className="for-you-if-card relative flex items-center justify-center rounded-2xl bg-amber-200/30 border-0 border-amber-400 px-5 py-4 shadow-[0_10px_30px_rgba(247,97,161,0.08)]">
+        <div className="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full text-amber-400 bg-white text-sm font-bold shadow-lg">
+          <CheckCircle2></CheckCircle2>
+        </div>
+        <p className="text-md md:text-lg text-center font-bold leading-relaxed text-indigo-900">
+          {item.text}
+        </p>
       </div>
-      <p className="text-md md:text-lg text-center font-bold  leading-relaxed text-indigo-900">
-        {item.text}
-      </p>
-    </div>
+    </AnimatedContent>
   ))}
 </section>
 </div>

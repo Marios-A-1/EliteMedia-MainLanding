@@ -12,6 +12,7 @@ type BlurTextProps = {
   delay?: number;
   className?: string;
   spanClassName?: string;
+  getSpanClassName?: (segment: string, index: number) => string;
   spanStyle?: CSSProperties;
   animateBy?: 'words' | 'letters';
   direction?: 'top' | 'bottom';
@@ -42,6 +43,7 @@ const extractText = (node: ReactNode): string => {
   if (typeof node === 'string' || typeof node === 'number') return String(node);
   if (Array.isArray(node)) return node.map(extractText).join('');
   if (isValidElement<{ children?: ReactNode }>(node)) {
+    if (node.type === 'br') return '\n';
     return extractText(node.props.children);
   }
   return '';
@@ -54,6 +56,7 @@ const BlurText: React.FC<BlurTextProps> = ({
   delay = 200,
   className = '',
   spanClassName = '',
+  getSpanClassName,
   spanStyle,
   animateBy = 'words',
   direction = 'top',
@@ -67,7 +70,9 @@ const BlurText: React.FC<BlurTextProps> = ({
   ...rest
 }) => {
   const resolvedText = text || extractText(children);
-  const elements = animateBy === 'words' ? resolvedText.split(' ') : resolvedText.split('');
+  const normalizedText =
+    animateBy === 'words' ? resolvedText.replace(/\n/g, ' \n ') : resolvedText;
+  const elements = animateBy === 'words' ? normalizedText.split(' ') : normalizedText.split('');
   const [inView, setInView] = useState(false);
   const ref = useRef<HTMLElement | null>(null);
 
@@ -127,7 +132,11 @@ const BlurText: React.FC<BlurTextProps> = ({
       {...rest}
     >
       {elements.map((segment, index) => {
+        if (segment === '\n') {
+          return <span key={`br-${index}`} className="basis-full h-0" aria-hidden="true" />;
+        }
         const animateKeyframes = buildKeyframes(fromSnapshot, toSnapshots);
+        const resolvedSpanClassName = getSpanClassName ? getSpanClassName(segment, index) : spanClassName;
 
         const spanTransition: Transition = {
           duration: totalDuration,
@@ -143,7 +152,7 @@ const BlurText: React.FC<BlurTextProps> = ({
             animate={inView ? animateKeyframes : fromSnapshot}
             transition={spanTransition}
             onAnimationComplete={index === elements.length - 1 ? onAnimationComplete : undefined}
-            className={spanClassName}
+            className={resolvedSpanClassName}
             style={{
               display: 'inline-block',
               willChange: 'transform, filter, opacity',
@@ -151,7 +160,11 @@ const BlurText: React.FC<BlurTextProps> = ({
             }}
           >
             {segment === ' ' ? '\u00A0' : segment}
-            {animateBy === 'words' && index < elements.length - 1 && '\u00A0'}
+            {animateBy === 'words' &&
+              segment !== '\n' &&
+              index < elements.length - 1 &&
+              elements[index + 1] !== '\n' &&
+              '\u00A0'}
           </motion.span>
         );
       })}

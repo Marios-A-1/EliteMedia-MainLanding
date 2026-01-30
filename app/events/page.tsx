@@ -10,114 +10,127 @@ import OldNew from "@/components/OldNew";
 import Features from "@/components/features";
 import ForYouIf, { ForYouIfContent } from "@/components/ForYouIf";
 import Testimonials from "@/components/testimonials";
-import HowWeDoIt from "@/components/HowWeDoIt";
 import Cta from "@/components/cta";
+import EventTicketsCta from "@/components/EventTicketsCta";
+import HowColumnsSection from "@/components/HowColumnsSection";
 import { steps } from "framer-motion";
+import Directions, { DirectionsContent } from "@/components/Directions";
+import EventDetails, { EventDetailsContent } from "@/components/EventDetails";
 const eventsHero={
-  title: <>Βγάλε τα πρώτα σου 1000€ online σε 90 μέρες ως τελείως αρχάριος</>,
-  description: <>Μεταμορφώστε τα events σας με στρατηγικό marketing που αυξάνει τη συμμετοχή και την αφοσίωση.</>,
+  title: <>Βγάλε τα πρώτα σου <br /> 1000€ online σε 90 μέρες </>,
+  highlightWords: ["1000€", "90", "μέρες", "αρχάριος"],
+  description: <>Ως Αρχάριος - Στην Ελλάδα - Το 2026</>,
   videoId: "1128212394",
   videoTitle: "Events video",
   videoParams: "autoplay=0&title=0&byline=0&portrait=0",
-  ctaLabel: <>Κράτα την θέση σου</>,
-  ctaHref: "mailto:hello@elitemedia.com",
-
+  ctaNode: <EventTicketsCta />,
+  
 }
-const HowWeDoItContent = {
-  eyebrow: <>Έρευνα</>,
-  heading: <>Τα 7 πιο κοινά προβλήματα</>,
-  description: <>που αντιμετωπίζουν επιχειρηματίες πριν συνεργαστούνε με ένα social media marketing agency στην Ελλάδα το 2026</>,
-  steps:[{
-    number: "01",
-    title: "Μου μιλάνε για προβολές, αλλά εγώ θέλω πελάτες",
-    description: [
-      "σου μιλάνε για views & reach",
-      "εσύ χρειάζεσαι τζίρο",
-      "οι οργανικές προβολές δεν φέρνουν απαραίτητα πελάτες",
-      "χωρίς σύστημα μετατροπής → τα views μένουν νούμερα",
-      "αυτό που λείπει είναι το funnel",
-    ],
-  },
-  {
-    number: "02",
-    title: "Δεν θέλω να γίνω κλόουν σαν τους ανταγωνιστές μου",
-    description: [
-      "φοβάσαι ότι το περιεχόμενο θα σε γελοιοποιήσει",
-      "νιώθεις ότι κανείς δεν σε ακούει",
-      "βλέπεις competitors να κάνουν θόρυβο",
-      "εσύ περιμένεις να χτυπήσει το τηλέφωνο",
-      "και φοβάσαι ότι θα είναι… η εφορία",
-    ],
-  },
-  {
-    number: "03",
-    title: "Ντρέπομαι να βγω στην κάμερα",
-    description: [
-      "ανασφάλεια μπροστά στον φακό",
-      "λογικό αν είναι η πρώτη σου φορά",
-      "το πρόβλημα ξεκινά όταν το agency δεν σε κάνει να νιώθεις άνετα",
-      "η ανασφάλεια περνάει στο βίντεο",
-      "υπάρχουν τρόποι να διορθωθεί",
-    ],
-  },
-  {
-    number: "04",
-    title: "Μου ζητάνε συνέχεια πράγματα, δεν έχω χρόνο",
-    description: [
-      "υποτίθεται ότι στα αναλαμβάνουν όλα",
-      "αλλά ζητάνε κωδικούς, logos, φόρμες, βίντεο",
-      "πολλές διαδικασίες περνάνε από εσένα",
-      "χάνεις χρόνο αντί να κερδίζεις",
-      "με σύστημα θα αρκούσαν 10’ την ημέρα",
-    ],
-  },
-  {
-    number: "05",
-    title: "Δεν υπάρχει πλάνο, απλά ανεβάζουμε βίντεο",
-    description: [
-      "δεν βλέπεις πώς σε βοηθάει επιχειρηματικά",
-      "έκανες marketing για να αυξήσεις τζίρο",
-      "μπήκες στα social λόγο ανταγωνισμού",
-      "όχι για random content",
-      "αυτό που χρειάζεσαι είναι σύστημα, όχι posts",
-    ],
-  },
-  {
-    number: "06",
-    title: "Δεν ξέρω τίποτα και φοβάμαι ότι θα με κοροϊδέψουν",
-    description: [
-      "reports με views και likes",
-      "δικαιολογίες τύπου ‘algorithm update’",
-      "δεν καταλαβαίνεις τι σημαίνουν τα νούμερα",
-      "νιώθεις εκτός ελέγχου",
-      "χωρίς διαφάνεια δεν υπάρχει εμπιστοσύνη",
-    ],
-  },
-  {
-    number: "07",
-    title: "Το agency δεν καταλαβαίνει τον κλάδο μου",
-    description: [
-      "κανείς δεν ξέρει τη δουλειά σου όπως εσύ",
-      "δυσκολεύεσαι να τους εμπιστευτείς",
-      "δεν γνωρίζουν τον κλάδο από μέσα",
-      "ό,τι κι αν σου πουν δεν σε πείθει",
-      "και σε αυτό… έχεις δίκιο",
-    ],
-  },
-]
+const HowColumnsSharedContent = {
+  eyebrow: <>Γιατί εμάς</>,
+  heading: <>Γιατί Elite Media Event?</>,
+  subheading: <>Μιλήσαμε με δεκάδες άτομα 18–24 που θέλουν να ξεκινήσουν την πρώτη τους online επιχείρηση στην Ελλάδα — και είδαμε τα ίδια 5 προβλήματα να επαναλαμβάνονται ξανά και ξανά. Γι’ αυτό χτίσαμε το EliteMedia Academy Event</>
+}
+  const HowItWorksContent = {
+  eyebrow: <>EliteMedia Academy Event</>,
+  heading: <>Τα 5 κοινά προβλήματα</>,
+  // description: <>που αντιμετωπίζουν νέοι 18–24 πριν ξεκινήσουν την πρώτη τους online επιχείρηση στην Ελλάδα — και πώς το λύνουμε με σύστημα.</>,
+  steps: [
+    {
+      number: "01",
+      title: "«Βλέπω 100 βίντεο… και στο τέλος δεν ξεκινάω τίποτα»",
+      description: [
+        "χάνεσαι σε υπερπληροφόρηση & “gurus”",
+        "και αντί να προχωράς, απλά καταναλώνεις",
+      ],
+    },
+    {
+      number: "02",
+      title: "«Δεν ξέρω τι να διαλέξω: AI, SMM, Sales, Freelancing…»",
+      description: [
+        "όλα ακούγονται σωστά",
+        "αλλά χωρίς κριτήριο, αλλάζεις κατεύθυνση κάθε εβδομάδα",
+      ],
+    },
+    {
+      number: "03",
+      title: "«Δουλεύουν αυτά στην Ελλάδα ή είναι μούφα;»",
+      description: [
+        "ο κύκλος σου λέει “βρες κανονική δουλειά”",
+        "και εσύ μένεις με αμφιβολία και φόβο να εκτεθείς",
+      ],
+    },
+    {
+      number: "04",
+      title: "«Νιώθω ότι όλοι προχωράνε κι εγώ είμαι πίσω»",
+      description: [
+        "βλέπεις άλλους να “ανεβαίνουν”",
+        "και αρχίζεις να πιστεύεις ότι “κάτι δεν έχω”",
+      ],
+    },
+    {
+      number: "05",
+      title: "«Το κάνω μόνος — χωρίς περιβάλλον, χωρίς feedback»",
+      description: [
+        "κανείς γύρω σου δεν το κυνηγάει σοβαρά",
+        "και όταν δυσκολεύεσαι, δεν έχεις ποιος να σε σηκώσει",
+      ],
+    },
+  ],
 };
 
-const HowItWorksContent ={
-  eyebrow: <>How it works</>,
-  heading:<>Πώς δουλεύει το Elite Signature Strategy</>,
-  description:<>Δεν ανεβάζουμε απλά content. Χτίζουμε ένα σύστημα που παίρνει το βλέμμα, το κάνει εμπιστοσύνη και το μετατρέπει σε πελάτες — με τρόπο κομψό, μετρήσιμο και repeatable.</>
+const HowWeDoItContent = {
+  eyebrow: <>Το Σύστημα</>,
+  heading: <>Πώς λειτουργούμε εμείς</>,
+  // description: <>Για να φύγεις με μονοπάτι, skill και περιβάλλον — όχι άλλο μπέρδεμα.</>,
+  steps: [
+    {
+      number: "01",
+      title: "Δεν σε πνίγουμε με πληροφορία. Σου δίνουμε μονοπάτι.",
+      description: [
+        "φεύγεις με roadmap και καθαρά βήματα",
+        "ώστε να ξέρεις ακριβώς “τι κάνω από αύριο”",
+      ],
+    },
+    {
+      number: "02",
+      title: "Δεν σε αφήνουμε να μαντεύεις. Σου δείχνουμε επιλογές με κριτήριο.",
+      description: [
+        "AI / Πωλήσεις / Social Media Marketing / Freelancing",
+        "και πώς να διαλέξεις μία που σου ταιριάζει για να την τρέξεις σωστά",
+      ],
+    },
+    {
+      number: "03",
+      title: "Δεν πουλάμε “εύκολα λεφτά”. Χτίζουμε skill που πληρώνεται.",
+      description: [
+        "το αποτέλεσμα έρχεται όταν έχεις skill + εφαρμογή",
+        "και όχι όταν κυνηγάς “μοντέλα” από TikTok",
+      ],
+    },
+    {
+      number: "04",
+      title: "Δεν μένεις στη θεωρία. Σε βάζουμε σε εκτέλεση.",
+      description: [
+        "4 ώρες masterclass με πρακτικά βήματα",
+        "0 → skill → 1ος πελάτης → πρώτα 1000€ online",
+      ],
+    },
+    {
+      number: "05",
+      title: "Δεν το κάνεις μόνος. Παίρνεις περιβάλλον.",
+      description: [
+        "networking με εκατοντάδες άτομα σαν εσένα",
+        "και παίρνεις και τα slides/PDF στο email για να εφαρμόσεις",
+      ],
+    },
+  ],
+};
 
-
-}
 
 const ForYouIFContent: ForYouIfContent = {
   eyebrow: <>Για ποιον είναι;</>,
-  heading: <>Αυτό είναι για εσένα αν</>,
+  heading: <>Αυτό είναι για εσένα αν :</>,
   items: [
     {
       badge: <>✓</>,
@@ -155,19 +168,13 @@ const ForYouIFContent: ForYouIfContent = {
         <>Θέλεις καθοδήγηση, πλάνο και ξεκάθαρα βήματα — όχι motivation για 2 μέρες.</>
       ),
     },
-    {
-      badge: <>✓</>,
-      text: (
-        <>Είσαι έτοιμος να πάρεις αποφάσεις και να εφαρμόσεις όσα θα μάθεις, άμεσα.</>
-      ),
-    },
   ],
 };;
 
 const TestimonialsContent = {
   eyebrow: <>Testimonials</>,
   heading: <>Πραγματικές Ιστορίες Επιτυχίας</>,
-  description: <>Απο μέλη της Ακαδημίας που έχουν δημιουργήσει επιχειρήσεις και έχουν οδηγήσει σε μετρήσιμα αποτελέσματα.</>,
+  description: <>Απο μέλη της Ακαδημίας που έχουν δημιουργήσει επιχειρήσεις και έχουν χτίσει κάτι δικό τους</>,
   items: [
   {
     id: 1,
@@ -304,9 +311,18 @@ export default function EventsPage() {
       {/* <OldNew /> */}
       {/* <Features /> */}
       <ForYouIf content={ForYouIFContent}/>
+      {/* <ForbesQuote /> */}
+      <HowColumnsSection
+        id="giati-elite-media"
+        eyebrow={HowColumnsSharedContent.eyebrow}
+        heading={HowColumnsSharedContent.heading}
+        subheading={HowColumnsSharedContent.subheading}
+        howItWorksContent={HowItWorksContent}
+        howWeDoItContent={HowWeDoItContent}
+      />
+      <Directions content={DirectionsContent} />
+      <EventDetails content={EventDetailsContent} />
       <Testimonials content={TestimonialsContent}/>
-      <ForbesQuote />
-      <HowWeDoIt content={HowWeDoItContent} />
       <Cta content={CtaContent}/>
     </>
   );
