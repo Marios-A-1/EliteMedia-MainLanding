@@ -27,6 +27,7 @@ const eventsHero={
   videoTitle: "Events video",
   videoParams: "autoplay=0&title=0&byline=0&portrait=0",
   ctaNode: <EventTicketsCta />,
+  offerPopupCtaHref: "#event-offer-cards",
   
 }
 const HowColumnsSharedContent = {
@@ -299,7 +300,8 @@ const CtaContent = {
   heading:"Μάθε πως να βγάζεις χρήματα Online",
   cta:{
     label: <>Κράτα την θέση σου</>,
-    href: "mailto:hello@elitemedia.com",}
+    href: "#event-offer-cards",
+  },
 }
 export default function EventsPage() {
   return (

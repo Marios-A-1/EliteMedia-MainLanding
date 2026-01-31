@@ -103,32 +103,34 @@ export default function BreakdownTimeline({ content }: BreakdownTimelineProps) {
             </AnimatedContent>
           ) : null}
         </div>
-      <div className="bg-amber-200/30 py-10 px-8 rounded-2xl max-w-2xl mx-auto">
-        <Timeline
-          className="event-details-timeline-mobile breakdown-timeline "
-          items={timelineSteps.map((item) => ({
-            key: item.time,
-            color: "var(--color-amber-400)",
-            dot: (
-              <span className="event-details-timeline-dot gradient-border">
-                <span className="gradient-border__inner" />
-              </span>
-            ),
-            children: (
-              <div className="breakdown-timeline-item pb-2 mb-4">
-                <span className="breakdown-time !text-md !font-bold !text-neutral-600 !-mb-2">{item.time}</span>
-                <Title
-                  level={5}
-                  className="!m-0 !text-xl !font-bold  !bg-linear-to-r !from-amber-500 !to-amber-400 !bg-clip-text !text-transparent "
-                >
-                  {item.title}
-                </Title>
-                <Text className="!text-lg !font-semibold text-neutral-600">{item.subtitle}</Text>
-              </div>
-            ),
-          }))}
-        />
-      </div>
+      <AnimatedContent ease="power3.out" duration={1} delay={0.3} distance={80}>
+        <div className="bg-amber-200/30 py-10 px-8 rounded-2xl max-w-2xl mx-auto">
+          <Timeline
+            className="event-details-timeline-mobile breakdown-timeline "
+            items={timelineSteps.map((item) => ({
+              key: item.time,
+              color: "var(--color-amber-400)",
+              dot: (
+                <span className="event-details-timeline-dot gradient-border">
+                  <span className="gradient-border__inner" />
+                </span>
+              ),
+              children: (
+                <div className="breakdown-timeline-item pb-2 mb-4">
+                  <span className="breakdown-time !text-md !font-bold !text-neutral-600 !-mb-2">{item.time}</span>
+                  <Title
+                    level={5}
+                    className="!m-0 !text-xl !font-bold  !bg-linear-to-r !from-amber-500 !to-amber-400 !bg-clip-text !text-transparent "
+                  >
+                    {item.title}
+                  </Title>
+                  <Text className="!text-lg !font-semibold text-neutral-600">{item.subtitle}</Text>
+                </div>
+              ),
+            }))}
+          />
+        </div>
+      </AnimatedContent>
       </div>
     </section>
   );

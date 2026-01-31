@@ -10,6 +10,7 @@ type OfferCountdownPopupProps = {
   onClose: () => void;
   heading?: ReactNode;
   message?: ReactNode;
+  ctaHref?: string;
 };
 
 export default function OfferCountdownPopup({
@@ -17,6 +18,7 @@ export default function OfferCountdownPopup({
   onClose,
   heading,
   message,
+  ctaHref,
 }: OfferCountdownPopupProps) {
   if (!open) {
     return null;
@@ -71,7 +73,13 @@ export default function OfferCountdownPopup({
             </h3> */}
             {message ? <p className="mt-3 text-xs text-neutral-600">{message}</p> : null}
             <div className="mt-5 flex flex-col items-center gap-3">
-              <OfferCtaButton freeLabel={<>Πάρε την Προσφορά</>} className="opacity-5" buttonClassName="bg-amber-400/30 text-white hover:brightness-110" disableAnimation />
+              <OfferCtaButton
+                freeLabel={<>Πάρε την Προσφορά</>}
+                className="opacity-5"
+                buttonClassName="bg-amber-400/30 text-white hover:brightness-110"
+                disableAnimation
+                href={ctaHref}
+              />
             </div>
           </div>
         </ElectricBorder>

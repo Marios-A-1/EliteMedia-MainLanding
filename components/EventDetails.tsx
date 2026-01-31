@@ -102,30 +102,38 @@ export default function EventDetails({ content }: EventDetailsProps) {
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {facts.map((fact, index) => (
-            <Card
+            <AnimatedContent
               key={`${fact.label}-${index}`}
-              className="event-details-card event-details-card--fact"
-              styles={{
-                body: {
-                  padding: 10,
-                  display: "flex",
-                  gap: 12,
-                  alignItems: "flex-start",
-                },
-              }}
+              ease="power3.out"
+              duration={1}
+              delay={0.2 + index * 0.08}
+              distance={70}
+              className="h-full"
             >
-              <div className="gradient-border gradient-border--icon">
-                <div className="gradient-border__inner flex h-16 w-16 items-center justify-center rounded-full text-2xl foont-black text-amber-500 shadow-sm">
-                  {ICONS[fact.iconKey]}
+              <Card
+                className="event-details-card event-details-card--fact h-full"
+                styles={{
+                  body: {
+                    padding: 10,
+                    display: "flex",
+                    gap: 12,
+                    alignItems: "flex-start",
+                  },
+                }}
+              >
+                <div className="gradient-border gradient-border--icon">
+                  <div className="gradient-border__inner flex h-16 w-16 items-center justify-center rounded-full text-2xl foont-black text-amber-500 shadow-sm">
+                    {ICONS[fact.iconKey]}
+                  </div>
                 </div>
-              </div>
-              <div className="flex flex-col gap-1">
-                <Text className="!text-md font-semibold !text-neutral-600">
-                  {fact.label}
-                </Text>
-                <Text className="!text-lg font-bold text-neutral-900">{fact.value}</Text>
-              </div>
-            </Card>
+                <div className="flex flex-col gap-1">
+                  <Text className="!text-md font-semibold !text-neutral-600">
+                    {fact.label}
+                  </Text>
+                  <Text className="!text-lg font-bold text-neutral-900">{fact.value}</Text>
+                </div>
+              </Card>
+            </AnimatedContent>
           ))}
         </div>
 

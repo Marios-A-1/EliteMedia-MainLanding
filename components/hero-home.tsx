@@ -19,6 +19,7 @@ type HeroContent = {
   ctaDescription?: string;
   ctaLabel?: ReactNode;
   ctaHref?: string;
+  offerPopupCtaHref?: string;
   offerPopupTriggerSeconds?: number;
   ctaNode?: ReactNode;
 };
@@ -129,6 +130,7 @@ export default function HeroHome({ content }: HeroHomeProps) {
               setIsPopupOpen(false);
               setIsBadgeVisible(true);
             }}
+            ctaHref={content?.offerPopupCtaHref}
           />
           {isBadgeVisible ? (
             <div className="fixed right-4 top-4 z-50 md:right-6 md:top-6 lg:right-8 lg:top-8">

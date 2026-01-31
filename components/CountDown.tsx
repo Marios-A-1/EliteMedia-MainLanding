@@ -71,6 +71,7 @@ type OfferCtaButtonProps = {
   className?: string;
   buttonClassName?: string;
   disableAnimation?: boolean;
+  href?: string;
 };
 
 export function OfferCtaButton({
@@ -79,10 +80,12 @@ export function OfferCtaButton({
   className,
   buttonClassName,
   disableAnimation = false,
+  href,
 }: OfferCtaButtonProps) {
   const { isExpired } = useOfferCountdownState();
 
-  const ctaHref = isExpired ? STRIPE_20_EURO_LINK : "https://calendly.com/emilios-siar/elitemedia";
+  const ctaHref =
+    href ?? (isExpired ? STRIPE_20_EURO_LINK : "https://calendly.com/emilios-siar/elitemedia");
   const ctaLabel = isExpired
     ? expiredLabel ?? <>Κλείσε Συμβουλευτική</>
     : freeLabel ?? <>Κλείσε Συμβουλευτική</>;

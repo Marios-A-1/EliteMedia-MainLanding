@@ -2,6 +2,7 @@
 import { useState, type ReactNode, type MouseEvent } from "react";
 import ElectricBorder from "@/components/ElectricBorder";
 import useEventOfferCountdown from "@/utils/useEventOfferCountdown";
+import AnimatedContent from "@/components/AnimatedContent";
 import {
   REGULAR_EARLY_LINK,
   REGULAR_LATE_LINK,
@@ -161,13 +162,19 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
         <div className="py-12 md:py-20">
           <div className="mx-auto max-w-2xl text-center">
             {mergedContent.eyebrow ? (
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-500">
-                {mergedContent.eyebrow}
-              </p>
+              <AnimatedContent ease="power3.out" duration={1} delay={0.15} distance={60}>
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-500">
+                  {mergedContent.eyebrow}
+                </p>
+              </AnimatedContent>
             ) : null}
-            <h2 className="section-heading pb-3">{mergedContent.heading}</h2>
+            <AnimatedContent ease="power3.out" duration={1} delay={0.25} distance={60}>
+              <h2 className="section-heading pb-3">{mergedContent.heading}</h2>
+            </AnimatedContent>
             {mergedContent.description ? (
-              <p className="section-description">{mergedContent.description}</p>
+              <AnimatedContent ease="power3.out" duration={1} delay={0.35} distance={60}>
+                <p className="section-description">{mergedContent.description}</p>
+              </AnimatedContent>
             ) : null}
           </div>
 
@@ -276,25 +283,42 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
                 </div>
               );
 
+              const animationDelay = 0.25 + offerIndex * 0.12;
+
               if (!offer.highlight) {
                 return (
-                  <div key={`offer-${offerIndex}`} className="h-full">
-                    {card}
-                  </div>
+                  <AnimatedContent
+                    key={`offer-${offerIndex}`}
+                    ease="power3.out"
+                    duration={1}
+                    delay={animationDelay}
+                    distance={80}
+                    className="h-full"
+                  >
+                    <div className="h-full">{card}</div>
+                  </AnimatedContent>
                 );
               }
 
               return (
-                <ElectricBorder
+                <AnimatedContent
                   key={`offer-${offerIndex}`}
-                  color="#f5b640"
-                  speed={0.6}
-                  chaos={0.08}
-                  borderRadius={16}
+                  ease="power3.out"
+                  duration={1}
+                  delay={animationDelay}
+                  distance={80}
                   className="h-full"
                 >
-                  {card}
-                </ElectricBorder>
+                  <ElectricBorder
+                    color="#f5b640"
+                    speed={0.6}
+                    chaos={0.08}
+                    borderRadius={16}
+                    className="h-full"
+                  >
+                    {card}
+                  </ElectricBorder>
+                </AnimatedContent>
               );
             })}
           </div>

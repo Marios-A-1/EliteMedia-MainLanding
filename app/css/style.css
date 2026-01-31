@@ -240,6 +240,7 @@
   }
   html {
     background-color: transparent;
+    scroll-behavior: smooth;
   }
   body {
     @apply bg-transparent text-foreground;

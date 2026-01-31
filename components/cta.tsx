@@ -39,9 +39,12 @@ export default function Cta({ content }: CtaProps) {
               {headingText}
             </BlurText>
             <div className="mx-auto max-w-xs sm:flex sm:max-w-none sm:justify-center">
-              <div className="mt-8 flex w-full justify-center">
-                <OfferCtaButton freeLabel={content?.cta?.label} />
-              </div>
+            <div className="mt-8 flex w-full justify-center">
+              <OfferCtaButton
+                freeLabel={content?.cta?.label}
+                href={content?.cta?.href}
+              />
+            </div>
             </div>
           </div>
         </div>
