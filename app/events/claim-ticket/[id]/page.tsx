@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 const isStripeSessionId = (value: string) => value.startsWith("cs_");
 
 type PageProps = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 const StatusCard = ({
@@ -26,7 +26,8 @@ const StatusCard = ({
 );
 
 export default async function ClaimTicketPage({ params }: PageProps) {
-  const rawId = decodeURIComponent(params.id);
+  const { id } = await params;
+  const rawId = decodeURIComponent(id);
   const tokenOrSessionId = rawId.trim();
 
   let sessionId: string | null = null;
