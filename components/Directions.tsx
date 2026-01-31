@@ -342,12 +342,12 @@ export default function Directions({ content }: DirectionsProps) {
                         </div>
                         <Title
                           level={4}
-                          className="!text-2xl !font-bold !bg-linear-to-r !from-amber-500 !to-amber-400 !bg-clip-text !text-transparent"
+                          className="!text-xl !font-bold !bg-linear-to-r !from-amber-500 !to-amber-400 !bg-clip-text !text-transparent"
                           style={{ margin: 0 }}
                         >
                           {item.title}
                         </Title>
-                        <Paragraph className="!text-xl !text-neutral-500" style={{ margin: 0 }}>
+                        <Paragraph className="!text-lg !text-neutral-500" style={{ margin: 0 }}>
                           <Text className="section-description !text-lg !text-neutral-00 !font-semmmibold" style={{ margin: 0 }}>
                             {item.subtitle}
                           </Text>

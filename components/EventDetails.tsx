@@ -1,31 +1,26 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { Card, Col, Row, Tag, Typography } from "antd";
+import { Card, Tag, Typography } from "antd";
 import {
   CalendarOutlined,
   ClockCircleOutlined,
   EnvironmentOutlined,
   FileTextOutlined,
   TeamOutlined,
+  FieldTimeOutlined,
 } from "@ant-design/icons";
 import BlurText from "@/components/BlurText";
 import AnimatedContent from "@/components/AnimatedContent";
 
-const { Text, Title } = Typography;
+const { Text } = Typography;
 
-type IconKey = "calendar" | "pin" | "clock" | "users" | "file";
+type IconKey = "calendar" | "pin" | "clock" | "users" | "file" | "fieldtime";
 
 export type EventDetailsFact = {
   iconKey: IconKey;
   label: ReactNode;
   value: ReactNode;
-};
-
-export type EventDetailsAgendaItem = {
-  time: string;
-  title: ReactNode;
-  description: ReactNode;
 };
 
 export type EventDetailsContent = {
@@ -34,12 +29,11 @@ export type EventDetailsContent = {
   description?: ReactNode;
   facts: EventDetailsFact[];
   badgeText?: ReactNode;
-  agenda: EventDetailsAgendaItem[];
 };
 
 export const EventDetailsContent: EventDetailsContent = {
   eyebrow: <>Event Details</>,
-  heading: <>1/3/2026 — Αθήνα (Δάφνη)</>,
+  heading: <>Πληροφορίες</>,
   description: (
     <>
       4 ώρες masterclass για να φύγεις με roadmap + επόμενο βήμα. Μετά, networking
@@ -48,38 +42,13 @@ export const EventDetailsContent: EventDetailsContent = {
   ),
   facts: [
     { iconKey: "calendar", label: "Ημερομηνία", value: "1 Μαρτίου 2026" },
-    { iconKey: "pin", label: "Τοποθεσία", value: "Αθήνα — Δάφνη" },
-    { iconKey: "clock", label: "Διάρκεια", value: "4 ώρες " },
+    { iconKey: "pin", label: "Τοποθεσία", value: "Δάφνη - Στριγγάρη 5" },
+    { iconKey: "clock", label: "Ώρα", value: "20:00" },
+    { iconKey: "fieldtime", label: "Διάρκεια", value: "4 ώρες " },
     { iconKey: "users", label: "Μετά το Event", value: "Networking" },
     { iconKey: "file", label: "Υλικό", value: "Slides / PDF" },
   ],
   badgeText: "Θα πάρεις όλη την παρουσίαση + PowerPoints σε PDF για να τα εφαρμόσεις.",
-  agenda: [
-    {
-      time: "0:00–0:30",
-      title: "Διάλεξε κατεύθυνση με κριτήριο",
-      description:
-        "AI / Πωλήσεις / SMM / Freelancing — διαλέγεις 1 και σταματάς να μαντεύεις.",
-    },
-    {
-      time: "0:30–2:00",
-      title: "Roadmap + Skill που πληρώνεται",
-      description:
-        "Τι χτίζεις πρώτα και γιατί — για να πας από αρχάριο σε εκτέλεση.",
-    },
-    {
-      time: "2:00–3:30",
-      title: "1ος πελάτης (outreach / πωλήσεις)",
-      description:
-        "Πώς βρίσκεις τον πρώτο πελάτη και τι κάνεις για να κλείσεις αποτέλεσμα.",
-    },
-    {
-      time: "3:30–4:00",
-      title: "Plan + επόμενα βήματα",
-      description:
-        "Φεύγεις με ξεκάθαρο πλάνο για να πας προς τα πρώτα σου 1000€ online.",
-    },
-  ],
 };
 
 const ICONS: Record<IconKey, ReactNode> = {
@@ -88,6 +57,7 @@ const ICONS: Record<IconKey, ReactNode> = {
   clock: <ClockCircleOutlined />,
   users: <TeamOutlined />,
   file: <FileTextOutlined />,
+  fieldtime: <FieldTimeOutlined />,
 };
 
 type EventDetailsProps = {
@@ -99,15 +69,11 @@ export default function EventDetails({ content }: EventDetailsProps) {
   const facts = mergedContent.facts?.length
     ? mergedContent.facts
     : EventDetailsContent.facts;
-  const agenda = mergedContent.agenda?.length
-    ? mergedContent.agenda
-    : EventDetailsContent.agenda;
-
   return (
-    <section id="event-details" className="mt-16 mb-20">
+    <section id="event-details" className="mt-16 mb-16">
       <div className="mx-auto max-w-6xl px-4  mt-26 sm:px-6">
         <div className="pb-8 text-center md:pb-12">
-          <div className="flex justify-center pb-4">
+          <div className="flex justify-center pb-3">
             <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-amber-400 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-amber-400">
               <BlurText
                 as="span"
@@ -134,14 +100,14 @@ export default function EventDetails({ content }: EventDetailsProps) {
           </AnimatedContent>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {facts.map((fact, index) => (
             <Card
               key={`${fact.label}-${index}`}
               className="event-details-card event-details-card--fact"
               styles={{
                 body: {
-                  padding: 16,
+                  padding: 10,
                   display: "flex",
                   gap: 12,
                   alignItems: "flex-start",
@@ -149,53 +115,25 @@ export default function EventDetails({ content }: EventDetailsProps) {
               }}
             >
               <div className="gradient-border gradient-border--icon">
-                <div className="gradient-border__inner flex h-12 w-12 items-center justify-center rounded-full text-xl foont-black text-amber-500 shadow-sm">
+                <div className="gradient-border__inner flex h-16 w-16 items-center justify-center rounded-full text-2xl foont-black text-amber-500 shadow-sm">
                   {ICONS[fact.iconKey]}
                 </div>
               </div>
               <div className="flex flex-col gap-1">
-                <Text className="text-xs font-semibold text-neutral-500">
+                <Text className="!text-md font-semibold !text-neutral-600">
                   {fact.label}
                 </Text>
-                <Text className="text-sm font-bold text-neutral-900">{fact.value}</Text>
+                <Text className="!text-lg font-bold text-neutral-900">{fact.value}</Text>
               </div>
             </Card>
           ))}
         </div>
 
-        <div className="flex justify-center mt-30 pt-6 pb-10">
+        {/* <div className="flex justify-center mt-30 pt-6 pb-10">
           <Tag className="event-details-tag !m-0 rounded-full px-4 py-1 text-sm font-semibold">
             {mergedContent.badgeText}
           </Tag>
-        </div>
-
-        <Row gutter={[16, 16]}>
-          {agenda.map((item) => (
-            <Col key={item.time} xs={24} md={12} lg={6}>
-              <Card
-                className="event-details-card event-details-card--agenda"
-                styles={{
-                  body: {
-                    padding: 18,
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: 10,
-                  },
-                }}
-              >
-                <Tag className="event-details-time-tag !m-0 w-fit rounded-full px-3 py-0.5 text-xs font-semibold">
-                  {item.time}
-                </Tag>
-                <Title level={5} className="!m-0 !text-base !font-bold text-neutral-900">
-                  {item.title}
-                </Title>
-                <Text className="text-sm text-neutral-600 truncate">
-                  {item.description}
-                </Text>
-              </Card>
-            </Col>
-          ))}
-        </Row>
+        </div> */}
       </div>
     </section>
   );

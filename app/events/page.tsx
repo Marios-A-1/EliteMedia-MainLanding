@@ -13,9 +13,11 @@ import Testimonials from "@/components/testimonials";
 import Cta from "@/components/cta";
 import EventTicketsCta from "@/components/EventTicketsCta";
 import HowColumnsSection from "@/components/HowColumnsSection";
+import OfferCards from "@/components/OfferCards";
 import { steps } from "framer-motion";
 import Directions, { DirectionsContent } from "@/components/Directions";
 import EventDetails, { EventDetailsContent } from "@/components/EventDetails";
+import BreakdownTimeline, { BreakdownContent } from "@/components/BreakdownTimeline";
 const eventsHero={
   title: <>Βγάλε τα πρώτα σου <br /> 1000€ online σε 90 μέρες </>,
   highlightWords: ["1000€", "90", "μέρες", "αρχάριος"],
@@ -141,12 +143,6 @@ const ForYouIFContent: ForYouIfContent = {
     {
       badge: <>✓</>,
       text: (
-        <>Έχεις κουραστεί να βλέπεις βίντεο, podcasts και TikToks χωρίς πραγματικό αποτέλεσμα.</>
-      ),
-    },
-    {
-      badge: <>✓</>,
-      text: (
         <>Θέλεις έναν ξεκάθαρο τρόπο να βγάλεις τα πρώτα σου 1.000€ μέσα στις επόμενες 90 μέρες.</>
       ),
     },
@@ -156,12 +152,12 @@ const ForYouIFContent: ForYouIfContent = {
         <>Σε ενδιαφέρει να μάθεις πώς βγάζουν λεφτά πραγματικοί επιχειρηματίες όχι θεωρίες.</>
       ),
     },
-    {
-      badge: <>✓</>,
-      text: (
-        <>Θέλεις να δεις live παραδείγματα από άτομα που ξεκίνησαν από το μηδέν, όπως εσύ.</>
-      ),
-    },
+    // {
+    //   badge: <>✓</>,
+    //   text: (
+    //     <>Θέλεις να δεις live παραδείγματα από άτομα που ξεκίνησαν από το μηδέν, όπως εσύ.</>
+    //   ),
+    // },
     {
       badge: <>✓</>,
       text: (
@@ -321,7 +317,9 @@ export default function EventsPage() {
         howWeDoItContent={HowWeDoItContent}
       />
       <Directions content={DirectionsContent} />
+      <BreakdownTimeline content={BreakdownContent} />
       <EventDetails content={EventDetailsContent} />
+      <OfferCards />
       <Testimonials content={TestimonialsContent}/>
       <Cta content={CtaContent}/>
     </>
