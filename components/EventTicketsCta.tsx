@@ -2,31 +2,14 @@
 
 import { useState } from "react";
 import AnimatedContent from "@/components/AnimatedContent";
-import { useOfferCountdownState } from "@/components/CountDown";
-
-const fallbackLink = "mailto:hello@elitemedia.com";
-const resolveEnvLink = (value: string | undefined, fallback: string) =>
-  value && value.trim().length > 0 ? value : fallback;
-
-const REGULAR_EARLY_LINK = resolveEnvLink(
-  process.env.NEXT_PUBLIC_EVENTS_REGULAR_LINK,
-  fallbackLink
-);
-const REGULAR_LATE_LINK = resolveEnvLink(
-  process.env.NEXT_PUBLIC_EVENTS_REGULAR_LINK_EXPIRED,
-  fallbackLink
-);
-const VIP_EARLY_LINK = resolveEnvLink(
-  process.env.NEXT_PUBLIC_EVENTS_VIP_LINK,
-  fallbackLink
-);
-const VIP_LATE_LINK = resolveEnvLink(
-  process.env.NEXT_PUBLIC_EVENTS_VIP_LINK_EXPIRED,
-  fallbackLink
-);
-
-const resolveLink = (isExpired: boolean, early: string, late: string) =>
-  isExpired ? late : early;
+import useEventOfferCountdown from "@/utils/useEventOfferCountdown";
+import {
+  REGULAR_EARLY_LINK,
+  REGULAR_LATE_LINK,
+  VIP_EARLY_LINK,
+  VIP_LATE_LINK,
+  resolveEventTicketLink,
+} from "@/utils/eventOfferLinks";
 
 type EventTicketsCtaProps = {
   label?: string;
@@ -36,10 +19,18 @@ export default function EventTicketsCta({
   label = "Κράτα την θέση σου",
 }: EventTicketsCtaProps) {
   const [open, setOpen] = useState(false);
-  const { isExpired } = useOfferCountdownState();
+  const { isExpired } = useEventOfferCountdown();
 
-  const regularHref = resolveLink(isExpired, REGULAR_EARLY_LINK, REGULAR_LATE_LINK);
-  const vipHref = resolveLink(isExpired, VIP_EARLY_LINK, VIP_LATE_LINK);
+  const regularHref = resolveEventTicketLink(
+    isExpired,
+    REGULAR_EARLY_LINK,
+    REGULAR_LATE_LINK
+  );
+  const vipHref = resolveEventTicketLink(
+    isExpired,
+    VIP_EARLY_LINK,
+    VIP_LATE_LINK
+  );
 
   const baseButtonClassName =
     "btn cursor-pointer font-bold px-5 py-3 text-lg rounded-[1rem] group w-auto hover:brightness-105 sm:w-auto md:px-10 md:py-4 md:text-lg";

@@ -61,9 +61,9 @@ export default function OfferCountdownPopup({
               OFFER
             </p> */}
             <h3 className="mt-2 text-2xl font-bold text-neutral-900 sm:text-2xl">
-              {heading ?? "Έχεις ακόμα"}
+              {heading ?? "Έχεις ακόμα :"}
             </h3>
-            <div className="mt-4 w-fit justify-self-center flex justify-center border-0 border-amber-400 py-2 px-5 rounded-[1rem] bg-white/20">
+            <div className="mt-4 w-fit justify-self-center flex justify-center md:justify-self-center  md:justify-center border-0 border-amber-400 py-2 px-5 rounded-[1rem] bg-white/20">
               <OfferCountdownTimer className="text-3xl text-neutral-900" />
             </div>
             {/* <h3 className="mt-5 text-xl font-bold text-neutral-900 sm:text-xl">

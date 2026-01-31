@@ -14,6 +14,7 @@ import Cta from "@/components/cta";
 import EventTicketsCta from "@/components/EventTicketsCta";
 import HowColumnsSection from "@/components/HowColumnsSection";
 import OfferCards from "@/components/OfferCards";
+import EventOfferCountdownController from "@/components/EventOfferCountdownController";
 import { steps } from "framer-motion";
 import Directions, { DirectionsContent } from "@/components/Directions";
 import EventDetails, { EventDetailsContent } from "@/components/EventDetails";
@@ -303,6 +304,7 @@ const CtaContent = {
 export default function EventsPage() {
   return (
     <>
+      <EventOfferCountdownController />
       <Hero content={eventsHero}/>
       {/* <OldNew /> */}
       {/* <Features /> */}
