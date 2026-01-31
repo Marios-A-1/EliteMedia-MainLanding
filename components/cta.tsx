@@ -6,6 +6,7 @@ type CtaContent = {
   heading?: ReactNode;
   cta?: {
     label?: ReactNode;
+    expiredLabel?: ReactNode;
     href?: string;
   };
 };
@@ -42,6 +43,7 @@ export default function Cta({ content }: CtaProps) {
             <div className="mt-8 flex w-full justify-center">
               <OfferCtaButton
                 freeLabel={content?.cta?.label}
+                expiredLabel={content?.cta?.expiredLabel ?? content?.cta?.label}
                 href={content?.cta?.href}
               />
             </div>
