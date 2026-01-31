@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 import AnimatedContent from "@/components/AnimatedContent";
 import useEventOfferCountdown from "@/utils/useEventOfferCountdown";
 import {
@@ -19,7 +19,44 @@ export default function EventTicketsCta({
   label = "Κράτα την θέση σου",
 }: EventTicketsCtaProps) {
   const [open, setOpen] = useState(false);
+  const [loadingTier, setLoadingTier] = useState<"regular" | "vip" | null>(null);
   const { isExpired } = useEventOfferCountdown();
+
+  const handleCheckout = async (
+    event: MouseEvent<HTMLAnchorElement>,
+    tier: "regular" | "vip",
+    fallbackHref: string
+  ) => {
+    event.preventDefault();
+    if (loadingTier) {
+      return;
+    }
+
+    setLoadingTier(tier);
+
+    try {
+      const response = await fetch("/api/stripe/create-checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ticketTier: tier }),
+      });
+
+      const data = (await response.json().catch(() => null)) as
+        | { url?: string }
+        | null;
+
+      if (response.ok && data?.url) {
+        window.location.href = data.url;
+        return;
+      }
+
+      throw new Error("Failed to create checkout session");
+    } catch (error) {
+      window.location.href = fallbackHref;
+    } finally {
+      setLoadingTier(null);
+    }
+  };
 
   const regularHref = resolveEventTicketLink(
     isExpired,
@@ -33,9 +70,15 @@ export default function EventTicketsCta({
   );
 
   const baseButtonClassName =
-    "btn cursor-pointer font-bold px-5 py-3 text-lg rounded-[1rem] group w-auto hover:brightness-105 sm:w-auto md:px-10 md:py-4 md:text-lg";
+    "btn cursor-pointer font-bold  px-5 py-3 text-lg rounded-[1rem] group w-auto hover:brightness-90 sm:w-auto md:px-10 md:py-4 md:text-lg";
   const primaryButtonClassName =
     "bg-linear-to-r from-amber-500 to-amber-300 bg-[length:100%_auto] text-[#2b2216]";
+  const selectionBaseClassName =
+    "btn font-bold px-5 py-3 text-base rounded-[1rem] w-full transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
+  const selectionRegularClassName =
+    "border border-amber-400/ text-[#2b2216] hover:bg-amber-50 focus-visible:ring-amber-300";
+  const selectionVipClassName =
+    "border-3 border-amber-400 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-300 text-[#2b2216] shadow-[0_10px_26px_rgba(245,158,11,0.35)] hover:brightness-105 focus-visible:ring-amber-400";
 
   return (
     <>
@@ -76,15 +119,19 @@ export default function EventTicketsCta({
             <div className="mt-6 grid gap-3">
               <a
                 href={regularHref}
-                className="btn font-bold px-5 py-3 text-base rounded-[1rem] w-full bg-amber-100 text-[#2b2216] hover:brightness-105"
+                onClick={(event) => handleCheckout(event, "regular", regularHref)}
+                aria-disabled={loadingTier === "regular"}
+                className={`${selectionBaseClassName} ${selectionRegularClassName}`}
               >
-                Regular
+                {loadingTier === "regular" ? "Redirecting..." : "Regular"}
               </a>
               <a
                 href={vipHref}
-                className="btn font-bold px-5 py-3 text-base rounded-[1rem] w-full bg-amber-500 text-[#2b2216] hover:brightness-105"
+                onClick={(event) => handleCheckout(event, "vip", vipHref)}
+                aria-disabled={loadingTier === "vip"}
+                className={`${selectionBaseClassName} ${selectionVipClassName}`}
               >
-                VIP
+                {loadingTier === "vip" ? "Redirecting..." : "VIP"}
               </a>
             </div>
           </div>

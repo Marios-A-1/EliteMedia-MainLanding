@@ -1,5 +1,5 @@
 "use client"
-import type { ReactNode } from "react";
+import { useState, type ReactNode, type MouseEvent } from "react";
 import ElectricBorder from "@/components/ElectricBorder";
 import useEventOfferCountdown from "@/utils/useEventOfferCountdown";
 import {
@@ -27,6 +27,7 @@ export type OfferCard = {
   ctaHrefExpired?: string;
   features?: ReactNode[];
   highlight?: boolean;
+  checkoutTier?: "regular" | "vip";
 };
 
 export type OfferCardsContent = {
@@ -51,9 +52,10 @@ const DEFAULT_OFFERS: OfferCard[] = [
       },
       { label: "ΠΡΟΣΦΟΡΑ", amount: "49€", highlight: true, kind: "offer" },
     ],
-    ctaLabel: "Get Normal",
+    ctaLabel: "Πάρε Κανονικό",
     ctaHref: REGULAR_EARLY_LINK,
     ctaHrefExpired: REGULAR_LATE_LINK,
+    checkoutTier: "regular",
     features: [
       "Πρόσβαση στο 4ωρο masterclass",
       "Καθαρή επιλογή κατεύθυνσης με κριτήριο",
@@ -74,9 +76,10 @@ const DEFAULT_OFFERS: OfferCard[] = [
       },
       { label: "ΠΡΟΣΦΟΡΑ", amount: "99€", highlight: true, kind: "offer" },
     ],
-    ctaLabel: "Get VIP",
+    ctaLabel: "Πάρε VIP",
     ctaHref: VIP_EARLY_LINK,
     ctaHrefExpired: VIP_LATE_LINK,
+    checkoutTier: "vip",
     features: [
       "Όλα όσα περιλαμβάνει το Normal Ticket",
       "Priority check-in",
@@ -91,7 +94,7 @@ const DEFAULT_CONTENT: OfferCardsContent = {
   sectionId: "event-offer-cards",
   eyebrow: "Tickets",
   heading: "Διάλεξε εισιτήριο",
-  description: "Δύο επιλογές. Ίδιο roadmap, ίδιο περιβάλλον, απλά διάλεξε αν θες την πιο “VIP” εμπειρία.",
+  description: "Δύο επιλογές. Ίδιο roadmap, ίδιο περιβάλλον, απλά διάλεξε αν θες την VIP εμπειρία.",
   offers: DEFAULT_OFFERS,
 };
 
@@ -99,6 +102,55 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
   const mergedContent = content ?? DEFAULT_CONTENT;
   const offers = mergedContent.offers ?? DEFAULT_OFFERS;
   const { isExpired } = useEventOfferCountdown();
+  const [loadingTier, setLoadingTier] = useState<string | null>(null);
+  const ctaBaseClassName =
+    "mt-8 inline-flex w-full items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
+  const ctaVipClassName =
+    "border-3 border-amber-400 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-300 text-[#2b2216] shadow-[0_10px_26px_rgba(245,158,11,0.35)] hover:brightness-105 focus-visible:ring-amber-400";
+  const ctaRegularClassName =
+    "border border-amber-300/70 bg-amber-500/20 text-neutral-900 hover:bg-amber-500/30 focus-visible:ring-amber-300";
+
+  const handleCheckout = async (
+    event: MouseEvent<HTMLAnchorElement>,
+    tier: OfferCard["checkoutTier"],
+    fallbackHref?: string
+  ) => {
+    if (!tier) {
+      return;
+    }
+
+    event.preventDefault();
+    if (loadingTier) {
+      return;
+    }
+
+    setLoadingTier(tier);
+
+    try {
+      const response = await fetch("/api/stripe/create-checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ticketTier: tier }),
+      });
+
+      const data = (await response.json().catch(() => null)) as
+        | { url?: string }
+        | null;
+
+      if (response.ok && data?.url) {
+        window.location.href = data.url;
+        return;
+      }
+
+      throw new Error("Failed to create checkout session");
+    } catch (error) {
+      if (fallbackHref) {
+        window.location.href = fallbackHref;
+      }
+    } finally {
+      setLoadingTier(null);
+    }
+  };
 
   return (
     <section
@@ -123,13 +175,15 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
             {offers.map((offer, offerIndex) => {
               const resolvedPriceLines = offer.priceLines
                 ? isExpired
-                  ? offer.priceLines
-                      .filter((line) => line.kind !== "offer")
-                      .map((line) =>
-                        line.kind === "normal"
-                          ? { ...line, strike: false, highlight: true }
-                          : line
-                      )
+                  ? offer.priceLines.map((line) => {
+                      if (line.kind === "normal") {
+                        return { ...line, strike: false, highlight: true };
+                      }
+                      if (line.kind === "offer") {
+                        return { ...line, strike: true, highlight: false };
+                      }
+                      return line;
+                    })
                   : offer.priceLines
                 : undefined;
               const resolvedCtaHref = offer.ctaHref
@@ -139,6 +193,13 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
                     offer.ctaHrefExpired ?? offer.ctaHref
                   )
                 : undefined;
+              const isLoading =
+                loadingTier !== null && loadingTier === offer.checkoutTier;
+              const isVip =
+                offer.checkoutTier === "vip" || offer.highlight === true;
+              const ctaClassName = `${ctaBaseClassName} ${
+                isVip ? ctaVipClassName : ctaRegularClassName
+              }`;
               const card = (
                 <div
                   className={`relative h-full overflow-hidden rounded-2xl border p-6 shadow-lg transition ${
@@ -194,21 +255,23 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
                   ) : null}
 
                   {offer.ctaLabel ? (
-                    resolvedCtaHref ? (
-                      <a
-                        href={resolvedCtaHref}
-                        className="mt-8 inline-flex w-full items-center justify-center rounded-full border border-amber-300 bg-amber-100 px-5 py-3 text-sm font-semibold text-neutral-900 transition hover:brightness-105"
-                      >
-                        {offer.ctaLabel}
-                      </a>
-                    ) : (
-                      <button
-                        type="button"
-                        className="mt-8 inline-flex w-full items-center justify-center rounded-full border border-amber-300 bg-amber-100 px-5 py-3 text-sm font-semibold text-neutral-900 transition hover:brightness-105"
-                      >
-                        {offer.ctaLabel}
-                      </button>
-                    )
+                    <a
+                      href={resolvedCtaHref ?? "#"}
+                      onClick={
+                        offer.checkoutTier
+                          ? (event) =>
+                              handleCheckout(
+                                event,
+                                offer.checkoutTier,
+                                resolvedCtaHref
+                              )
+                          : undefined
+                      }
+                      aria-disabled={isLoading}
+                      className={ctaClassName}
+                    >
+                      {isLoading ? "Redirecting..." : offer.ctaLabel}
+                    </a>
                   ) : null}
                 </div>
               );
