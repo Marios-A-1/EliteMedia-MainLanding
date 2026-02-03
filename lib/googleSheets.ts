@@ -57,15 +57,11 @@ export const appendClaimRow = async (row: ClaimSheetRow) => {
 
   const values = [
     [
-      row.timestamp,
-      row.ticketTier ?? "",
       row.fullName,
-      row.email,
       row.phone,
-      row.sessionId,
-      row.paymentIntentId ?? "",
-      row.amountTotal?.toString() ?? "",
-      row.currency ?? "",
+      row.email,
+      row.ticketTier ?? "",
+      row.amountTotal === 0 ? "Yes" : "",
     ],
   ];
 
