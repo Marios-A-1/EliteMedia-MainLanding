@@ -49,7 +49,7 @@ export default async function ClaimTicketPage({ params }: PageProps) {
       <main className="min-h-screen bg-neutral-950/5 py-16">
         <div className="mx-auto max-w-3xl px-4">
           <h1 className="text-3xl font-bold text-neutral-900">
-            Claim your ticket
+            Συμπλήρωσε τα στοιχεία σου
           </h1>
           <p className="mt-2 text-sm text-neutral-600">
             Didn't get the email? You can still claim from this page with your
@@ -86,7 +86,7 @@ export default async function ClaimTicketPage({ params }: PageProps) {
       <main className="min-h-screen bg-neutral-950/5 py-16">
         <div className="mx-auto max-w-3xl px-4">
           <h1 className="text-3xl font-bold text-neutral-900">
-            Claim your ticket
+            Συμπλήρωσε τα στοιχεία σου
           </h1>
           <div className="mt-8">
             <StatusCard
@@ -100,6 +100,13 @@ export default async function ClaimTicketPage({ params }: PageProps) {
   }
 
   const ticketTier = resolveTicketTier(session);
+  const normalizedTier = ticketTier?.toString().toLowerCase();
+  const resolvedTier =
+    normalizedTier?.includes("vip")
+      ? "vip"
+      : normalizedTier?.includes("regular")
+        ? "regular"
+        : null;
   const isPaid = isPaidSession(session);
   const isClaimed = session.metadata?.claimed === "true";
   const customerEmail =
@@ -143,11 +150,19 @@ export default async function ClaimTicketPage({ params }: PageProps) {
           ) : null}
 
           {isPaid && !isClaimed ? (
-            <ClaimTicketForm
-              tokenOrSessionId={tokenOrSessionId}
-              defaultEmail={customerEmail}
-              defaultName={customerName}
-            />
+            resolvedTier ? (
+              <ClaimTicketForm
+                sessionId={session.id}
+                tier={resolvedTier}
+                defaultEmail={customerEmail}
+                defaultName={customerName}
+              />
+            ) : (
+              <StatusCard
+                title="Missing ticket tier"
+                description="We couldn't determine whether this is a Regular or VIP ticket. Please use the new claim links."
+              />
+            )
           ) : null}
         </div>
       </div>

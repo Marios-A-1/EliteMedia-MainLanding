@@ -37,11 +37,15 @@ export async function POST(request: Request) {
 
   const stripe = getStripe();
   const appUrl = getAppUrl();
+  const successPath =
+    body.ticketTier === "vip"
+      ? "/events/claim-ticket/vip"
+      : "/events/claim-ticket/regular";
 
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
     line_items: [{ price: priceId, quantity: 1 }],
-    success_url: `${appUrl}/events/claim-ticket/{CHECKOUT_SESSION_ID}`,
+    success_url: `${appUrl}${successPath}?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${appUrl}/events`,
     metadata: {
       ticketTier: body.ticketTier,

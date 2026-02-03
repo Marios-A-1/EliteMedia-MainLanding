@@ -3,7 +3,8 @@
 import { useState, type FormEvent } from "react";
 
 type ClaimTicketFormProps = {
-  tokenOrSessionId: string;
+  sessionId: string;
+  tier: "regular" | "vip";
   defaultEmail?: string;
   defaultName?: string;
   defaultPhone?: string;
@@ -11,14 +12,12 @@ type ClaimTicketFormProps = {
 
 const resolveMessage = (status?: string) => {
   switch (status) {
+    case "invalid_tier":
+      return "This ticket tier is invalid.";
     case "already_claimed":
       return "This ticket has already been claimed.";
     case "not_paid":
       return "We couldn't confirm your payment yet. Please try again later.";
-    case "expired":
-      return "This claim link has expired. Please request a new one.";
-    case "invalid":
-      return "This claim link is invalid. Please check the link or use your session ID.";
     case "session_not_found":
       return "We couldn't find that checkout session.";
     default:
@@ -27,7 +26,8 @@ const resolveMessage = (status?: string) => {
 };
 
 export default function ClaimTicketForm({
-  tokenOrSessionId,
+  sessionId,
+  tier,
   defaultEmail,
   defaultName,
   defaultPhone,
@@ -50,7 +50,8 @@ export default function ClaimTicketForm({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          tokenOrSessionId,
+          sessionId,
+          tier,
           fullName,
           email,
           phone,
@@ -78,7 +79,7 @@ export default function ClaimTicketForm({
   return (
     <form onSubmit={handleSubmit} className="mt-8 space-y-5">
       <div>
-        <label className="text-sm font-semibold text-neutral-700">Full name</label>
+        <label className="text-sm font-semibold text-neutral-700">Ονοματεπώνυμο</label>
         <input
           type="text"
           required
@@ -98,7 +99,7 @@ export default function ClaimTicketForm({
         />
       </div>
       <div>
-        <label className="text-sm font-semibold text-neutral-700">Phone</label>
+        <label className="text-sm font-semibold text-neutral-700">Τηλέφωνο</label>
         <input
           type="tel"
           required
@@ -113,7 +114,7 @@ export default function ClaimTicketForm({
         disabled={status === "loading" || status === "success"}
         className="inline-flex w-full items-center justify-center rounded-full border border-amber-300 bg-amber-400/90 px-5 py-3 text-sm font-semibold text-neutral-900 transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {status === "loading" ? "Claiming..." : "Claim ticket"}
+        {status === "loading" ? "Επεξεργασία..." : "Κράτα την θέση σου"}
       </button>
 
       {message ? (
