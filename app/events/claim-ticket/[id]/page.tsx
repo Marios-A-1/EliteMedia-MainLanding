@@ -1,4 +1,4 @@
-import Stripe from "stripe";
+﻿import Stripe from "stripe";
 
 import ClaimTicketForm from "./ClaimTicketForm";
 import { verifyClaimToken } from "@/lib/claimToken";
@@ -48,20 +48,19 @@ export default async function ClaimTicketPage({ params }: PageProps) {
     return (
       <main className="min-h-screen bg-neutral-950/5 py-16">
         <div className="mx-auto max-w-3xl px-4">
-          <h1 className="text-3xl font-bold text-neutral-900">
-            Συμπλήρωσε τα στοιχεία σου
+          <h1 className="text-center text-3xl font-bold text-neutral-900">
+            Κράτα τη θέση σου
           </h1>
-          <p className="mt-2 text-sm text-neutral-600">
-            Didn't get the email? You can still claim from this page with your
-            checkout session ID.
+          <p className="mt-2 text-center text-sm text-neutral-600">
+            Χρησιμοποίησε το ID συνεδρίας πληρωμής για να συνεχίσεις.
           </p>
           <div className="mt-8">
             <StatusCard
-              title="Claim link issue"
+              title="Πρόβλημα με τον σύνδεσμο"
               description={
                 tokenError === "expired"
-                  ? "This claim link has expired. Please use your checkout session ID or request a new claim email."
-                  : "This claim link is invalid. Please use your checkout session ID or request a new claim email."
+                  ? "Ο σύνδεσμος έχει λήξει. Χρησιμοποίησε το ID συνεδρίας πληρωμής."
+                  : "Ο σύνδεσμος δεν είναι έγκυρος. Χρησιμοποίησε το ID συνεδρίας πληρωμής."
               }
             />
           </div>
@@ -85,13 +84,13 @@ export default async function ClaimTicketPage({ params }: PageProps) {
     return (
       <main className="min-h-screen bg-neutral-950/5 py-16">
         <div className="mx-auto max-w-3xl px-4">
-          <h1 className="text-3xl font-bold text-neutral-900">
-            Συμπλήρωσε τα στοιχεία σου
+          <h1 className="text-center text-3xl font-bold text-neutral-900">
+            Κράτα τη θέση σου
           </h1>
           <div className="mt-8">
             <StatusCard
-              title="Session not found"
-              description="We couldn't load your checkout session. Please check the link or contact support."
+              title="Δεν βρέθηκε συνεδρία"
+              description="Δεν μπορέσαμε να βρούμε το ID συνεδρίας πληρωμής. Έλεγξε τον σύνδεσμο."
             />
           </div>
         </div>
@@ -116,26 +115,28 @@ export default async function ClaimTicketPage({ params }: PageProps) {
   return (
     <main className="min-h-screen bg-neutral-950/5 py-16">
       <div className="mx-auto max-w-3xl px-4">
-        <h1 className="text-3xl font-bold text-neutral-900">Claim your ticket</h1>
-        <p className="mt-2 text-sm text-neutral-600">
-          Didn't get the email? You can still claim from this page.
+        <h1 className="text-center text-3xl font-bold text-neutral-900">
+          Κράτα τη θέση σου
+        </h1>
+        <p className="mt-2 text-center text-sm text-neutral-600">
+          Συμπλήρωσε τα στοιχεία σου για να ολοκληρώσεις την καταχώρηση.
         </p>
 
         <div className="mt-6 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
           <div className="flex flex-wrap items-center gap-3 text-sm text-neutral-600">
             <span className="rounded-full bg-neutral-100 px-3 py-1">
-              Session: {session.id}
+              Συνεδρία: {session.id}
             </span>
             <span className="rounded-full bg-neutral-100 px-3 py-1">
-              Tier: {ticketTier}
+              Κατηγορία: {ticketTier}
             </span>
           </div>
 
           {!isPaid ? (
             <div className="mt-6">
               <StatusCard
-                title="Payment pending"
-                description="We haven't confirmed your payment yet. If you paid with an async method, refresh in a few minutes."
+                title="Η πληρωμή εκκρεμεί"
+                description="Δεν έχει επιβεβαιωθεί ακόμη η πληρωμή. Αν πλήρωσες με ασύγχρονη μέθοδο, δοκίμασε ξανά σε λίγα λεπτά."
               />
             </div>
           ) : null}
@@ -143,8 +144,8 @@ export default async function ClaimTicketPage({ params }: PageProps) {
           {isClaimed ? (
             <div className="mt-6">
               <StatusCard
-                title="Already claimed"
-                description="This ticket has already been claimed. If you think this is a mistake, contact support."
+                title="Ήδη καταχωρήθηκε"
+                description="Αυτό το εισιτήριο έχει ήδη καταχωρηθεί."
               />
             </div>
           ) : null}
@@ -159,8 +160,8 @@ export default async function ClaimTicketPage({ params }: PageProps) {
               />
             ) : (
               <StatusCard
-                title="Missing ticket tier"
-                description="We couldn't determine whether this is a Regular or VIP ticket. Please use the new claim links."
+                title="Δεν βρέθηκε κατηγορία"
+                description="Δεν μπορέσαμε να προσδιορίσουμε αν είναι Regular ή VIP. Χρησιμοποίησε τους νέους συνδέσμους."
               />
             )
           ) : null}

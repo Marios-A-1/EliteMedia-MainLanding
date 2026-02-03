@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, type FormEvent } from "react";
 
@@ -13,17 +13,23 @@ type ClaimTicketFormProps = {
 const resolveMessage = (status?: string) => {
   switch (status) {
     case "invalid_tier":
-      return "This ticket tier is invalid.";
+      return "Μη έγκυρη κατηγορία εισιτηρίου.";
+    case "invalid_phone":
+      return "Μη έγκυρος αριθμός τηλεφώνου.";
     case "already_claimed":
-      return "This ticket has already been claimed.";
+      return "Αυτό το εισιτήριο έχει ήδη καταχωρηθεί.";
     case "not_paid":
-      return "We couldn't confirm your payment yet. Please try again later.";
+      return "Δεν έχει επιβεβαιωθεί ακόμη η πληρωμή.";
     case "session_not_found":
-      return "We couldn't find that checkout session.";
+      return "Δεν βρέθηκε η συνεδρία πληρωμής.";
     default:
-      return "Something went wrong. Please try again or contact support.";
+      return "Κάτι πήγε στραβά. Προσπάθησε ξανά.";
   }
 };
+
+const normalizePhone = (value: string) => value.replace(/[^\d+]/g, "");
+
+const isValidPhone = (value: string) => /^\+?\d{8,15}$/.test(value);
 
 export default function ClaimTicketForm({
   sessionId,
@@ -45,6 +51,13 @@ export default function ClaimTicketForm({
     setStatus("loading");
     setMessage(null);
 
+    const normalizedPhone = normalizePhone(phone);
+    if (!isValidPhone(normalizedPhone)) {
+      setStatus("error");
+      setMessage("Μη έγκυρος αριθμός τηλεφώνου.");
+      return;
+    }
+
     try {
       const response = await fetch("/api/events/claim-ticket", {
         method: "POST",
@@ -54,7 +67,7 @@ export default function ClaimTicketForm({
           tier,
           fullName,
           email,
-          phone,
+          phone: normalizedPhone,
         }),
       });
 
@@ -69,17 +82,19 @@ export default function ClaimTicketForm({
       }
 
       setStatus("success");
-      setMessage("Ticket claimed successfully. Check your email for confirmation.");
+      setMessage("Η θέση σου καταχωρήθηκε.");
     } catch (error) {
       setStatus("error");
-      setMessage("Something went wrong. Please try again.");
+      setMessage("Κάτι πήγε στραβά. Προσπάθησε ξανά.");
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="mt-8 space-y-5">
       <div>
-        <label className="text-sm font-semibold text-neutral-700">Ονοματεπώνυμο</label>
+        <label className="text-sm font-semibold text-neutral-700">
+          Ονοματεπώνυμο
+        </label>
         <input
           type="text"
           required
@@ -89,7 +104,9 @@ export default function ClaimTicketForm({
         />
       </div>
       <div>
-        <label className="text-sm font-semibold text-neutral-700">Email</label>
+        <label className="text-sm font-semibold text-neutral-700">
+          Ηλεκτρονικό ταχυδρομείο
+        </label>
         <input
           type="email"
           required
@@ -102,6 +119,7 @@ export default function ClaimTicketForm({
         <label className="text-sm font-semibold text-neutral-700">Τηλέφωνο</label>
         <input
           type="tel"
+          inputMode="tel"
           required
           value={phone}
           onChange={(event) => setPhone(event.target.value)}
@@ -114,10 +132,10 @@ export default function ClaimTicketForm({
         disabled={status === "loading" || status === "success"}
         className="inline-flex w-full items-center justify-center rounded-full border border-amber-300 bg-amber-400/90 px-5 py-3 text-sm font-semibold text-neutral-900 transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {status === "loading" ? "Επεξεργασία..." : "Κράτα την θέση σου"}
+        {status === "loading" ? "Επεξεργασία..." : "Κράτα τη θέση σου"}
       </button>
 
-      {message ? ( 
+      {message ? (
         <p
           className={`text-sm ${
             status === "success" ? "text-emerald-600" : "text-rose-600"

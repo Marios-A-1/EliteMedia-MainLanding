@@ -78,3 +78,55 @@ export const appendClaimRow = async (row: ClaimSheetRow) => {
     return { ok: false, skipped: false } as const;
   }
 };
+
+const looksLikeHeader = (value: string) => {
+  const normalized = value.trim().toLowerCase();
+  if (!normalized) return false;
+  const headerCandidates = [
+    "name",
+    "full name",
+    "fullname",
+    "full_name",
+    "ονομα",
+    "όνομα",
+    "πλήρες όνομα",
+    "πληρες ονομα",
+  ];
+  return headerCandidates.some((candidate) => normalized === candidate);
+};
+
+export const getClaimedRowsCount = async () => {
+  if (!sheetsClientPromise) {
+    sheetsClientPromise = getSheetsClient();
+  }
+
+  const sheets = await sheetsClientPromise;
+  const config = getSheetsConfig();
+
+  if (!sheets || !config) {
+    console.warn("Google Sheets not configured; skipping count.");
+    return null;
+  }
+
+  try {
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId: config.sheetId,
+      range: `${config.tabName}!A:A`,
+    });
+
+    const values = response.data.values ?? [];
+    const firstColumnValues = values
+      .map((row) => (row?.[0] ?? "").toString().trim())
+      .filter(Boolean);
+
+    if (firstColumnValues.length === 0) {
+      return 0;
+    }
+
+    const headerOffset = looksLikeHeader(firstColumnValues[0]) ? 1 : 0;
+    return Math.max(0, firstColumnValues.length - headerOffset);
+  } catch (error) {
+    console.error("Failed to read Google Sheets rows", error);
+    return null;
+  }
+};

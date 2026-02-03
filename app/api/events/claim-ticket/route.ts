@@ -33,11 +33,19 @@ export async function POST(request: Request) {
   const tier = body?.tier;
   const fullName = body?.fullName?.trim();
   const email = body?.email?.trim();
-  const phone = body?.phone?.trim();
+  const rawPhone = body?.phone?.trim();
+  const phone = rawPhone ? rawPhone.replace(/[^\d+]/g, "") : "";
 
   if (!sessionId || !tier || !fullName || !email || !phone) {
     return NextResponse.json(
       { ok: false, status: "missing_fields" },
+      { status: 400 }
+    );
+  }
+
+  if (!/^\+?\d{8,15}$/.test(phone)) {
+    return NextResponse.json(
+      { ok: false, status: "invalid_phone" },
       { status: 400 }
     );
   }
