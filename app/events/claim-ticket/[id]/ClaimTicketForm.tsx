@@ -82,7 +82,7 @@ export default function ClaimTicketForm({
       }
 
       setStatus("success");
-      setMessage("Η θέση σου καταχωρήθηκε.");
+      setMessage("Η θέση σου καταχωρήθηκε. Θα επικοινωνήσουμε μαζί σου για περισσότερες πληροφορίες σύντομα!");
     } catch (error) {
       setStatus("error");
       setMessage("Κάτι πήγε στραβά. Προσπάθησε ξανά.");
