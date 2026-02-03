@@ -3,7 +3,7 @@ import ClaimTicketForm from "../[id]/ClaimTicketForm";
 export const dynamic = "force-dynamic";
 
 type PageProps = {
-  searchParams?: { session_id?: string };
+  searchParams?: Promise<{ session_id?: string }>;
 };
 
 const MissingSession = () => (
@@ -21,13 +21,14 @@ const MissingSession = () => (
   </div>
 );
 
-export default function ClaimVipPage({ searchParams }: PageProps) {
-  const sessionId = searchParams?.session_id;
+export default async function ClaimVipPage({ searchParams }: PageProps) {
+  const resolvedSearchParams = await searchParams;
+  const sessionId = resolvedSearchParams?.session_id;
 
   return (
     <main className="min-h-screen bg-neutral-950/5 py-16">
       <div className="mx-auto max-w-3xl px-4">
-        <h1 className="text-3xl font-bold text-neutral-900">Συμπλήρωσε τα στοιχεία σου</h1>
+        <h1 className="text-3xl font-bold text-neutral-900">Claim your ticket</h1>
         <p className="mt-2 text-sm text-neutral-600">VIP ticket</p>
 
         <div className="mt-6 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
