@@ -117,7 +117,7 @@ export default function ClaimTicketForm({
         {status === "loading" ? "Επεξεργασία..." : "Κράτα την θέση σου"}
       </button>
 
-      {message ? (
+      {message ? ( 
         <p
           className={`text-sm ${
             status === "success" ? "text-emerald-600" : "text-rose-600"
