@@ -103,15 +103,19 @@ export async function POST(request: Request) {
     currency: session.currency ?? null,
   });
 
-  try {
-    await sendTicketConfirmedEmail({
-      email,
-      fullName,
-      ticketTier: tier,
-      sessionId,
-    });
-  } catch (error) {
-    console.error("Failed to send confirmation email", error);
+  if (process.env.EMAIL_PROVIDER_API_KEY) {
+    try {
+      await sendTicketConfirmedEmail({
+        email,
+        fullName,
+        ticketTier: tier,
+        sessionId,
+      });
+    } catch (error) {
+      console.error("Failed to send confirmation email", error);
+    }
+  } else {
+    console.warn("Email provider not configured; skipping confirmation email.");
   }
 
   return NextResponse.json({ ok: true, status: "claimed", ticketTier: tier });
