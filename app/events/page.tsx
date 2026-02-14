@@ -1,6 +1,7 @@
 export const metadata = {
-  title: "Events - Open PRO",
-  description: "Page description",
+  title: "Elite Media Event",
+  description:
+    "Join the Elite Media Academy event and learn a practical roadmap to build your first 1,000 EUR online in 90 days.",
 };
 
 import Hero from "@/components/hero-home";

@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Reset Password - Open PRO",
-  description: "Page description",
+  title: "Reset Password | Elite Media",
+  description: "Reset your Elite Media account password.",
 };
 
 import Link from "next/link";

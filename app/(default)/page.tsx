@@ -1,6 +1,7 @@
 ﻿export const metadata = {
-  title: "Home - Open PRO",
-  description: "Page description",
+  title: "Elite Media",
+  description:
+    "Elite Media drives measurable growth for Greek businesses through social media strategy, content production, and conversion-focused campaigns.",
 };
 import PageIllustration from "@/components/page-illustration";
 import Hero from "@/components/hero-home";
