@@ -311,20 +311,20 @@ export default function EventsPage() {
       <Hero content={eventsHero}/>
       {/* <OldNew /> */}
       {/* <Features /> */}
-      <ForYouIf content={ForYouIFContent}/>
+      {/* <ForYouIf content={ForYouIFContent}/> */}
       {/* <ForbesQuote /> */}
-      <HowColumnsSection
+      {/* <HowColumnsSection
         id="giati-elite-media"
         eyebrow={HowColumnsSharedContent.eyebrow}
         heading={HowColumnsSharedContent.heading}
         subheading={HowColumnsSharedContent.subheading}
         howItWorksContent={HowItWorksContent}
         howWeDoItContent={HowWeDoItContent}
-      />
+        /> */}
+        <OfferCards />
       <Directions content={DirectionsContent} />
       <BreakdownTimeline content={BreakdownContent} />
       <EventDetails content={EventDetailsContent} />
-      <OfferCards />
       <Testimonials content={TestimonialsContent}/>
       <Cta content={CtaContent}/>
     </>

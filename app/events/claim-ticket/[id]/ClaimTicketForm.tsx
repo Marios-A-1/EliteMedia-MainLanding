@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import { useState, type FormEvent } from "react";
+import { useRouter } from "next/navigation";
 
 type ClaimTicketFormProps = {
   sessionId: string;
@@ -38,6 +39,10 @@ export default function ClaimTicketForm({
   defaultName,
   defaultPhone,
 }: ClaimTicketFormProps) {
+  const router = useRouter();
+  const thankYouUrl = `/events/claim-ticket/thank-you?session_id=${encodeURIComponent(
+    sessionId
+  )}`;
   const [fullName, setFullName] = useState(defaultName ?? "");
   const [email, setEmail] = useState(defaultEmail ?? "");
   const [phone, setPhone] = useState(defaultPhone ?? "");
@@ -76,13 +81,18 @@ export default function ClaimTicketForm({
         | null;
 
       if (!response.ok) {
+        if (data?.status === "already_claimed") {
+          setStatus("success");
+          router.replace(thankYouUrl);
+          return;
+        }
         setStatus("error");
         setMessage(resolveMessage(data?.status));
         return;
       }
 
       setStatus("success");
-      setMessage("Η θέση σου καταχωρήθηκε. Θα επικοινωνήσουμε μαζί σου για περισσότερες πληροφορίες σύντομα!");
+      router.replace(thankYouUrl);
     } catch (error) {
       setStatus("error");
       setMessage("Κάτι πήγε στραβά. Προσπάθησε ξανά.");
