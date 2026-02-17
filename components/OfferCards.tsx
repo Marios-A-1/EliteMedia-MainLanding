@@ -128,10 +128,12 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
   const { isExpired } = useEventOfferCountdown();
   const [loadingTier, setLoadingTier] = useState<string | null>(null);
   const ctaBaseClassName =
-    "mt-8 inline-flex w-full items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
+    "inline-flex w-full items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
   const ctaVipClassName =
     "border-3 border-amber-400 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-300 text-[#2b2216] shadow-[0_10px_26px_rgba(245,158,11,0.35)] hover:brightness-105 focus-visible:ring-amber-400";
   const ctaRegularClassName =
+    "border border-amber-400/80 bg-amber-300/55 text-[#2b2216] shadow-[0_10px_24px_rgba(180,83,9,0.18)] hover:bg-amber-300/75 focus-visible:ring-amber-400";
+  const ctaOnlineClassName =
     "border border-amber-300/70 bg-amber-500/20 text-neutral-900 hover:bg-amber-500/30 focus-visible:ring-amber-300";
 
   const handleCheckout = async (
@@ -239,16 +241,23 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
                 loadingTier !== null && loadingTier === offer.checkoutTier;
               const isVip =
                 offer.checkoutTier === "vip" || offer.highlight === true;
+              const isRegular = offer.checkoutTier === "regular";
+              const cardToneClassName = isVip
+                ? "border-amber-400/80 bg-amber-200/30"
+                : isRegular
+                  ? "border-amber-400/70 bg-amber-100/45 shadow-[0_16px_34px_rgba(180,83,9,0.12)]"
+                  : "border-amber-200/60 bg-amber-50/70";
+              const ctaToneClassName = isVip
+                ? ctaVipClassName
+                : isRegular
+                  ? ctaRegularClassName
+                  : ctaOnlineClassName;
               const ctaClassName = `${ctaBaseClassName} ${
-                isVip ? ctaVipClassName : ctaRegularClassName
+                ctaToneClassName
               }`;
               const card = (
                 <div
-                  className={`relative flex h-full flex-col overflow-hidden rounded-2xl border p-6 shadow-lg transition ${
-                    offer.highlight
-                      ? "border-amber-400/80 bg-amber-200/30"
-                      : "border-amber-200/60 bg-amber-50/70"
-                  }`}
+                  className={`relative flex h-full flex-col overflow-hidden rounded-2xl border p-6 shadow-lg transition ${cardToneClassName}`}
                 >
                   {offer.highlight ? (
                     <span className="absolute right-4 top-4 inline-flex items-center rounded-full bg-amber-400/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.05em] text-amber-700">
@@ -297,23 +306,25 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
                   ) : null}
 
                   {offer.ctaLabel ? (
-                    <a
-                      href={resolvedCtaHref ?? "#"}
-                      onClick={
-                        offer.checkoutTier
-                          ? (event) =>
-                              handleCheckout(
-                                event,
-                                offer.checkoutTier,
-                                resolvedCtaHref
-                              )
-                          : undefined
-                      }
-                      aria-disabled={isLoading}
-                      className={`${ctaClassName} mt-auto`}
-                    >
-                      {isLoading ? "Redirecting..." : offer.ctaLabel}
-                    </a>
+                    <div className="mt-auto pt-6">
+                      <a
+                        href={resolvedCtaHref ?? "#"}
+                        onClick={
+                          offer.checkoutTier
+                            ? (event) =>
+                                handleCheckout(
+                                  event,
+                                  offer.checkoutTier,
+                                  resolvedCtaHref
+                                )
+                            : undefined
+                        }
+                        aria-disabled={isLoading}
+                        className={ctaClassName}
+                      >
+                        {isLoading ? "Redirecting..." : offer.ctaLabel}
+                      </a>
+                    </div>
                   ) : null}
                 </div>
               );
