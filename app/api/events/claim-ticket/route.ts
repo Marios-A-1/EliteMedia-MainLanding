@@ -98,7 +98,7 @@ export async function POST(request: Request) {
           ? session.amount_total / 100
           : undefined;
 
-      await sendMetaPurchaseEvent({
+      const metaResult = await sendMetaPurchaseEvent({
         eventId: `stripe_checkout_${session.id}`,
         email: email || session.customer_details?.email || session.customer_email || undefined,
         fbp: session.metadata?.fbp,
@@ -107,8 +107,12 @@ export async function POST(request: Request) {
         currency: session.currency ?? undefined,
       });
 
-      metaPurchaseSent = true;
-      metaPurchaseSentAt = new Date().toISOString();
+      if (metaResult.sent) {
+        metaPurchaseSent = true;
+        metaPurchaseSentAt = new Date().toISOString();
+      } else {
+        console.warn("Meta CAPI purchase event skipped in claim flow", metaResult);
+      }
     } catch (error) {
       console.error("Failed to send Meta CAPI purchase event from claim flow", error);
     }

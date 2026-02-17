@@ -3,6 +3,7 @@ import { useState, type ReactNode, type MouseEvent } from "react";
 import ElectricBorder from "@/components/ElectricBorder";
 import useEventOfferCountdown from "@/utils/useEventOfferCountdown";
 import AnimatedContent from "@/components/AnimatedContent";
+import BlurText from "@/components/BlurText";
 import {
   REGULAR_EARLY_LINK,
   REGULAR_LATE_LINK,
@@ -162,10 +163,22 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
         <div className="pb-10 md:py-10">
           <div className="mx-auto max-w-2xl text-center">
             {mergedContent.eyebrow ? (
-              <AnimatedContent ease="power3.out" duration={1} delay={0.15} distance={60}>
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-500">
-                  {mergedContent.eyebrow}
-                </p>
+              <AnimatedContent
+                ease="power3.out"
+                duration={1}
+                delay={0.15}
+                distance={60}
+                className="flex justify-center pb-3"
+              >
+                <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-amber-400 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-amber-400">
+                  <BlurText
+                    as="span"
+                    delay={50}
+                    spanClassName="bg-linear-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent"
+                  >
+                    {mergedContent.eyebrow}
+                  </BlurText>
+                </div>
               </AnimatedContent>
             ) : null}
             <AnimatedContent ease="power3.out" duration={1} delay={0.25} distance={60}>
