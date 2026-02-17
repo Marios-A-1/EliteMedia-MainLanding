@@ -24,9 +24,9 @@ const eventsHero={
   title: <>Βγάλε τα πρώτα σου <br /> 1000€ online σε 90 μέρες </>,
   highlightWords: ["1000€", "90", "μέρες", "αρχάριος"],
   description: <>Ως Αρχάριος - Στην Ελλάδα - Το 2026</>,
-  videoId: "1128212394",
+  videoId: "1165635652",
   videoTitle: "Events video",
-  videoParams: "autoplay=0&title=0&byline=0&portrait=0",
+  videoParams: "autoplay=1&muted=1&playsinline=1&title=0&byline=0&portrait=0",
   ctaNode: <EventTicketsCta />,
   offerPopupCtaHref: "#event-offer-cards",
   
