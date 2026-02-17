@@ -43,7 +43,7 @@ export const EventDetailsContent: EventDetailsContent = {
   facts: [
     { iconKey: "calendar", label: "Ημερομηνία", value: "1 Μαρτίου 2026" },
     { iconKey: "pin", label: "Τοποθεσία", value: "Δάφνη - Στριγγάρη 5" },
-    { iconKey: "clock", label: "Ώρα", value: "20:00" },
+    { iconKey: "clock", label: "Ώρα", value: "12:00" },
     { iconKey: "fieldtime", label: "Διάρκεια", value: "4 ώρες " },
     { iconKey: "users", label: "Μετά το Event", value: "Networking" },
     { iconKey: "file", label: "Υλικό", value: "Slides / PDF" },
