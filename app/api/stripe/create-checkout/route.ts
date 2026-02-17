@@ -13,6 +13,35 @@ type RequestBody = {
   email?: string;
 };
 
+const readCookie = (cookieHeader: string | null, name: string) => {
+  if (!cookieHeader) {
+    return undefined;
+  }
+
+  const target = `${name}=`;
+  const parts = cookieHeader.split(";");
+
+  for (const part of parts) {
+    const trimmed = part.trim();
+    if (!trimmed.startsWith(target)) {
+      continue;
+    }
+
+    const rawValue = trimmed.slice(target.length);
+    if (!rawValue) {
+      return undefined;
+    }
+
+    try {
+      return decodeURIComponent(rawValue);
+    } catch {
+      return rawValue;
+    }
+  }
+
+  return undefined;
+};
+
 const resolvePriceId = (tier: TicketTier) => {
   if (tier === "regular") {
     return process.env.STRIPE_REGULAR_PRICE_ID;
@@ -41,6 +70,9 @@ export async function POST(request: Request) {
     body.ticketTier === "vip"
       ? "/events/claim-ticket/vip"
       : "/events/claim-ticket/regular";
+  const cookieHeader = request.headers.get("cookie");
+  const fbp = readCookie(cookieHeader, "_fbp");
+  const fbc = readCookie(cookieHeader, "_fbc");
 
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
@@ -49,6 +81,8 @@ export async function POST(request: Request) {
     cancel_url: `${appUrl}/events`,
     metadata: {
       ticketTier: body.ticketTier,
+      ...(fbp ? { fbp } : {}),
+      ...(fbc ? { fbc } : {}),
     },
     customer_email: body.email,
   });

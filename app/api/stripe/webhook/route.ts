@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 
 import { createClaimToken } from "@/lib/claimToken";
 import { sendClaimLinkEmail } from "@/lib/email";
+import { sendMetaPurchaseEvent } from "@/lib/metaCapi";
 import {
   getStripe,
   isPaidSession,
@@ -64,9 +65,12 @@ export async function POST(request: Request) {
       const claimTokenIssuedAt = new Date().toISOString();
       const email =
         session.customer_details?.email ?? session.customer_email ?? undefined;
+      const hasSentMetaPurchase = session.metadata?.metaPurchaseSent === "true";
 
       let emailSent = false;
       let emailSentAt: string | undefined;
+      let metaPurchaseSent = hasSentMetaPurchase;
+      let metaPurchaseSentAt = session.metadata?.metaPurchaseSentAt;
 
       if (email) {
         try {
@@ -85,6 +89,29 @@ export async function POST(request: Request) {
         console.warn("No customer email found for session", sessionId);
       }
 
+      if (!hasSentMetaPurchase) {
+        try {
+          const amountTotal =
+            typeof session.amount_total === "number"
+              ? session.amount_total / 100
+              : undefined;
+
+          await sendMetaPurchaseEvent({
+            eventId: `stripe_checkout_${session.id}`,
+            email,
+            fbp: session.metadata?.fbp,
+            fbc: session.metadata?.fbc,
+            value: amountTotal,
+            currency: session.currency ?? undefined,
+          });
+
+          metaPurchaseSent = true;
+          metaPurchaseSentAt = new Date().toISOString();
+        } catch (error) {
+          console.error("Failed to send Meta CAPI purchase event", error);
+        }
+      }
+
       const claimedValue = session.metadata?.claimed === "true" ? "true" : "false";
       const metadata = mergeMetadata(session.metadata, {
         ticketTier,
@@ -92,11 +119,13 @@ export async function POST(request: Request) {
         claimed: claimedValue,
         emailSent: emailSent ? "true" : "false",
         emailSentAt,
+        metaPurchaseSent: metaPurchaseSent ? "true" : "false",
+        metaPurchaseSentAt,
       });
 
       await stripe.checkout.sessions.update(sessionId, { metadata });
 
-      return NextResponse.json({ received: true, emailSent });
+      return NextResponse.json({ received: true, emailSent, metaPurchaseSent });
     } catch (error) {
       console.error("Stripe webhook handler failed", error);
       return NextResponse.json(

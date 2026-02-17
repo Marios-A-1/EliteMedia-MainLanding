@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 
 import { sendTicketConfirmedEmail } from "@/lib/email";
 import { appendClaimRow } from "@/lib/googleSheets";
+import { sendMetaPurchaseEvent } from "@/lib/metaCapi";
 import { getStripe, isPaidSession, mergeMetadata } from "@/lib/stripe";
 
 export const runtime = "nodejs";
@@ -86,6 +87,33 @@ export async function POST(request: Request) {
     );
   }
 
+  const hasSentMetaPurchase = session.metadata?.metaPurchaseSent === "true";
+  let metaPurchaseSent = hasSentMetaPurchase;
+  let metaPurchaseSentAt = session.metadata?.metaPurchaseSentAt;
+
+  if (!hasSentMetaPurchase) {
+    try {
+      const amountTotal =
+        typeof session.amount_total === "number"
+          ? session.amount_total / 100
+          : undefined;
+
+      await sendMetaPurchaseEvent({
+        eventId: `stripe_checkout_${session.id}`,
+        email: email || session.customer_details?.email || session.customer_email || undefined,
+        fbp: session.metadata?.fbp,
+        fbc: session.metadata?.fbc,
+        value: amountTotal,
+        currency: session.currency ?? undefined,
+      });
+
+      metaPurchaseSent = true;
+      metaPurchaseSentAt = new Date().toISOString();
+    } catch (error) {
+      console.error("Failed to send Meta CAPI purchase event from claim flow", error);
+    }
+  }
+
   const claimedAt = new Date().toISOString();
 
   const metadata = mergeMetadata(session.metadata, {
@@ -95,6 +123,8 @@ export async function POST(request: Request) {
     claimedName: fullName,
     claimedEmail: email,
     claimedPhone: phone,
+    metaPurchaseSent: metaPurchaseSent ? "true" : "false",
+    metaPurchaseSentAt,
   });
 
   await stripe.checkout.sessions.update(sessionId, { metadata });

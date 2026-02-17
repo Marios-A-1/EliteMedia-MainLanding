@@ -159,7 +159,7 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
       className="relative mt-12"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="py-12 md:py-20">
+        <div className="pb-10 md:py-10">
           <div className="mx-auto max-w-2xl text-center">
             {mergedContent.eyebrow ? (
               <AnimatedContent ease="power3.out" duration={1} delay={0.15} distance={60}>
