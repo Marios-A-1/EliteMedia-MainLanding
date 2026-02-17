@@ -3,6 +3,7 @@ import "./css/style.css";
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 import localFont from "next/font/local"
+import Script from "next/script";
 import './css/style.css'
 import './css/additional-styles/theme.css'
 import './css/additional-styles/utility-patterns.css'
@@ -46,7 +47,7 @@ const nacelle = localFont({
 export const metadata: Metadata = {
   title: "Elite Media",
   description:
-    "Elite Media helps Greek businesses grow with strategy-led social media marketing, content systems, and performance-focused execution.",
+    "Η Elite Media βοηθά τις ελληνικές επιχειρήσεις να αναπτυχθούν με στρατηγικό μάρκετινγκ μέσω social media, συστήματα περιεχομένου και εκτέλεση με επίκεντρο την απόδοση.",
   applicationName: "Elite Media",
   keywords: [
     "Elite Media",
@@ -61,14 +62,16 @@ export const metadata: Metadata = {
     locale: "el_GR",
     title: "Elite Media",
     description:
-      "Elite Media helps Greek businesses grow with strategy-led social media marketing, content systems, and performance-focused execution.",
+    "Η Elite Media βοηθά τις ελληνικές επιχειρήσεις να αναπτυχθούν με στρατηγικό μάρκετινγκ μέσω social media, συστήματα περιεχομένου και εκτέλεση με επίκεντρο την απόδοση.",
+     
     siteName: "Elite Media",
   },
   twitter: {
     card: "summary_large_image",
     title: "Elite Media",
     description:
-      "Elite Media helps Greek businesses grow with strategy-led social media marketing, content systems, and performance-focused execution.",
+    "Η Elite Media βοηθά τις ελληνικές επιχειρήσεις να αναπτυχθούν με στρατηγικό μάρκετινγκ μέσω social media, συστήματα περιεχομένου και εκτέλεση με επίκεντρο την απόδοση.",
+     
   },
   robots: {
     index: true,
@@ -91,6 +94,29 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${nacelle.variable} bg-transparent font-inter font-bold text-base text-[#2b2216] antialiased`}
       >
+        <Script id="meta-pixel" strategy="afterInteractive">
+          {`
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '914366217674412');
+            fbq('track', 'PageView');
+          `}
+        </Script>
+        <noscript>
+          <img
+            alt=""
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=914366217674412&ev=PageView&noscript=1"
+          />
+        </noscript>
         <div className="relative min-h-screen overflow-hidden bg-[#fffdf7]">
           <div className="pointer-events-none absolute inset-0  sm:block hidden">
               {/* <LightPillar
