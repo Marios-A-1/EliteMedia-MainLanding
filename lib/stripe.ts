@@ -33,8 +33,20 @@ export const resolveTicketTier = (session: Stripe.Checkout.Session) => {
     return metadataTier;
   }
 
+  const successUrl = session.success_url?.toLowerCase();
+  if (successUrl?.includes("/claim-ticket/online")) {
+    return "online";
+  }
+  if (successUrl?.includes("/claim-ticket/vip")) {
+    return "vip";
+  }
+  if (successUrl?.includes("/claim-ticket/regular")) {
+    return "regular";
+  }
+
   const regularPrice = process.env.STRIPE_REGULAR_PRICE_ID;
   const vipPrice = process.env.STRIPE_VIP_PRICE_ID;
+  const onlinePrice = process.env.STRIPE_ONLINE_PRICE_ID;
   const lineItems = session.line_items?.data ?? [];
 
   for (const item of lineItems) {
@@ -44,6 +56,9 @@ export const resolveTicketTier = (session: Stripe.Checkout.Session) => {
     }
     if (priceId && vipPrice && priceId === vipPrice) {
       return "vip";
+    }
+    if (priceId && onlinePrice && priceId === onlinePrice) {
+      return "online";
     }
     if (item.price?.nickname) {
       return item.price.nickname;

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 type ClaimTicketFormProps = {
   sessionId: string;
-  tier: "regular" | "vip";
+  tier: "regular" | "vip" | "online";
   defaultEmail?: string;
   defaultName?: string;
   defaultPhone?: string;

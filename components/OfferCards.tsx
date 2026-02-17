@@ -5,6 +5,7 @@ import useEventOfferCountdown from "@/utils/useEventOfferCountdown";
 import AnimatedContent from "@/components/AnimatedContent";
 import BlurText from "@/components/BlurText";
 import {
+  ONLINE_STATIC_LINK,
   REGULAR_EARLY_LINK,
   REGULAR_LATE_LINK,
   VIP_EARLY_LINK,
@@ -41,6 +42,27 @@ export type OfferCardsContent = {
 };
 
 const DEFAULT_OFFERS: OfferCard[] = [
+  {
+    title: "Online",
+    subtitle: "Remote access",
+    priceLines: [
+      { label: "ΑΞΙΑ", amount: "99€", strike: true, kind: "value" },
+      {
+        label: "ΚΑΝΟΝΙΚΗ ΤΙΜΗ",
+        amount: "49€",
+        strike: true,
+        kind: "normal",
+      },
+      { label: "ΤΙΜΗ", amount: "20€", highlight: true, kind: "offer" },
+    ],
+    ctaLabel: "Πάρε Online",
+    ctaHref: ONLINE_STATIC_LINK,
+    ctaHrefExpired: ONLINE_STATIC_LINK,
+    features: [
+      "Live online πρόσβαση",
+      "Ιδανικό αν δεν μπορείς να παρευρεθείς στον χώρο",
+    ],
+  },
   {
     title: "Κανονικό",
     subtitle: "Standard access",
@@ -96,7 +118,7 @@ const DEFAULT_CONTENT: OfferCardsContent = {
   sectionId: "event-offer-cards",
   eyebrow: "Tickets",
   heading: "Διάλεξε εισιτήριο",
-  description: "Δύο επιλογές. Ίδιο roadmap, ίδιο περιβάλλον, απλά διάλεξε αν θες την VIP εμπειρία.",
+  description: "Τρεις επιλογές. Διάλεξε αν θες Regular, VIP ή Online.",
   offers: DEFAULT_OFFERS,
 };
 
@@ -191,7 +213,7 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
             ) : null}
           </div>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
             {offers.map((offer, offerIndex) => {
               const resolvedPriceLines = offer.priceLines
                 ? isExpired
@@ -222,9 +244,9 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
               }`;
               const card = (
                 <div
-                  className={`relative h-full overflow-hidden rounded-2xl border p-6 shadow-lg transition ${
+                  className={`relative flex h-full flex-col overflow-hidden rounded-2xl border p-6 shadow-lg transition ${
                     offer.highlight
-                      ? "border-amber-400/80 bg-amber-200/30 shadow-[0_20px_45px_rgba(245,158,11,0.18)]"
+                      ? "border-amber-400/80 bg-amber-200/30"
                       : "border-amber-200/60 bg-amber-50/70"
                   }`}
                 >
@@ -288,7 +310,7 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
                           : undefined
                       }
                       aria-disabled={isLoading}
-                      className={ctaClassName}
+                      className={`${ctaClassName} mt-auto`}
                     >
                       {isLoading ? "Redirecting..." : offer.ctaLabel}
                     </a>
@@ -325,9 +347,9 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
                   <ElectricBorder
                     color="#f5b640"
                     speed={0.6}
-                    chaos={0.08}
+                    chaos={0.04}
                     borderRadius={16}
-                    className="h-full"
+                    className="h-full overflow-hidden"
                   >
                     {card}
                   </ElectricBorder>

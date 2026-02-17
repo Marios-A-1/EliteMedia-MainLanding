@@ -1,8 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useMemo, useState } from "react";
-import { Row, Col, Card, Typography, Tag, Drawer, Divider, List, Button } from "antd";
+import { Row, Col, Card, Typography } from "antd";
 import {
   RobotOutlined,
   DollarOutlined,
@@ -230,19 +229,6 @@ export default function Directions({ content }: DirectionsProps) {
   const items = mergedContent.items?.length
     ? mergedContent.items
     : DirectionsContent.items;
-  const defaultKey = items[0]?.key ?? "ai";
-  const [open, setOpen] = useState(false);
-  const [activeKey, setActiveKey] = useState<DirectionKey>(defaultKey);
-
-  const activeItem = useMemo(() => {
-    return items.find((item) => item.key === activeKey) ?? items[0];
-  }, [activeKey, items]);
-
-  const handleOpen = (item: DirectionsItem) => {
-    if (!item.details?.sections?.length) return;
-    setActiveKey(item.key);
-    setOpen(true);
-  };
 
   return (
     <section id={mergedContent.sectionId ?? "directions"} className="mt-16 mb-20">
@@ -290,7 +276,6 @@ export default function Directions({ content }: DirectionsProps) {
 
         <Row gutter={[0, 64]} className="directions-grid">
           {items.map((item, index) => {
-            const hasDetails = Boolean(item.details?.sections?.length);
             return (
               <Col
                 key={item.key}
@@ -313,8 +298,7 @@ export default function Directions({ content }: DirectionsProps) {
                     }}
                   >
                     <Card
-                      hoverable={hasDetails}
-                      onClick={() => handleOpen(item)}
+                      hoverable={false}
                       className="border-0 text-center bg-amber-200/30! shadow-none !-mb-10"
                       style={{
                         height: "100%",
@@ -353,26 +337,6 @@ export default function Directions({ content }: DirectionsProps) {
                           </Text>
                         </Paragraph>
                       </div>
-
-                  {/* <div className="flex flex-col gap-2 text-center">
-                    <div>
-                      <Text className="!text-xs !font-medium !text-slate-500"></Text>
-                      <div className="mt-2 flex min-h-[72px] flex-wrap justify-center gap-2">
-                        {item.forWho.slice(0, 3).map((tag, index) => (
-                          <Tag
-                            key={`${item.key}-for-${index}`}
-                            className="gradient-tag !m-0"
-                            style={{
-                              // Keep inline styles minimal so Tailwind `!` wins after hydration.
-                            }}
-                          >
-                            {tag}
-                          </Tag>
-                        ))}
-                      </div>
-                    </div>
-                  </div> */}
-
                   </Card>
                 </div>
                 </AnimatedContent>
@@ -381,36 +345,7 @@ export default function Directions({ content }: DirectionsProps) {
           })}
         </Row>
       </div>
-
-      <Drawer
-        title={activeItem?.title}
-        open={open}
-        onClose={() => setOpen(false)}
-        width={520}
-      >
-        <Paragraph>
-          <Text type="secondary">{activeItem?.subtitle}</Text>
-        </Paragraph>
-
-        {activeItem?.details?.sections?.map((section, index) => (
-          <div key={`${activeItem.key}-section-${index}`}>
-            <Divider />
-            <Title level={5} style={{ marginTop: 0 }}>
-              {section.title}
-            </Title>
-            <List
-              size="small"
-              dataSource={section.items}
-              renderItem={(item) => <List.Item>• {item}</List.Item>}
-            />
-          </div>
-        ))}
-
-        <Divider />
-        <Button type="primary" block>
-          Κλείσε θέση στο Event
-        </Button>
-      </Drawer>
     </section>
   );
 }
+

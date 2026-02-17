@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 
 type RequestBody = {
   sessionId?: string;
-  tier?: "regular" | "vip";
+  tier?: "regular" | "vip" | "online";
   fullName?: string;
   email?: string;
   phone?: string;
@@ -51,7 +51,7 @@ export async function POST(request: Request) {
     );
   }
 
-  if (tier !== "regular" && tier !== "vip") {
+  if (tier !== "regular" && tier !== "vip" && tier !== "online") {
     return NextResponse.json(
       { ok: false, status: "invalid_tier" },
       { status: 400 }
