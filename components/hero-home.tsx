@@ -16,6 +16,8 @@ type HeroContent = {
   videoId?: string;
   videoTitle?: string;
   videoParams?: string;
+  videoForceLoad?: boolean;
+  videoPlayOnLoad?: boolean;
   ctaDescription?: string;
   ctaLabel?: ReactNode;
   ctaHref?: string;
@@ -108,6 +110,8 @@ export default function HeroHome({ content }: HeroHomeProps) {
                   videoId={content?.videoId ?? "1128212394"}
                   title={content?.videoTitle ?? "Main landing page video"}
                   params={content?.videoParams ?? "autoplay=0&title=0&byline=0&portrait=0"}
+                  forceLoad={content?.videoForceLoad}
+                  playOnLoad={content?.videoPlayOnLoad}
                   className="h-full w-full"
                   onTimeUpdate={
                     popupTriggerSeconds > 0 ? handleTimeUpdate : undefined

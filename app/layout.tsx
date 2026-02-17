@@ -92,6 +92,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="preconnect" href="https://player.vimeo.com" crossOrigin="" />
+        <link rel="preconnect" href="https://i.vimeocdn.com" crossOrigin="" />
+        <link rel="preconnect" href="https://f.vimeocdn.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="//player.vimeo.com" />
+        <link rel="dns-prefetch" href="//i.vimeocdn.com" />
+        <link rel="dns-prefetch" href="//f.vimeocdn.com" />
         <meta
           name="facebook-domain-verification"
           content="fv0vsadwpondrv3ts6i24gwfecdqw8"

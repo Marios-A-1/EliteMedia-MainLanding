@@ -25,6 +25,7 @@ export type OfferCard = {
   title: ReactNode;
   subtitle?: ReactNode;
   priceLines?: OfferPriceLine[];
+  keepPriceStaticOnExpire?: boolean;
   ctaLabel?: ReactNode;
   ctaHref?: string;
   ctaHrefExpired?: string;
@@ -45,6 +46,7 @@ const DEFAULT_OFFERS: OfferCard[] = [
   {
     title: "Online",
     subtitle: "Remote access",
+    keepPriceStaticOnExpire: true,
     priceLines: [
       { label: "ΑΞΙΑ", amount: "99€", strike: true, kind: "value" },
       {
@@ -218,7 +220,7 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {offers.map((offer, offerIndex) => {
               const resolvedPriceLines = offer.priceLines
-                ? isExpired
+                ? isExpired && !offer.keepPriceStaticOnExpire
                   ? offer.priceLines.map((line) => {
                       if (line.kind === "normal") {
                         return { ...line, strike: false, highlight: true };

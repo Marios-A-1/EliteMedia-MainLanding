@@ -76,7 +76,8 @@ export default function LazyVimeo({
   rootMargin = "200px 0px",
   allow = DEFAULT_ALLOW,
 }: LazyVimeoProps) {
-  const [shouldLoad, setShouldLoad] = useState(false);
+  const prefersImmediateLoad = forceLoad || playOnLoad;
+  const [shouldLoad, setShouldLoad] = useState(prefersImmediateLoad);
   const [isIframeReady, setIsIframeReady] = useState(false);
   const pendingCommandRef = useRef<"play" | "pause" | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -84,13 +85,14 @@ export default function LazyVimeo({
   const playerId = useId().replace(/:/g, "");
 
   useEffect(() => {
-    if (forceLoad) {
+    if (prefersImmediateLoad) {
       setShouldLoad(true);
     }
-  }, [forceLoad]);
+  }, [prefersImmediateLoad]);
 
   useEffect(() => {
     if (shouldLoad) return;
+    if (prefersImmediateLoad) return;
     const node = containerRef.current;
     if (!node || typeof IntersectionObserver === "undefined") {
       setShouldLoad(true);
@@ -109,7 +111,7 @@ export default function LazyVimeo({
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, [rootMargin, shouldLoad]);
+  }, [prefersImmediateLoad, rootMargin, shouldLoad]);
 
   const postMessage = (payload: Record<string, unknown>) => {
     const targetWindow = iframeRef.current?.contentWindow;
@@ -180,7 +182,7 @@ export default function LazyVimeo({
           className={`h-full w-full border-0 ${iframeClassName ?? ""}`}
           allow={allow}
           allowFullScreen
-          loading="lazy"
+          loading={prefersImmediateLoad ? "eager" : "lazy"}
           frameBorder={0}
           onLoad={() => {
             setIsIframeReady(true);

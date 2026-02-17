@@ -27,6 +27,8 @@ const eventsHero={
   videoId: "1165635652",
   videoTitle: "Events video",
   videoParams: "autoplay=1&muted=1&playsinline=1&title=0&byline=0&portrait=0",
+  videoForceLoad: true,
+  videoPlayOnLoad: true,
   ctaNode: <EventTicketsCta />,
   offerPopupCtaHref: "#event-offer-cards",
   
