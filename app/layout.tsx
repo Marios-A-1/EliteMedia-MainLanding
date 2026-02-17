@@ -91,6 +91,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta
+          name="facebook-domain-verification"
+          content="fv0vsadwpondrv3ts6i24gwfecdqw8"
+        />
+        <meta
+          name="facebook-domain-verification"
+          content="dk484x7mgn376p1uro8niwvpinc9u7"
+        />
+      </head>
       <body
         className={`${inter.variable} ${nacelle.variable} bg-transparent font-inter font-bold text-base text-[#2b2216] antialiased`}
       >

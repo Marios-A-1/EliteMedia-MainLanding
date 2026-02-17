@@ -59,7 +59,7 @@ const DEFAULT_OFFERS: OfferCard[] = [
     ctaHref: ONLINE_STATIC_LINK,
     ctaHrefExpired: ONLINE_STATIC_LINK,
     features: [
-      "Live online πρόσβαση",
+      "Live online πρόσβαση μέσω Zoom",
       "Ιδανικό αν δεν μπορείς να παρευρεθείς στον χώρο",
     ],
   },
