@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Logo from "./logo";
 import Image from "next/image";
 import FooterIllustration from "@/public/images/footer-illustration.svg";
@@ -31,6 +32,26 @@ export default function Footer() {
               <p className="mb-3 text-[#2b2216]">
                 © Elite Media 
               </p>
+              <div className="mb-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs font-medium">
+                <Link
+                  href="/privacy"
+                  className="text-[#5b4a2a] transition hover:text-[#2b2216]"
+                >
+                  Privacy Policy
+                </Link>
+                <Link
+                  href="/cookies"
+                  className="text-[#5b4a2a] transition hover:text-[#2b2216]"
+                >
+                  Cookie Policy
+                </Link>
+                <Link
+                  href="/terms"
+                  className="text-[#5b4a2a] transition hover:text-[#2b2216]"
+                >
+                  Terms
+                </Link>
+              </div>
               <ul className="inline-flex">
                 <li>
                   <a

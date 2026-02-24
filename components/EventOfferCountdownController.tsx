@@ -13,6 +13,8 @@ type EventOfferCountdownControllerProps = {
   popupCtaLabel?: ReactNode;
   popupCtaHref?: string;
   popupCtaHrefExpired?: string;
+  triggerLeadPopup?: boolean;
+  leadSource?: string;
 };
 
 export default function EventOfferCountdownController({
@@ -22,6 +24,8 @@ export default function EventOfferCountdownController({
   popupCtaLabel,
   popupCtaHref,
   popupCtaHrefExpired,
+  triggerLeadPopup = false,
+  leadSource,
 }: EventOfferCountdownControllerProps) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const hasTriggeredRef = useRef(false);
@@ -69,6 +73,8 @@ export default function EventOfferCountdownController({
         ctaLabel={popupCtaLabel}
         ctaHref={popupCtaHref}
         ctaHrefExpired={popupCtaHrefExpired}
+        triggerLeadPopup={triggerLeadPopup}
+        leadSource={leadSource}
       />
     </>
   );

@@ -1,9 +1,10 @@
 "use client";
 
-import type { ReactNode } from "react";
+import type { MouseEvent, ReactNode } from "react";
 import { useEffect, useMemo, useState } from "react";
 import Countdown, { type CountdownRenderProps } from "react-countdown";
 import AnimatedContent from "@/components/AnimatedContent";
+import { openEventLeadPopup } from "@/utils/eventLeadPopup";
 
 const STORAGE_KEY = "offerStartTimestamp";
 const OFFER_DURATION_MS = 48 * 60 * 60 * 1000;
@@ -72,6 +73,8 @@ type OfferCtaButtonProps = {
   buttonClassName?: string;
   disableAnimation?: boolean;
   href?: string;
+  triggerLeadPopup?: boolean;
+  leadSource?: string;
 };
 
 export function OfferCtaButton({
@@ -81,6 +84,8 @@ export function OfferCtaButton({
   buttonClassName,
   disableAnimation = false,
   href,
+  triggerLeadPopup = false,
+  leadSource,
 }: OfferCtaButtonProps) {
   const { isExpired } = useOfferCountdownState();
 
@@ -102,9 +107,22 @@ export function OfferCtaButton({
     .filter(Boolean)
     .join(" ");
 
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (!triggerLeadPopup) {
+      return;
+    }
+
+    event.preventDefault();
+    openEventLeadPopup(leadSource);
+  };
+
   if (disableAnimation) {
     return (
-      <a href={ctaHref} className={resolvedButtonClassName}>
+      <a
+        href={triggerLeadPopup ? "#" : ctaHref}
+        onClick={handleClick}
+        className={resolvedButtonClassName}
+      >
         {ctaLabel}
       </a>
     );
@@ -117,7 +135,11 @@ export function OfferCtaButton({
       delay={0.9}
       duration={2.0}
     >
-      <a href={ctaHref} className={resolvedButtonClassName}>
+      <a
+        href={triggerLeadPopup ? "#" : ctaHref}
+        onClick={handleClick}
+        className={resolvedButtonClassName}
+      >
         {ctaLabel}
       </a>
     </AnimatedContent>

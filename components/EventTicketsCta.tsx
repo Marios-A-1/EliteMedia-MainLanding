@@ -1,17 +1,24 @@
-﻿"use client";
+"use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 
 import AnimatedContent from "@/components/AnimatedContent";
+import { openEventLeadPopup } from "@/utils/eventLeadPopup";
 
 type EventTicketsCtaProps = {
   label?: string;
+  triggerLeadPopup?: boolean;
+  leadSource?: string;
 };
 
-const DEFAULT_LABEL = "\u039a\u03c1\u03ac\u03c4\u03b1 \u03c4\u03b7\u03bd \u03b8\u03ad\u03c3\u03b7 \u03c3\u03bf\u03c5";
-const REMAINING_SUFFIX = "\u03b8\u03ad\u03c3\u03b5\u03b9\u03c2 \u03b1\u03ba\u03cc\u03bc\u03b1";
+const DEFAULT_LABEL = "Μάθε περισσότερα";
+const REMAINING_SUFFIX = "θέσεις ακόμα";
 
-export default function EventTicketsCta({ label = DEFAULT_LABEL }: EventTicketsCtaProps) {
+export default function EventTicketsCta({
+  label = DEFAULT_LABEL,
+  triggerLeadPopup = false,
+  leadSource,
+}: EventTicketsCtaProps) {
   const [remaining, setRemaining] = useState<number | null>(null);
 
   useEffect(() => {
@@ -43,6 +50,15 @@ export default function EventTicketsCta({ label = DEFAULT_LABEL }: EventTicketsC
   const primaryButtonClassName =
     "bg-linear-to-r from-amber-500 to-amber-300 bg-[length:100%_auto] text-[#2b2216]";
 
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (!triggerLeadPopup) {
+      return;
+    }
+
+    event.preventDefault();
+    openEventLeadPopup(leadSource);
+  };
+
   return (
     <AnimatedContent
       className="w-full sm:w-auto flex justify-center"
@@ -53,12 +69,13 @@ export default function EventTicketsCta({ label = DEFAULT_LABEL }: EventTicketsC
       <div className="flex flex-col items-center">
         <a
           href="#event-offer-cards"
+          onClick={handleClick}
           className={`${baseButtonClassName} ${primaryButtonClassName}`}
         >
           {label}
         </a>
         <span className="mt-2 text-sm font-medium text-[#6b5b3a]" aria-live="polite">
-          {remaining ?? "\u2014"}/100 {REMAINING_SUFFIX}
+          {remaining ?? "—"}/100 {REMAINING_SUFFIX}
         </span>
       </div>
     </AnimatedContent>

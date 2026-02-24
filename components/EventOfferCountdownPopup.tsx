@@ -1,10 +1,11 @@
 "use client";
 
-import type { ReactNode } from "react";
+import type { MouseEvent, ReactNode } from "react";
 import ElectricBorder from "@/components/ElectricBorder";
 import AnimatedContent from "@/components/AnimatedContent";
 import EventOfferCountdownTimer from "@/components/EventOfferCountdownTimer";
 import useEventOfferCountdown from "@/utils/useEventOfferCountdown";
+import { openEventLeadPopup } from "@/utils/eventLeadPopup";
 import {
   REGULAR_EARLY_LINK,
   REGULAR_LATE_LINK,
@@ -19,6 +20,8 @@ type EventOfferCountdownPopupProps = {
   ctaLabel?: ReactNode;
   ctaHref?: string;
   ctaHrefExpired?: string;
+  triggerLeadPopup?: boolean;
+  leadSource?: string;
 };
 
 export default function EventOfferCountdownPopup({
@@ -29,6 +32,8 @@ export default function EventOfferCountdownPopup({
   ctaLabel,
   ctaHref,
   ctaHrefExpired,
+  triggerLeadPopup = false,
+  leadSource,
 }: EventOfferCountdownPopupProps) {
   const { isExpired, targetDate, markExpired } = useEventOfferCountdown();
 
@@ -44,8 +49,16 @@ export default function EventOfferCountdownPopup({
 
   const baseButtonClassName =
     "btn cursor-pointer font-bold px-5 py-3 text-lg rounded-[1rem] group w-auto hover:brightness-105 sm:w-auto md:px-10 md:py-4 md:text-lg";
-  const popupButtonClassName =
-    "bg-amber-400/30 text-white hover:brightness-110";
+  const popupButtonClassName = "bg-amber-400/30 text-white hover:brightness-110";
+
+  const handleCtaClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (triggerLeadPopup) {
+      event.preventDefault();
+      openEventLeadPopup(leadSource);
+    }
+
+    onClose();
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center px-4 py-6">
@@ -83,7 +96,7 @@ export default function EventOfferCountdownPopup({
                 X
               </button>
               <h3 className="mt-2 text-2xl font-bold text-neutral-900 sm:text-2xl">
-                {heading ?? "Έχεις ακόμα :"}
+                {heading ?? "Έχεις ακόμα:"}
               </h3>
               <div className="mt-4 w-fit justify-self-center flex justify-center border-0 border-amber-400 py-2 px-5 rounded-[1rem] bg-white/20 mx-auto">
                 <EventOfferCountdownTimer
@@ -91,15 +104,17 @@ export default function EventOfferCountdownPopup({
                   targetDate={targetDate}
                   onComplete={markExpired}
                 />
-              
               </div>
-              <p className="mt-4 text-xl text-neutral-900">Πρίν λήξει η προσφορά!</p> 
+              <p className="mt-4 text-xl text-neutral-900">
+                {message ?? "Πριν λήξει η προσφορά!"}
+              </p>
               <div className="mt-5 flex flex-col items-center gap-3">
                 <a
-                  onClick={onClose}
+                  href={triggerLeadPopup ? "#" : resolvedHref}
+                  onClick={handleCtaClick}
                   className={`${baseButtonClassName} ${popupButtonClassName}`}
                 >
-                  {"Διάλεξε εισιτήριο "}
+                  {ctaLabel ?? "Διάλεξε εισιτήριο"}
                 </a>
               </div>
             </div>

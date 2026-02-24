@@ -13,9 +13,15 @@ type CtaContent = {
 
 type CtaProps = {
   content?: CtaContent;
+  triggerLeadPopup?: boolean;
+  leadSource?: string;
 };
 
-export default function Cta({ content }: CtaProps) {
+export default function Cta({
+  content,
+  triggerLeadPopup = false,
+  leadSource,
+}: CtaProps) {
   const headingText =
     content?.heading ??
     "Χτίσε το content που ταιριάζει στο brand σου";
@@ -45,6 +51,8 @@ export default function Cta({ content }: CtaProps) {
                 freeLabel={content?.cta?.label}
                 expiredLabel={content?.cta?.expiredLabel ?? content?.cta?.label}
                 href={content?.cta?.href}
+                triggerLeadPopup={triggerLeadPopup}
+                leadSource={leadSource}
               />
             </div>
             </div>

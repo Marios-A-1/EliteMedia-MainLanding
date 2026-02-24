@@ -148,7 +148,7 @@ export default function Header() {
 
           <div className="flex flex-1 items-center justify-end ml-20 -mr-2">
             <a
-              href="mailto:hello@elitemedia.com"
+              href="mailto:admin@elite-media.gr"
               className="btn px-4 py-2 font-bold rounded-[0.6rem] group w-full bg-linear-to-r from-amber-500/70 to-amber-300/70  bg-[length:100%_auto] hover:brightness-105 sm:w-auto"
             >
               Κλείσε Συμβουλευτική

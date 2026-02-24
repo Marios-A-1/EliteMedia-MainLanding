@@ -16,6 +16,8 @@ import EventTicketsCta from "@/components/EventTicketsCta";
 import HowColumnsSection from "@/components/HowColumnsSection";
 import OfferCards from "@/components/OfferCards";
 import EventOfferCountdownController from "@/components/EventOfferCountdownController";
+import EventLeadPopup from "@/components/EventLeadPopup";
+import Footer from "@/components/ui/footer";
 import { steps } from "framer-motion";
 import Directions, { DirectionsContent } from "@/components/Directions";
 import EventDetails, { EventDetailsContent } from "@/components/EventDetails";
@@ -29,7 +31,9 @@ const eventsHero={
   videoParams: "autoplay=1&muted=1&playsinline=1&title=0&byline=0&portrait=0",
   videoForceLoad: true,
   videoPlayOnLoad: true,
-  ctaNode: <EventTicketsCta />,
+  ctaNode: (
+    <EventTicketsCta triggerLeadPopup leadSource="events_hero_cta" />
+  ),
   offerPopupCtaHref: "#event-offer-cards",
   
 }
@@ -302,14 +306,18 @@ const VALUE_BREAKDOWN_CONTENT = {
 const CtaContent = {
   heading:"Μάθε πως να βγάζεις χρήματα Online",
   cta:{
-    label: <>Κράτα την θέση σου</>,
+    label: <>Μάθε περισσότερα</>,
     href: "#event-offer-cards",
   },
 }
 export default function EventsPage() {
   return (
     <>
-      <EventOfferCountdownController />
+      <EventLeadPopup />
+      <EventOfferCountdownController
+        triggerLeadPopup
+        leadSource="events_countdown_popup"
+      />
       <Hero content={eventsHero}/>
       {/* <OldNew /> */}
       {/* <Features /> */}
@@ -323,12 +331,17 @@ export default function EventsPage() {
         howItWorksContent={HowItWorksContent}
         howWeDoItContent={HowWeDoItContent}
         /> */}
-        <OfferCards />
+        {/* <OfferCards /> */}
       <Directions content={DirectionsContent} />
       <BreakdownTimeline content={BreakdownContent} />
       <EventDetails content={EventDetailsContent} />
       <Testimonials content={TestimonialsContent}/>
-      <Cta content={CtaContent}/>
+      <Cta
+        content={CtaContent}
+        triggerLeadPopup
+        leadSource="events_bottom_cta"
+      />
+      <Footer />
     </>
   );
 }

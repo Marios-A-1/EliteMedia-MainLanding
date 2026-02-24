@@ -1,4 +1,4 @@
-const fallbackLink = "mailto:hello@elitemedia.com";
+const fallbackLink = "mailto:admin@elite-media.gr";
 
 const resolveEnvLink = (value: string | undefined, fallback: string) =>
   value && value.trim().length > 0 ? value : fallback;
