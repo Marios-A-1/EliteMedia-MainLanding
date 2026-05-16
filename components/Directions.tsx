@@ -43,20 +43,21 @@ export type DirectionsContent = {
 
 export const DirectionsContent: DirectionsContent = {
   sectionId: "directions",
-  eyebrow: <>Κατευθύνσεις</>,
-  heading: <>Οι 4 τρόποι να εξελιχθείς επαγγελματικά</>,
+  eyebrow: <>Τι θα πάρεις</>,
+  heading: <>AI και online income με πραγματικά ελληνικά δεδομένα</>,
   description: (
     <>
-      Δεν θα μιλήσουμε για ένα μονο business model. Θα δεις τις βασικές κατευθύνσεις και θα
-      καταλάβεις ποιό σου ταιριάζει.
+      Το event χτίζεται γύρω από προσωπική εμπειρία, πρακτικές γνώσεις και
+      εφαρμόσιμες στρατηγικές που μπορείς να δοκιμάσεις στην Ελλάδα.
     </>
   ),
   items: [
     {
       key: "ai",
-      title: "AI",
+      title: "Προσωπική εμπειρία",
       icon: <RobotOutlined />,
-      subtitle: "Χτίζεις λύσεις/αυτοματισμούς που λύνουν πρόβλημα σε business.",
+      subtitle:
+        "Η διαδρομή από την αρχή μέχρι τα πρώτα αποτελέσματα, χωρίς θεωρία για τη θεωρία.",
       forWho: [
         "σου αρέσει το tech",
         "σου αρέσει να φτιάχνεις συστήματα",
@@ -95,10 +96,10 @@ export const DirectionsContent: DirectionsContent = {
     },
     {
       key: "sales",
-      title: "Πωλήσεις",
+      title: "AI opportunities",
       icon: <DollarOutlined />,
       subtitle:
-        "Μαθαίνεις να κλείνεις πελάτες/ραντεβού και πληρώνεσαι για αποτέλεσμα.",
+        "Ποιες ευκαιρίες υπάρχουν σήμερα και πώς συνδέονται με online income στην ελληνική αγορά.",
       forWho: [
         "είσαι social",
         "δεν σε πειράζει να μιλάς με κόσμο",
@@ -137,9 +138,10 @@ export const DirectionsContent: DirectionsContent = {
     },
     {
       key: "smm",
-      title: "Social Media Marketing",
+      title: "Πρακτικά βήματα",
       icon: <VideoCameraOutlined />,
-      subtitle: "Φέρνεις πελάτες/τζίρο μέσω content + ads + funnel (όχι απλά posts).",
+      subtitle:
+        "Mindset, εφαρμογή και συγκεκριμένα next steps για να ξεκινήσεις πιο καθαρά.",
       forWho: [
         "σου αρέσει content",
         "θες να δουλέψεις με επιχειρήσεις",
@@ -178,9 +180,10 @@ export const DirectionsContent: DirectionsContent = {
     },
     {
       key: "freelance",
-      title: "Freelancing",
+      title: "Live Q&A",
       icon: <ToolOutlined />,
-      subtitle: "Πουλάς 1 ξεκάθαρη υπηρεσία (editing, design, dev, copywriting).",
+      subtitle:
+        "Ζωντανές ερωτήσεις και απαντήσεις για να φύγεις με λιγότερη αβεβαιότητα.",
       forWho: [
         "θες γρήγορα να ξεκινήσεις",
         "έχεις ήδη 1 μικρό skill",
@@ -236,8 +239,8 @@ export default function Directions({ content }: DirectionsProps) {
         <svg aria-hidden="true" width="0" height="0" className="absolute">
           <defs>
             <linearGradient id="icon-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#f59e0b" />
-              <stop offset="100%" stopColor="#fbbf24" />
+              <stop offset="0%" stopColor="#2563eb" />
+              <stop offset="100%" stopColor="#38bdf8" />
             </linearGradient>
           </defs>
         </svg>
@@ -299,7 +302,7 @@ export default function Directions({ content }: DirectionsProps) {
                   >
                     <Card
                       hoverable={false}
-                      className="border-0 text-center bg-amber-200/30! shadow-none !-mb-10"
+                      className="border-0 text-center !bg-amber-100 shadow-none !-mb-10"
                       style={{
                         height: "100%",
                         width: "100%",

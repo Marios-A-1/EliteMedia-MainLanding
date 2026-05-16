@@ -217,7 +217,11 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
             ) : null}
           </div>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div
+            className={`mt-10 grid gap-6 ${
+              offers.length === 2 ? "md:grid-cols-2" : "md:grid-cols-3"
+            }`}
+          >
             {offers.map((offer, offerIndex) => {
               const resolvedPriceLines = offer.priceLines
                 ? isExpired && !offer.keepPriceStaticOnExpire
@@ -245,10 +249,10 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
                 offer.checkoutTier === "vip" || offer.highlight === true;
               const isRegular = offer.checkoutTier === "regular";
               const cardToneClassName = isVip
-                ? "border-amber-400/80 bg-amber-200/30"
+                ? "border-amber-400 bg-amber-100"
                 : isRegular
-                  ? "border-amber-400/70 bg-amber-100/45 shadow-[0_16px_34px_rgba(180,83,9,0.12)]"
-                  : "border-amber-200/60 bg-amber-50/70";
+                  ? "border-amber-400 bg-amber-100 shadow-[0_16px_34px_rgba(37,99,235,0.12)]"
+                  : "border-amber-200 bg-amber-50";
               const ctaToneClassName = isVip
                 ? ctaVipClassName
                 : isRegular
@@ -262,7 +266,7 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
                   className={`relative flex h-full flex-col overflow-hidden rounded-2xl border p-6 shadow-lg transition ${cardToneClassName}`}
                 >
                   {offer.highlight ? (
-                    <span className="absolute right-4 top-4 inline-flex items-center rounded-full bg-amber-400/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.05em] text-amber-700">
+                    <span className="absolute right-4 top-4 inline-flex items-center rounded-full bg-amber-200 px-3 py-1 text-xs font-semibold uppercase tracking-[0.05em] text-amber-700">
                       Best value
                     </span>
                   ) : null}
@@ -283,7 +287,7 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
                           key={`offer-${offerIndex}-price-${lineIndex}`}
                           className={`font-black ${
                             line.highlight
-                              ? "text-2xl text-amber-500/90 drop-shadow-[0_0_12px_rgba(251,191,36,0.35)]"
+                              ? "text-2xl text-amber-500/90 drop-shadow-[0_0_12px_rgba(59,130,246,0.35)]"
                               : "text-xl text-gray-500 line-through decoration-2 decoration-gray-500"
                           }`}
                         >
@@ -358,7 +362,7 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
                   className="h-full"
                 >
                   <ElectricBorder
-                    color="#f5b640"
+                    color="#3b82f6"
                     speed={0.6}
                     chaos={0.04}
                     borderRadius={16}

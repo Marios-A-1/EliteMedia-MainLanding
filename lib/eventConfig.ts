@@ -1,19 +1,21 @@
 export const EVENT_CONFIG = Object.freeze({
-  EVENT_TITLE: "Elite Media Event",
-  EVENT_SUBTITLE: "Βγάλε τα πρώτα σου 1000€ online σε 90 μέρες",
-  EVENT_LOCATION_NAME: "Kourites",
-  EVENT_LOCATION_ADDRESS: "Striggari 5, Ag. Dimitrios 173 43",
-  EVENT_LOCATION_TEXT: "Kourites, Striggari 5, Ag. Dimitrios 173 43",
+  ENABLE_EVENT_OFFER_COUNTDOWN: false,
+  EVENT_TITLE: "THYMIOLAS — Πώς Έβγαλα Χρήματα με το AI στην Ελλάδα",
+  EVENT_SUBTITLE:
+    "Πραγματικό value μέσα από προσωπική εμπειρία, γνώσεις και στρατηγικές γύρω από το AI και το online income στην Ελλάδα.",
+  EVENT_LOCATION_NAME: "Θα ανακοινωθεί",
+  EVENT_LOCATION_ADDRESS: "Θα ανακοινωθεί",
+  EVENT_LOCATION_TEXT: "Στριγγάρη 5, 173 43",
   TIMEZONE: "Europe/Athens",
-  START_LOCAL: "2026-03-01 12:00",
-  END_LOCAL: "2026-03-01 16:00",
-  START_UTC: "20260301T100000Z",
-  END_UTC: "20260301T140000Z",
-  EVENT_DATETIME_LABEL:
-    "Κυριακή 1 Μαρτίου 2026 • 12:00",
-  GOOGLE_MAPS_DIRECTIONS_URL: "https://maps.app.goo.gl/DpV6tYmQEb3Y8XST9",
+  START_LOCAL: "2026-05-31 00:00",
+  END_LOCAL: "2026-05-31 23:59",
+  START_UTC: "20260530T210000Z",
+  END_UTC: "20260531T205900Z",
+  EVENT_DATETIME_LABEL: "Κυριακή 31 Μαΐου 2026",
+  EVENT_TIME_LABEL: "Θα ανακοινωθεί",
+  GOOGLE_MAPS_DIRECTIONS_URL: "/events",
   GOOGLE_MAPS_EMBED_URL:
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3146.1919213917!2d23.735330911580313!3d37.949304501969976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1bd3e3fa5d449%3A0x886cbaed2c37b457!2sKourites!5e0!3m2!1sen!2sgr!4v1771172327324!5m2!1sen!2sgr",
+    "https://www.google.com/maps?q=Athens%2C%20Greece&output=embed",
   GOOGLE_CALENDAR_URL:
-    "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Elite%20Media%20Event&dates=20260301T100000Z%2F20260301T140000Z&details=%CE%92%CE%B3%CE%AC%CE%BB%CE%B5%20%CF%84%CE%B1%20%CF%80%CF%81%CF%8E%CF%84%CE%B1%20%CF%83%CE%BF%CF%85%201000%E2%82%AC%20online%20%CF%83%CE%B5%2090%20%CE%BC%CE%AD%CF%81%CE%B5%CF%82&location=Kourites%2C%20Striggari%205%2C%20Ag.%20Dimitrios%20173%2043&ctz=Europe%2FAthens",
+    "https://calendar.google.com/calendar/render?action=TEMPLATE&text=THYMIOLAS%20%E2%80%94%20%CE%A0%CF%8E%CF%82%20%CE%88%CE%B2%CE%B3%CE%B1%CE%BB%CE%B1%20%CE%A7%CF%81%CE%AE%CE%BC%CE%B1%CF%84%CE%B1%20%CE%BC%CE%B5%20%CF%84%CE%BF%20AI%20%CF%83%CF%84%CE%B7%CE%BD%20%CE%95%CE%BB%CE%BB%CE%AC%CE%B4%CE%B1&dates=20260531%2F20260601&details=%CE%A0%CF%81%CE%B1%CE%B3%CE%BC%CE%B1%CF%84%CE%B9%CE%BA%CF%8C%20free%20value%20%CE%B3%CF%8D%CF%81%CF%89%20%CE%B1%CF%80%CF%8C%20%CF%84%CE%BF%20AI%20%CE%BA%CE%B1%CE%B9%20%CF%84%CE%BF%20online%20income%20%CF%83%CF%84%CE%B7%CE%BD%20%CE%95%CE%BB%CE%BB%CE%AC%CE%B4%CE%B1.&location=%CE%98%CE%B1%20%CE%B1%CE%BD%CE%B1%CE%BA%CE%BF%CE%B9%CE%BD%CF%89%CE%B8%CE%B5%CE%AF&ctz=Europe%2FAthens",
 });

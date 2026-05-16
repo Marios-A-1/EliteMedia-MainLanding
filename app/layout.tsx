@@ -150,7 +150,7 @@ export default function RootLayout({
                 mixBlendMode="normal"
               /> */}
           </div>
-          <div className="relative z-10 flex min-h-screen flex-col overflow-hidden pt-14 supports-[overflow:clip]:overflow-clip">
+          <div className="relative z-10 flex min-h-screen flex-col overflow-hidden pt-0 supports-[overflow:clip]:overflow-clip">
             {/* <Header /> */}
             {children}
           </div>

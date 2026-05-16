@@ -12,6 +12,7 @@ import {
 } from "@ant-design/icons";
 import BlurText from "@/components/BlurText";
 import AnimatedContent from "@/components/AnimatedContent";
+import { EVENT_CONFIG } from "@/lib/eventConfig";
 
 const { Text } = Typography;
 
@@ -33,22 +34,22 @@ export type EventDetailsContent = {
 
 export const EventDetailsContent: EventDetailsContent = {
   eyebrow: <>Event Details</>,
-  heading: <>Πληροφορίες</>,
+  heading: <>Πληροφορίες Event</>,
   description: (
     <>
-      4 ώρες masterclass για να φύγεις με roadmap + επόμενο βήμα. Μετά, networking
-      με άτομα σαν κι εσένα.
+      Free value από προσωπική εμπειρία, πρακτικές γνώσεις και εφαρμόσιμες
+      στρατηγικές για AI και online income στην Ελλάδα.
     </>
   ),
   facts: [
-    { iconKey: "calendar", label: "Ημερομηνία", value: "1 Μαρτίου 2026" },
-    { iconKey: "pin", label: "Τοποθεσία", value: "Δάφνη - Στριγγάρη 5" },
-    { iconKey: "clock", label: "Ώρα", value: "12:00" },
-    { iconKey: "fieldtime", label: "Διάρκεια", value: "4 ώρες " },
-    { iconKey: "users", label: "Μετά το Event", value: "Networking" },
-    { iconKey: "file", label: "Υλικό", value: "Slides / PDF" },
+    { iconKey: "calendar", label: "Ημερομηνία", value: EVENT_CONFIG.EVENT_DATETIME_LABEL },
+    { iconKey: "pin", label: "Τοποθεσία", value: EVENT_CONFIG.EVENT_LOCATION_TEXT },
+    { iconKey: "clock", label: "Ώρα", value: EVENT_CONFIG.EVENT_TIME_LABEL },
+    { iconKey: "fieldtime", label: "Online Access", value: "15€" },
+    { iconKey: "users", label: "In-Person Access", value: "29€" },
+    { iconKey: "file", label: "Focus", value: "AI + online income" },
   ],
-  badgeText: "Θα πάρεις όλη την παρουσίαση + PowerPoints σε PDF για να τα εφαρμόσεις.",
+  badgeText: "Θα πάρεις πρακτικά βήματα, mindset και live Q&A.",
 };
 
 const ICONS: Record<IconKey, ReactNode> = {
@@ -93,11 +94,11 @@ export default function EventDetails({ content }: EventDetailsProps) {
           >
             {mergedContent.heading}
           </BlurText>
-          <AnimatedContent ease="power3.out" duration={1.1} delay={0.3} distance={80}>
+          {/* <AnimatedContent ease="power3.out" duration={1.1} delay={0.3} distance={80}>
             <p className="section-description mx-auto max-w-3xl">
               {mergedContent.description}
             </p>
-          </AnimatedContent>
+          </AnimatedContent> */}
         </div>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

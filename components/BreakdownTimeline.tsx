@@ -1,11 +1,12 @@
 "use client";
 
-import type { ReactNode } from "react";
-import { Timeline, Typography } from "antd";
+import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import BlurText from "@/components/BlurText";
 import AnimatedContent from "@/components/AnimatedContent";
 
-const { Text, Title } = Typography;
+gsap.registerPlugin(ScrollTrigger);
 
 export type BreakdownStep = {
   time: string;
@@ -21,46 +22,42 @@ export type BreakdownContent = {
 };
 
 export const BreakdownContent: BreakdownContent = {
-  eyebrow: <>Breakdown</>,
-  heading: <>Breakdown</>,
-  description: <>Δες αναλυτικά πώς θα κυλήσει η μέρα — για να ξέρεις ακριβώς τι γίνεται, πότε.</>,
+  eyebrow: <>Structure</>,
+  heading: <>Πώς θα κυλήσει το event</>,
+  description: (
+    <>
+      Η ροή βασίζεται στο brief: value, προσωπική ιστορία, πρακτικά AI βήματα,
+      CTA και live Q&A.
+    </>
+  ),
   steps: [
     {
-      time: "12:00 – 12:30",
-      title: "Mindset",
-      subtitle: "Διαμόρφωσε τη σωστή νοοτροπία για συγκέντρωση, συνέπεια και αποτελεσματική εφαρμογή.",
+      time: "01",
+      title: "Εισαγωγή",
+      subtitle: "Welcome, τι θα πάρεις από το event και short hype & positioning.",
     },
     {
-      time: "12:30 – 13:00",
-      title: "Όλοι οι τρόποι για online χρήματα",
+      time: "02",
+      title: "Storytelling",
       subtitle:
-        "AI / Πωλήσεις / SMM / Freelancing — Διαλέγεις έναν.",
+        "Η προσωπική ιστορία, από την αρχή μέχρι τα πρώτα αποτελέσματα και τι λειτούργησε στην Ελλάδα.",
     },
     {
-      time: "13:00 – 14:30",
-      title: "Το μονοπάτι σου προς την επιτυχία",
-      subtitle: "Τι χτίζεις πρώτα και γιατί.",
-    },
-    {
-      time: "14:30 – 15:30",
-      title: "1ος πελάτης (outreach / πωλήσεις)",
+      time: "03",
+      title: "Πώς να το κάνεις και εσύ",
       subtitle:
-        "Πώς βρίσκεις το ν πρώτο πελάτη + τα πρώτα σου βήματα",
+        "AI opportunities σήμερα, Αιμίλιος chapter, Θύμιος chapter, πρακτικά βήματα και mindset.",
     },
     {
-      time: "15:30 – 16:00",
-      title: "Πως να πετύχεις GUARANTEED",
-      subtitle: "Φεύγεις με ξεκάθαρο πλάνο για να πας προς τα πρώτα σου 1000€ online.",
+      time: "04",
+      title: "Waitlist / CTA",
+      subtitle:
+        "Επόμενες ευκαιρίες, community, πρόγραμμα, future access και call to action.",
     },
     {
-      time: "16:00 – 17:30",
-      title: "Networking",
-      subtitle: "Γνώρισε πάνω απο 100 επιχειρηματίες και χτίσε συνεργασίες με άλλα άτομα σαν και εσένα.",
-    },
-    {
-      time: "17:30+",
-      title: "Πάμε για φαγητό (όσοι θέλουμε)",
-      subtitle: "Networking dinner με επιχειρηματίες",
+      time: "05",
+      title: "Q&A Session",
+      subtitle: "Live ερωτήσεις και απαντήσεις.",
     },
   ],
 };
@@ -70,11 +67,124 @@ type BreakdownTimelineProps = {
 };
 
 export default function BreakdownTimeline({ content }: BreakdownTimelineProps) {
+  const agendaRef = useRef<HTMLDivElement>(null);
   const mergedContent = content ?? BreakdownContent;
   const steps = mergedContent.steps?.length
     ? mergedContent.steps
     : BreakdownContent.steps;
-  const timelineSteps = steps;
+
+  useEffect(() => {
+    const agenda = agendaRef.current;
+    if (!agenda) {
+      return;
+    }
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const items = gsap.utils.toArray<HTMLElement>(".event-agenda__item", agenda);
+    const cards = gsap.utils.toArray<HTMLElement>(".event-agenda__card", agenda);
+    const dots = gsap.utils.toArray<HTMLElement>(".event-agenda__dot", agenda);
+    const line = agenda.querySelector<HTMLElement>(".event-agenda__line");
+
+    if (prefersReducedMotion) {
+      gsap.set(items, { autoAlpha: 1, clearProps: "transform" });
+      gsap.set([...cards, ...dots], {
+        autoAlpha: 1,
+        clearProps: "transform",
+      });
+      if (line) {
+        gsap.set(line, { scaleY: 1 });
+      }
+      return;
+    }
+
+    let media: gsap.MatchMedia | undefined;
+
+    const context = gsap.context(() => {
+      if (line) {
+        gsap.fromTo(
+          line,
+          { scaleY: 0 },
+          {
+            scaleY: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: agenda,
+              start: "top 78%",
+              end: "bottom 62%",
+              scrub: true,
+            },
+          }
+        );
+      }
+
+      const animateItems = (resolveX: (index: number) => number) => {
+        items.forEach((item, index) => {
+          const card = item.querySelector<HTMLElement>(".event-agenda__card");
+          const dot = item.querySelector<HTMLElement>(".event-agenda__dot");
+          const x = resolveX(index);
+
+          if (card) {
+            gsap.fromTo(
+              card,
+              { autoAlpha: 0, x, scale: 0.96 },
+              {
+                autoAlpha: 1,
+                x: 0,
+                scale: 1,
+                duration: 0.82,
+                ease: "power3.out",
+                scrollTrigger: {
+                  trigger: item,
+                  start: "top 82%",
+                  toggleActions: "play none none reverse",
+                },
+              }
+            );
+          }
+
+          if (dot) {
+            gsap.fromTo(
+              dot,
+              { autoAlpha: 0, scale: 0.55 },
+              {
+                autoAlpha: 1,
+                scale: 1,
+                duration: 0.48,
+                ease: "back.out(2.2)",
+                scrollTrigger: {
+                  trigger: item,
+                  start: "top 82%",
+                  toggleActions: "play none none reverse",
+                },
+              }
+            );
+          }
+
+          ScrollTrigger.create({
+            trigger: item,
+            start: "top 82%",
+            end: "bottom 38%",
+            onEnter: () => item.classList.add("is-active"),
+            onEnterBack: () => item.classList.add("is-active"),
+            onLeaveBack: () => item.classList.remove("is-active"),
+          });
+        });
+      };
+
+      media = gsap.matchMedia();
+      media.add("(min-width: 768px)", () => {
+        animateItems((index) => (index % 2 === 0 ? -92 : 92));
+      });
+      media.add("(max-width: 767px)", () => {
+        animateItems(() => 64);
+      });
+    }, agenda);
+
+    return () => {
+      media?.revert();
+      context.revert();
+    };
+  }, []);
 
   return (
     <section id="breakdown" className="mt-30 mb-20">
@@ -108,34 +218,33 @@ export default function BreakdownTimeline({ content }: BreakdownTimelineProps) {
             </AnimatedContent>
           ) : null}
         </div>
-      <AnimatedContent ease="power3.out" duration={1} delay={0.3} distance={80}>
-        <div className="bg-amber-200/30 py-10 px-8 rounded-2xl max-w-2xl mx-auto">
-          <Timeline
-            className="event-details-timeline-mobile breakdown-timeline "
-            items={timelineSteps.map((item) => ({
-              key: item.time,
-              color: "var(--color-amber-400)",
-              dot: (
-                <span className="event-details-timeline-dot gradient-border">
-                  <span className="gradient-border__inner" />
-                </span>
-              ),
-              children: (
-                <div className="breakdown-timeline-item pb-2 mb-4">
-                  <span className="breakdown-time !text-md !font-bold !text-neutral-600 !-mb-2">{item.time}</span>
-                  <Title
-                    level={5}
-                    className="!m-0 !text-xl !font-bold  !bg-linear-to-r !from-amber-500 !to-amber-400 !bg-clip-text !text-transparent "
-                  >
-                    {item.title}
-                  </Title>
-                  <Text className="!text-lg !font-semibold text-neutral-600">{item.subtitle}</Text>
-                </div>
-              ),
-            }))}
-          />
-        </div>
-      </AnimatedContent>
+        <AnimatedContent ease="power3.out" duration={1} delay={0.3} distance={80}>
+          <div
+            ref={agendaRef}
+            className="event-agenda"
+            style={{ ["--agenda-count" as string]: steps.length } as CSSProperties}
+          >
+            <span className="event-agenda__line" aria-hidden="true" />
+            <ol className="event-agenda__list">
+              {steps.map((item, index) => (
+                <li
+                  className="event-agenda__item"
+                  style={{ ["--agenda-index" as string]: index }}
+                  key={`${item.time}-${index}`}
+                >
+                  <div className="event-agenda__dot" aria-hidden="true">
+                    <span />
+                  </div>
+                  <article className="event-agenda__card">
+                    {/* <span className="event-agenda__number">{item.time}</span> */}
+                    <h3>{item.title}</h3>
+                    <p>{item.subtitle}</p>
+                  </article>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </AnimatedContent>
       </div>
     </section>
   );
