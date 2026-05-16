@@ -9,6 +9,7 @@ type EventTicketsCtaProps = {
   label?: string;
   triggerLeadPopup?: boolean;
   leadSource?: string;
+  playOnMount?: boolean;
 };
 
 const DEFAULT_LABEL = "Μάθε περισσότερα";
@@ -18,6 +19,7 @@ export default function EventTicketsCta({
   label = DEFAULT_LABEL,
   triggerLeadPopup = false,
   leadSource,
+  playOnMount = false,
 }: EventTicketsCtaProps) {
   const [remaining, setRemaining] = useState<number | null>(null);
 
@@ -63,8 +65,9 @@ export default function EventTicketsCta({
     <AnimatedContent
       className="w-full sm:w-auto flex justify-center"
       threshold={-100}
-      delay={0.9}
+      delay={playOnMount ? 0 : 0.9}
       duration={2.0}
+      playOnMount={playOnMount}
     >
       <div className="flex flex-col items-center">
         <a

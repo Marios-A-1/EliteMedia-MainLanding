@@ -4,12 +4,16 @@ import type { ReactNode } from "react";
 import {
   Bot,
   BrainCircuit,
+  CalendarDays,
+  Clock,
+  MapPin,
   Network,
   Send,
   Sparkles,
   Terminal,
   Zap,
 } from "lucide-react";
+import AnimatedContent from "./AnimatedContent";
 import ProfileCard from "./ProfileCard";
 
 export type EventCommandHeroRoadmapItem = {
@@ -30,6 +34,64 @@ export type EventCommandHeroProps = {
 };
 
 const ROADMAP_ICONS = [BrainCircuit, Sparkles, Send, Zap];
+
+const HERO_EVENT_DETAILS = [
+  {
+    label: "Ημερομηνία",
+    value: "Κυριακή 31 Μαΐου 2026",
+    icon: CalendarDays,
+  },
+  {
+    label: "Τοποθεσία",
+    value: "Στριγγάρη 5, 173 43",
+    icon: MapPin,
+  },
+  {
+    label: "Ώρα",
+    value: "Θα ανακοινωθεί",
+    icon: Clock,
+  },
+];
+
+function EventDetailCards({ animated = false }: { animated?: boolean }) {
+  return (
+    <>
+      {HERO_EVENT_DETAILS.map((detail, index) => {
+        const Icon = detail.icon;
+        const card = (
+          <article
+            className="event-command-hero__detail-card"
+            style={{ ["--detail-index" as string]: index }}
+            key={detail.label}
+          >
+            <span className="event-command-hero__detail-icon">
+              <Icon className="h-5 w-5" aria-hidden="true" />
+            </span>
+            <span className="event-command-hero__detail-label">
+              {detail.label}
+            </span>
+            <strong>{detail.value}</strong>
+          </article>
+        );
+
+        if (!animated) return card;
+
+        return (
+          <AnimatedContent
+            key={detail.label}
+            ease="power3.out"
+            duration={1}
+            delay={0.2 + index * 0.08}
+            distance={70}
+            className="h-full"
+          >
+            {card}
+          </AnimatedContent>
+        );
+      })}
+    </>
+  );
+}
 
 export default function EventCommandHero({
   brand,
@@ -52,7 +114,7 @@ export default function EventCommandHero({
 
       <div className="event-command-hero__content grid w-full items-start gap-10 p-4 pt-8 lg:pt-12">
         <div className="event-command-hero__host-stack relative z-10 flex flex-col items-center text-center">
-          <div className="event-command-hero__profile mt-8">
+          <div className="event-command-hero__profile">
             <ProfileCard
               avatarUrl="/images/thymiollaswebp.webp"
               miniAvatarUrl="/images/thymiollaswebp.webp"
@@ -70,20 +132,16 @@ export default function EventCommandHero({
             />
           </div>
 
-          <div className="event-command-hero__signals mt-7 flex flex-wrap justify-center gap-3">
-            <div className="event-command-hero__signal" style={{ ["--signal-index" as string]: 0 }}>
-              <span>Ημερομηνία</span>
-              <strong>{dateLabel}</strong>
-            </div>
-            <div className="event-command-hero__signal" style={{ ["--signal-index" as string]: 1 }}>
-              <span>Τοποθεσία</span>
-              <strong>{locationLabel}</strong>
+          <div className="event-command-hero__cta event-command-hero__cta--mobile mt-7 flex w-full justify-center px-4 lg:hidden">
+            {ctaNode}
+          </div>
+
+          <div className="event-command-hero__details-stack event-command-hero__details-stack--mobile lg:hidden">
+            <div className="event-command-hero__details-panel">
+              <EventDetailCards animated />
             </div>
           </div>
 
-          <div className="event-command-hero__cta mt-9 flex w-full justify-center">
-            {ctaNode}
-          </div>
         </div>
 
         <div className="event-command-hero__panel-wrap">
@@ -138,6 +196,20 @@ export default function EventCommandHero({
               })}
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className="event-command-hero__cta event-command-hero__cta--mobile-after-roadmap mt-7 flex w-full justify-center px-4 lg:hidden">
+        {ctaNode}
+      </div>
+
+      <div className="event-command-hero__cta event-command-hero__cta--desktop mt-6 hidden w-full justify-center px-4 lg:-mt-10 lg:flex">
+        {ctaNode}
+      </div>
+
+      <div className="event-command-hero__details-stack event-command-hero__details-stack--desktop hidden lg:block">
+        <div className="event-command-hero__details-panel">
+          <EventDetailCards />
         </div>
       </div>
     </section>

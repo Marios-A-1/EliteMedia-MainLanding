@@ -61,6 +61,7 @@ const eventHero = {
       label="Δήλωσε ενδιαφέρον"
       triggerLeadPopup
       leadSource="events_hero_cta"
+      playOnMount
     />
   ),
 };
@@ -115,7 +116,7 @@ export default function EventsPage() {
           pixelSize={4}
           patternScale={2.4}
           patternDensity={1.12}
-          speed={0.3}
+          speed={0.96}
           transparent
           edgeFade={0.18}
           enableRipples={false}
@@ -131,8 +132,8 @@ export default function EventsPage() {
       <EventCommandHero {...eventHero} />
       {/* <OfferCards content={TicketsContent} /> */}
       <BreakdownTimeline content={BreakdownContent} />
-      <EventDetails content={EventDetailsContent} />
-      <Directions content={DirectionsContent} />
+      {/* <EventDetails content={EventDetailsContent} /> */}
+      {/* <Directions content={DirectionsContent} /> */}
       <Cta
         content={CtaContent}
         triggerLeadPopup

@@ -567,19 +567,19 @@
 }
 
 .pc-card-wrapper.event-command-hero__profile-card {
-  --hero-profile-card-max-height: 360px;
+  --hero-profile-card-max-height: 430px;
 }
 
 .pc-card-wrapper.event-command-hero__profile-card .pc-card {
   width: 100% !important;
-  height: min(62vh, var(--hero-profile-card-max-height)) !important;
+  height: var(--hero-profile-card-max-height) !important;
   max-height: var(--hero-profile-card-max-height) !important;
   aspect-ratio: 0.718;
 }
 
 .pc-card-wrapper.event-command-hero__profile-card .pc-avatar-content .avatar {
-  width: 170% !important;
-  bottom: 72px !important;
+  width: 165% !important;
+  bottom: 70px !important;
 }
 
 @media (max-width: 768px) {
