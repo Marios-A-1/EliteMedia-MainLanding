@@ -1,6 +1,11 @@
 "use client";
 
-import type { ReactNode } from "react";
+import {
+  cloneElement,
+  isValidElement,
+  type ReactElement,
+  type ReactNode,
+} from "react";
 import {
   Bot,
   BrainCircuit,
@@ -35,6 +40,12 @@ export type EventCommandHeroProps = {
 
 const ROADMAP_ICONS = [BrainCircuit, Sparkles, Send, Zap];
 
+type CtaAnimationOverrides = {
+  playOnMount?: boolean;
+  animationThreshold?: number;
+  animationDelay?: number;
+};
+
 const HERO_EVENT_DETAILS = [
   {
     label: "Ημερομηνία",
@@ -53,7 +64,13 @@ const HERO_EVENT_DETAILS = [
   },
 ];
 
-function EventDetailCards({ animated = false }: { animated?: boolean }) {
+function EventDetailCards({
+  animated = false,
+  threshold = 0.25,
+}: {
+  animated?: boolean;
+  threshold?: number;
+}) {
   return (
     <>
       {HERO_EVENT_DETAILS.map((detail, index) => {
@@ -83,6 +100,7 @@ function EventDetailCards({ animated = false }: { animated?: boolean }) {
             duration={1}
             delay={0.2 + index * 0.08}
             distance={70}
+            threshold={threshold}
             className="h-full"
           >
             {card}
@@ -103,6 +121,14 @@ export default function EventCommandHero({
   prompt,
   roadmapItems,
 }: EventCommandHeroProps) {
+  const renderCta = (overrides: CtaAnimationOverrides) => {
+    if (!isValidElement(ctaNode)) {
+      return ctaNode;
+    }
+
+    return cloneElement(ctaNode as ReactElement<CtaAnimationOverrides>, overrides);
+  };
+
   return (
     <section className="event-command-hero relative isolate overflow-hidden pt-10 pb-14 md:pt-14 md:pb-20">
       <div className="event-command-hero__header relative z-10 mx-auto w-full max-w-5xl px-4 text-center">
@@ -117,7 +143,7 @@ export default function EventCommandHero({
           <div className="event-command-hero__profile">
             <ProfileCard
               avatarUrl="/images/thymiollaswebp.webp"
-              miniAvatarUrl="/images/thymiollaswebp.webp"
+              miniAvatarUrl="/images/thymiolas-avatar-small.jpg"
               name="Thymios M."
               title="Event Host"
               handle="thymiolas.gr"
@@ -133,7 +159,7 @@ export default function EventCommandHero({
           </div>
 
           <div className="event-command-hero__cta event-command-hero__cta--mobile mt-7 flex w-full justify-center px-4 lg:hidden">
-            {ctaNode}
+            {renderCta({ playOnMount: true })}
           </div>
 
           <div className="event-command-hero__details-stack event-command-hero__details-stack--mobile lg:hidden">
@@ -200,16 +226,20 @@ export default function EventCommandHero({
       </div>
 
       <div className="event-command-hero__cta event-command-hero__cta--mobile-after-roadmap mt-7 flex w-full justify-center px-4 lg:hidden">
-        {ctaNode}
+        {renderCta({
+          playOnMount: false,
+          animationThreshold: -0.05,
+          animationDelay: 0.15,
+        })}
       </div>
 
       <div className="event-command-hero__cta event-command-hero__cta--desktop mt-6 hidden w-full justify-center px-4 lg:-mt-10 lg:flex">
-        {ctaNode}
+        {renderCta({ playOnMount: true })}
       </div>
 
       <div className="event-command-hero__details-stack event-command-hero__details-stack--desktop hidden lg:block">
-        <div className="event-command-hero__details-panel">
-          <EventDetailCards />
+        <div className="event-command-hero__details-panel  lg:mt-24">
+          <EventDetailCards animated threshold={0.35} />
         </div>
       </div>
     </section>

@@ -48,8 +48,8 @@ export default function EventOfferCountdownPopup({
   );
 
   const baseButtonClassName =
-    "btn cursor-pointer font-bold px-5 py-3 text-lg rounded-[1rem] group w-auto hover:brightness-105 sm:w-auto md:px-10 md:py-4 md:text-lg";
-  const popupButtonClassName = "bg-amber-400/30 text-white hover:brightness-110";
+    "btn cursor-pointer font-black px-5 py-3 text-lg rounded-[1rem] group w-auto hover:brightness-105 sm:w-auto md:px-10 md:py-4 md:text-lg";
+  const popupButtonClassName = "event-brand-cta hover:brightness-110";
 
   const handleCtaClick = (event: MouseEvent<HTMLAnchorElement>) => {
     if (triggerLeadPopup) {
@@ -109,13 +109,19 @@ export default function EventOfferCountdownPopup({
                 {message ?? "Πριν λήξει η προσφορά!"}
               </p>
               <div className="mt-5 flex flex-col items-center gap-3">
-                <a
-                  href={triggerLeadPopup ? "#" : resolvedHref}
-                  onClick={handleCtaClick}
-                  className={`${baseButtonClassName} ${popupButtonClassName}`}
+                <AnimatedContent
+                  duration={2.0}
+                  delay={0.15}
+                  playOnMount
                 >
-                  {ctaLabel ?? "Διάλεξε εισιτήριο"}
-                </a>
+                  <a
+                    href={triggerLeadPopup ? "#" : resolvedHref}
+                    onClick={handleCtaClick}
+                    className={`${baseButtonClassName} ${popupButtonClassName}`}
+                  >
+                    {ctaLabel ?? "Διάλεξε εισιτήριο"}
+                  </a>
+                </AnimatedContent>
               </div>
             </div>
           </ElectricBorder>

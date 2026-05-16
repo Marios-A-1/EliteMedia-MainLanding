@@ -585,15 +585,31 @@
 @media (max-width: 768px) {
   .pc-card-wrapper.event-command-hero__profile-card {
     --hero-profile-card-max-height: 390px;
+    --card-opacity: 0 !important;
+    pointer-events: none;
+    touch-action: auto;
   }
 
   .pc-card-wrapper.event-command-hero__profile-card .pc-card {
     height: min(58svh, var(--hero-profile-card-max-height)) !important;
     max-height: var(--hero-profile-card-max-height) !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .pc-card-wrapper.event-command-hero__profile-card .pc-behind {
+    display: none;
+  }
+
+  .pc-card-wrapper.event-command-hero__profile-card:hover .pc-card,
+  .pc-card-wrapper.event-command-hero__profile-card.active .pc-card,
+  .pc-card-wrapper.event-command-hero__profile-card .pc-card:hover,
+  .pc-card-wrapper.event-command-hero__profile-card .pc-card.active {
+    transform: none !important;
   }
 
   .pc-card-wrapper.event-command-hero__profile-card .pc-avatar-content .avatar {
     width: 175% !important;
-    bottom: 78px !important;
+    bottom: 58px !important;
   }
 }

@@ -53,6 +53,8 @@ export default function Cta({
                 href={content?.cta?.href}
                 triggerLeadPopup={triggerLeadPopup}
                 leadSource={leadSource}
+                animationThreshold={-0.1}
+                animationDelay={0.15}
               />
             </div>
             </div>

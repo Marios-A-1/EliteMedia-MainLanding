@@ -130,13 +130,13 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
   const { isExpired } = useEventOfferCountdown();
   const [loadingTier, setLoadingTier] = useState<string | null>(null);
   const ctaBaseClassName =
-    "inline-flex w-full items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
+    "inline-flex w-full items-center justify-center rounded-xl px-5 py-3 text-sm font-black transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
   const ctaVipClassName =
-    "border-3 border-amber-400 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-300 text-[#2b2216] shadow-[0_10px_26px_rgba(245,158,11,0.35)] hover:brightness-105 focus-visible:ring-amber-400";
+    "event-brand-cta focus-visible:ring-blue-400";
   const ctaRegularClassName =
-    "border border-amber-400/80 bg-amber-300/55 text-[#2b2216] shadow-[0_10px_24px_rgba(180,83,9,0.18)] hover:bg-amber-300/75 focus-visible:ring-amber-400";
+    "event-brand-cta focus-visible:ring-blue-400";
   const ctaOnlineClassName =
-    "border border-amber-300/70 bg-amber-500/20 text-neutral-900 hover:bg-amber-500/30 focus-visible:ring-amber-300";
+    "event-brand-cta focus-visible:ring-blue-400";
 
   const handleCheckout = async (
     event: MouseEvent<HTMLAnchorElement>,
@@ -313,23 +313,30 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
 
                   {offer.ctaLabel ? (
                     <div className="mt-auto pt-6">
-                      <a
-                        href={resolvedCtaHref ?? "#"}
-                        onClick={
-                          offer.checkoutTier
-                            ? (event) =>
-                                handleCheckout(
-                                  event,
-                                  offer.checkoutTier,
-                                  resolvedCtaHref
-                                )
-                            : undefined
-                        }
-                        aria-disabled={isLoading}
-                        className={ctaClassName}
+                      <AnimatedContent
+                        threshold={0.28}
+                        delay={0.15 + offerIndex * 0.08}
+                        duration={2.0}
+                        className="w-full"
                       >
-                        {isLoading ? "Redirecting..." : offer.ctaLabel}
-                      </a>
+                        <a
+                          href={resolvedCtaHref ?? "#"}
+                          onClick={
+                            offer.checkoutTier
+                              ? (event) =>
+                                  handleCheckout(
+                                    event,
+                                    offer.checkoutTier,
+                                    resolvedCtaHref
+                                  )
+                              : undefined
+                          }
+                          aria-disabled={isLoading}
+                          className={ctaClassName}
+                        >
+                          {isLoading ? "Redirecting..." : offer.ctaLabel}
+                        </a>
+                      </AnimatedContent>
                     </div>
                   ) : null}
                 </div>

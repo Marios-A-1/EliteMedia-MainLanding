@@ -10,6 +10,8 @@ type EventTicketsCtaProps = {
   triggerLeadPopup?: boolean;
   leadSource?: string;
   playOnMount?: boolean;
+  animationThreshold?: number;
+  animationDelay?: number;
 };
 
 const DEFAULT_LABEL = "Μάθε περισσότερα";
@@ -20,6 +22,8 @@ export default function EventTicketsCta({
   triggerLeadPopup = false,
   leadSource,
   playOnMount = false,
+  animationThreshold = 0.35,
+  animationDelay = 0.9,
 }: EventTicketsCtaProps) {
   const [remaining, setRemaining] = useState<number | null>(null);
 
@@ -48,9 +52,9 @@ export default function EventTicketsCta({
   }, []);
 
   const baseButtonClassName =
-    "btn cursor-pointer font-bold px-5 py-3 text-lg rounded-[1rem] group w-auto hover:brightness-90 sm:w-auto md:px-10 md:py-4 md:text-lg";
+    "btn cursor-pointer font-black px-5 py-3 text-lg rounded-[1rem] group w-auto hover:brightness-90 sm:w-auto md:px-10 md:py-4 md:text-lg";
   const primaryButtonClassName =
-    "bg-linear-to-r from-amber-500 to-amber-300 bg-[length:100%_auto] text-[#2b2216]";
+    "event-brand-cta";
 
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
     if (!triggerLeadPopup) {
@@ -64,8 +68,8 @@ export default function EventTicketsCta({
   return (
     <AnimatedContent
       className="w-full sm:w-auto flex justify-center"
-      threshold={-100}
-      delay={playOnMount ? 0 : 0.9}
+      threshold={playOnMount ? -100 : animationThreshold}
+      delay={playOnMount ? 0 : animationDelay}
       duration={2.0}
       playOnMount={playOnMount}
     >

@@ -202,13 +202,20 @@ export default function EventLeadPopup() {
                       />
                     </div>
 
-                    <button
-                      type="submit"
-                      disabled={status === "loading"}
-                      className="inline-flex w-full items-center justify-center rounded-full border border-amber-300 bg-amber-400/90 px-5 py-3 text-sm font-semibold text-neutral-900 transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60"
+                    <AnimatedContent
+                      className="w-full"
+                      duration={2.0}
+                      delay={0.15}
+                      playOnMount
                     >
-                      {status === "loading" ? "Επεξεργασία..." : "Υποβολή"}
-                    </button>
+                      <button
+                        type="submit"
+                        disabled={status === "loading"}
+                        className="event-brand-cta inline-flex w-full items-center justify-center rounded-full px-5 py-3 text-sm font-black transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60"
+                      >
+                        {status === "loading" ? "Επεξεργασία..." : "Υποβολή"}
+                      </button>
+                    </AnimatedContent>
 
                     {message ? <p className="text-sm text-rose-600">{message}</p> : null}
                   </form>
@@ -217,13 +224,20 @@ export default function EventLeadPopup() {
                 <div className="py-4 text-center">
                   <h3 className="text-2xl font-bold text-neutral-900">Ευχαριστούμε!</h3>
                   <p className="mt-3 text-sm text-neutral-700">{SUCCESS_MESSAGE}</p>
-                  <button
-                    type="button"
-                    onClick={handleClose}
-                    className="mt-6 inline-flex items-center justify-center rounded-full border border-amber-300 bg-amber-400/90 px-5 py-3 text-sm font-semibold text-neutral-900 transition hover:brightness-105"
+                  <AnimatedContent
+                    className="mt-6 flex justify-center"
+                    duration={2.0}
+                    delay={0.15}
+                    playOnMount
                   >
-                    Κλείσιμο
-                  </button>
+                    <button
+                      type="button"
+                      onClick={handleClose}
+                      className="event-brand-cta inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-black transition hover:brightness-105"
+                    >
+                      Κλείσιμο
+                    </button>
+                  </AnimatedContent>
                 </div>
               )}
             </div>

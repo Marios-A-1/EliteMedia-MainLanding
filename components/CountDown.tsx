@@ -75,6 +75,9 @@ type OfferCtaButtonProps = {
   href?: string;
   triggerLeadPopup?: boolean;
   leadSource?: string;
+  animationThreshold?: number;
+  animationDelay?: number;
+  playOnMount?: boolean;
 };
 
 export function OfferCtaButton({
@@ -86,6 +89,9 @@ export function OfferCtaButton({
   href,
   triggerLeadPopup = false,
   leadSource,
+  animationThreshold = -100,
+  animationDelay = 0.9,
+  playOnMount = false,
 }: OfferCtaButtonProps) {
   const { isExpired } = useOfferCountdownState();
 
@@ -96,9 +102,9 @@ export function OfferCtaButton({
     : freeLabel ?? <>Κλείσε Συμβουλευτική</>;
 
   const baseButtonClassName =
-    "btn cursor-pointer font-bold px-5 py-3 text-lg rounded-[1rem] group w-auto hover:brightness-105 sm:w-auto md:px-10 md:py-4 md:text-lg";
+    "btn cursor-pointer font-black px-5 py-3 text-lg rounded-[1rem] group w-auto hover:brightness-105 sm:w-auto md:px-10 md:py-4 md:text-lg";
   const defaultColorClassName =
-    "bg-linear-to-r from-amber-500 to-amber-300 bg-[length:100%_auto] text-[#2b2216]";
+    "event-brand-cta";
   const resolvedButtonClassName = [
     baseButtonClassName,
     buttonClassName ? "" : defaultColorClassName,
@@ -131,9 +137,10 @@ export function OfferCtaButton({
   return (
     <AnimatedContent
       className={className ?? "w-full sm:w-auto flex justify-center"}
-      threshold={-100}
-      delay={0.9}
+      threshold={animationThreshold}
+      delay={animationDelay}
       duration={2.0}
+      playOnMount={playOnMount}
     >
       <a
         href={triggerLeadPopup ? "#" : ctaHref}
