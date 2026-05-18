@@ -9,16 +9,12 @@ import {
 import {
   Bot,
   BrainCircuit,
-  CalendarDays,
-  Clock,
-  MapPin,
   Network,
   Send,
   Sparkles,
   Terminal,
   Zap,
 } from "lucide-react";
-import AnimatedContent from "./AnimatedContent";
 import ProfileCard from "./ProfileCard";
 
 export type EventCommandHeroRoadmapItem = {
@@ -45,71 +41,6 @@ type CtaAnimationOverrides = {
   animationThreshold?: number;
   animationDelay?: number;
 };
-
-const HERO_EVENT_DETAILS = [
-  {
-    label: "Ημερομηνία",
-    value: "Κυριακή 31 Μαΐου 2026",
-    icon: CalendarDays,
-  },
-  {
-    label: "Τοποθεσία",
-    value: "Στριγγάρη 5, 173 43",
-    icon: MapPin,
-  },
-  {
-    label: "Ώρα",
-    value: "Θα ανακοινωθεί",
-    icon: Clock,
-  },
-];
-
-function EventDetailCards({
-  animated = false,
-  threshold = 0.25,
-}: {
-  animated?: boolean;
-  threshold?: number;
-}) {
-  return (
-    <>
-      {HERO_EVENT_DETAILS.map((detail, index) => {
-        const Icon = detail.icon;
-        const card = (
-          <article
-            className="event-command-hero__detail-card"
-            style={{ ["--detail-index" as string]: index }}
-            key={detail.label}
-          >
-            <span className="event-command-hero__detail-icon">
-              <Icon className="h-5 w-5" aria-hidden="true" />
-            </span>
-            <span className="event-command-hero__detail-label">
-              {detail.label}
-            </span>
-            <strong>{detail.value}</strong>
-          </article>
-        );
-
-        if (!animated) return card;
-
-        return (
-          <AnimatedContent
-            key={detail.label}
-            ease="power3.out"
-            duration={1}
-            delay={0.2 + index * 0.08}
-            distance={70}
-            threshold={threshold}
-            className="h-full"
-          >
-            {card}
-          </AnimatedContent>
-        );
-      })}
-    </>
-  );
-}
 
 export default function EventCommandHero({
   brand,
@@ -161,13 +92,6 @@ export default function EventCommandHero({
           <div className="event-command-hero__cta event-command-hero__cta--mobile mt-7 flex w-full justify-center px-4 lg:hidden">
             {renderCta({ playOnMount: true })}
           </div>
-
-          <div className="event-command-hero__details-stack event-command-hero__details-stack--mobile lg:hidden">
-            <div className="event-command-hero__details-panel">
-              <EventDetailCards animated />
-            </div>
-          </div>
-
         </div>
 
         <div className="event-command-hero__panel-wrap">
@@ -225,23 +149,10 @@ export default function EventCommandHero({
         </div>
       </div>
 
-      <div className="event-command-hero__cta event-command-hero__cta--mobile-after-roadmap mt-7 flex w-full justify-center px-4 lg:hidden">
-        {renderCta({
-          playOnMount: false,
-          animationThreshold: -0.05,
-          animationDelay: 0.15,
-        })}
-      </div>
-
       <div className="event-command-hero__cta event-command-hero__cta--desktop mt-6 hidden w-full justify-center px-4 lg:-mt-10 lg:flex">
         {renderCta({ playOnMount: true })}
       </div>
 
-      <div className="event-command-hero__details-stack event-command-hero__details-stack--desktop hidden lg:block">
-        <div className="event-command-hero__details-panel  lg:mt-24">
-          <EventDetailCards animated threshold={0.35} />
-        </div>
-      </div>
     </section>
   );
 }

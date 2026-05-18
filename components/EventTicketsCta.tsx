@@ -4,6 +4,7 @@ import { useEffect, useState, type MouseEvent } from "react";
 
 import AnimatedContent from "@/components/AnimatedContent";
 import { openEventLeadPopup } from "@/utils/eventLeadPopup";
+import { smoothScrollToHash } from "@/utils/smoothScrollToHash";
 
 type EventTicketsCtaProps = {
   label?: string;
@@ -57,12 +58,14 @@ export default function EventTicketsCta({
     "event-brand-cta";
 
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    if (!triggerLeadPopup) {
+    if (triggerLeadPopup) {
+      event.preventDefault();
+      openEventLeadPopup(leadSource);
       return;
     }
 
     event.preventDefault();
-    openEventLeadPopup(leadSource);
+    smoothScrollToHash("#event-offer-cards");
   };
 
   return (

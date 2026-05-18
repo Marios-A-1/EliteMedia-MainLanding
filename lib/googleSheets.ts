@@ -68,7 +68,6 @@ export const appendClaimRow = async (row: ClaimSheetRow) => {
       row.phone,
       row.email,
       row.ticketTier ?? "",
-      row.amountTotal === 0 ? "Yes" : "",
     ],
   ];
 

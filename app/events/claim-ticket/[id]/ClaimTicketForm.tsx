@@ -13,6 +13,8 @@ type ClaimTicketFormProps = {
 
 const resolveMessage = (status?: string) => {
   switch (status) {
+    case "missing_fields":
+      return "Συμπλήρωσε όλα τα πεδία.";
     case "invalid_tier":
       return "Μη έγκυρη κατηγορία εισιτηρίου.";
     case "invalid_phone":
@@ -100,9 +102,9 @@ export default function ClaimTicketForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-8 space-y-5">
+    <form onSubmit={handleSubmit} className="mt-7 space-y-5">
       <div>
-        <label className="text-sm font-semibold text-neutral-700">
+        <label className="text-sm font-black text-neutral-700">
           Ονοματεπώνυμο
         </label>
         <input
@@ -110,11 +112,11 @@ export default function ClaimTicketForm({
           required
           value={fullName}
           onChange={(event) => setFullName(event.target.value)}
-          className="mt-2 w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 shadow-sm focus:border-amber-400 focus:outline-none"
+          className="mt-2 w-full rounded-2xl border border-neutral-200 bg-white/90 px-4 py-4 text-base font-semibold text-neutral-950 shadow-[0_10px_24px_rgba(15,23,42,0.06)] transition focus:border-blue-400 focus:outline-none focus:ring-4 focus:ring-blue-100"
         />
       </div>
       <div>
-        <label className="text-sm font-semibold text-neutral-700">
+        <label className="text-sm font-black text-neutral-700">
           Ηλεκτρονικό ταχυδρομείο
         </label>
         <input
@@ -122,25 +124,25 @@ export default function ClaimTicketForm({
           required
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          className="mt-2 w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 shadow-sm focus:border-amber-400 focus:outline-none"
+          className="mt-2 w-full rounded-2xl border border-neutral-200 bg-white/90 px-4 py-4 text-base font-semibold text-neutral-950 shadow-[0_10px_24px_rgba(15,23,42,0.06)] transition focus:border-blue-400 focus:outline-none focus:ring-4 focus:ring-blue-100"
         />
       </div>
       <div>
-        <label className="text-sm font-semibold text-neutral-700">Τηλέφωνο</label>
+        <label className="text-sm font-black text-neutral-700">Τηλέφωνο</label>
         <input
           type="tel"
           inputMode="tel"
           required
           value={phone}
           onChange={(event) => setPhone(event.target.value)}
-          className="mt-2 w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 shadow-sm focus:border-amber-400 focus:outline-none"
+          className="mt-2 w-full rounded-2xl border border-neutral-200 bg-white/90 px-4 py-4 text-base font-semibold text-neutral-950 shadow-[0_10px_24px_rgba(15,23,42,0.06)] transition focus:border-blue-400 focus:outline-none focus:ring-4 focus:ring-blue-100"
         />
       </div>
 
       <button
         type="submit"
         disabled={status === "loading" || status === "success"}
-        className="inline-flex w-full items-center justify-center rounded-full border border-amber-300 bg-amber-400/90 px-5 py-3 text-sm font-semibold text-neutral-900 transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60"
+        className="event-brand-cta inline-flex w-full items-center justify-center rounded-2xl px-5 py-4 text-sm font-black transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {status === "loading" ? "Επεξεργασία..." : "Κράτα τη θέση σου"}
       </button>

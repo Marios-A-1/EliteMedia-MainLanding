@@ -190,7 +190,7 @@ export default function BreakdownTimeline({ content }: BreakdownTimelineProps) {
     <section id="breakdown" className="mt-30 mb-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 ">
         <div className="pb-8 text-center md:pb-12 ">
-          <div className="flex justify-center pb-3">
+          {/* <div className="flex justify-center pb-3">
             <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-amber-400 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-amber-400">
               <BlurText
                 as="span"
@@ -200,7 +200,7 @@ export default function BreakdownTimeline({ content }: BreakdownTimelineProps) {
                 {mergedContent.eyebrow}
               </BlurText>
             </div>
-          </div>
+          </div> */}
           <BlurText
             as="h2"
             className="section-heading pb-4"

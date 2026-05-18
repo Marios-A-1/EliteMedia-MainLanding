@@ -1,5 +1,6 @@
-﻿import Stripe from "stripe";
+import Stripe from "stripe";
 
+import ClaimTicketShell, { StatusCard } from "../ClaimTicketShell";
 import ClaimTicketForm from "./ClaimTicketForm";
 import { verifyClaimToken } from "@/lib/claimToken";
 import { getStripe, isPaidSession, resolveTicketTier } from "@/lib/stripe";
@@ -11,19 +12,6 @@ const isStripeSessionId = (value: string) => value.startsWith("cs_");
 type PageProps = {
   params: Promise<{ id: string }>;
 };
-
-const StatusCard = ({
-  title,
-  description,
-}: {
-  title: string;
-  description: string;
-}) => (
-  <div className="rounded-2xl border border-amber-200/70 bg-amber-50/70 p-6 text-sm text-neutral-700">
-    <h2 className="text-lg font-semibold text-neutral-900">{title}</h2>
-    <p className="mt-2 text-sm text-neutral-600">{description}</p>
-  </div>
-);
 
 export default async function ClaimTicketPage({ params }: PageProps) {
   const { id } = await params;
@@ -46,26 +34,16 @@ export default async function ClaimTicketPage({ params }: PageProps) {
 
   if (!sessionId) {
     return (
-      <main className="min-h-screen bg-neutral-950/5 pt-16 pb-16 -mt-14">
-        <div className="mx-auto max-w-3xl px-4">
-          <h1 className="text-center text-3xl font-bold text-neutral-900">
-            Κράτα τη θέση σου
-          </h1>
-          <p className="mt-2 text-center text-sm text-neutral-600">
-            Χρησιμοποίησε το ID συνεδρίας πληρωμής για να συνεχίσεις.
-          </p>
-          <div className="mt-8">
-            <StatusCard
-              title="Πρόβλημα με τον σύνδεσμο"
-              description={
-                tokenError === "expired"
-                  ? "Ο σύνδεσμος έχει λήξει. Χρησιμοποίησε το ID συνεδρίας πληρωμής."
-                  : "Ο σύνδεσμος δεν είναι έγκυρος. Χρησιμοποίησε το ID συνεδρίας πληρωμής."
-              }
-            />
-          </div>
-        </div>
-      </main>
+      <ClaimTicketShell subtitle="Χρησιμοποίησε το ID συνεδρίας πληρωμής για να συνεχίσεις.">
+        <StatusCard
+          title="Πρόβλημα με τον σύνδεσμο"
+          description={
+            tokenError === "expired"
+              ? "Ο σύνδεσμος έχει λήξει. Χρησιμοποίησε το ID συνεδρίας πληρωμής."
+              : "Ο σύνδεσμος δεν είναι έγκυρος. Χρησιμοποίησε το ID συνεδρίας πληρωμής."
+          }
+        />
+      </ClaimTicketShell>
     );
   }
 
@@ -82,19 +60,12 @@ export default async function ClaimTicketPage({ params }: PageProps) {
 
   if (!session) {
     return (
-      <main className="min-h-screen bg-neutral-950/5 pt-16 pb-16 -mt-14">
-        <div className="mx-auto max-w-3xl px-4">
-          <h1 className="text-center text-3xl font-bold text-neutral-900">
-            Κράτα τη θέση σου
-          </h1>
-          <div className="mt-8">
-            <StatusCard
-              title="Δεν βρέθηκε συνεδρία"
-              description="Δεν μπορέσαμε να βρούμε το ID συνεδρίας πληρωμής. Έλεγξε τον σύνδεσμο."
-            />
-          </div>
-        </div>
-      </main>
+      <ClaimTicketShell>
+        <StatusCard
+          title="Δεν βρέθηκε συνεδρία"
+          description="Δεν μπορέσαμε να βρούμε το ID συνεδρίας πληρωμής. Έλεγξε τον σύνδεσμο."
+        />
+      </ClaimTicketShell>
     );
   }
 
@@ -115,59 +86,51 @@ export default async function ClaimTicketPage({ params }: PageProps) {
   const customerName = session.customer_details?.name ?? undefined;
 
   return (
-    <main className="min-h-screen bg-neutral-950/5 pt-16 pb-16 -mt-14">
-      <div className="mx-auto max-w-3xl px-4">
-        <h1 className="text-center text-3xl font-bold text-neutral-900">
-          Κράτα τη θέση σου
-        </h1>
-        <p className="mt-2 text-center text-sm text-neutral-600">
-          Συμπλήρωσε τα στοιχεία σου για να ολοκληρώσεις την καταχώρηση.
-        </p>
-        <div className="mt-6 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
-          <div className="flex flex-wrap items-center gap-3 text-sm text-neutral-600">
-            <span className="rounded-full bg-neutral-100 px-3 py-1">
-              Συνεδρία: {session.id}
-            </span>
-            <span className="rounded-full bg-neutral-100 px-3 py-1">
-              Κατηγορία: {ticketTier}
-            </span>
-          </div>
-
-          {!isPaid ? (
-            <div className="mt-6">
-              <StatusCard
-                title="Η πληρωμή εκκρεμεί"
-                description="Δεν έχει επιβεβαιωθεί ακόμη η πληρωμή. Αν πλήρωσες με ασύγχρονη μέθοδο, δοκίμασε ξανά σε λίγα λεπτά."
-              />
-            </div>
-          ) : null}
-
-          {isClaimed ? (
-            <div className="mt-6">
-              <StatusCard
-                title="Ήδη καταχωρήθηκε"
-                description="Αυτό το εισιτήριο έχει ήδη καταχωρηθεί."
-              />
-            </div>
-          ) : null}
-
-          {isPaid && !isClaimed ? (
-            resolvedTier ? (
-              <ClaimTicketForm
-                sessionId={session.id}
-                tier={resolvedTier}
-                defaultEmail={customerEmail}
-                defaultName={customerName}
-              />
-            ) : (
-              <StatusCard
-                title="Δεν βρέθηκε κατηγορία"
-                description="Δεν μπορέσαμε να προσδιορίσουμε αν είναι Regular, VIP ή Online. Χρησιμοποίησε τους νέους συνδέσμους."
-              />
-            )
-          ) : null}
-        </div>
+    <ClaimTicketShell subtitle="Συμπλήρωσε τα στοιχεία σου για να ολοκληρώσεις την καταχώρηση.">
+      <div className="flex flex-wrap items-center gap-3 text-sm font-bold text-neutral-600">
+        <span className="rounded-full border border-neutral-200 bg-neutral-50/90 px-3 py-1">
+          Συνεδρία: {session.id}
+        </span>
+        <span className="rounded-full border border-amber-200 bg-amber-50/90 px-3 py-1 text-amber-700">
+          Κατηγορία: {ticketTier}
+        </span>
       </div>
-    </main>
+
+      {!isPaid ? (
+        <div className="mt-6">
+          <StatusCard
+            title="Η πληρωμή εκκρεμεί"
+            description="Δεν έχει επιβεβαιωθεί ακόμη η πληρωμή. Αν πλήρωσες με ασύγχρονη μέθοδο, δοκίμασε ξανά σε λίγα λεπτά."
+          />
+        </div>
+      ) : null}
+
+      {isClaimed ? (
+        <div className="mt-6">
+          <StatusCard
+            title="Ήδη καταχωρήθηκε"
+            description="Αυτό το εισιτήριο έχει ήδη καταχωρηθεί."
+          />
+        </div>
+      ) : null}
+
+      {isPaid && !isClaimed ? (
+        resolvedTier ? (
+          <ClaimTicketForm
+            sessionId={session.id}
+            tier={resolvedTier}
+            defaultEmail={customerEmail}
+            defaultName={customerName}
+          />
+        ) : (
+          <div className="mt-6">
+            <StatusCard
+              title="Δεν βρέθηκε κατηγορία"
+              description="Δεν μπορέσαμε να προσδιορίσουμε αν είναι Regular, VIP ή Online. Χρησιμοποίησε τους νέους συνδέσμους."
+            />
+          </div>
+        )
+      ) : null}
+    </ClaimTicketShell>
   );
 }

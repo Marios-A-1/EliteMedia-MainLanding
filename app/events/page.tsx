@@ -4,12 +4,20 @@ import EventTicketsCta from "@/components/EventTicketsCta";
 import Directions, { DirectionsContent } from "@/components/Directions";
 import BreakdownTimeline, { BreakdownContent } from "@/components/BreakdownTimeline";
 import EventDetails, { EventDetailsContent } from "@/components/EventDetails";
+import EventDetails2, { EventDetails2Content } from "@/components/EventDetails2";
 import OfferCards, { type OfferCardsContent } from "@/components/OfferCards";
 import Cta from "@/components/cta";
 import EventOfferCountdownController from "@/components/EventOfferCountdownController";
 import EventLeadPopup from "@/components/EventLeadPopup";
 import Footer from "@/components/ui/footer";
 import { EVENT_CONFIG } from "@/lib/eventConfig";
+import {
+  ONLINE_STATIC_LINK,
+  REGULAR_EARLY_LINK,
+  REGULAR_LATE_LINK,
+  VIP_EARLY_LINK,
+  VIP_LATE_LINK,
+} from "@/utils/eventOfferLinks";
 
 export const metadata = {
   title: EVENT_CONFIG.EVENT_TITLE,
@@ -58,9 +66,7 @@ const eventHero = {
   ],
   ctaNode: (
     <EventTicketsCta
-      label="Δήλωσε ενδιαφέρον"
-      triggerLeadPopup
-      leadSource="events_hero_cta"
+      label="Διάλεξε εισιτήριο"
       playOnMount
     />
   ),
@@ -78,6 +84,9 @@ const TicketsContent: OfferCardsContent = {
       subtitle: "Παρακολούθηση online",
       keepPriceStaticOnExpire: true,
       priceLines: [{ label: "ΤΙΜΗ", amount: "15€", highlight: true }],
+      ctaLabel: "Πάρε Online",
+      ctaHref: ONLINE_STATIC_LINK,
+      ctaHrefExpired: ONLINE_STATIC_LINK,
       features: [
         "Πρόσβαση στο live event",
         "AI opportunities και πρακτικά βήματα",
@@ -89,10 +98,29 @@ const TicketsContent: OfferCardsContent = {
       subtitle: "Παρουσία στον χώρο",
       keepPriceStaticOnExpire: true,
       priceLines: [{ label: "ΤΙΜΗ", amount: "29€", highlight: true }],
+      ctaLabel: "Πάρε In-Person",
+      ctaHref: REGULAR_EARLY_LINK,
+      ctaHrefExpired: REGULAR_LATE_LINK,
+      checkoutTier: "regular",
       features: [
         "Όλα όσα περιλαμβάνει το online access",
         "Live εμπειρία στον χώρο",
         "Community, future access και networking",
+      ],
+    },
+    {
+      title: "VIP Spots",
+      subtitle: "Premium in-person access",
+      keepPriceStaticOnExpire: true,
+      priceLines: [{ label: "ΤΙΜΗ", amount: "99€", highlight: true }],
+      ctaLabel: "Πάρε VIP",
+      ctaHref: VIP_EARLY_LINK,
+      ctaHrefExpired: VIP_LATE_LINK,
+      checkoutTier: "vip",
+      features: [
+        "Όλα όσα περιλαμβάνει το in-person access",
+        "Best seats / καλύτερη εμπειρία μέσα στην αίθουσα",
+        "Closer networking και καλύτερη πρόσβαση μετά το event",
       ],
       highlight: true,
     },
@@ -102,7 +130,7 @@ const TicketsContent: OfferCardsContent = {
 const CtaContent = {
   heading: "Μάθε πώς μπορείς να βγάλεις χρήματα με το AI στην Ελλάδα",
   cta: {
-    label: <>Δήλωσε ενδιαφέρον</>,
+    label: <>Διάλεξε εισιτήριο</>,
     href: "#event-offer-cards",
   },
 };
@@ -130,14 +158,20 @@ export default function EventsPage() {
         />
       ) : null}
       <EventCommandHero {...eventHero} />
-      {/* <OfferCards content={TicketsContent} /> */}
+      <EventDetails2 content={EventDetails2Content} />
+      <div className="flex w-full justify-center px-4 pt-2 pb-8 lg:hidden">
+        <EventTicketsCta
+          label="Διάλεξε εισιτήριο"
+          playOnMount
+          animationDelay={0.15}
+        />
+      </div>
       <BreakdownTimeline content={BreakdownContent} />
       {/* <EventDetails content={EventDetailsContent} /> */}
       {/* <Directions content={DirectionsContent} /> */}
+      <OfferCards content={TicketsContent} />
       <Cta
         content={CtaContent}
-        triggerLeadPopup
-        leadSource="events_bottom_cta"
       />
       <Footer />
     </main>

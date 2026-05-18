@@ -4,7 +4,12 @@ import { NextResponse } from "next/server";
 import { sendTicketConfirmedEmail } from "@/lib/email";
 import { appendClaimRow } from "@/lib/googleSheets";
 import { sendMetaPurchaseEvent } from "@/lib/metaCapi";
-import { getStripe, isPaidSession, mergeMetadata } from "@/lib/stripe";
+import {
+  getStripe,
+  isPaidSession,
+  mergeMetadata,
+  resolveTicketTier,
+} from "@/lib/stripe";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -27,6 +32,23 @@ const getPaymentIntentId = (session: Stripe.Checkout.Session) => {
   return null;
 };
 
+const normalizeTicketTier = (value: string | undefined) => {
+  const normalized = value?.trim().toLowerCase();
+  if (!normalized) {
+    return null;
+  }
+  if (normalized.includes("regular")) {
+    return "regular" as const;
+  }
+  if (normalized.includes("vip")) {
+    return "vip" as const;
+  }
+  if (normalized.includes("online")) {
+    return "online" as const;
+  }
+  return null;
+};
+
 export async function POST(request: Request) {
   const body = (await request.json().catch(() => null)) as RequestBody | null;
 
@@ -37,7 +59,7 @@ export async function POST(request: Request) {
   const rawPhone = body?.phone?.trim();
   const phone = rawPhone ? rawPhone.replace(/[^\d+]/g, "") : "";
 
-  if (!sessionId || !tier || !fullName || !email || !phone) {
+  if (!sessionId || !fullName || !email || !phone) {
     return NextResponse.json(
       { ok: false, status: "missing_fields" },
       { status: 400 }
@@ -51,7 +73,7 @@ export async function POST(request: Request) {
     );
   }
 
-  if (tier !== "regular" && tier !== "vip" && tier !== "online") {
+  if (tier && tier !== "regular" && tier !== "vip" && tier !== "online") {
     return NextResponse.json(
       { ok: false, status: "invalid_tier" },
       { status: 400 }
@@ -84,6 +106,16 @@ export async function POST(request: Request) {
     return NextResponse.json(
       { ok: false, status: "already_claimed" },
       { status: 409 }
+    );
+  }
+
+  const resolvedTier = normalizeTicketTier(resolveTicketTier(session));
+  const claimedTier = resolvedTier ?? normalizeTicketTier(tier);
+
+  if (!claimedTier) {
+    return NextResponse.json(
+      { ok: false, status: "invalid_tier" },
+      { status: 400 }
     );
   }
 
@@ -123,7 +155,7 @@ export async function POST(request: Request) {
   const metadata = mergeMetadata(session.metadata, {
     claimed: "true",
     claimedAt,
-    claimedTier: tier,
+    claimedTier,
     claimedName: fullName,
     claimedEmail: email,
     claimedPhone: phone,
@@ -135,7 +167,7 @@ export async function POST(request: Request) {
 
   await appendClaimRow({
     timestamp: claimedAt,
-    ticketTier: tier,
+    ticketTier: claimedTier,
     fullName,
     email,
     phone,
@@ -150,7 +182,7 @@ export async function POST(request: Request) {
       await sendTicketConfirmedEmail({
         email,
         fullName,
-        ticketTier: tier,
+        ticketTier: claimedTier,
         sessionId,
       });
     } catch (error) {
@@ -160,5 +192,5 @@ export async function POST(request: Request) {
     console.warn("Email provider not configured; skipping confirmation email.");
   }
 
-  return NextResponse.json({ ok: true, status: "claimed", ticketTier: tier });
+  return NextResponse.json({ ok: true, status: "claimed", ticketTier: claimedTier });
 }

@@ -108,7 +108,6 @@ const DEFAULT_OFFERS: OfferCard[] = [
     checkoutTier: "vip",
     features: [
       "Όλα όσα περιλαμβάνει το Normal Ticket",
-      "Priority check-in",
       "VIP θέσεις / καλύτερη εμπειρία μέσα στην αίθουσα",
       "Extra networking / καλύτερη πρόσβαση σε γνωριμίες",
     ],
@@ -313,30 +312,23 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
 
                   {offer.ctaLabel ? (
                     <div className="mt-auto pt-6">
-                      <AnimatedContent
-                        threshold={0.28}
-                        delay={0.15 + offerIndex * 0.08}
-                        duration={2.0}
-                        className="w-full"
+                      <a
+                        href={resolvedCtaHref ?? "#"}
+                        onClick={
+                          offer.checkoutTier
+                            ? (event) =>
+                                handleCheckout(
+                                  event,
+                                  offer.checkoutTier,
+                                  resolvedCtaHref
+                                )
+                            : undefined
+                        }
+                        aria-disabled={isLoading}
+                        className={ctaClassName}
                       >
-                        <a
-                          href={resolvedCtaHref ?? "#"}
-                          onClick={
-                            offer.checkoutTier
-                              ? (event) =>
-                                  handleCheckout(
-                                    event,
-                                    offer.checkoutTier,
-                                    resolvedCtaHref
-                                  )
-                              : undefined
-                          }
-                          aria-disabled={isLoading}
-                          className={ctaClassName}
-                        >
-                          {isLoading ? "Redirecting..." : offer.ctaLabel}
-                        </a>
-                      </AnimatedContent>
+                        {isLoading ? "Redirecting..." : offer.ctaLabel}
+                      </a>
                     </div>
                   ) : null}
                 </div>

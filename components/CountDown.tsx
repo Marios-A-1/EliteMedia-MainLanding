@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import Countdown, { type CountdownRenderProps } from "react-countdown";
 import AnimatedContent from "@/components/AnimatedContent";
 import { openEventLeadPopup } from "@/utils/eventLeadPopup";
+import { smoothScrollToHash } from "@/utils/smoothScrollToHash";
 
 const STORAGE_KEY = "offerStartTimestamp";
 const OFFER_DURATION_MS = 48 * 60 * 60 * 1000;
@@ -114,12 +115,16 @@ export function OfferCtaButton({
     .join(" ");
 
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    if (!triggerLeadPopup) {
+    if (triggerLeadPopup) {
+      event.preventDefault();
+      openEventLeadPopup(leadSource);
       return;
     }
 
-    event.preventDefault();
-    openEventLeadPopup(leadSource);
+    if (ctaHref?.startsWith("#")) {
+      event.preventDefault();
+      smoothScrollToHash(ctaHref);
+    }
   };
 
   if (disableAnimation) {
