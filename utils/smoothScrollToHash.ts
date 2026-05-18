@@ -1,38 +1,36 @@
-const easeInOutCubic = (progress: number) =>
-  progress < 0.5
-    ? 4 * progress * progress * progress
-    : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+const findHashTarget = (hash: string) => {
+  const rawId = hash.slice(1);
+  let decodedId = rawId;
 
-export const smoothScrollToHash = (hash: string, duration = 950) => {
+  try {
+    decodedId = decodeURIComponent(rawId);
+  } catch {
+    decodedId = rawId;
+  }
+
+  return document.getElementById(decodedId) ?? document.querySelector(hash);
+};
+
+export const smoothScrollToHash = (hash: string) => {
   if (typeof window === "undefined" || !hash.startsWith("#")) {
     return false;
   }
 
-  const target = document.querySelector(hash);
+  const target = findHashTarget(hash);
   if (!target) {
     return false;
   }
 
-  const startY = window.scrollY;
-  const targetY = target.getBoundingClientRect().top + window.scrollY;
-  const distance = targetY - startY;
-  const startTime = window.performance.now();
-
-  const step = (currentTime: number) => {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    const easedProgress = easeInOutCubic(progress);
-
-    window.scrollTo(0, startY + distance * easedProgress);
-
-    if (progress < 1) {
-      window.requestAnimationFrame(step);
-      return;
-    }
-
+  if (window.history?.replaceState) {
     window.history.replaceState(null, "", hash);
-  };
+  }
 
-  window.requestAnimationFrame(step);
+  target.scrollIntoView({
+    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ? "auto"
+      : "smooth",
+    block: "start",
+  });
+
   return true;
 };

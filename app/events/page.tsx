@@ -73,7 +73,7 @@ const eventHero = {
 };
 
 const TicketsContent: OfferCardsContent = {
-  sectionId: "event-offer-cards",
+  sectionId: "tickets",
   eyebrow: "Tickets",
   heading: "Εισιτήρια",
   description:
@@ -131,7 +131,7 @@ const CtaContent = {
   heading: "Μάθε πώς μπορείς να βγάλεις χρήματα με το AI στην Ελλάδα",
   cta: {
     label: <>Διάλεξε εισιτήριο</>,
-    href: "#event-offer-cards",
+    href: "#tickets",
   },
 };
 

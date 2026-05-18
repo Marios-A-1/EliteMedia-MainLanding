@@ -116,7 +116,7 @@ const DEFAULT_OFFERS: OfferCard[] = [
 ];
 
 const DEFAULT_CONTENT: OfferCardsContent = {
-  sectionId: "event-offer-cards",
+  sectionId: "tickets",
   eyebrow: "Tickets",
   heading: "Διάλεξε εισιτήριο",
   description: "Τρεις επιλογές. Διάλεξε αν θες Regular, VIP ή Online.",
@@ -181,7 +181,7 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
 
   return (
     <section
-      id={mergedContent.sectionId ?? "event-offer-cards"}
+      id={mergedContent.sectionId ?? "tickets"}
       className="relative mt-12"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">

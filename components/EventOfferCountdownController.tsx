@@ -18,7 +18,7 @@ type EventOfferCountdownControllerProps = {
 };
 
 export default function EventOfferCountdownController({
-  sectionId = "event-offer-cards",
+  sectionId = "tickets",
   popupHeading,
   popupMessage,
   popupCtaLabel,

@@ -65,7 +65,7 @@ export default function EventTicketsCta({
     }
 
     event.preventDefault();
-    smoothScrollToHash("#event-offer-cards");
+    smoothScrollToHash("#tickets");
   };
 
   return (
@@ -78,7 +78,7 @@ export default function EventTicketsCta({
     >
       <div className="flex flex-col items-center">
         <a
-          href="#event-offer-cards"
+          href="#tickets"
           onClick={handleClick}
           className={`${baseButtonClassName} ${primaryButtonClassName}`}
         >
