@@ -34,7 +34,7 @@ const eventHero = {
       εφαρμόσιμες στρατηγικές γύρω από το AI και το online income στην Ελλάδα.
     </>
   ),
-  dateLabel: "31/5",
+  dateLabel: "23/05",
   // locationLabel: EVENT_CONFIG.EVENT_LOCATION_TEXT,
   locationLabel: "Αθήνα",
   prompt: "Πώς μπορώ να βγάλω χρήματα με AI στην Ελλάδα;",
@@ -77,13 +77,13 @@ const TicketsContent: OfferCardsContent = {
   eyebrow: "Tickets",
   heading: "Εισιτήρια",
   description:
-    "Διάλεξε online access ή in-person access. Η ώρα και το venue θα ανακοινωθούν.",
+    "Διάλεξε online access ή in-person access για 23/05/2026 στις 18:30.",
   offers: [
     {
       title: "Online Access",
       subtitle: "Παρακολούθηση online",
       keepPriceStaticOnExpire: true,
-      priceLines: [{ label: "ΤΙΜΗ", amount: "15€", highlight: true }],
+      priceLines: [{ label: "ΤΙΜΗ", amount: "20€", highlight: true }],
       ctaLabel: "Πάρε Online",
       ctaHref: ONLINE_STATIC_LINK,
       ctaHrefExpired: ONLINE_STATIC_LINK,
@@ -97,7 +97,7 @@ const TicketsContent: OfferCardsContent = {
       title: "In-Person Access",
       subtitle: "Παρουσία στον χώρο",
       keepPriceStaticOnExpire: true,
-      priceLines: [{ label: "ΤΙΜΗ", amount: "29€", highlight: true }],
+      priceLines: [{ label: "ΤΙΜΗ", amount: "50€", highlight: true }],
       ctaLabel: "Πάρε In-Person",
       ctaHref: REGULAR_EARLY_LINK,
       ctaHrefExpired: REGULAR_LATE_LINK,
@@ -112,7 +112,7 @@ const TicketsContent: OfferCardsContent = {
       title: "VIP Spots",
       subtitle: "Premium in-person access",
       keepPriceStaticOnExpire: true,
-      priceLines: [{ label: "ΤΙΜΗ", amount: "99€", highlight: true }],
+      priceLines: [{ label: "ΤΙΜΗ", amount: "100€", highlight: true }],
       ctaLabel: "Πάρε VIP",
       ctaHref: VIP_EARLY_LINK,
       ctaHrefExpired: VIP_LATE_LINK,

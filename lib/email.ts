@@ -1,6 +1,20 @@
 import { getAppUrl } from "@/lib/appUrl";
+import { buildTicketConfirmedTemplate } from "@/lib/emailTemplates/ticketConfirmedTemplate";
+import { EVENT_CONFIG } from "@/lib/eventConfig";
 
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
+
+const getEmailConfig = () => {
+  const apiKey =
+    process.env.RESEND_API_KEY || process.env.EMAIL_PROVIDER_API_KEY;
+  const from = process.env.RESEND_FROM || process.env.EMAIL_FROM;
+
+  return {
+    apiKey,
+    from,
+    isConfigured: Boolean(apiKey && from),
+  };
+};
 
 type SendEmailInput = {
   to: string;
@@ -10,15 +24,14 @@ type SendEmailInput = {
 };
 
 const sendEmail = async ({ to, subject, html, text }: SendEmailInput) => {
-  const apiKey = process.env.EMAIL_PROVIDER_API_KEY;
-  const from = process.env.EMAIL_FROM;
+  const { apiKey, from } = getEmailConfig();
 
   if (!apiKey) {
-    throw new Error("EMAIL_PROVIDER_API_KEY is not set");
+    throw new Error("RESEND_API_KEY or EMAIL_PROVIDER_API_KEY is not set");
   }
 
   if (!from) {
-    throw new Error("EMAIL_FROM is not set");
+    throw new Error("RESEND_FROM or EMAIL_FROM is not set");
   }
 
   const response = await fetch(RESEND_ENDPOINT, {
@@ -44,6 +57,8 @@ const sendEmail = async ({ to, subject, html, text }: SendEmailInput) => {
   return response.json();
 };
 
+export const isEmailConfigured = () => getEmailConfig().isConfigured;
+
 type ClaimLinkEmailInput = {
   email: string;
   claimToken: string;
@@ -64,6 +79,8 @@ export const sendClaimLinkEmail = async ({
 
   const text = [
     "Thanks for your purchase!",
+    `Event date: ${EVENT_CONFIG.EVENT_DATETIME_LABEL}`,
+    `Event time: ${EVENT_CONFIG.EVENT_TIME_LABEL}`,
     tierLine,
     "Claim your ticket here:",
     claimUrl,
@@ -77,6 +94,8 @@ export const sendClaimLinkEmail = async ({
     <div style="font-family:Arial,sans-serif;line-height:1.6;color:#111">
       <h2>Your ticket claim link</h2>
       <p>Thanks for your purchase! Use the link below to claim your ticket.</p>
+      <p><strong>Event date:</strong> ${EVENT_CONFIG.EVENT_DATETIME_LABEL}</p>
+      <p><strong>Event time:</strong> ${EVENT_CONFIG.EVENT_TIME_LABEL}</p>
       ${ticketTier ? `<p><strong>Ticket tier:</strong> ${ticketTier}</p>` : ""}
       <p><a href="${claimUrl}">Claim your ticket</a></p>
       <p style="color:#666;font-size:12px">Session: ${sessionId}</p>
@@ -91,6 +110,7 @@ type ConfirmationEmailInput = {
   fullName: string;
   ticketTier?: string;
   sessionId: string;
+  ticketCode: string;
 };
 
 export const sendTicketConfirmedEmail = async ({
@@ -98,26 +118,14 @@ export const sendTicketConfirmedEmail = async ({
   fullName,
   ticketTier,
   sessionId,
+  ticketCode,
 }: ConfirmationEmailInput) => {
-  const subject = "Ticket confirmed";
-  const tierLine = ticketTier ? `Ticket tier: ${ticketTier}` : "";
-  const text = [
-    `Hi ${fullName},`,
-    "Your ticket has been confirmed.",
-    tierLine,
-    `Session: ${sessionId}`,
-  ]
-    .filter(Boolean)
-    .join("\n");
-
-  const html = `
-    <div style="font-family:Arial,sans-serif;line-height:1.6;color:#111">
-      <h2>Ticket confirmed</h2>
-      <p>Hi ${fullName}, your ticket has been confirmed.</p>
-      ${ticketTier ? `<p><strong>Ticket tier:</strong> ${ticketTier}</p>` : ""}
-      <p style="color:#666;font-size:12px">Session: ${sessionId}</p>
-    </div>
-  `;
+  const { subject, html, text } = buildTicketConfirmedTemplate({
+    fullName,
+    ticketTier,
+    sessionId,
+    ticketCode,
+  });
 
   return sendEmail({ to: email, subject, html, text });
 };

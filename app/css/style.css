@@ -296,6 +296,14 @@
   opacity: 0.58;
 }
 
+.claim-ticket-shell::after {
+  opacity: 0.84;
+}
+
+.claim-ticket-shell__pixel-bg {
+  opacity: 0.74;
+}
+
 .event-page-pixel-blast-bg .pixel-blast-container {
   width: 100%;
   height: 100%;
@@ -369,6 +377,20 @@
   transform: translateX(-120%) skewX(-20deg);
   animation: btn-shine-sweep 5.5s ease-in-out 0.8s infinite;
   pointer-events: none;
+}
+
+.claim-ticket-cta--flat {
+  box-shadow: none !important;
+  animation: none !important;
+}
+
+.claim-ticket-cta--flat:hover {
+  box-shadow: none !important;
+}
+
+.claim-ticket-cta--flat::after {
+  content: none;
+  animation: none !important;
 }
 
 .event-command-hero__headline {

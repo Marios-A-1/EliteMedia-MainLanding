@@ -1,7 +1,7 @@
 import Stripe from "stripe";
 import { NextResponse } from "next/server";
 
-import { sendTicketConfirmedEmail } from "@/lib/email";
+import { isEmailConfigured, sendTicketConfirmedEmail } from "@/lib/email";
 import { appendClaimRow } from "@/lib/googleSheets";
 import { sendMetaPurchaseEvent } from "@/lib/metaCapi";
 import {
@@ -10,6 +10,7 @@ import {
   mergeMetadata,
   resolveTicketTier,
 } from "@/lib/stripe";
+import { generateTicketCode } from "@/lib/ticketCode";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -151,6 +152,7 @@ export async function POST(request: Request) {
   }
 
   const claimedAt = new Date().toISOString();
+  const ticketCode = session.metadata?.ticketCode?.trim() || generateTicketCode();
 
   const metadata = mergeMetadata(session.metadata, {
     claimed: "true",
@@ -159,6 +161,7 @@ export async function POST(request: Request) {
     claimedName: fullName,
     claimedEmail: email,
     claimedPhone: phone,
+    ticketCode,
     metaPurchaseSent: metaPurchaseSent ? "true" : "false",
     metaPurchaseSentAt,
   });
@@ -171,25 +174,29 @@ export async function POST(request: Request) {
     fullName,
     email,
     phone,
+    ticketCode,
     sessionId,
     paymentIntentId: getPaymentIntentId(session),
     amountTotal: session.amount_total ?? null,
     currency: session.currency ?? null,
   });
 
-  if (process.env.EMAIL_PROVIDER_API_KEY) {
+  if (isEmailConfigured()) {
     try {
       await sendTicketConfirmedEmail({
         email,
         fullName,
         ticketTier: claimedTier,
         sessionId,
+        ticketCode,
       });
     } catch (error) {
       console.error("Failed to send confirmation email", error);
     }
   } else {
-    console.warn("Email provider not configured; skipping confirmation email.");
+    console.warn(
+      "Email provider not configured; set RESEND_API_KEY/RESEND_FROM or EMAIL_PROVIDER_API_KEY/EMAIL_FROM."
+    );
   }
 
   return NextResponse.json({ ok: true, status: "claimed", ticketTier: claimedTier });

@@ -102,39 +102,48 @@ export default function ClaimTicketForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-7 space-y-5">
+    <form onSubmit={handleSubmit} className="mt-7 space-y-5" autoComplete="on">
       <div>
-        <label className="text-sm font-black text-neutral-700">
+        <label htmlFor="claim-full-name" className="text-sm font-black text-neutral-700">
           Ονοματεπώνυμο
         </label>
         <input
+          id="claim-full-name"
+          name="name"
           type="text"
           required
           value={fullName}
           onChange={(event) => setFullName(event.target.value)}
+          autoComplete="name"
           className="mt-2 w-full rounded-2xl border border-neutral-200 bg-white/90 px-4 py-4 text-base font-semibold text-neutral-950 shadow-[0_10px_24px_rgba(15,23,42,0.06)] transition focus:border-blue-400 focus:outline-none focus:ring-4 focus:ring-blue-100"
         />
       </div>
       <div>
-        <label className="text-sm font-black text-neutral-700">
+        <label htmlFor="claim-email" className="text-sm font-black text-neutral-700">
           Ηλεκτρονικό ταχυδρομείο
         </label>
         <input
+          id="claim-email"
+          name="email"
           type="email"
           required
           value={email}
           onChange={(event) => setEmail(event.target.value)}
+          autoComplete="email"
           className="mt-2 w-full rounded-2xl border border-neutral-200 bg-white/90 px-4 py-4 text-base font-semibold text-neutral-950 shadow-[0_10px_24px_rgba(15,23,42,0.06)] transition focus:border-blue-400 focus:outline-none focus:ring-4 focus:ring-blue-100"
         />
       </div>
       <div>
-        <label className="text-sm font-black text-neutral-700">Τηλέφωνο</label>
+        <label htmlFor="claim-phone" className="text-sm font-black text-neutral-700">Τηλέφωνο</label>
         <input
+          id="claim-phone"
+          name="tel"
           type="tel"
           inputMode="tel"
           required
           value={phone}
           onChange={(event) => setPhone(event.target.value)}
+          autoComplete="tel"
           className="mt-2 w-full rounded-2xl border border-neutral-200 bg-white/90 px-4 py-4 text-base font-semibold text-neutral-950 shadow-[0_10px_24px_rgba(15,23,42,0.06)] transition focus:border-blue-400 focus:outline-none focus:ring-4 focus:ring-blue-100"
         />
       </div>

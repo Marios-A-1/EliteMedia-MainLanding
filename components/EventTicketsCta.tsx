@@ -3,6 +3,7 @@
 import { useEffect, useState, type MouseEvent } from "react";
 
 import AnimatedContent from "@/components/AnimatedContent";
+import { PHYSICAL_TICKET_TOTAL } from "@/lib/eventCapacity";
 import { openEventLeadPopup } from "@/utils/eventLeadPopup";
 import { smoothScrollToHash } from "@/utils/smoothScrollToHash";
 
@@ -85,7 +86,7 @@ export default function EventTicketsCta({
           {label}
         </a>
         <span className="mt-2 text-sm font-medium text-[#6b5b3a]" aria-live="polite">
-          {remaining ?? "—"}/100 {REMAINING_SUFFIX}
+          {remaining ?? "—"}/{PHYSICAL_TICKET_TOTAL} {REMAINING_SUFFIX}
         </span>
       </div>
     </AnimatedContent>

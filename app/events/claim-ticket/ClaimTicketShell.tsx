@@ -29,16 +29,17 @@ export default function ClaimTicketShell({
   children,
 }: ClaimTicketShellProps) {
   return (
-    <main className="event-page-shell -mt-14 min-h-screen pt-14">
-      <div className="event-page-pixel-blast-bg" aria-hidden="true">
+    <main className="event-page-shell claim-ticket-shell -mt-14 min-h-screen pt-14">
+      <div className="event-page-pixel-blast-bg claim-ticket-shell__pixel-bg" aria-hidden="true">
         <PixelBlast
           color="#3b7bde"
-          pixelSize={4}
-          patternScale={2.4}
-          patternDensity={1.12}
-          speed={0.96}
-          transparent
-          edgeFade={0.18}
+          pixelSize={3}
+          patternScale={2.7}
+          patternDensity={3.6}
+            speed={1.68}
+            transparent
+          edgeFade={0}
+          noiseAmount={0.025}
           enableRipples={false}
         />
       </div>
@@ -52,11 +53,11 @@ export default function ClaimTicketShell({
             >
               Πίσω στην αρχική 
             </a> */}
-            <h1 className="text-4xl font-black tracking-tight text-neutral-950 sm:text-5xl">
+            <h1 className="text-3xl font-black tracking-tight text-neutral-950 sm:text-4xl">
               {title}
             </h1>
             {subtitle ? (
-              <p className="mx-auto mt-3 max-w-xl text-base font-bold leading-relaxed text-neutral-600 sm:text-lg">
+              <p className="mx-auto mt-3 px-8 max-w-xl text-base font-bold leading-relaxed text-neutral-600 sm:text-lg">
                 {subtitle}
               </p>
             ) : null}

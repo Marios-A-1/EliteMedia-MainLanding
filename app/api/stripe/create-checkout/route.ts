@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 
 import { getAppUrl } from "@/lib/appUrl";
+import { getPhysicalTicketAvailability } from "@/lib/eventCapacity";
+import { getClaimedTicketCounts } from "@/lib/googleSheets";
 import { getStripe } from "@/lib/stripe";
 
 export const runtime = "nodejs";
@@ -62,6 +64,20 @@ export async function POST(request: Request) {
   const priceId = resolvePriceId(body.ticketTier);
   if (!priceId) {
     return NextResponse.json({ error: "invalid_ticket_tier" }, { status: 400 });
+  }
+
+  const counts = await getClaimedTicketCounts();
+  if (counts) {
+    const availability = getPhysicalTicketAvailability(
+      body.ticketTier,
+      counts[body.ticketTier]
+    );
+    if (availability.soldOut) {
+      return NextResponse.json(
+        { error: "ticket_tier_sold_out" },
+        { status: 409 }
+      );
+    }
   }
 
   const stripe = getStripe();

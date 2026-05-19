@@ -1,5 +1,5 @@
 "use client"
-import { useState, type ReactNode, type MouseEvent } from "react";
+import { useEffect, useState, type ReactNode, type MouseEvent } from "react";
 import ElectricBorder from "@/components/ElectricBorder";
 import useEventOfferCountdown from "@/utils/useEventOfferCountdown";
 import AnimatedContent from "@/components/AnimatedContent";
@@ -41,6 +41,22 @@ export type OfferCardsContent = {
   description?: ReactNode;
   offers?: OfferCard[];
 };
+
+type TierAvailability = {
+  capacity: number;
+  claimed: number;
+  remaining: number;
+  soldOut: boolean;
+};
+
+type SeatsResponse = {
+  tiers?: {
+    regular?: TierAvailability;
+    vip?: TierAvailability;
+  };
+};
+
+type CheckoutTier = NonNullable<OfferCard["checkoutTier"]>;
 
 const DEFAULT_OFFERS: OfferCard[] = [
   {
@@ -128,6 +144,9 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
   const offers = mergedContent.offers ?? DEFAULT_OFFERS;
   const { isExpired } = useEventOfferCountdown();
   const [loadingTier, setLoadingTier] = useState<string | null>(null);
+  const [availabilityByTier, setAvailabilityByTier] = useState<
+    Partial<Record<CheckoutTier, TierAvailability>>
+  >({});
   const ctaBaseClassName =
     "inline-flex w-full items-center justify-center rounded-xl px-5 py-3 text-sm font-black transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
   const ctaVipClassName =
@@ -136,18 +155,51 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
     "event-brand-cta focus-visible:ring-blue-400";
   const ctaOnlineClassName =
     "event-brand-cta focus-visible:ring-blue-400";
+  const ctaDisabledClassName =
+    "cursor-not-allowed bg-neutral-300 text-neutral-500 shadow-none hover:brightness-100";
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadAvailability = async () => {
+      try {
+        const response = await fetch("/api/events/seats");
+        const data = (await response.json()) as SeatsResponse;
+
+        if (!isMounted) {
+          return;
+        }
+
+        setAvailabilityByTier({
+          ...(data.tiers?.regular ? { regular: data.tiers.regular } : {}),
+          ...(data.tiers?.vip ? { vip: data.tiers.vip } : {}),
+        });
+      } catch {
+        if (isMounted) {
+          setAvailabilityByTier({});
+        }
+      }
+    };
+
+    void loadAvailability();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const handleCheckout = async (
     event: MouseEvent<HTMLAnchorElement>,
     tier: OfferCard["checkoutTier"],
-    fallbackHref?: string
+    fallbackHref?: string,
+    isSoldOut = false
   ) => {
     if (!tier) {
       return;
     }
 
     event.preventDefault();
-    if (loadingTier) {
+    if (loadingTier || isSoldOut) {
       return;
     }
 
@@ -161,11 +213,24 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
       });
 
       const data = (await response.json().catch(() => null)) as
-        | { url?: string }
+        | { url?: string; error?: string }
         | null;
 
       if (response.ok && data?.url) {
         window.location.href = data.url;
+        return;
+      }
+
+      if (response.status === 409 || data?.error === "ticket_tier_sold_out") {
+        setAvailabilityByTier((current) => ({
+          ...current,
+          [tier]: {
+            capacity: current[tier]?.capacity ?? 0,
+            claimed: current[tier]?.claimed ?? 0,
+            remaining: 0,
+            soldOut: true,
+          },
+        }));
         return;
       }
 
@@ -244,6 +309,11 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
                 : undefined;
               const isLoading =
                 loadingTier !== null && loadingTier === offer.checkoutTier;
+              const availability = offer.checkoutTier
+                ? availabilityByTier[offer.checkoutTier]
+                : undefined;
+              const isSoldOut =
+                offer.checkoutTier !== undefined && availability?.soldOut === true;
               const isVip =
                 offer.checkoutTier === "vip" || offer.highlight === true;
               const isRegular = offer.checkoutTier === "regular";
@@ -258,19 +328,35 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
                   ? ctaRegularClassName
                   : ctaOnlineClassName;
               const ctaClassName = `${ctaBaseClassName} ${
-                ctaToneClassName
+                isSoldOut ? ctaDisabledClassName : ctaToneClassName
               }`;
+              const availabilityLabel = offer.checkoutTier
+                ? availability
+                  ? `${availability.remaining} left`
+                  : "Checking spots"
+                : null;
               const card = (
                 <div
                   className={`relative flex h-full flex-col overflow-hidden rounded-2xl border p-6 shadow-lg transition ${cardToneClassName}`}
                 >
-                  {offer.highlight ? (
-                    <span className="absolute right-4 top-4 inline-flex items-center rounded-full bg-amber-200 px-3 py-1 text-xs font-semibold uppercase tracking-[0.05em] text-amber-700">
-                      Best value
-                    </span>
-                  ) : null}
-                  <div className="flex flex-col gap-2">
-                    <h3 className="text-2xl font-bold text-neutral-900">
+                  <span className="absolute right-6 top-6 inline-flex h-8 items-center rounded-full bg-amber-200 px-3 py-1 text-xs font-black uppercase tracking-[0.05em] text-amber-700">
+                    {availabilityLabel ?? (
+                      <span className="inline-flex items-center gap-1.5">
+                        <span
+                          aria-label="Unlimited"
+                          className="h-5 w-5 bg-blue-700"
+                          style={{
+                            WebkitMask:
+                              "url('/images/innfinite-icon.webp') center / contain no-repeat",
+                            mask: "url('/images/innfinite-icon.webp') center / contain no-repeat",
+                          }}
+                        />
+                        <span>left</span>
+                      </span>
+                    )}
+                  </span>
+                  <div className="flex flex-col gap-2 pr-28 lg:pr-24 xl:pr-32">
+                    <h3 className="whitespace-nowrap text-2xl font-bold text-neutral-900">
                       {offer.title}
                     </h3>
                     {offer.subtitle ? (
@@ -320,14 +406,20 @@ export default function OfferCards({ content }: { content?: OfferCardsContent })
                                 handleCheckout(
                                   event,
                                   offer.checkoutTier,
-                                  resolvedCtaHref
+                                  resolvedCtaHref,
+                                  isSoldOut
                                 )
                             : undefined
                         }
-                        aria-disabled={isLoading}
+                        aria-disabled={isLoading || isSoldOut}
+                        tabIndex={isSoldOut ? -1 : undefined}
                         className={ctaClassName}
                       >
-                        {isLoading ? "Redirecting..." : offer.ctaLabel}
+                        {isSoldOut
+                          ? "Sold out"
+                          : isLoading
+                            ? "Redirecting..."
+                            : offer.ctaLabel}
                       </a>
                     </div>
                   ) : null}

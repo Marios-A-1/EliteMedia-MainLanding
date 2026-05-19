@@ -15,7 +15,7 @@ Purpose: reuse the new web hero direction as a 12-15 second promo animation in H
 | --- | --- | --- |
 | 0.0-3.8s | Prompt types in | Command panel appears. Prompt text types: "Πώς μπορώ να βγάλω χρήματα με AI στην Ελλάδα;" |
 | 3.8-9.5s | Roadmap expands | Four cards animate from the prompt line: Skill, Offer, Outreach, First Income. Connection line draws left to right. |
-| 9.5-13.5s | Event lockup | Cards settle behind title. Show "THYMIOLAS", "Πώς Έβγαλα Χρήματα με το AI στην Ελλάδα", "31/5", "15€ Online", "29€ In-Person". |
+| 9.5-13.5s | Event lockup | Cards settle behind title. Show "THYMIOLAS", "Πώς Έβγαλα Χρήματα με το AI στην Ελλάδα", "23/05", "18:30", "15€ Online", "29€ In-Person". |
 | 13.5-15.0s | CTA hold | Final blue pulse on "Δήλωσε ενδιαφέρον". Hold clean frame for export thumbnails. |
 
 ## HyperFrames Notes

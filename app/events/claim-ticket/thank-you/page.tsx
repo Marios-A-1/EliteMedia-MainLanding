@@ -62,7 +62,7 @@ export default async function ClaimThankYouPage({ searchParams }: PageProps) {
 
   return (
     <ClaimTicketShell
-      title="Το εισιτήριό σου κατοχυρώθηκε"
+      title="Το εισιτήριό σου κατοχυρώθηκε ✅"
       subtitle="Στην είσοδο θα γίνει επιβεβαίωση με email ή τηλέφωνο."
     >
       <div className="grid gap-6 lg:grid-cols-[1.02fr_0.98fr]">
@@ -84,7 +84,7 @@ export default async function ClaimThankYouPage({ searchParams }: PageProps) {
               href={EVENT_CONFIG.GOOGLE_MAPS_DIRECTIONS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="event-brand-cta inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-4 text-sm font-black"
+              className="event-brand-cta claim-ticket-cta--flat inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-4 text-sm font-black"
             >
               <MapPinned className="h-4 w-4" aria-hidden="true" />
               Οδηγίες Διαδρομής
@@ -93,10 +93,10 @@ export default async function ClaimThankYouPage({ searchParams }: PageProps) {
               href={EVENT_CONFIG.GOOGLE_CALENDAR_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-neutral-300 bg-white/90 px-5 py-4 text-sm font-black text-neutral-800 transition hover:border-blue-200 hover:bg-blue-50"
+              className="event-brand-cta claim-ticket-cta--flat inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-4 text-sm font-black"
             >
               <CalendarPlus2 className="h-4 w-4" aria-hidden="true" />
-              Προσθήκη στο Google Calendar
+              Add to Calendar
             </a>
           </div>
         </div>
@@ -117,7 +117,7 @@ export default async function ClaimThankYouPage({ searchParams }: PageProps) {
               Ημερομηνία &amp; ώρα ({EVENT_CONFIG.TIMEZONE})
             </p>
             <p className="mt-1 font-black text-neutral-950">
-              {EVENT_CONFIG.EVENT_DATETIME_LABEL}
+              {EVENT_CONFIG.EVENT_DATETIME_LABEL} στις {EVENT_CONFIG.EVENT_TIME_LABEL}
             </p>
           </div>
         </div>

@@ -1,11 +1,18 @@
 import { google } from "googleapis";
 
+import {
+  EMPTY_TICKET_CLAIM_COUNTS,
+  type TicketClaimCounts,
+  normalizeEventTicketTier,
+} from "@/lib/eventCapacity";
+
 export type ClaimSheetRow = {
   timestamp: string;
   ticketTier?: string;
   fullName: string;
   email: string;
   phone: string;
+  ticketCode: string;
   sessionId: string;
   paymentIntentId?: string | null;
   amountTotal?: number | null;
@@ -68,6 +75,7 @@ export const appendClaimRow = async (row: ClaimSheetRow) => {
       row.phone,
       row.email,
       row.ticketTier ?? "",
+      row.ticketCode,
     ],
   ];
 
@@ -162,6 +170,49 @@ export const getClaimedRowsCount = async () => {
     return Math.max(0, firstColumnValues.length - headerOffset);
   } catch (error) {
     console.error("Failed to read Google Sheets rows", error);
+    return null;
+  }
+};
+
+export const getClaimedTicketCounts = async () => {
+  if (!sheetsClientPromise) {
+    sheetsClientPromise = getSheetsClient();
+  }
+
+  const sheets = await sheetsClientPromise;
+  const config = getSheetsConfig();
+
+  if (!sheets || !config) {
+    console.warn("Google Sheets not configured; skipping tier count.");
+    return null;
+  }
+
+  try {
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId: config.sheetId,
+      range: `${config.tabName}!A:D`,
+    });
+
+    const values = response.data.values ?? [];
+    if (values.length === 0) {
+      return { ...EMPTY_TICKET_CLAIM_COUNTS };
+    }
+
+    const firstColumn = (values[0]?.[0] ?? "").toString();
+    const dataRows = looksLikeHeader(firstColumn) ? values.slice(1) : values;
+
+    return dataRows.reduce<TicketClaimCounts>(
+      (counts, row) => {
+        const tier = normalizeEventTicketTier((row?.[3] ?? "").toString());
+        if (tier) {
+          counts[tier] += 1;
+        }
+        return counts;
+      },
+      { ...EMPTY_TICKET_CLAIM_COUNTS }
+    );
+  } catch (error) {
+    console.error("Failed to read Google Sheets ticket tiers", error);
     return null;
   }
 };
