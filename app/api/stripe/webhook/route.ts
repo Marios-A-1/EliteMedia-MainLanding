@@ -61,8 +61,17 @@ export async function POST(request: Request) {
       }
 
       const ticketTier = resolveTicketTier(session);
-      const claimToken = createClaimToken(sessionId);
-      const claimTokenIssuedAt = new Date().toISOString();
+      let claimToken = sessionId;
+      let claimTokenIssuedAt: string | undefined;
+      try {
+        claimToken = createClaimToken(sessionId);
+        claimTokenIssuedAt = new Date().toISOString();
+      } catch (error) {
+        console.error(
+          "Failed to create claim token; falling back to checkout session id",
+          error
+        );
+      }
       const email =
         session.customer_details?.email ?? session.customer_email ?? undefined;
       const hasSentMetaPurchase = session.metadata?.metaPurchaseSent === "true";
