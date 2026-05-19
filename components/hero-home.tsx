@@ -62,7 +62,7 @@ export default function HeroHome({ content }: HeroHomeProps) {
           {/* Section header */}
           <div className="pb-8 text-center md:pb-20">
             {/* <div className="mb-4 flex justify-center" data-aos="fade-up">
-              <Image src={logo} alt="Elite Media logo" width={96} height={96} />
+              <Image src={logo} alt="Thymiolas logo" width={96} height={96} />
             </div> */}
             <BlurText
               as="h1"

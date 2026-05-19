@@ -56,7 +56,7 @@ export default function ScheduleCallClient() {
         </AnimatedContent>
         <div className="mt-8 flex justify-center">
           <a
-            href={canBook ? "mailto:admin@elite-media.gr" : STRIPE_20_EURO_LINK}
+            href={canBook ? "mailto:admin@aicareer.gr" : STRIPE_20_EURO_LINK}
             className="btn btn-shine font-bold px-5 py-3 text-sm rounded-[1rem] group w-fullbg-[linear-gradient(to_right,var(--color-amber-300),var(--color-amber-400),var(--color-amber-400))] bg-[length:200%_auto] text-[#2b2216] hover:brightness-105 sm:w-auto md:px-10 md:py-4 md:text-lg"
           >
             {canBook ? "Book your call" : "Pay EUR 20 to book your call"}

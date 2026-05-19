@@ -64,7 +64,7 @@ const DEFAULT_WORKFLOWS_CONTENT: WorkflowsContent = {
       price: "99€",
     },
     {
-      text: "Πρόταση συνεργασίας από την EliteMedia αν πληροίς τα κριτήρια",
+      text: "Πρόταση συνεργασίας από την Thymiolas αν πληροίς τα κριτήρια",
       price: "49€",
     },
   ],

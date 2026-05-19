@@ -35,7 +35,7 @@ export default function OldNew() {
               animateBy="words"
               direction="top"
             >
-              Μόνος σου  VS  Με  Elite Media
+              Μόνος σου VS Με Thymiolas
             </BlurText>
             <AnimatedContent ease="power3.out" duration={1.5} delay={0.3} distance={100}>
 
@@ -112,7 +112,7 @@ export default function OldNew() {
           {/* Centered label */}
           <div className="absolute inset-0 flex items-center justify-center">
             <span className="rounded-xl bg-gold-200/80 px-4 py-1 text-xl font-black text-foreground">
-              Με Elite Media
+              Με Thymiolas
             </span>
           </div>
         </div>

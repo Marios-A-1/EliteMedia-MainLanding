@@ -97,7 +97,7 @@ export function OfferCtaButton({
   const { isExpired } = useOfferCountdownState();
 
   const ctaHref =
-    href ?? (isExpired ? STRIPE_20_EURO_LINK : "https://calendly.com/emilios-siar/elitemedia");
+    href ?? (isExpired ? STRIPE_20_EURO_LINK : "mailto:admin@aicareer.gr");
   const ctaLabel = isExpired
     ? expiredLabel ?? <>Κλείσε Συμβουλευτική</>
     : freeLabel ?? <>Κλείσε Συμβουλευτική</>;

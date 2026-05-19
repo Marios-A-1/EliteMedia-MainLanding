@@ -44,15 +44,15 @@ export const BreakdownContent: BreakdownContent = {
     },
     {
       time: "03",
-      title: "Πώς να το κάνεις και εσύ",
+      title: "Πώς το κάνεις πράξη",
       subtitle:
-        "AI opportunities σήμερα, Αιμίλιος chapter, Θύμιος chapter, πρακτικά βήματα και mindset.",
+        "Οι AI ευκαιρίες που ανοίγουν σήμερα, τα πρακτικά lessons, και τα βήματα για να ξεκινήσεις με καθαρό πλάνο και σωστό mindset.",
     },
     {
       time: "04",
-      title: "Waitlist / CTA",
+      title: "Το επόμενο βήμα",
       subtitle:
-        "Επόμενες ευκαιρίες, community, πρόγραμμα, future access και call to action.",
+        "Μπες στη λίστα για τις επόμενες ευκαιρίες, πρόσβαση στο community, ενημέρωση για το πρόγραμμα και προτεραιότητα σε future access.",
     },
     {
       time: "05",

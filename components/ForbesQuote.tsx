@@ -17,7 +17,7 @@ export default function ForbesQuote({ content }: ForbesQuoteProps) {
   return (
     <section className="mx-auto mt-4 max-w-3xl max-h-300 px-4">
       <a
-        href={content?.href ?? "https://www.forbesgreece.gr/story/3934912/elitemedia-to-elliniko-agency-pou-katalabainei-kalutera-ton-ellina-ap-oso-katalabainei-o-idios-ton-eauto-tou"}
+        href={content?.href ?? "https://aicareer.gr"}
         target="_blank"
         rel="noopener noreferrer"
         className="group relative block rounded-xl py-6  px-4 -pr-6 bg-gradient-to-br
@@ -31,7 +31,7 @@ export default function ForbesQuote({ content }: ForbesQuoteProps) {
           className="pointer-events-none absolute right-2 top-2 h-4 w-4 text-neutral-500 transition group-hover:text-neutral-700"
         />
         <blockquote className="text-md font-serif font-bold text-neutral-800 leading-relaxed">
-          {content?.quote ?? <>“EliteMedia: Το ελληνικό agency που καταλαβαίνει καλύτερα τον Έλληνα απ’ όσο καταλαβαίνει ο ίδιος τον εαυτό του”</>}
+          {content?.quote ?? <>“Thymiolas: Το ελληνικό agency που καταλαβαίνει καλύτερα τον Έλληνα απ’ όσο καταλαβαίνει ο ίδιος τον εαυτό του”</>}
         </blockquote>
         
         <div className="mt-6 flex items-center gap-2 opacity-80 justify-end group-hover:opacity-100">

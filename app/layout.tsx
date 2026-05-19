@@ -1,12 +1,13 @@
-import "./css/style.css";
-
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
-import localFont from "next/font/local"
+import localFont from "next/font/local";
 import Script from "next/script";
-import './css/style.css'
-import './css/additional-styles/theme.css'
-import './css/additional-styles/utility-patterns.css'
+// @ts-ignore
+import './css/style.css';
+// @ts-ignore
+import './css/additional-styles/theme.css';
+// @ts-ignore
+import './css/additional-styles/utility-patterns.css';
 import Header from "@/components/ui/header";
 import LightPillar from "@/components/ui/LightPillar";
 
@@ -45,12 +46,12 @@ const nacelle = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Elite Media",
+  title: "Thymiolas",
   description:
-    "Η Elite Media βοηθά τις ελληνικές επιχειρήσεις να αναπτυχθούν με στρατηγικό μάρκετινγκ μέσω social media, συστήματα περιεχομένου και εκτέλεση με επίκεντρο την απόδοση.",
-  applicationName: "Elite Media",
+    "Η Thymiolas βοηθά τις ελληνικές επιχειρήσεις να αναπτυχθούν με στρατηγικό μάρκετινγκ μέσω social media, συστήματα περιεχομένου και εκτέλεση με επίκεντρο την απόδοση.",
+  applicationName: "Thymiolas",
   keywords: [
-    "Elite Media",
+    "Thymiolas",
     "social media marketing",
     "digital marketing",
     "Greece",
@@ -60,17 +61,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "el_GR",
-    title: "Elite Media",
+    title: "Thymiolas",
     description:
-    "Η Elite Media βοηθά τις ελληνικές επιχειρήσεις να αναπτυχθούν με στρατηγικό μάρκετινγκ μέσω social media, συστήματα περιεχομένου και εκτέλεση με επίκεντρο την απόδοση.",
+    "Η Thymiolas βοηθά τις ελληνικές επιχειρήσεις να αναπτυχθούν με στρατηγικό μάρκετινγκ μέσω social media, συστήματα περιεχομένου και εκτέλεση με επίκεντρο την απόδοση.",
      
-    siteName: "Elite Media",
+    siteName: "Thymiolas",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Elite Media",
+    title: "Thymiolas",
     description:
-    "Η Elite Media βοηθά τις ελληνικές επιχειρήσεις να αναπτυχθούν με στρατηγικό μάρκετινγκ μέσω social media, συστήματα περιεχομένου και εκτέλεση με επίκεντρο την απόδοση.",
+    "Η Thymiolas βοηθά τις ελληνικές επιχειρήσεις να αναπτυχθούν με στρατηγικό μάρκετινγκ μέσω social media, συστήματα περιεχομένου και εκτέλεση με επίκεντρο την απόδοση.",
      
   },
   robots: {
