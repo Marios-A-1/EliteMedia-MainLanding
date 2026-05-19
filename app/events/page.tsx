@@ -83,7 +83,7 @@ const TicketsContent: OfferCardsContent = {
       title: "Online Access",
       subtitle: "Παρακολούθηση online",
       keepPriceStaticOnExpire: true,
-      priceLines: [{ label: "ΤΙΜΗ", amount: "20€", highlight: true }],
+      priceLines: [{ label: "ΤΙΜΗ", amount: "10€", highlight: true }],
       ctaLabel: "Πάρε Online",
       ctaHref: ONLINE_STATIC_LINK,
       ctaHrefExpired: ONLINE_STATIC_LINK,

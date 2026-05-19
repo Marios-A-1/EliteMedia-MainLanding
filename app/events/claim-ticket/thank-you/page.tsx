@@ -63,7 +63,7 @@ export default async function ClaimThankYouPage({ searchParams }: PageProps) {
   return (
     <ClaimTicketShell
       title="Το εισιτήριό σου κατοχυρώθηκε ✅"
-      subtitle="Στην είσοδο θα γίνει επιβεβαίωση με email ή τηλέφωνο."
+      subtitle="Στην είσοδο, δείξε τον κωδικό εισιτηρίου που θα λάβεις στο email επιβεβαίωσης. Το link για το Zoom θα σταλεί με email μία ημέρα πριν το event και ξανά 2 ώρες πριν ξεκινήσει."
     >
       <div className="grid gap-6 lg:grid-cols-[1.02fr_0.98fr]">
         <div className="rounded-2xl border border-neutral-200 bg-neutral-50/80 p-5 shadow-[0_14px_34px_rgba(15,23,42,0.06)]">
