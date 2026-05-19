@@ -25,13 +25,13 @@ export default function Footer() {
 
           {/* 5th block */}
           <div className="">
-            <div className="mb-3">
+            {/* <div className="mb-3">
               <Logo />
-            </div>
+            </div> */}
             <div className="text-sm">
-              <p className="mb-3 text-[#2b2216]">
+              {/* <p className="mb-3 text-[#2b2216]">
                 © Elite Media 
-              </p>
+              </p> */}
               <div className="mb-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs font-medium">
                 <Link
                   href="/privacy"
@@ -56,7 +56,7 @@ export default function Footer() {
                 <li>
                   <a
                     className="flex items-center justify-center text-indigo-500 transition hover:text-indigo-400"
-                    href="https://www.instagram.com/elitemedia.gr/"
+                    href="https://www.instagram.com/thimiolas.gr/"
                     aria-label="Instagram"
                   >
                     <InstagramOutlined className="h-8 w-8 fill-current" />
@@ -65,7 +65,7 @@ export default function Footer() {
                 <li>
                   <a
                     className="flex items-center justify-center text-indigo-500 transition hover:text-indigo-400"
-                    href="https://www.linkedin.com/company/elite-media-gr/"
+                    href="https://gr.linkedin.com/in/thymios-moragiannis"
                     aria-label="LinkedIn"
                   >
                     <LinkedinOutlined className="h-8 w-8 fill-current" />
@@ -75,7 +75,7 @@ export default function Footer() {
                 <li>
                   <a
                     className="flex items-center justify-center text-indigo-500 transition hover:text-indigo-400"
-                    href="https://www.tiktok.com/@elitemedia.gr"
+                    href="https://www.tiktok.com/@thimiolas.gr"
                     aria-label="TikTok"
                   >
                     <TikTokOutlined className="h-8 w-8 fill-current" />
