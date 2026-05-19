@@ -1,4 +1,4 @@
-const EVENT_TITLE = "THYMIOLAS — Πώς Έβγαλα Χρήματα με το AI στην Ελλάδα";
+const EVENT_TITLE = "Thymiolas Event — Πώς Έβγαλα Χρήματα με το AI στην Ελλάδα";
 const EVENT_SUBTITLE =
   "Πραγματικό value μέσα από προσωπική εμπειρία, γνώσεις και στρατηγικές γύρω από το AI και το online income στην Ελλάδα.";
 const EVENT_LOCATION = "Αθήνα, Στριγγάρη 5, 173 43";
