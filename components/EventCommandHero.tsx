@@ -78,7 +78,7 @@ export default function EventCommandHero({
               name="Thymios M."
               title="Event Host"
               handle="thymiolas.gr"
-              status="23/05 - 18:30 - Athens"
+              status="23/05 - Athens"
               contactText="AI Event"
               className="event-command-hero__profile-card"
               innerGradient="linear-gradient(145deg, rgba(29, 78, 216, 0.86) 0%, rgba(14, 165, 233, 0.56) 46%, rgba(7, 17, 31, 0.92) 100%)"
