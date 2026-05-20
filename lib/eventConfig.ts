@@ -31,7 +31,7 @@ export const EVENT_CONFIG = Object.freeze({
   START_UTC: "20260523T153000Z",
   END_UTC: "20260523T173000Z",
   EVENT_DATETIME_LABEL: "23/05/2026",
-  EVENT_TIME_LABEL: "18:30",
+  EVENT_TIME_LABEL: "18:30 - 20:30",
   GOOGLE_MAPS_DIRECTIONS_URL: `https://www.google.com/maps/dir/?api=1&destination=${EVENT_LOCATION_QUERY}`,
   GOOGLE_MAPS_EMBED_URL: `https://www.google.com/maps?q=${EVENT_LOCATION_QUERY}&output=embed`,
   GOOGLE_CALENDAR_URL,

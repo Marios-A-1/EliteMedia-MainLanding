@@ -3,7 +3,7 @@ export type EventTicketTier = PhysicalTicketTier | "online";
 
 export const EVENT_TICKET_CAPACITY: Record<PhysicalTicketTier, number> = {
   vip: 20,
-  regular: 180,
+  regular: 80,
 };
 
 export const PHYSICAL_TICKET_TIERS: PhysicalTicketTier[] = ["regular", "vip"];
